@@ -1,0 +1,13 @@
+{
+  "name": "cafediagon",
+  "version": "0.1.0",
+  "description": "Web de Diagon Cafe (Cala Rajada, Mallorca)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "menu": "node scripts/build-menu.mjs",
+    "mockup": "node scripts/build-mockup.mjs",
+    "check": "node scripts/check-responsive.mjs",
+    "maqueta": "npm run menu && npm run mockup && npm run check"
+  }
+}

@@ -1,0 +1,1847 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagon Cafe · maqueta</title>
+<style>
+:root{
+  --tinta:#202227; --tinta-2:#2B3439; --tinta-3:#3A3D45;
+  --crema:#FAF7F0; --crema-2:#F1EADC; --crema-3:#E2D8C6;
+  --cobre:#8A5A32; --cobre-claro:#C89A5B; --pergamino:#F8F7CD;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --ancho:1180px; --r:4px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.15;margin:0;
+  letter-spacing:-.01em}
+h1,h2,h3,h4,p,li,span,a{overflow-wrap:break-word}
+a{color:inherit}
+.env{width:min(100% - 2.5rem,var(--ancho));margin-inline:auto}
+
+/* ---------- aviso de maqueta ---------- */
+.aviso{background:#8A2E2E;color:#fff;font-size:.82rem;text-align:center;
+  padding:.55rem 1rem;letter-spacing:.02em}
+.aviso b{font-weight:600}
+
+/* ---------- cabecera ---------- */
+.cab{position:sticky;top:0;z-index:50;background:var(--tinta);color:var(--crema);
+  border-bottom:1px solid rgba(200,154,91,.22)}
+.cab__in{display:flex;align-items:center;gap:1.5rem;min-height:72px}
+.cab__logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex-shrink:0}
+.cab__logo img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.cab__logo span{font-family:var(--serif);font-size:1.28rem;letter-spacing:.05em;
+  color:var(--pergamino)}
+.nav{display:flex;gap:1.6rem;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav a{text-decoration:none;font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.11em;color:var(--crema);opacity:.82;padding-block:.4rem;
+  border-bottom:1px solid transparent}
+.nav a:hover{opacity:1;border-color:var(--cobre-claro)}
+.cab__lang{display:flex;gap:.15rem;margin-left:.5rem}
+.cab__lang button{background:none;border:0;color:var(--crema);opacity:.55;
+  font:inherit;font-size:.74rem;letter-spacing:.06em;cursor:pointer;padding:.3rem .42rem;
+  text-transform:uppercase}
+.cab__lang button[aria-current="true"]{opacity:1;color:var(--cobre-claro);
+  border-bottom:1px solid var(--cobre-claro)}
+.cab__tel{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;
+  font-size:.85rem;color:var(--pergamino);white-space:nowrap}
+.hamb{display:none;background:none;border:0;color:var(--crema);cursor:pointer;
+  margin-left:auto;padding:.5rem;font-size:1.4rem;line-height:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(84vh,700px);display:grid;
+  place-items:center;text-align:center;overflow:hidden;background:var(--tinta)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+/* velo para que el texto se lea sobre una foto con mucho detalle */
+.hero::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(32,34,39,.72) 0%,rgba(32,34,39,.88) 70%)}
+.hero__in{position:relative;z-index:1;padding:5rem 1.5rem;max-width:760px}
+.hero__pre{font-size:clamp(.66rem,2.4vw,.76rem);letter-spacing:.28em;
+  text-transform:uppercase;color:var(--cobre-claro);margin:0 0 1.4rem}
+.hero h1{font-size:clamp(2rem,7.5vw,5.4rem);color:var(--pergamino);
+  margin-bottom:1.2rem;overflow-wrap:break-word}
+.hero p{color:rgba(250,247,240,.9);font-size:clamp(1rem,2.2vw,1.2rem);
+  margin:0 auto 2.4rem;max-width:52ch}
+.btns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:.85rem 1.9rem;text-decoration:none;font-size:.8rem;
+  letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--cobre-claro);
+  border-radius:var(--r);transition:background .18s,color .18s}
+.btn--p{background:var(--cobre-claro);color:var(--tinta);font-weight:600}
+.btn--p:hover{background:var(--pergamino);border-color:var(--pergamino)}
+.btn--s{color:var(--pergamino)}
+.btn--s:hover{background:rgba(200,154,91,.16)}
+
+/* ---------- franja premio ---------- */
+.premio{background:var(--tinta-2);color:var(--pergamino);text-align:center;
+  padding:1.15rem 1.5rem;font-size:.88rem;letter-spacing:.03em}
+.premio b{color:var(--cobre-claro);font-weight:600}
+
+/* ---------- secciones ---------- */
+.sec{padding:clamp(3.8rem,9vw,6.5rem) 0}
+.sec--alt{background:var(--crema-2)}
+.sec__pre{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--cobre);margin:0 0 .9rem}
+.sec h2{font-size:clamp(2rem,4.6vw,3.1rem);margin-bottom:1.4rem}
+.sec__lead{max-width:60ch;color:var(--tinta-3);font-size:1.06rem}
+
+/* ---------- sobre ---------- */
+.sobre{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);
+  align-items:center}
+.sobre img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%}
+.datos{list-style:none;padding:0;margin:2.2rem 0 0;display:grid;gap:.9rem}
+.datos li{display:flex;gap:.85rem;align-items:baseline;font-size:.96rem}
+.datos b{font-family:var(--serif);font-size:1.5rem;color:var(--cobre);
+  min-width:3.4rem;line-height:1}
+
+/* ---------- carta ---------- */
+.filtros{display:flex;gap:.4rem;flex-wrap:wrap;margin:2rem 0 3rem;
+  padding-bottom:.4rem}
+.filtros button{font:inherit;font-size:.78rem;letter-spacing:.07em;
+  text-transform:uppercase;background:none;border:1px solid var(--crema-3);
+  color:var(--tinta-3);padding:.5rem 1rem;border-radius:100px;cursor:pointer;
+  white-space:nowrap;transition:.15s}
+.filtros button:hover{border-color:var(--cobre)}
+.filtros button[aria-pressed="true"]{background:var(--tinta);color:var(--pergamino);
+  border-color:var(--tinta)}
+.cat{margin-bottom:3.4rem;scroll-margin-top:90px}
+.cat[hidden]{display:none}
+.cat__titulo{font-size:1.7rem;padding-bottom:.6rem;margin-bottom:1.4rem;
+  border-bottom:1px solid var(--crema-3);display:flex;align-items:baseline;gap:.7rem}
+.cat__n{font-family:var(--sans);font-size:.72rem;color:var(--tinta-3);opacity:.6;
+  letter-spacing:.06em}
+.cat__lista{list-style:none;padding:0;margin:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.5rem 3rem}
+.plato__cab{display:flex;align-items:baseline;gap:.6rem}
+.plato__nombre{font-size:1.06rem;font-family:var(--sans);font-weight:600;
+  letter-spacing:.01em}
+.plato__linea{flex:1;border-bottom:1px dotted var(--crema-3);transform:translateY(-.22em)}
+.plato__precio{font-family:var(--serif);font-size:1.06rem;color:var(--cobre);
+  white-space:nowrap;background:repeating-linear-gradient(45deg,
+    rgba(138,90,50,.09) 0 5px,transparent 5px 10px);padding:.1rem .7rem;
+  border-radius:var(--r);border:1px dashed rgba(138,90,50,.35)}
+.plato__desc{margin:.3rem 0 0;font-size:.9rem;color:var(--tinta-3);line-height:1.5}
+.etq{font-family:var(--sans);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;background:var(--crema-3);color:var(--tinta-3);
+  padding:.16rem .42rem;border-radius:100px;vertical-align:middle;font-weight:600}
+
+/* ---------- juegos ---------- */
+.juegos{background:var(--tinta);color:var(--crema)}
+.juegos .sec__pre{color:var(--cobre-claro)}
+.juegos h2{color:var(--pergamino)}
+.juegos .sec__lead{color:rgba(250,247,240,.78)}
+.juegos__gr{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);
+  align-items:center}
+.juegos img{border-radius:var(--r);aspect-ratio:3/4;object-fit:cover;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:2rem;list-style:none;padding:0}
+.chips li{border:1px solid rgba(200,154,91,.32);color:var(--pergamino);
+  padding:.34rem .85rem;border-radius:100px;font-size:.8rem}
+.chips li:last-child{border-style:dashed;opacity:.7}
+
+/* ---------- galeria ---------- */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem}
+.gal figure{margin:0;position:relative;overflow:hidden;border-radius:var(--r);
+  aspect-ratio:1;background:var(--crema-3)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption{position:absolute;inset:auto 0 0 0;padding:2.2rem .9rem .8rem;
+  background:linear-gradient(transparent,rgba(32,34,39,.88));color:#fff;
+  font-size:.78rem;opacity:0;transition:opacity .25s;line-height:1.35}
+.gal figure:hover figcaption{opacity:1}
+
+/* ---------- donde ---------- */
+.donde{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.mapa{background:var(--crema-3);border-radius:var(--r);min-height:340px;
+  display:grid;place-items:center;color:var(--tinta-3);font-size:.85rem;
+  border:1px dashed var(--tinta-3);text-align:center;padding:1.5rem}
+.info{list-style:none;padding:0;margin:1.8rem 0 0;display:grid;gap:1.4rem}
+.info h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cobre);margin-bottom:.35rem;font-weight:600}
+.info a{color:var(--tinta)}
+.pdte{color:#8A2E2E;font-size:.86rem;background:rgba(138,46,46,.07);
+  border:1px dashed rgba(138,46,46,.4);padding:.4rem .7rem;border-radius:var(--r);
+  display:inline-block}
+
+/* ---------- pie ---------- */
+.pie{background:var(--tinta);color:rgba(250,247,240,.7);padding:3.5rem 0 2rem;
+  font-size:.87rem}
+.pie__gr{display:flex;gap:2rem;justify-content:space-between;flex-wrap:wrap;
+  padding-bottom:2.2rem;border-bottom:1px solid rgba(200,154,91,.18)}
+.pie h4{font-family:var(--serif);color:var(--pergamino);font-size:1.15rem;
+  margin-bottom:.7rem}
+.pie a{color:rgba(250,247,240,.7)}
+.pie a:hover{color:var(--cobre-claro)}
+.pie__bajo{padding-top:1.5rem;display:flex;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;font-size:.78rem;opacity:.65}
+
+@media(max-width:900px){
+  .sobre,.juegos__gr,.donde{grid-template-columns:1fr}
+  .sobre img,.juegos img{aspect-ratio:16/10;max-height:420px}
+  .nav,.cab__tel,.cab__lang{display:none}
+  .hamb{display:block}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .cat__lista{grid-template-columns:1fr;gap:1.3rem}
+  .gal{grid-template-columns:1fr 1fr;gap:.45rem}
+  .filtros{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  .hero__in{padding:4rem 1.2rem}
+  .btn{padding:.8rem 1.4rem;font-size:.75rem}
+}
+</style>
+</head>
+<body>
+
+<p class="aviso">Maqueta de validación · 190 platos reales del TPV ·
+  <b>los precios y los horarios están pendientes</b> y se muestran como hueco</p>
+
+<header class="cab">
+  <div class="env cab__in">
+    <a class="cab__logo" href="#"><img src="../assets-origen/logo-hd.jpg" alt="">
+      <span>DIAGON</span></a>
+    <ul class="nav">
+      <li><a href="#sobre">El café</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#juegos">Juegos</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#donde">Dónde estamos</a></li>
+    </ul>
+    <div class="cab__lang">
+      <button aria-current="true">ES</button><button>EN</button>
+      <button>DE</button><button>CA</button>
+    </div>
+    <a class="cab__tel" href="tel:+34628505887">📞 628 50 58 87</a>
+    <button class="hamb" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="../assets-origen/posts/17-DEx8Xqxsd16.jpg" alt="Interior de Diagon Cafe">
+  <div class="hero__in">
+    <p class="hero__pre">Cala Rajada · Mallorca</p>
+    <h1>Café de especialidad<br>y juegos de mesa</h1>
+    <p>Un lugar acogedor para disfrutar de buen café, comida hecha con cariño y
+       momentos especiales alrededor de una mesa.</p>
+    <div class="btns">
+      <a class="btn btn--p" href="#carta">Ver la carta</a>
+      <a class="btn btn--s" href="#donde">Cómo llegar</a>
+    </div>
+  </div>
+</section>
+
+<p class="premio">🏆 <b>Restaurant Guru 2026</b> — Mejor Coffee House de Cala Rajada</p>
+
+<section class="sec" id="sobre">
+  <div class="env sobre">
+    <div>
+      <p class="sec__pre">El café</p>
+      <h2>Un rincón con magia<br>en Cala Rajada</h2>
+      <p class="sec__lead">Abrimos en enero de 2025 con una idea sencilla: crear un
+        sitio donde todo el mundo se sienta bienvenido. Café de especialidad tratado
+        con respeto, comida preparada cada día y cientos de juegos de mesa para que
+        te quedes el rato que quieras.</p>
+      <ul class="datos">
+        <li><b>4,7</b> <span>de valoración media en Google, sobre 67 reseñas</span></li>
+        <li><b>+200</b> <span>juegos de mesa disponibles sin coste</span></li>
+        <li><b>2026</b> <span>Mejor Coffee House de Cala Rajada según Restaurant Guru</span></li>
+      </ul>
+    </div>
+    <img src="../assets-origen/posts/21-DEnfYHEMvoF.jpg" alt="El local de Diagon Cafe">
+  </div>
+</section>
+
+<section class="sec sec--alt" id="carta">
+  <div class="env">
+    <p class="sec__pre">La carta</p>
+    <h2>Qué vas a encontrar</h2>
+    <p class="sec__lead">190 platos y bebidas repartidos en
+      15 categorías. Los desayunos, tostadas y bowls llevan
+      nombre propio.</p>
+
+    <div class="filtros" id="filtros">
+      <button aria-pressed="true" data-f="todo">Todo</button>
+      <button aria-pressed="false" data-f="desayunos">Desayunos</button>
+      <button aria-pressed="false" data-f="tostadas">Tostadas</button>
+      <button aria-pressed="false" data-f="pa-amb-oli">Pa amb oli</button>
+      <button aria-pressed="false" data-f="bocadillos">Bocadillos</button>
+      <button aria-pressed="false" data-f="sandwich">Sandwich</button>
+      <button aria-pressed="false" data-f="poke-bowls">Poké Bowls</button>
+      <button aria-pressed="false" data-f="para-picar">Para Picar</button>
+      <button aria-pressed="false" data-f="dulces">Dulces</button>
+      <button aria-pressed="false" data-f="tartas-y-bolleria">Tartas y bolleria</button>
+      <button aria-pressed="false" data-f="cafes">Cafés</button>
+      <button aria-pressed="false" data-f="tes-e-infusiones">Tés e Infusiones</button>
+      <button aria-pressed="false" data-f="bebidas">Bebidas</button>
+      <button aria-pressed="false" data-f="licores">Licores</button>
+      <button aria-pressed="false" data-f="combinados">Combinados</button>
+      <button aria-pressed="false" data-f="cocteles">Cocteles</button>
+    </div>
+
+      <section class="cat" id="cat-desayunos" data-cat="desayunos">
+        <h3 class="cat__titulo">Desayunos <span class="cat__n">10</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Fit</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Yogur, crema de cacahuete, fruta</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Iberiquisimo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tabla de embutidos, fruta, mermelada y mantequilla, surtido de panes.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ilvermorny</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Toppings, helado, nata y fruta.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lupin</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Avena, chía, leche vegetal, yogur, fruta seca</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Luxury (2 personas)</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Zumo de naranja, tabla de quesos y embutidos ibéricos, fruta, yogur y surtido de panes y bolleria.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Overnight</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Avena, miel, leche, frutos secos</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Quidditch</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Bowl de yogurt, salmón ahumado, aguacate, huevo hervido, surtido de panes.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Scrambled</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tonks</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Yogur, fruta, frutos secos y miel</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Uagadou</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Toppings, fruta, sirope de arce</p>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-tostadas" data-cat="tostadas">
+        <h3 class="cat__titulo">Tostadas <span class="cat__n">9</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Beauxbatons</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostada, miel, azúcar y canela</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hogwarts</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostada de sobrasada asada, queso brie y miel.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Luna</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostada con tomate, guacamole y huevo hervido.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Mandrágora</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Media Tostada</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Mundungus</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostada con tomate</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Narcisa</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostada de tomate y aguacate</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Variedad de tostadas</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Weasley</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tostadas de mermelada y mantequilla</p>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-pa-amb-oli" data-cat="pa-amb-oli">
+        <h3 class="cat__titulo">Pa amb oli <span class="cat__n">7</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Avada Kedavra</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Serrano, Lomo, chorizo o Salchichón a elegir.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Caprese</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tomate, mozzarella, pesto</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Crucio</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Atún, mejillones y anchoas</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ibérico</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tomate, serrano, lomo, chorizo, salchichón a elegir</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Imperio</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">La amb oli de camaiot</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lucius</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tomate y embutido a elegir</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Medio Pa amb oli</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-bocadillos" data-cat="bocadillos">
+        <h3 class="cat__titulo">Bocadillos <span class="cat__n">4</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Cubano</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Jamón dulce, pepino, queso, carne al horno</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Dobby</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Bocadillo con pan bollo con el embutido que quiera.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hedwig</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Jamón cocido y queso</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Medio Bocadillo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-sandwich" data-cat="sandwich">
+        <h3 class="cat__titulo">Sandwich <span class="cat__n">7</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Buckbeak</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Lechuga, pepino, cebolla, pollo, salsa barbacoa</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Dumbledore</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tiras de pollo hervido, tomate, cebolla, lechuga, mayonesa, huevo hervido, salsa sriracha</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Grindylow</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Lechuga, tomate, atún, mayonesa</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Scabbers</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Snape</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Lechuga, zanahoria, atún, mejillones, almejas, huevo cocido, salsa rosa</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Thestral</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Lechuga, tomate, cebolla, aguacate</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Veggie</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Lechuga, zanahoria, maíz, aguacate, mayonesa, huevo cocido</p>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-poke-bowls" data-cat="poke-bowls">
+        <h3 class="cat__titulo">Poké Bowls <span class="cat__n">2</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Gryffindor</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Trozos de pollo cocido, zanahoria, pepino, cebolla frita, salsa teriyaki</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ravenclaw</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Trozos de salmón o pollo, cebolla encurtida, pepino, zanahoria, maíz, salsa hoisin</p>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-para-picar" data-cat="para-picar">
+        <h3 class="cat__titulo">Para Picar <span class="cat__n">10</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Bellatrix</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Serrano, lomo, chorizo, salchichón, fuet, longaniza de pagès</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Crounch</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Extra pan</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Incendio</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Totopos, queso, jalapeños, pollo guacamole.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lockhart</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Tiras de pollo empanadas.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Neville</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Palitos de queso rebozado.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Plato aguacate</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Riddle</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Variedad de quesos, con pan</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Scamander</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Pollo rebozado al estilo americano</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Voldemort</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Variedad de embutidos y quesos</p>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-dulces" data-cat="dulces">
+        <h3 class="cat__titulo">Dulces <span class="cat__n">5</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Bola helado vainilla</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Castelobruxo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Crepe</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pudding</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Vasito TIRAMISU</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-tartas-y-bolleria" data-cat="tartas-y-bolleria">
+        <h3 class="cat__titulo">Tartas y bolleria <span class="cat__n">24</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Caña de chocolate</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Crespells</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Croissant</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Daim</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Gato Mallorquin</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Napolitana crema y chocolate</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato plato--sg">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pastelito chocolate y coco <span class="etq">sin gluten</span></h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato plato--sg">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pastelito de chocolate y almendra <span class="etq">sin gluten</span></h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pastelito manzana</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pastelito platano</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato plato--sg">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Pastelitos de coco y crema <span class="etq">sin gluten</span></h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta avellana</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta Banoffee</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de chocolate y coco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de coco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato plato--sg">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de fruta sin gluten <span class="etq">sin gluten</span></h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de matcha</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de Oreo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de queso</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de Queso y Fresas</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta de zanahoria</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta entera</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta Fresas y Nata</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tarta huesitos</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-cafes" data-cat="cafes">
+        <h3 class="cat__titulo">Cafés <span class="cat__n">24</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Americano</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Café, Agua caliente</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Americano</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Waffle, toppings, fruta, bowl overnight.</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Babychino</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Café Bombón</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+            <p class="plato__desc">Café, leche condensada</p>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Café con miel</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Café Irlandés</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Cappuccino</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Carajillo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Chai latte</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Cortado</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Doble espresso</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Espresso</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Flat White</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">ICE AMERICANO</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">ICE CAPUCCINO</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">ICE FLAT WHITE</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">ICE LATTE</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ice matcha</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">ICE MOCCA</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Latte</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Latte Macchiato</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lungo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Mocca</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Prensa francesa</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-tes-e-infusiones" data-cat="tes-e-infusiones">
+        <h3 class="cat__titulo">Tés e Infusiones <span class="cat__n">18</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Breakfast Tea</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Infusión de Menta</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Manzanilla</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Menta Fresca</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Poleo Menta</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Rooibos</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té chai</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té de Almendra y Canela</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té de Frutos de invierno</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té de granada</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té de jengibre y limón</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té de Manzana Asada y Canela</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té frío</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té Frutos Rojos</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té Matcha</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té Rojo</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té Tropical</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Té Verde</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-bebidas" data-cat="bebidas">
+        <h3 class="cat__titulo">Bebidas <span class="cat__n">32</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Agua</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Agua con gas</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Apfelschorle</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Aquarius</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Caña</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Cerveza pequeña</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Chocolate Caliente</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Clara</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Coca Cola</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Coca Cola Zero</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Estrella Galicia</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Estrella Galicia 0'0</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Fanta Limón</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Fanta Naranja</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ginger Ale</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Ice Tea (Natural)</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lacao</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Limonada</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Monster grande</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Nestea</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Redbull</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Sangria</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Shandy</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Spezi</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Sprite</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tinto de Verano</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Tónica</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Vaso leche</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Zumo Manzana</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Zumo Melocotón</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Zumo naranja</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Zumo Piña</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-licores" data-cat="licores">
+        <h3 class="cat__titulo">Licores <span class="cat__n">17</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Aperol</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Brandy</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Chupito Jack Daniels</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Chupito tequila</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa Baileys</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa de cava</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa de Ron</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa de Vodka</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa Tequila</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa Vino Blanco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa Vino Tinto</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Copa whisky</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hierbas dulces</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hierbas mezcladas</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hierbas secas</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Jägermeister</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Martini</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-combinados" data-cat="combinados">
+        <h3 class="cat__titulo">Combinados <span class="cat__n">16</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">43 + Leche</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Amaretto + refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Barceló + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Beefeater + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Broockmans + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Campari + Soda</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Habana Club + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Habana Club especial + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Hendricks + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">J&amp;B + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Jack Daniels + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Jack Daniels manzana + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Puerto de Indias + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Red Label + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Seagram's + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Smirnoff + Refresco</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="cat" id="cat-cocteles" data-cat="cocteles">
+        <h3 class="cat__titulo">Cocteles <span class="cat__n">5</span></h3>
+        <ul class="cat__lista">
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Expreso Martini</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Long Island Iced Tea</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Lumumba</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Margarita</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+          <li class="plato">
+            <div class="plato__cab">
+              <h4 class="plato__nombre">Negroni</h4>
+              <span class="plato__linea"></span>
+              <span class="plato__precio" title="Pendiente de recibir del café">—</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+  </div>
+</section>
+
+<section class="sec juegos" id="juegos">
+  <div class="env juegos__gr">
+    <img src="../assets-origen/posts/06-DJEJYueMzZM.jpg" alt="Estantería con los juegos de mesa del café">
+    <div>
+      <p class="sec__pre">Juegos de mesa</p>
+      <h2>Coge uno<br>y quédate a jugar</h2>
+      <p class="sec__lead">Nuestra estantería está abierta a todo el mundo y no cuesta
+        nada. Desde partidas rápidas de cartas hasta juegos de mesa para toda la tarde.
+        Si no sabes cuál elegir, pregúntanos.</p>
+      <ul class="chips">
+        <li>Exploding Kittens</li>
+        <li>Azul</li>
+        <li>Munchkin</li>
+        <li>Arkham Horror</li>
+        <li>Paleo</li>
+        <li>7 Wonders Duel</li>
+        <li>The Mind</li>
+        <li>Virus!</li>
+        <li>Sushi Go!</li>
+        <li>Trio</li>
+        <li>Secret Hitler</li>
+        <li>Las Leyendas de Andor</li>
+        <li>Smart 10</li>
+        <li>Pasapalabra</li>
+        <li>Pictionary</li>
+        <li>Dominó</li>
+        <li>Monopoly</li>
+        <li>Trivial Pursuit Harry Potter</li>
+        <li>Memory Harry Potter</li>
+        <li>Uno</li>
+        <li>y muchos más</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="galeria">
+  <div class="env">
+    <p class="sec__pre">Galería</p>
+    <h2>El café por dentro</h2>
+    <div class="gal" style="margin-top:2.5rem">
+      <figure><img src="../assets-origen/posts/23-DE7ZG9oMwgJ.jpg" alt="Quidditch: bowl de yogur, salmón ahumado, aguacate y surtido de panes" loading="lazy"><figcaption>Quidditch: bowl de yogur, salmón ahumado, aguacate y surtido de panes</figcaption></figure>
+      <figure><img src="../assets-origen/posts/31-DE7ZVD4MQtq.jpg" alt="Minerva: tostada con salmón ahumado, aguacate y tomate" loading="lazy"><figcaption>Minerva: tostada con salmón ahumado, aguacate y tomate</figcaption></figure>
+      <figure><img src="../assets-origen/posts/29-DE7bVdWs2KN.jpg" alt="Americano: gofre con fresas, plátano, nata, dulce de leche y nutella" loading="lazy"><figcaption>Americano: gofre con fresas, plátano, nata, dulce de leche y nutella</figcaption></figure>
+      <figure><img src="../assets-origen/posts/27-DJEmYZ8s3Al.jpg" alt="Lupin: avena, chía, leche vegetal, yogur y fruta seca" loading="lazy"><figcaption>Lupin: avena, chía, leche vegetal, yogur y fruta seca</figcaption></figure>
+      <figure><img src="../assets-origen/posts/14-DFp1AKftK7J.jpg" alt="Gryffindor: poké bowl de pollo con salsa teriyaki" loading="lazy"><figcaption>Gryffindor: poké bowl de pollo con salsa teriyaki</figcaption></figure>
+      <figure><img src="../assets-origen/posts/26-DFp0iubtyCs.jpg" alt="Riddle: tabla con variedad de quesos" loading="lazy"><figcaption>Riddle: tabla con variedad de quesos</figcaption></figure>
+      <figure><img src="../assets-origen/posts/28-DEz1WoGOYMW.jpg" alt="Hogwarts: tostada de sobrasada asada con queso brie y miel" loading="lazy"><figcaption>Hogwarts: tostada de sobrasada asada con queso brie y miel</figcaption></figure>
+      <figure><img src="../assets-origen/posts/20-DHX9LwbMjGt.jpg" alt="Café con leche" loading="lazy"><figcaption>Café con leche</figcaption></figure>
+      <figure><img src="../assets-origen/posts/02-DJEmP64sTKw.jpg" alt="Latte macchiato" loading="lazy"><figcaption>Latte macchiato</figcaption></figure>
+      <figure><img src="../assets-origen/posts/13-DFp03_QtlEy.jpg" alt="Ensalada caprese" loading="lazy"><figcaption>Ensalada caprese</figcaption></figure>
+      <figure><img src="../assets-origen/posts/19-DJEFrEEMS8v.jpg" alt="Ensalada de remolacha y cítricos" loading="lazy"><figcaption>Ensalada de remolacha y cítricos</figcaption></figure>
+      <figure><img src="../assets-origen/posts/01-DJEGzscMJB-.jpg" alt="Ensalada de cuscús" loading="lazy"><figcaption>Ensalada de cuscús</figcaption></figure>
+      <figure><img src="../assets-origen/posts/22-DJJQgZgs7uC.jpg" alt="Gazpacho de remolacha" loading="lazy"><figcaption>Gazpacho de remolacha</figcaption></figure>
+      <figure><img src="../assets-origen/posts/24-DE7Zd5jMkBE.jpg" alt="Mini donuts glaseados" loading="lazy"><figcaption>Mini donuts glaseados</figcaption></figure>
+      <figure><img src="../assets-origen/posts/25-DE7Yn7cMwq5.jpg" alt="Overnight: bowl de avena reposado desde la noche anterior" loading="lazy"><figcaption>Overnight: bowl de avena reposado desde la noche anterior</figcaption></figure>
+      <figure><img src="../assets-origen/posts/08-DJ6H3G-s4Pt.jpg" alt="Variedad de tostadas" loading="lazy"><figcaption>Variedad de tostadas</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--alt" id="donde">
+  <div class="env donde">
+    <div>
+      <p class="sec__pre">Dónde estamos</p>
+      <h2>Te esperamos</h2>
+      <ul class="info">
+        <li><h4>Dirección</h4>
+          <a href="https://maps.app.goo.gl/d2g11FBeK4i8gxYLA">Carrer de Méndez Núñez, 17 (bajo)<br>
+          07590 Cala Rajada, Capdepera · Mallorca</a></li>
+        <li><h4>Horario</h4>
+          <span class="pdte">Pendiente — nos falta el horario real</span></li>
+        <li><h4>Teléfono</h4><a href="tel:+34628505887">+34 628 50 58 87</a></li>
+        <li><h4>Email</h4><a href="mailto:cafeteriadiagon@gmail.com">cafeteriadiagon@gmail.com</a></li>
+        <li><h4>Instagram</h4><a href="https://www.instagram.com/cafediagon/">@cafediagon</a></li>
+      </ul>
+    </div>
+    <div class="mapa">Aquí irá el mapa de Google incrustado<br>
+      <small>(en la maqueta no se carga para no depender de internet)</small></div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="env">
+    <div class="pie__gr">
+      <div><h4>Diagon Cafe</h4>
+        Carrer de Méndez Núñez, 17<br>07590 Cala Rajada, Mallorca</div>
+      <div><h4>Contacto</h4>
+        <a href="tel:+34628505887">+34 628 50 58 87</a><br>
+        <a href="mailto:cafeteriadiagon@gmail.com">cafeteriadiagon@gmail.com</a></div>
+      <div><h4>Síguenos</h4><a href="https://www.instagram.com/cafediagon/">Instagram</a></div>
+    </div>
+    <div class="pie__bajo">
+      <span>© 2026 Diagon Cafe</span>
+      <span>Maqueta generada el 2026-08-04</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Filtro de categorias. En React esto sera estado del componente Carta.
+const filtros = document.getElementById('filtros');
+const cats = [...document.querySelectorAll('.cat')];
+filtros.addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  filtros.querySelectorAll('button').forEach((b) =>
+    b.setAttribute('aria-pressed', String(b === btn)));
+  const f = btn.dataset.f;
+  cats.forEach((c) => { c.hidden = f !== 'todo' && c.dataset.cat !== f; });
+});
+</script>
+</body>
+</html>
