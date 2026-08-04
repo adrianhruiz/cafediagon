@@ -1,0 +1,121 @@
+.carta__filtros {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: var(--paso-4) 0 var(--paso-3);
+}
+.carta__filtros button {
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--crema-3);
+  color: var(--tinta-3);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: border-color var(--transicion), background var(--transicion);
+}
+.carta__filtros button:hover { border-color: var(--cobre); }
+.carta__filtros button[aria-pressed='true'] {
+  background: var(--tinta);
+  color: var(--pergamino);
+  border-color: var(--tinta);
+}
+
+.carta__aviso {
+  font-size: 0.88rem;
+  color: var(--cobre);
+  background: rgba(138, 90, 50, 0.07);
+  border-left: 2px solid var(--cobre);
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 var(--paso-4);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.carta__categoria { margin-bottom: 3.4rem; }
+
+.carta__categoria-titulo {
+  font-size: 1.7rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--crema-3);
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+.carta__cuenta {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--tinta-3);
+  opacity: 0.6;
+  letter-spacing: 0.06em;
+}
+
+.carta__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: var(--paso-3) 3rem;
+}
+
+.plato__cabecera { display: flex; align-items: baseline; gap: 0.6rem; }
+
+.plato__nombre {
+  font-size: 1.06rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Guia de puntos hasta el precio, como en una carta impresa. */
+.plato__linea {
+  flex: 1;
+  border-bottom: 1px dotted var(--crema-3);
+  transform: translateY(-0.22em);
+  min-width: 1rem;
+}
+
+.plato__precio {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  color: var(--cobre);
+  white-space: nowrap;
+}
+
+.plato__descripcion {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tinta-3);
+  line-height: 1.5;
+}
+
+.plato__etiqueta {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  background: var(--crema-3);
+  color: var(--tinta-3);
+  padding: 0.16rem 0.42rem;
+  border-radius: 100px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .carta__lista { grid-template-columns: 1fr; gap: 1.3rem; }
+  /* La tira de filtros scrollea en horizontal en vez de ocupar media pantalla. */
+  .carta__filtros {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.4rem;
+  }
+}

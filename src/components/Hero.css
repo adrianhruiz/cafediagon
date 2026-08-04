@@ -1,0 +1,71 @@
+.hero {
+  position: relative;
+  min-height: min(84vh, 700px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--tinta);
+}
+
+/* El <picture> envuelve al img, asi que hay que sacarlo del flujo tambien. */
+.hero picture {
+  position: absolute;
+  inset: 0;
+}
+.hero__fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+/* Velo: la foto tiene mucho detalle y el texto no se leia encima. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(32, 34, 39, 0.72) 0%, rgba(32, 34, 39, 0.88) 70%);
+}
+
+.hero__contenido {
+  position: relative;
+  z-index: 1;
+  padding: 5rem var(--paso-3);
+  max-width: 760px;
+}
+
+.hero__ubicacion {
+  font-size: clamp(0.66rem, 2.4vw, 0.76rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cobre-claro);
+  margin: 0 0 1.4rem;
+}
+
+.hero__titulo {
+  font-size: clamp(2rem, 7.5vw, 5.4rem);
+  color: var(--pergamino);
+  margin-bottom: 1.2rem;
+  white-space: pre-line;
+}
+
+.hero__entrada {
+  color: rgba(250, 247, 240, 0.9);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  margin: 0 auto var(--paso-4);
+  max-width: 52ch;
+}
+
+.hero__botones {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 560px) {
+  .hero__contenido { padding: 4rem 1.2rem; }
+  .hero__botones .boton { padding: 0.8rem 1.4rem; font-size: 0.75rem; }
+}

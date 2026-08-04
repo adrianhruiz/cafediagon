@@ -1,0 +1,41 @@
+.sobre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.sobre__foto {
+  border-radius: var(--radio);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.sobre__datos {
+  list-style: none;
+  padding: 0;
+  margin: var(--paso-4) 0 0;
+  display: grid;
+  gap: 0.9rem;
+}
+.sobre__datos li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: baseline;
+  font-size: 0.96rem;
+}
+.sobre__datos b {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--cobre);
+  min-width: 3.4rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .sobre { grid-template-columns: 1fr; }
+  .sobre__foto { aspect-ratio: 16 / 10; max-height: 420px; }
+}
