@@ -5,9 +5,29 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "menu": "node scripts/build-menu.mjs",
+    "imagenes": "node scripts/optimize-images.mjs",
     "mockup": "node scripts/build-mockup.mjs",
     "check": "node scripts/check-responsive.mjs",
-    "maqueta": "npm run menu && npm run mockup && npm run check"
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^26.0.0",
+    "sharp": "^0.34.1",
+    "vite": "^6.0.7",
+    "vitest": "^3.0.0"
   }
 }

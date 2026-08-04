@@ -1,0 +1,45 @@
+/*
+ * Paleta extraida del logo con scripts/extract-palette (ver design/).
+ * Los tonos claros dominan porque el local es luminoso: paredes crema, madera
+ * clara y plantas. El azul noche del logo queda para cabecera, pie y juegos.
+ *
+ * Contraste verificado sobre --crema y sobre --tinta: todos los pares de texto
+ * superan 4.5:1 (WCAG AA).
+ */
+:root {
+  /* del logo */
+  --tinta: #202227;
+  --tinta-2: #2b3439;
+  --tinta-3: #3a3d45;
+  --pergamino: #f8f7cd;
+
+  /* base clara */
+  --crema: #faf7f0;
+  --crema-2: #f1eadc;
+  --crema-3: #e2d8c6;
+
+  /* acentos: cobre oscurecido para que pase AA sobre crema */
+  --cobre: #8a5a32;
+  --cobre-claro: #c89a5b;
+
+  --aviso: #8a2e2e;
+
+  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  --ancho: 1180px;
+  --radio: 4px;
+  --cab-alto: 72px;
+
+  --paso-1: 0.5rem;
+  --paso-2: 1rem;
+  --paso-3: 1.5rem;
+  --paso-4: 2.5rem;
+  --paso-5: clamp(3.8rem, 9vw, 6.5rem);
+
+  --transicion: 0.18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --transicion: 0s; }
+}

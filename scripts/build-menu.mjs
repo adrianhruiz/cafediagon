@@ -264,8 +264,9 @@ for (const fila of productos) {
   });
 }
 
+// Sin fecha de generacion a proposito: haria que el fichero cambiase cada dia
+// y el paso de CI que comprueba que esta al dia fallaria siempre.
 const menu = {
-  generadoEl: new Date().toISOString().slice(0, 10),
   idiomas: IDIOMAS,
   avisoPrecios: 'Precios pendientes de recibir del cafe.',
   categorias: ORDEN.map((c) => ({

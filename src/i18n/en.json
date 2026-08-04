@@ -1,0 +1,68 @@
+{
+  "idioma": "English",
+  "nav": {
+    "cafe": "The café",
+    "carta": "Menu",
+    "juegos": "Board games",
+    "galeria": "Gallery",
+    "donde": "Find us",
+    "abrirMenu": "Open menu",
+    "cerrarMenu": "Close menu",
+    "cambiarIdioma": "Change language",
+    "saltar": "Skip to content"
+  },
+  "hero": {
+    "ubicacion": "Cala Rajada · Mallorca",
+    "titulo": "Specialty coffee\nand board games",
+    "entrada": "A cosy place for good coffee, food made with care and time well spent around a table.",
+    "verCarta": "See the menu",
+    "comoLlegar": "Find us"
+  },
+  "premio": "Best Coffee House in Cala Rajada",
+  "sobre": {
+    "etiqueta": "The café",
+    "titulo": "A little magic\nin Cala Rajada",
+    "texto": "We opened in January 2025 with a simple idea: a place where everyone feels welcome. Specialty coffee treated with respect, food prepared fresh every day, and hundreds of board games so you can stay as long as you like.",
+    "datoValoracion": "average rating on Google, from {n} reviews",
+    "datoJuegos": "board games free for everyone",
+    "datoPremio": "Best Coffee House in Cala Rajada according to Restaurant Guru"
+  },
+  "carta": {
+    "etiqueta": "The menu",
+    "titulo": "What you'll find",
+    "entrada": "{platos} dishes and drinks across {categorias} categories. Breakfasts, toasts and bowls all have names of their own.",
+    "todo": "All",
+    "sinGluten": "gluten free",
+    "precioPendiente": "Ask us",
+    "avisoPrecios": "Prices are shown in the café. We are updating them here.",
+    "filtrarPor": "Filter the menu by category"
+  },
+  "juegos": {
+    "etiqueta": "Board games",
+    "titulo": "Pick one\nand stay to play",
+    "texto": "Our shelf is open to everyone and it costs nothing. From quick card games to board games that fill a whole afternoon. If you can't decide, just ask us.",
+    "yMas": "and many more"
+  },
+  "galeria": {
+    "etiqueta": "Gallery",
+    "titulo": "Inside the café",
+    "verEnInstagram": "See more on Instagram"
+  },
+  "donde": {
+    "etiqueta": "Find us",
+    "titulo": "See you soon",
+    "direccion": "Address",
+    "horario": "Opening hours",
+    "horarioPendiente": "Ask us for our hours by phone or on Instagram",
+    "telefono": "Phone",
+    "email": "Email",
+    "instagram": "Instagram",
+    "comoLlegar": "Open in Google Maps",
+    "mapaTitulo": "Map showing the location of Diagon Cafe"
+  },
+  "pie": {
+    "contacto": "Contact",
+    "siguenos": "Follow us",
+    "derechos": "All rights reserved"
+  }
+}

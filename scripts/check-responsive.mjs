@@ -4,7 +4,7 @@
  *
  * Habla con Chrome por el DevTools Protocol, sin dependencias externas.
  *
- *   node scripts/check-responsive.mjs [ruta.html]
+ *   node scripts/check-responsive.mjs [ruta.html | http://...]
  */
 import { spawn } from 'node:child_process';
 import { mkdtempSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
@@ -13,7 +13,9 @@ import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
-const PAGINA = resolve(process.argv[2] ?? join(RAIZ, 'design', 'mockup.html'));
+const ARG = process.argv[2] ?? join(RAIZ, 'design', 'mockup.html');
+const ES_URL = /^https?:\/\//.test(ARG);
+const PAGINA = ES_URL ? ARG : resolve(ARG);
 const SALIDA = join(RAIZ, 'design', 'capturas');
 
 const ANCHOS = [
@@ -149,7 +151,7 @@ const s = (m, p) => enviar(m, p, sessionId);
 await s('Page.enable');
 
 mkdirSync(SALIDA, { recursive: true });
-const url = pathToFileURL(PAGINA).href;
+const url = ES_URL ? PAGINA : pathToFileURL(PAGINA).href;
 let fallos = 0;
 
 console.log(`\n  ${PAGINA}\n`);

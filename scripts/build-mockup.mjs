@@ -400,7 +400,7 @@ ${menu.categorias.map(categoria).join('')}
     </div>
     <div class="pie__bajo">
       <span>© ${new Date().getFullYear()} Diagon Cafe</span>
-      <span>Maqueta generada el ${menu.generadoEl}</span>
+      <span>Maqueta generada el ${new Date().toISOString().slice(0, 10)}</span>
     </div>
   </div>
 </footer>

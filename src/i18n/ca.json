@@ -1,0 +1,68 @@
+{
+  "idioma": "Català",
+  "nav": {
+    "cafe": "El cafè",
+    "carta": "Carta",
+    "juegos": "Jocs de taula",
+    "galeria": "Galeria",
+    "donde": "On som",
+    "abrirMenu": "Obrir menú",
+    "cerrarMenu": "Tancar menú",
+    "cambiarIdioma": "Canviar idioma",
+    "saltar": "Saltar al contingut"
+  },
+  "hero": {
+    "ubicacion": "Cala Rajada · Mallorca",
+    "titulo": "Cafè d'especialitat\ni jocs de taula",
+    "entrada": "Un lloc acollidor per gaudir de bon cafè, menjar fet amb cura i estones especials al voltant d'una taula.",
+    "verCarta": "Veure la carta",
+    "comoLlegar": "Com arribar"
+  },
+  "premio": "Millor Coffee House de Cala Rajada",
+  "sobre": {
+    "etiqueta": "El cafè",
+    "titulo": "Un racó amb màgia\na Cala Rajada",
+    "texto": "Vam obrir el gener de 2025 amb una idea senzilla: crear un lloc on tothom se senti benvingut. Cafè d'especialitat tractat amb respecte, menjar preparat cada dia i centenars de jocs de taula perquè t'hi quedis l'estona que vulguis.",
+    "datoValoracion": "de valoració mitjana a Google, sobre {n} ressenyes",
+    "datoJuegos": "jocs de taula disponibles sense cost",
+    "datoPremio": "Millor Coffee House de Cala Rajada segons Restaurant Guru"
+  },
+  "carta": {
+    "etiqueta": "La carta",
+    "titulo": "Què hi trobaràs",
+    "entrada": "{platos} plats i begudes repartits en {categorias} categories. Els esmorzars, torrades i bols tenen nom propi.",
+    "todo": "Tot",
+    "sinGluten": "sense gluten",
+    "precioPendiente": "Consultar",
+    "avisoPrecios": "Els preus es mostren al local. Els estem actualitzant aquí.",
+    "filtrarPor": "Filtrar la carta per categoria"
+  },
+  "juegos": {
+    "etiqueta": "Jocs de taula",
+    "titulo": "Agafa'n un\ni queda't a jugar",
+    "texto": "La nostra prestatgeria està oberta a tothom i no costa res. Des de partides ràpides de cartes fins a jocs de taula per a tota la tarda. Si no saps quin triar, pregunta'ns.",
+    "yMas": "i molts més"
+  },
+  "galeria": {
+    "etiqueta": "Galeria",
+    "titulo": "El cafè per dins",
+    "verEnInstagram": "Veure'n més a Instagram"
+  },
+  "donde": {
+    "etiqueta": "On som",
+    "titulo": "T'hi esperem",
+    "direccion": "Adreça",
+    "horario": "Horari",
+    "horarioPendiente": "Consulta'ns l'horari per telèfon o a Instagram",
+    "telefono": "Telèfon",
+    "email": "Correu",
+    "instagram": "Instagram",
+    "comoLlegar": "Obrir a Google Maps",
+    "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe"
+  },
+  "pie": {
+    "contacto": "Contacte",
+    "siguenos": "Segueix-nos",
+    "derechos": "Tots els drets reservats"
+  }
+}
