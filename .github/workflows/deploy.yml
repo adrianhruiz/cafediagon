@@ -51,6 +51,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - uses: actions/configure-pages@v5
+        # Activa Pages via API si el repo aun no lo tiene: asi el despliegue
+        # no depende de que alguien toque Settings a mano.
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
