@@ -1,0 +1,68 @@
+{
+  "idioma": "Deutsch",
+  "nav": {
+    "cafe": "Das Café",
+    "carta": "Karte",
+    "juegos": "Brettspiele",
+    "galeria": "Galerie",
+    "donde": "So findest du uns",
+    "abrirMenu": "Menü öffnen",
+    "cerrarMenu": "Menü schließen",
+    "cambiarIdioma": "Sprache wechseln",
+    "saltar": "Zum Inhalt springen"
+  },
+  "hero": {
+    "ubicacion": "Cala Rajada · Mallorca",
+    "titulo": "Spezialitätenkaffee\nund Brettspiele",
+    "entrada": "Ein gemütlicher Ort für guten Kaffee, mit Liebe zubereitetes Essen und schöne Stunden am Tisch.",
+    "verCarta": "Zur Karte",
+    "comoLlegar": "Anfahrt"
+  },
+  "premio": "Bestes Coffee House in Cala Rajada",
+  "sobre": {
+    "etiqueta": "Das Café",
+    "titulo": "Ein Ort mit Magie\nin Cala Rajada",
+    "texto": "Wir haben im Januar 2025 mit einer einfachen Idee eröffnet: ein Ort, an dem sich alle willkommen fühlen. Spezialitätenkaffee mit Sorgfalt zubereitet, täglich frisches Essen und Hunderte von Brettspielen, damit du so lange bleiben kannst, wie du magst.",
+    "datoValoracion": "Durchschnittsbewertung bei Google, aus {n} Rezensionen",
+    "datoJuegos": "Brettspiele, kostenlos für alle",
+    "datoPremio": "Bestes Coffee House in Cala Rajada laut Restaurant Guru"
+  },
+  "carta": {
+    "etiqueta": "Die Karte",
+    "titulo": "Das erwartet dich",
+    "entrada": "{platos} Gerichte und Getränke in {categorias} Kategorien. Frühstück, Toasts und Bowls tragen eigene Namen.",
+    "todo": "Alles",
+    "sinGluten": "glutenfrei",
+    "precioPendiente": "Auf Anfrage",
+    "avisoPrecios": "Die Preise hängen im Café aus. Wir aktualisieren sie hier gerade.",
+    "filtrarPor": "Karte nach Kategorie filtern"
+  },
+  "juegos": {
+    "etiqueta": "Brettspiele",
+    "titulo": "Nimm dir eins\nund bleib zum Spielen",
+    "texto": "Unser Regal steht allen offen und kostet nichts. Von schnellen Kartenspielen bis zu Brettspielen für einen ganzen Nachmittag. Wenn du dich nicht entscheiden kannst, frag uns einfach.",
+    "yMas": "und viele mehr"
+  },
+  "galeria": {
+    "etiqueta": "Galerie",
+    "titulo": "Das Café von innen",
+    "verEnInstagram": "Mehr auf Instagram"
+  },
+  "donde": {
+    "etiqueta": "So findest du uns",
+    "titulo": "Wir freuen uns auf dich",
+    "direccion": "Adresse",
+    "horario": "Öffnungszeiten",
+    "horarioPendiente": "Frag uns telefonisch oder auf Instagram nach unseren Öffnungszeiten",
+    "telefono": "Telefon",
+    "email": "E-Mail",
+    "instagram": "Instagram",
+    "comoLlegar": "In Google Maps öffnen",
+    "mapaTitulo": "Karte mit dem Standort des Diagon Cafe"
+  },
+  "pie": {
+    "contacto": "Kontakt",
+    "siguenos": "Folge uns",
+    "derechos": "Alle Rechte vorbehalten"
+  }
+}

@@ -1,0 +1,37 @@
+.pie {
+  background: var(--tinta);
+  color: rgba(250, 247, 240, 0.7);
+  padding: 3.5rem 0 2rem;
+  font-size: 0.87rem;
+}
+
+.pie__columnas {
+  display: flex;
+  gap: var(--paso-4);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: var(--paso-4);
+  border-bottom: 1px solid rgba(200, 154, 91, 0.18);
+}
+
+.pie h2 {
+  font-family: var(--serif);
+  color: var(--pergamino);
+  font-size: 1.15rem;
+  margin-bottom: 0.7rem;
+}
+
+.pie address { font-style: normal; }
+
+.pie a {
+  color: rgba(250, 247, 240, 0.7);
+  transition: color var(--transicion);
+}
+.pie a:hover { color: var(--cobre-claro); }
+
+.pie__legal {
+  padding-top: var(--paso-3);
+  margin: 0;
+  font-size: 0.78rem;
+  opacity: 0.65;
+}

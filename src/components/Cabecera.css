@@ -1,0 +1,148 @@
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--tinta);
+  color: var(--crema);
+  border-bottom: 1px solid rgba(200, 154, 91, 0.22);
+}
+
+.cabecera__interior {
+  display: flex;
+  align-items: center;
+  gap: var(--paso-3);
+  min-height: var(--cab-alto);
+}
+
+.cabecera__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.cabecera__logo img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.cabecera__logo span {
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  letter-spacing: 0.05em;
+  color: var(--pergamino);
+}
+
+.cabecera__nav { margin-left: auto; }
+.cabecera__nav ul {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cabecera__nav a {
+  text-decoration: none;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  opacity: 0.82;
+  padding-block: 0.4rem;
+  border-bottom: 1px solid transparent;
+  transition: opacity var(--transicion), border-color var(--transicion);
+}
+.cabecera__nav a:hover { opacity: 1; border-color: var(--cobre-claro); }
+
+.cabecera__idiomas { display: flex; gap: 0.15rem; }
+.cabecera__idiomas button {
+  background: none;
+  border: 0;
+  color: var(--crema);
+  font: inherit;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.3rem 0.42rem;
+  opacity: 0.55;
+  border-bottom: 1px solid transparent;
+  transition: opacity var(--transicion);
+}
+.cabecera__idiomas button:hover { opacity: 0.85; }
+/* Area tactil completa sin ensanchar: la altura no compite por el espacio. */
+.cabecera__idiomas button { min-height: 44px; }
+.cabecera__idiomas button[aria-current='true'] {
+  opacity: 1;
+  color: var(--cobre-claro);
+  border-bottom-color: var(--cobre-claro);
+}
+
+.cabecera__telefono {
+  font-size: 0.85rem;
+  color: var(--pergamino);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.cabecera__telefono:hover { text-decoration: underline; }
+
+.cabecera__hamburguesa {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--crema);
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+  /* area tactil minima */
+  min-width: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 900px) {
+  .cabecera__telefono { display: none; }
+  .cabecera__hamburguesa { display: block; margin-left: auto; }
+  .cabecera__idiomas { order: 3; }
+
+  /* El menu se despliega bajo la cabecera en lugar de taparla entera. */
+  .cabecera__nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--tinta);
+    border-bottom: 1px solid rgba(200, 154, 91, 0.22);
+    display: none;
+  }
+  .cabecera__nav--abierto { display: block; }
+  .cabecera__nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: var(--paso-1) 0 var(--paso-2);
+    width: min(100% - 2.5rem, var(--ancho));
+    margin-inline: auto;
+  }
+  .cabecera__nav a {
+    display: block;
+    padding: 0.85rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(200, 154, 91, 0.12);
+  }
+}
+
+/*
+ * Por debajo de 560px no caben a la vez la marca escrita, los cuatro idiomas y
+ * la hamburguesa. Se oculta la palabra DIAGON (el logo sigue identificando la
+ * marca) y se compactan los idiomas, que en un sitio turistico interesa que
+ * esten siempre a la vista y no escondidos dentro del menu.
+ */
+@media (max-width: 560px) {
+  .cabecera__interior { gap: var(--paso-1); }
+  /* Oculta solo a la vista: el enlace del logo se queda sin nombre accesible
+     si se usa display:none, porque la imagen lleva alt vacio. */
+  .cabecera__logo span {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .cabecera__idiomas button { padding: 0.3rem 0.3rem; font-size: 0.7rem; }
+}

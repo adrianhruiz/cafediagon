@@ -1,0 +1,21 @@
+{
+  "nombre": "Diagon Cafe",
+  "direccion": {
+    "calle": "Carrer de Méndez Núñez, 17, bajo",
+    "cp": "07590",
+    "localidad": "Cala Rajada",
+    "municipio": "Capdepera",
+    "provincia": "Illes Balears",
+    "pais": "ES"
+  },
+  "geo": { "lat": 39.711239, "lng": 3.4600082 },
+  "telefono": "+34628505887",
+  "telefonoVisible": "+34 628 50 58 87",
+  "email": "cafeteriadiagon@gmail.com",
+  "instagram": "https://www.instagram.com/cafediagon/",
+  "maps": "https://maps.app.goo.gl/d2g11FBeK4i8gxYLA",
+  "google": { "valoracion": 4.7, "resenas": 67 },
+  "premio": { "entidad": "Restaurant Guru", "anyo": 2026 },
+  "aperturaDesde": "2025-01-14",
+  "horario": null
+}

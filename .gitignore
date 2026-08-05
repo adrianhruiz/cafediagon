@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Capturas regeneradas por scripts/check-responsive.mjs
+design/capturas/

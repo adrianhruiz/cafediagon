@@ -1,0 +1,13 @@
+.franja-premio {
+  background: var(--tinta-2);
+  color: var(--pergamino);
+  text-align: center;
+  padding: 1.15rem var(--paso-3);
+  margin: 0;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+}
+.franja-premio b {
+  color: var(--cobre-claro);
+  font-weight: 600;
+}

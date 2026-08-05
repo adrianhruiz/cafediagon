@@ -1,0 +1,68 @@
+{
+  "idioma": "Español",
+  "nav": {
+    "cafe": "El café",
+    "carta": "Carta",
+    "juegos": "Juegos",
+    "galeria": "Galería",
+    "donde": "Dónde estamos",
+    "abrirMenu": "Abrir menú",
+    "cerrarMenu": "Cerrar menú",
+    "cambiarIdioma": "Cambiar idioma",
+    "saltar": "Saltar al contenido"
+  },
+  "hero": {
+    "ubicacion": "Cala Rajada · Mallorca",
+    "titulo": "Café de especialidad\ny juegos de mesa",
+    "entrada": "Un lugar acogedor para disfrutar de buen café, comida hecha con cariño y momentos especiales alrededor de una mesa.",
+    "verCarta": "Ver la carta",
+    "comoLlegar": "Cómo llegar"
+  },
+  "premio": "Mejor Coffee House de Cala Rajada",
+  "sobre": {
+    "etiqueta": "El café",
+    "titulo": "Un rincón con magia\nen Cala Rajada",
+    "texto": "Abrimos en enero de 2025 con una idea sencilla: crear un sitio donde todo el mundo se sienta bienvenido. Café de especialidad tratado con respeto, comida preparada cada día y cientos de juegos de mesa para que te quedes el rato que quieras.",
+    "datoValoracion": "de valoración media en Google, sobre {n} reseñas",
+    "datoJuegos": "juegos de mesa disponibles sin coste",
+    "datoPremio": "Mejor Coffee House de Cala Rajada según Restaurant Guru"
+  },
+  "carta": {
+    "etiqueta": "La carta",
+    "titulo": "Qué vas a encontrar",
+    "entrada": "{platos} platos y bebidas repartidos en {categorias} categorías. Los desayunos, tostadas y bowls llevan nombre propio.",
+    "todo": "Todo",
+    "sinGluten": "sin gluten",
+    "precioPendiente": "Consultar",
+    "avisoPrecios": "Los precios se muestran en el local. Estamos actualizándolos aquí.",
+    "filtrarPor": "Filtrar la carta por categoría"
+  },
+  "juegos": {
+    "etiqueta": "Juegos de mesa",
+    "titulo": "Coge uno\ny quédate a jugar",
+    "texto": "Nuestra estantería está abierta a todo el mundo y no cuesta nada. Desde partidas rápidas de cartas hasta juegos de mesa para toda la tarde. Si no sabes cuál elegir, pregúntanos.",
+    "yMas": "y muchos más"
+  },
+  "galeria": {
+    "etiqueta": "Galería",
+    "titulo": "El café por dentro",
+    "verEnInstagram": "Ver más en Instagram"
+  },
+  "donde": {
+    "etiqueta": "Dónde estamos",
+    "titulo": "Te esperamos",
+    "direccion": "Dirección",
+    "horario": "Horario",
+    "horarioPendiente": "Consúltanos el horario por teléfono o en Instagram",
+    "telefono": "Teléfono",
+    "email": "Email",
+    "instagram": "Instagram",
+    "comoLlegar": "Abrir en Google Maps",
+    "mapaTitulo": "Mapa con la ubicación de Diagon Cafe"
+  },
+  "pie": {
+    "contacto": "Contacto",
+    "siguenos": "Síguenos",
+    "derechos": "Todos los derechos reservados"
+  }
+}

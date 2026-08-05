@@ -1,0 +1,67 @@
+.donde {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.donde__datos {
+  list-style: none;
+  padding: 0;
+  margin: var(--paso-3) 0 0;
+  display: grid;
+  gap: 1.4rem;
+}
+.donde__datos h3 {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cobre);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.donde__datos address { font-style: normal; }
+.donde__datos a { color: var(--tinta); }
+.donde__datos a:hover { color: var(--cobre); }
+
+.donde__mapa-enlace {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--cobre) !important;
+}
+
+.donde__horario {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  max-width: 22rem;
+}
+.donde__horario li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--paso-2);
+  font-size: 0.95rem;
+}
+
+.donde__pendiente {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--tinta-3);
+}
+
+.donde__mapa {
+  width: 100%;
+  min-height: 380px;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radio);
+  background: var(--crema-3);
+}
+
+@media (max-width: 900px) {
+  .donde { grid-template-columns: 1fr; }
+  .donde__mapa { min-height: 300px; }
+}
