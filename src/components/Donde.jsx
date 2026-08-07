@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useIdioma } from '../i18n/idioma.jsx';
 import negocio from '../content/business.json';
 import './Donde.css';
@@ -5,6 +6,12 @@ import './Donde.css';
 export default function Donde() {
   const { t } = useIdioma();
   const { direccion, geo } = negocio;
+
+  // El iframe no se monta hasta que el visitante lo pide: cargarlo comunica su
+  // IP a Google y usa almacenamiento del navegador, y eso exige consentimiento
+  // previo (art. 22.2 LSSI). Asi el sitio no tiene ningun rastreador no exento
+  // y no necesita banner de cookies.
+  const [mapaVisible, setMapaVisible] = useState(false);
 
   // Mapa sin API key: el modo embed publico basta para una ficha estatica.
   const mapa = `https://www.google.com/maps?q=${geo.lat},${geo.lng}&hl=es&z=17&output=embed`;
@@ -56,14 +63,27 @@ export default function Donde() {
           </ul>
         </div>
 
-        <iframe
-          className="donde__mapa"
-          src={mapa}
-          title={t('donde.mapaTitulo')}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
+        {mapaVisible ? (
+          <iframe
+            className="donde__mapa"
+            src={mapa}
+            title={t('donde.mapaTitulo')}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : (
+          <div className="donde__mapa donde__mapa--previo">
+            <p className="donde__mapa-aviso">{t('donde.mapaAviso')}</p>
+            <button
+              type="button"
+              className="donde__mapa-boton"
+              onClick={() => setMapaVisible(true)}
+            >
+              {t('donde.mapaCargar')}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

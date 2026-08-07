@@ -52,6 +52,10 @@ export default function Carta() {
 
         {!hayPrecios && <p className="carta__aviso">{t('carta.avisoPrecios')}</p>}
 
+        {/* Obligatorio: los 14 alergenos hay que informarlos en cualquier soporte
+            donde se presente la oferta, tambien en la carta web (Rgto 1169/2011). */}
+        <p className="carta__aviso">{t('carta.avisoAlergenos')}</p>
+
         {visibles.map((c) => (
           <section className="carta__categoria" key={c.id} aria-labelledby={`cat-${c.id}`}>
             <h3 className="carta__categoria-titulo" id={`cat-${c.id}`}>

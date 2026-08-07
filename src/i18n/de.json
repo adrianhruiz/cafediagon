@@ -32,10 +32,11 @@
     "titulo": "Das erwartet dich",
     "entrada": "{platos} Gerichte und Getränke in {categorias} Kategorien. Frühstück, Toasts und Bowls tragen eigene Namen.",
     "todo": "Alles",
-    "sinGluten": "glutenfrei",
+    "sinGluten": "ohne glutenhaltige Zutaten",
     "precioPendiente": "Auf Anfrage",
     "avisoPrecios": "Die Preise hängen im Café aus. Wir aktualisieren sie hier gerade.",
-    "filtrarPor": "Karte nach Kategorie filtern"
+    "filtrarPor": "Karte nach Kategorie filtern",
+    "avisoAlergenos": "Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen. Frag uns im Café oder telefonisch nach den 14 Allergenen in jedem Gericht."
   },
   "juegos": {
     "etiqueta": "Brettspiele",
@@ -58,7 +59,9 @@
     "email": "E-Mail",
     "instagram": "Instagram",
     "comoLlegar": "In Google Maps öffnen",
-    "mapaTitulo": "Karte mit dem Standort des Diagon Cafe"
+    "mapaTitulo": "Karte mit dem Standort des Diagon Cafe",
+    "mapaAviso": "Die Karte wird von Google geladen. Beim Anzeigen erhält Google deine IP-Adresse und kann Daten in deinem Browser speichern.",
+    "mapaCargar": "Karte laden"
   },
   "pie": {
     "contacto": "Kontakt",

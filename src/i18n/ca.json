@@ -32,10 +32,11 @@
     "titulo": "Què hi trobaràs",
     "entrada": "{platos} plats i begudes repartits en {categorias} categories. Els esmorzars, torrades i bols tenen nom propi.",
     "todo": "Tot",
-    "sinGluten": "sense gluten",
+    "sinGluten": "sense ingredients amb gluten",
     "precioPendiente": "Consultar",
     "avisoPrecios": "Els preus es mostren al local. Els estem actualitzant aquí.",
-    "filtrarPor": "Filtrar la carta per categoria"
+    "filtrarPor": "Filtrar la carta per categoria",
+    "avisoAlergenos": "Elaborem en una cuina compartida i no podem garantir l'absència de traces. Pregunta'ns al local o per telèfon per la informació dels 14 al·lèrgens de qualsevol plat."
   },
   "juegos": {
     "etiqueta": "Jocs de taula",
@@ -58,7 +59,9 @@
     "email": "Correu",
     "instagram": "Instagram",
     "comoLlegar": "Obrir a Google Maps",
-    "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe"
+    "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe",
+    "mapaAviso": "El mapa el carrega Google. En mostrar-lo, Google rebrà la teva adreça IP i podrà desar dades al teu navegador.",
+    "mapaCargar": "Carregar el mapa"
   },
   "pie": {
     "contacto": "Contacte",

@@ -32,10 +32,11 @@
     "titulo": "What you'll find",
     "entrada": "{platos} dishes and drinks across {categorias} categories. Breakfasts, toasts and bowls all have names of their own.",
     "todo": "All",
-    "sinGluten": "gluten free",
+    "sinGluten": "no gluten ingredients",
     "precioPendiente": "Ask us",
     "avisoPrecios": "Prices are shown in the café. We are updating them here.",
-    "filtrarPor": "Filter the menu by category"
+    "filtrarPor": "Filter the menu by category",
+    "avisoAlergenos": "We cook in a shared kitchen and cannot guarantee the absence of traces. Ask us at the café or by phone about the 14 allergens in any dish."
   },
   "juegos": {
     "etiqueta": "Board games",
@@ -58,7 +59,9 @@
     "email": "Email",
     "instagram": "Instagram",
     "comoLlegar": "Open in Google Maps",
-    "mapaTitulo": "Map showing the location of Diagon Cafe"
+    "mapaTitulo": "Map showing the location of Diagon Cafe",
+    "mapaAviso": "The map is loaded by Google. Showing it lets Google receive your IP address and store data in your browser.",
+    "mapaCargar": "Load the map"
   },
   "pie": {
     "contacto": "Contact",

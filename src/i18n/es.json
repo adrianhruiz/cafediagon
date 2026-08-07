@@ -32,10 +32,11 @@
     "titulo": "Qué vas a encontrar",
     "entrada": "{platos} platos y bebidas repartidos en {categorias} categorías. Los desayunos, tostadas y bowls llevan nombre propio.",
     "todo": "Todo",
-    "sinGluten": "sin gluten",
+    "sinGluten": "sin ingredientes con gluten",
     "precioPendiente": "Consultar",
     "avisoPrecios": "Los precios se muestran en el local. Estamos actualizándolos aquí.",
-    "filtrarPor": "Filtrar la carta por categoría"
+    "filtrarPor": "Filtrar la carta por categoría",
+    "avisoAlergenos": "Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas. Pregúntanos en el local o por teléfono por la información de los 14 alérgenos de cualquier plato."
   },
   "juegos": {
     "etiqueta": "Juegos de mesa",
@@ -58,7 +59,9 @@
     "email": "Email",
     "instagram": "Instagram",
     "comoLlegar": "Abrir en Google Maps",
-    "mapaTitulo": "Mapa con la ubicación de Diagon Cafe"
+    "mapaTitulo": "Mapa con la ubicación de Diagon Cafe",
+    "mapaAviso": "El mapa lo carga Google. Al mostrarlo, Google recibirá tu dirección IP y podrá guardar datos en tu navegador.",
+    "mapaCargar": "Cargar el mapa"
   },
   "pie": {
     "contacto": "Contacto",

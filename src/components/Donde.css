@@ -61,6 +61,42 @@
   background: var(--crema-3);
 }
 
+/* Marcador previo al consentimiento: nada de esto sale de la propia web. */
+.donde__mapa--previo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: var(--paso-3);
+  text-align: center;
+  border: 1px dashed var(--crema-3);
+}
+
+.donde__mapa-aviso {
+  margin: 0;
+  max-width: 26rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--tinta-3);
+}
+
+.donde__mapa-boton {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--crema);
+  background: var(--cobre);
+  border: 0;
+  border-radius: 100px;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.donde__mapa-boton:hover { background: var(--tinta-2); }
+
 @media (max-width: 900px) {
   .donde { grid-template-columns: 1fr; }
   .donde__mapa { min-height: 300px; }

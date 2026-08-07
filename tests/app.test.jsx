@@ -125,6 +125,41 @@ describe('galeria', () => {
   });
 });
 
+describe('mapa', () => {
+  it('no carga nada de Google hasta que el visitante lo pide', () => {
+    const { container } = montar();
+    expect(container.querySelector('iframe')).toBeNull();
+    expect(container.innerHTML).not.toContain('google.com');
+    expect(screen.getByText(es.donde.mapaAviso)).toBeInTheDocument();
+  });
+
+  it('monta el iframe al pulsar el boton', async () => {
+    const usuario = userEvent.setup();
+    const { container } = montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
+
+    const marco = container.querySelector('iframe');
+    expect(marco).toBeTruthy();
+    expect(marco.getAttribute('src')).toContain('google.com/maps');
+  });
+});
+
+describe('carta: alergenos', () => {
+  it('avisa de los alergenos siempre, haya precios o no', () => {
+    montar();
+    expect(screen.getByText(es.carta.avisoAlergenos)).toBeInTheDocument();
+  });
+
+  it('la etiqueta de gluten no declara "sin gluten" a secas', () => {
+    // Rgto (UE) 828/2014: "sin gluten" exige <=20 mg/kg en el producto servido.
+    for (const [codigo, dic] of Object.entries({ es, de })) {
+      expect(dic.carta.sinGluten.toLowerCase(), `${codigo} declara sin gluten a secas`)
+        .not.toMatch(/^(sin gluten|glutenfrei)$/);
+    }
+  });
+});
+
 describe('menu movil', () => {
   it('empieza cerrado y se abre al pulsar', async () => {
     const usuario = userEvent.setup();
