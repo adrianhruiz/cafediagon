@@ -11,6 +11,7 @@
     "menu": "node scripts/build-menu.mjs",
     "imagenes": "node scripts/optimize-images.mjs",
     "mockup": "node scripts/build-mockup.mjs",
+    "sanitize": "node scripts/sanitize-scrapped.mjs",
     "check": "node scripts/check-responsive.mjs",
     "test": "vitest run",
     "test:watch": "vitest"

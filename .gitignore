@@ -5,3 +5,7 @@ dist/
 
 # Capturas regeneradas por scripts/check-responsive.mjs
 design/capturas/
+
+# Volcado crudo de Apify: contiene datos personales de terceros y no se publica.
+# scrapped/ se genera a partir de aqui con scripts/sanitize-scrapped.mjs.
+scrapped-raw/
