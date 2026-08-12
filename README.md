@@ -20,6 +20,7 @@ npm run dev        # http://localhost:5173/cafediagon/
 | `npm run build` | Compila a `dist/` |
 | `npm test` | Tests unitarios (Vitest) |
 | `npm run menu` | Regenera la carta desde el export del TPV |
+| `npm run fotos` | Prepara las fotos nuevas del café (HEIC del Drive → `assets-origen/fotos/`) |
 | `npm run imagenes` | Regenera `public/images/` desde `assets-origen/` |
 | `npm run check` | Comprueba la maquetación en 6 anchos de pantalla |
 
@@ -112,13 +113,38 @@ Mide el desbordamiento horizontal y las imágenes rotas en 320, 375, 390, 768,
 
 ## Fotos
 
-`assets-origen/` guarda los originales descargados de Instagram junto con
-`manifest.json` (pie, fecha y likes de cada uno). **No los borres**: las URLs
-del CDN de Instagram caducan y no se pueden volver a descargar.
+Hay dos orígenes, y los dos se guardan en el repositorio:
 
-`npm run imagenes` genera de ahí los webp y jpg de `public/images/` en varios
-anchos. Para añadir una foto, déjala en `assets-origen/posts/`, ejecuta el
-comando y añádela a `gallery.json`.
+- `assets-origen/posts/`: los originales descargados de Instagram, con
+  `manifest.json` (pie, fecha y likes de cada uno). **No los borres**: las URLs
+  del CDN de Instagram caducan y no se pueden volver a descargar.
+- `assets-origen/fotos/`: las que manda el café por Drive, ya reducidas a
+  1600 px y sin EXIF.
+
+`npm run imagenes` genera de ahí los avif, webp y jpg de `public/images/` en
+varios anchos. Para añadir una foto a la galería, déjala en el origen que le
+toque, ejecuta el comando y añádela a `gallery.json` con su alt en los cuatro
+idiomas.
+
+### Fotos nuevas del café
+
+Llegan por Drive, en HEIC de iPhone y a 1-7 MB cada una. No se suben tal cual:
+
+```bash
+# 1. deja los archivos del Drive en assets-origen/fotos-crudas/ (esa carpeta
+#    no se guarda en git: la copia buena es la del Drive)
+# 2. ponle nombre a cada uno en assets-origen/fotos-nombres.json
+npm run fotos       # HEIC -> jpg de 1600 px sin EXIF, en assets-origen/fotos/
+npm run imagenes    # y de ahi los derivados de public/images/
+```
+
+`npm run fotos` falla si alguna foto cruda no aparece en
+`fotos-nombres.json`, ni como nombre ni como descarte: así ninguna acaba
+publicada como `IMG_0640` ni se cuela una que no debería salir. Los descartes
+llevan escrito el motivo (clientes reconocibles, texto quemado en la imagen…).
+
+El EXIF de una foto de móvil lleva las coordenadas del local y la hora exacta;
+`npm run fotos` no lo copia a la versión que se publica.
 
 ## Despliegue
 

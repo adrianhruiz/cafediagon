@@ -1,7 +1,16 @@
-import imagenes from '../content/imagenes.json';
+import { formatos, imagenes } from '../content/imagenes.json';
+
+/** El jpg no lleva <source>: es el src del <img>, o sea el ultimo respaldo. */
+const RESPALDO = 'jpg';
+
+/** Los que si llevan <source>, en orden de preferencia: avif antes que webp. */
+const FUENTES = formatos.filter(({ ext }) => ext !== RESPALDO);
 
 /**
- * <picture> con webp y respaldo jpg, generados por scripts/optimize-images.mjs.
+ * <picture> con avif, webp y respaldo jpg, generados por
+ * scripts/optimize-images.mjs. El navegador se queda con el primer formato de
+ * la lista que entienda, asi que casi todos cargan avif: pesa alrededor de un
+ * tercio menos que el mismo webp.
  *
  * Fija width y height desde la relacion de aspecto real para que el navegador
  * reserve el hueco y la pagina no salte al cargar (CLS).
@@ -20,10 +29,12 @@ export default function Imagen({ nombre, alt, sizes = '100vw', prioridad = false
 
   return (
     <picture>
-      <source type="image/webp" srcSet={srcset('webp')} sizes={sizes} />
+      {FUENTES.map(({ ext, tipo }) => (
+        <source key={ext} type={tipo} srcSet={srcset(ext)} sizes={sizes} />
+      ))}
       <img
-        src={`${base}images/${nombre}-${mayor}.jpg`}
-        srcSet={srcset('jpg')}
+        src={`${base}images/${nombre}-${mayor}.${RESPALDO}`}
+        srcSet={srcset(RESPALDO)}
         sizes={sizes}
         alt={alt}
         width={mayor}
