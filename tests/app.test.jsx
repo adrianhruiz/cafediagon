@@ -162,7 +162,16 @@ describe('mapa', () => {
 describe('carta: alergenos', () => {
   it('avisa de los alergenos siempre, haya precios o no', () => {
     montar();
-    expect(screen.getByText(es.carta.avisoAlergenos)).toBeInTheDocument();
+    expect(screen.getByText(es.carta.avisoAlergenos, { exact: false })).toBeInTheDocument();
+  });
+
+  it('destaca en negrita lo de la cocina compartida y lo del IVA', () => {
+    const { container } = montar();
+    const negritas = [...container.querySelectorAll('#carta .carta__aviso strong')]
+      .map((n) => n.textContent);
+
+    expect(negritas).toContain(es.carta.avisoCocina);
+    expect(negritas).toContain(es.carta.avisoIva);
   });
 
   it('cada producto con alergenos los pinta bajo el plato', () => {
@@ -183,7 +192,7 @@ describe('carta: alergenos', () => {
   it('el aviso explica que sin linea de alergenos no lleva ninguno de los 14', () => {
     // Si no se dice, la ausencia de linea se lee como falta de dato.
     montar();
-    expect(screen.getByText(es.carta.avisoAlergenos).textContent)
+    expect(screen.getByText(es.carta.avisoAlergenos, { exact: false }).textContent)
       .toContain('ninguno de los 14');
   });
 

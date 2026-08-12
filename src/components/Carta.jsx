@@ -74,12 +74,15 @@ export default function Carta() {
         {/* TRLGDCU art. 20: el precio anunciado es el final, con impuestos
             incluidos, y conviene decirlo expresamente. */}
         <p className="carta__aviso">
-          {hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}
+          <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
         </p>
 
         {/* Obligatorio: los 14 alergenos hay que informarlos en cualquier soporte
             donde se presente la oferta, tambien en la carta web (Rgto 1169/2011). */}
-        <p className="carta__aviso">{t('carta.avisoAlergenos')}</p>
+        <p className="carta__aviso">
+          {t('carta.avisoAlergenos')}{' '}
+          <strong>{t('carta.avisoCocina')}</strong>
+        </p>
 
         {visibles.map((c) => (
           <section className="carta__categoria" key={c.id} aria-labelledby={`cat-${c.id}`}>

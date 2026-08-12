@@ -38,7 +38,8 @@
     "avisoPrecios": "Prices are shown in the café. We are updating them here.",
     "avisoIva": "Prices in euros, VAT included.",
     "filtrarPor": "Filter the menu by category",
-    "avisoAlergenos": "Under each dish we list the allergens declared by the café; if a dish has none listed, it contains none of the 14. We cook in a shared kitchen and cannot guarantee the absence of traces: if you have an allergy, tell us at the café.",
+    "avisoAlergenos": "Under each dish we list the allergens declared by the café; if a dish has none listed, it contains none of the 14.",
+    "avisoCocina": "We cook in a shared kitchen and cannot guarantee the absence of traces: if you have an allergy, tell us at the café.",
     "alergenosEtiqueta": "Allergens",
     "alergenosPendientes": "Ask us at the café",
     "alergeno": {
