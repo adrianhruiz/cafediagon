@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import menu from '../src/content/menu.json';
 import galeria from '../src/content/gallery.json';
@@ -121,7 +121,7 @@ describe('imagenes generadas', () => {
   it('todos los derivados declarados existen en public/images', () => {
     for (const [nombre, datos] of Object.entries(imagenes)) {
       for (const w of datos.anchos) {
-        for (const ext of ['webp', 'jpg']) {
+        for (const { ext } of datos.formatos) {
           const archivo = `${nombre}-${w}.${ext}`;
           expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
         }
@@ -133,6 +133,25 @@ describe('imagenes generadas', () => {
     for (const [nombre, datos] of Object.entries(imagenes)) {
       expect(datos.anchos.length, nombre).toBeGreaterThan(0);
       expect(datos.ratio, nombre).toBeGreaterThan(0);
+    }
+  });
+
+  // El jpg es el src del <img>: sin el, un navegador viejo se queda sin foto.
+  it('cada imagen ofrece avif, webp y jpg de respaldo', () => {
+    for (const [nombre, datos] of Object.entries(imagenes)) {
+      expect(datos.formatos.map((f) => f.ext), nombre).toEqual(['avif', 'webp', 'jpg']);
+    }
+  });
+
+  // La precarga esta escrita a mano en index.html y no la revisa el build:
+  // si cambia el nombre o el ancho del hero, aqui se cae en vez de precargar
+  // un 404 en cada visita.
+  it('la imagen precargada en index.html existe', () => {
+    const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+    const precargas = [...html.matchAll(/rel="preload"[^>]*href="\.\/images\/([^"]+)"/g)];
+    expect(precargas.length).toBe(1);
+    for (const [, archivo] of precargas) {
+      expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
     }
   });
 });

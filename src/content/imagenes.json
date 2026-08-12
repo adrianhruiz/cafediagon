@@ -4,6 +4,20 @@
       96,
       192
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 1,
     "mayor": "logo-192.webp"
   },
@@ -11,6 +25,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.7505,
     "mayor": "01-DJEGzscMJB--800.webp"
@@ -20,12 +48,40 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.7505,
     "mayor": "02-DJEmP64sTKw-800.webp"
   },
   "03-DGiSvn9sOuv": {
     "anchos": [
       400
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.5634,
     "mayor": "03-DGiSvn9sOuv-400.webp"
@@ -34,20 +90,64 @@
     "anchos": [
       400
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.5634,
     "mayor": "05-DUtmJDCjNhB-400.webp"
   },
   "06-DJEJYueMzZM": {
     "anchos": [
-      800
+      400,
+      800,
+      1080
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.7505,
-    "mayor": "06-DJEJYueMzZM-800.webp"
+    "mayor": "06-DJEJYueMzZM-1080.webp"
   },
   "07-DJEHBedsGDp": {
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 1.7763,
     "mayor": "07-DJEHBedsGDp-800.webp"
@@ -57,12 +157,40 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.8,
     "mayor": "08-DJ6H3G-s4Pt-800.webp"
   },
   "09-DIR0NCcMfZi": {
     "anchos": [
       400
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.5625,
     "mayor": "09-DIR0NCcMfZi-400.webp"
@@ -72,12 +200,40 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.75,
     "mayor": "10-DUnvf__DJeL-800.webp"
   },
   "11-DFVHXh2Naed": {
     "anchos": [
       400
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.5634,
     "mayor": "11-DFVHXh2Naed-400.webp"
@@ -87,6 +243,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.9747,
     "mayor": "13-DFp03_QtlEy-800.webp"
   },
@@ -94,6 +264,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.9334,
     "mayor": "14-DFp1AKftK7J-800.webp"
@@ -103,6 +287,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.75,
     "mayor": "15-DUbR62njADE-800.webp"
   },
@@ -111,12 +309,40 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 1,
     "mayor": "16-DD-oKR-NBc1-800.webp"
   },
   "17-DEx8Xqxsd16": {
     "anchos": [
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 1,
     "mayor": "17-DEx8Xqxsd16-800.webp"
@@ -126,6 +352,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.8,
     "mayor": "18-DEQaxLJsijt-800.webp"
   },
@@ -133,6 +373,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.7505,
     "mayor": "19-DJEFrEEMS8v-800.webp"
@@ -142,20 +396,64 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.8,
     "mayor": "20-DHX9LwbMjGt-800.webp"
   },
   "21-DEnfYHEMvoF": {
     "anchos": [
-      800
+      400,
+      800,
+      1080
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 1,
-    "mayor": "21-DEnfYHEMvoF-800.webp"
+    "mayor": "21-DEnfYHEMvoF-1080.webp"
   },
   "22-DJJQgZgs7uC": {
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.75,
     "mayor": "22-DJJQgZgs7uC-800.webp"
@@ -165,6 +463,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 1,
     "mayor": "23-DE7ZG9oMwgJ-800.webp"
   },
@@ -172,6 +484,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.9507,
     "mayor": "24-DE7Zd5jMkBE-800.webp"
@@ -181,6 +507,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 1,
     "mayor": "25-DE7Yn7cMwq5-800.webp"
   },
@@ -188,6 +528,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 1,
     "mayor": "26-DFp0iubtyCs-800.webp"
@@ -197,6 +551,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 0.7505,
     "mayor": "27-DJEmYZ8s3Al-800.webp"
   },
@@ -204,6 +572,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 1,
     "mayor": "29-DE7bVdWs2KN-800.webp"
@@ -213,6 +595,20 @@
       400,
       800
     ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
+    ],
     "ratio": 1.3333,
     "mayor": "30-DEVtjoSsvG2-800.webp"
   },
@@ -220,6 +616,20 @@
     "anchos": [
       400,
       800
+    ],
+    "formatos": [
+      {
+        "ext": "avif",
+        "tipo": "image/avif"
+      },
+      {
+        "ext": "webp",
+        "tipo": "image/webp"
+      },
+      {
+        "ext": "jpg",
+        "tipo": "image/jpeg"
+      }
     ],
     "ratio": 0.8,
     "mayor": "31-DE7ZVD4MQtq-800.webp"
