@@ -34,9 +34,29 @@
     "todo": "All",
     "sinGluten": "no gluten ingredients",
     "precioPendiente": "Ask us",
+    "gratis": "Free",
     "avisoPrecios": "Prices are shown in the café. We are updating them here.",
+    "avisoIva": "Prices in euros, VAT included.",
     "filtrarPor": "Filter the menu by category",
-    "avisoAlergenos": "We cook in a shared kitchen and cannot guarantee the absence of traces. Ask us at the café or by phone about the 14 allergens in any dish."
+    "avisoAlergenos": "Under each dish we list the allergens declared by the café. We cook in a shared kitchen and cannot guarantee the absence of traces: if you have an allergy, tell us at the café.",
+    "alergenosEtiqueta": "Allergens",
+    "sinAlergenos": "None of the 14",
+    "alergeno": {
+      "gluten": "Gluten",
+      "crustaceos": "Crustaceans",
+      "huevos": "Eggs",
+      "pescado": "Fish",
+      "cacahuetes": "Peanuts",
+      "soja": "Soybeans",
+      "leche": "Milk",
+      "frutosCascara": "Tree nuts",
+      "apio": "Celery",
+      "mostaza": "Mustard",
+      "sesamo": "Sesame seeds",
+      "sulfitos": "Sulphur dioxide and sulphites",
+      "altramuces": "Lupin",
+      "moluscos": "Molluscs"
+    }
   },
   "juegos": {
     "etiqueta": "Board games",

@@ -34,9 +34,29 @@
     "todo": "Tot",
     "sinGluten": "sense ingredients amb gluten",
     "precioPendiente": "Consultar",
+    "gratis": "Gratis",
     "avisoPrecios": "Els preus es mostren al local. Els estem actualitzant aquí.",
+    "avisoIva": "Preus en euros amb IVA inclòs.",
     "filtrarPor": "Filtrar la carta per categoria",
-    "avisoAlergenos": "Elaborem en una cuina compartida i no podem garantir l'absència de traces. Pregunta'ns al local o per telèfon per la informació dels 14 al·lèrgens de qualsevol plat."
+    "avisoAlergenos": "Sota cada plat indiquem els al·lèrgens declarats pel cafè. Elaborem en una cuina compartida i no podem garantir l'absència de traces: si tens alguna al·lèrgia, digues-nos-ho al local.",
+    "alergenosEtiqueta": "Al·lèrgens",
+    "sinAlergenos": "Cap dels 14",
+    "alergeno": {
+      "gluten": "Gluten",
+      "crustaceos": "Crustacis",
+      "huevos": "Ous",
+      "pescado": "Peix",
+      "cacahuetes": "Cacauets",
+      "soja": "Soja",
+      "leche": "Llet",
+      "frutosCascara": "Fruits de closca",
+      "apio": "Api",
+      "mostaza": "Mostassa",
+      "sesamo": "Grans de sèsam",
+      "sulfitos": "Diòxid de sofre i sulfits",
+      "altramuces": "Tramussos",
+      "moluscos": "Mol·luscs"
+    }
   },
   "juegos": {
     "etiqueta": "Jocs de taula",

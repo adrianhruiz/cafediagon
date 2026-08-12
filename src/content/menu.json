@@ -30,16 +30,20 @@
             "de": "Haferflocken, Joghurt, Erdnussbutter, Obst",
             "ca": "Civada, iogurt, crema de cacahuate, fruita"
           },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "cacahuetes",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "a4fd9790-4423-4a5b-b94b-3f987c98d454",
           "nombre": {
             "es": "Iberiquisimo",
-            "en": "Iberian",
-            "de": "Iberisch",
-            "ca": "Iberiquisim"
+            "en": "Iberiquisimo",
+            "de": "Iberiquisimo",
+            "ca": "Iberiquisimo"
           },
           "descripcion": {
             "es": "Tabla de embutidos, fruta, mermelada y mantequilla, surtido de panes.",
@@ -47,32 +51,18 @@
             "de": "Wurstbrett, Obst, Marmelade und Butter, verschiedene Brotsorten.",
             "ca": "Taula d'embotits, fruita, melmelada i mantega, assortiment de pans."
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "d6c3dd95-0f18-4dda-9331-c5d590714ec4",
-          "nombre": {
-            "es": "Ilvermorny",
-            "en": "Ilvermorny",
-            "de": "Ilvermorny",
-            "ca": "Ilvermorny"
-          },
-          "descripcion": {
-            "es": "Toppings, helado, nata y fruta.",
-            "en": "Toppins, ice cream, cream and fruit.",
-            "de": "Toppins, Eis, Sahne und Obst.",
-            "ca": "Toppins, gelat, nata i fruita."
-          },
-          "precio": null,
+          "precio": 12.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "c4283865-755d-4c74-ae6b-ff292df9b356",
           "nombre": {
             "es": "Lupin",
-            "en": "Lupine",
-            "de": "Lupine",
+            "en": "Lupin",
+            "de": "Lupin",
             "ca": "Lupin"
           },
           "descripcion": {
@@ -81,16 +71,19 @@
             "de": "Haferflocken, Chia, Pflanzenmilch, Joghurt, Obst",
             "ca": "Civada, chia, llet vegetal, iogurt, fruita"
           },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "43ab3ebc-9c28-4551-976d-e1a63ac6aede",
           "nombre": {
             "es": "Luxury (2 personas)",
-            "en": "Luxury",
-            "de": "Luxus",
-            "ca": "Luxury"
+            "en": "Luxury (2 personas)",
+            "de": "Luxury (2 personas)",
+            "ca": "Luxury (2 personas)"
           },
           "descripcion": {
             "es": "Zumo de naranja, tabla de quesos y embutidos ibéricos, fruta, yogur y surtido de panes y bolleria.",
@@ -98,7 +91,11 @@
             "de": "Orangensaft, ein Glas Prosseco, ein Brett mit iberischem Käse und Wurst, Obst, Joghurt und eine Auswahl an Brot und Gebäck.",
             "ca": "Suc de taronja, copa de prossec, taula de formatges i embotits ibèrics, fruita, iogurt i assortiment de pans i brioixeria."
           },
-          "precio": null,
+          "precio": 28,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -106,7 +103,7 @@
           "nombre": {
             "es": "Overnight",
             "en": "Overnight",
-            "de": "Über Nacht",
+            "de": "Overnight",
             "ca": "Overnight"
           },
           "descripcion": {
@@ -115,7 +112,12 @@
             "de": "Hafer, Honig, Milch, Nüsse",
             "ca": "Civada, mel, llet, fruita seca"
           },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "gluten",
+            "soja",
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
@@ -132,7 +134,12 @@
             "de": "Schüssel Joghurt, geräucherter Lachs, Avocado, gekochtes Ei, verschiedene Brotsorten.",
             "ca": "Bowl de iogurt, salmó fumat, alvocat, ou bullit, assortiment de pans."
           },
-          "precio": null,
+          "precio": 13.9,
+          "alergenos": [
+            "huevos",
+            "pescado",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -144,12 +151,15 @@
             "ca": "Scrambled"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Huevos revueltos",
+            "en": "Scrambled eggs",
+            "de": "Rührei",
+            "ca": "Ous remenats"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "huevos"
+          ],
           "sinGluten": false
         },
         {
@@ -166,24 +176,11 @@
             "de": "Joghurt, Obst, Nüsse und Honig",
             "ca": "Iogurt, fruita, fruita seca i mel"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "4b599630-5e01-4fda-8109-0bee39fc692a",
-          "nombre": {
-            "es": "Uagadou",
-            "en": "Ouagadou",
-            "de": "Ouagadou",
-            "ca": "Uagadou"
-          },
-          "descripcion": {
-            "es": "Toppings, fruta, sirope de arce",
-            "en": "Toppins, fruit, maple syrup",
-            "de": "Toppins, Obst, Ahornsirup",
-            "ca": "Toppins, fruita, xarop d'auró"
-          },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "leche",
+            "frutosCascara"
+          ],
           "sinGluten": false
         }
       ]
@@ -211,7 +208,10 @@
             "de": "Toast, Honig, Zucker und Zimt",
             "ca": "Torrada, mel, sucre i canyella"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -228,16 +228,20 @@
             "de": "Gerösteter Don-Sobrasada-Toast, Briekäse und Honig.",
             "ca": "Torrada do sobrassada rostida, formatge brie i mel."
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "a0942364-6ae3-46c1-bdab-6d180d79df4b",
           "nombre": {
             "es": "Luna",
-            "en": "Moon",
-            "de": "Mond",
-            "ca": "Lluna"
+            "en": "Luna",
+            "de": "Luna",
+            "ca": "Luna"
           },
           "descripcion": {
             "es": "Tostada con tomate, guacamole y huevo hervido.",
@@ -245,7 +249,11 @@
             "de": "Toast mit Tomate, Guacamole und gekochtem Ei.",
             "ca": "Torrada amb tomàquet, guacamole i ou bullit."
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "huevos"
+          ],
           "sinGluten": false
         },
         {
@@ -257,29 +265,16 @@
             "ca": "Mandrágora"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Tomate, mozzarella, balsámico, albahaca seca y oregano",
+            "en": "Tomato, mozzarella, balsamic, dried basil and oregano",
+            "de": "Tomate, Mozzarella, Balsamico, getrocknetes Basilikum und Oregano",
+            "ca": "Tomàquet, mozzarella, balsàmic, alfàbrega seca i orenga"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "960027dc-7ea9-41aa-9f5c-b981f7478a7b",
-          "nombre": {
-            "es": "Media Tostada",
-            "en": "Media Tostada",
-            "de": "Media Tostada",
-            "ca": "Media Tostada"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -296,15 +291,18 @@
             "de": "Toast mit Tomate",
             "ca": "Torrada amb tomàquet"
           },
-          "precio": null,
+          "precio": 3.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
           "id": "8a270551-824b-4f3c-815d-e97efc5197bb",
           "nombre": {
             "es": "Narcisa",
-            "en": "Narcissa",
-            "de": "Narzissa",
+            "en": "Narcisa",
+            "de": "Narcisa",
             "ca": "Narcisa"
           },
           "descripcion": {
@@ -313,24 +311,32 @@
             "de": "Tomaten-Avocado-Toast",
             "ca": "Torrada de tomàquet i alvocat"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
           "id": "4ab3f33a-3f23-4857-b375-709c49b94e1c",
           "nombre": {
             "es": "Variedad de tostadas",
-            "en": "Variedad de tostadas",
-            "de": "Variedad de tostadas",
-            "ca": "Variedad de tostadas"
+            "en": "Variedad de toasts",
+            "de": "Variedad de Toast",
+            "ca": "Variedad de torrades"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Variedad de tostadas (una de queso, una de atun, una de serrano y una vegetariana)",
+            "en": "Variedad of toasts (una of cheese, una of atun, una of Serrano ham and una vegetariana)",
+            "de": "Variedad de Toast (una de Käse, una de atun, una de Serrano-Schinken und una vegetariana)",
+            "ca": "Variedad de torrades (una de formatge, una de atun, una de pernil serrà i una vegetariana)"
           },
-          "precio": null,
+          "precio": 13.9,
+          "alergenos": [
+            "gluten",
+            "pescado",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -347,7 +353,11 @@
             "de": "Marmelade und Buttertoast",
             "ca": "Torrades de melmelada i mantega"
           },
-          "precio": null,
+          "precio": 3.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         }
       ]
@@ -362,23 +372,6 @@
       },
       "productos": [
         {
-          "id": "88d0b6ca-bd54-4aff-b9d2-bf831bf6b393",
-          "nombre": {
-            "es": "Avada Kedavra",
-            "en": "Avada Kedavra",
-            "de": "Avada Kedavra",
-            "ca": "Avada Kedavra"
-          },
-          "descripcion": {
-            "es": "Serrano, Lomo, chorizo o Salchichón a elegir.",
-            "en": "Serrano, Lomo, chorizo ​​or Salchichón to choose from.",
-            "de": "Serrano, Lomo, Chorizo ​​oder Salchichón zur Auswahl.",
-            "ca": "Serrà, Llom, xoriço o Llonganissa a triar."
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
           "id": "f144a35c-b8ae-48be-90c4-18446789e9e8",
           "nombre": {
             "es": "Caprese",
@@ -392,33 +385,20 @@
             "de": "Tomate, Mozzarella, Pesto",
             "ca": "Tomàquet, mozzarella, pesto"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "6132a386-66d8-421b-b722-8e2ef0e44b38",
-          "nombre": {
-            "es": "Crucio",
-            "en": "Crucio",
-            "de": "Crucio",
-            "ca": "Crucio"
-          },
-          "descripcion": {
-            "es": "Atún, mejillones y anchoas",
-            "en": "Tuna, mussels and anchovies",
-            "de": "Thunfisch, Muscheln und Sardellen",
-            "ca": "Tonyina, musclos i anxoves"
-          },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "1ed2b7c6-9034-4feb-beb1-1128efe700c7",
           "nombre": {
             "es": "Ibérico",
-            "en": "Iberian",
-            "de": "Iberisch",
-            "ca": "Ibèric"
+            "en": "Ibérico",
+            "de": "Ibérico",
+            "ca": "Ibérico"
           },
           "descripcion": {
             "es": "Tomate, serrano, lomo, chorizo, salchichón a elegir",
@@ -426,24 +406,10 @@
             "de": "Tomate, Serrano, Lende, Chorizo, Wurst nach Wahl",
             "ca": "Tomàquet, serrà, llom, xoriço, llonganissa a triar"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "a14d74cd-6a58-49a6-8359-ba7e7af9ddc7",
-          "nombre": {
-            "es": "Imperio",
-            "en": "Imperio",
-            "de": "Reich",
-            "ca": "Imperi"
-          },
-          "descripcion": {
-            "es": "La amb oli de camaiot",
-            "en": "The amb oli of camaiot",
-            "de": "Das Amb Oli von Camaiot",
-            "ca": "L'amb oli de camaiot"
-          },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -460,24 +426,10 @@
             "de": "Tomate und Wurst zur Auswahl",
             "ca": "Tomàquet i embotit a triar"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "7562ced1-5a79-4dc6-bf2d-c7e992a8e817",
-          "nombre": {
-            "es": "Medio Pa amb oli",
-            "en": "Medio Pa amb oli",
-            "de": "Medio Pa amb oli",
-            "ca": "Medio Pa amb oli"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         }
       ]
@@ -492,23 +444,6 @@
       },
       "productos": [
         {
-          "id": "174784b8-0491-4501-95aa-7d71ce646a71",
-          "nombre": {
-            "es": "Cubano",
-            "en": "Cuban",
-            "de": "Kubanisch",
-            "ca": "Cubà"
-          },
-          "descripcion": {
-            "es": "Jamón dulce, pepino, queso, carne al horno",
-            "en": "Sweet ham, cucumber, cheese, baked meat",
-            "de": "Süßer Schinken, Gurke, Käse, gebackenes Fleisch",
-            "ca": "Pernil dolç, cogombre, formatge, carn al forn"
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
           "id": "2cef51e4-a152-4301-9734-68c0d19ee46e",
           "nombre": {
             "es": "Dobby",
@@ -522,7 +457,10 @@
             "de": "Sandwich mit Brötchenbrot mit der gewünschten Wurst.",
             "ca": "Entrepà amb pa brioix amb l'embotit que vulgui."
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -539,24 +477,31 @@
             "de": "Gekochter Schinken und Käse",
             "ca": "Pernil cuit i formatge"
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "a8c65014-4161-4929-b466-1a295d07fbfe",
           "nombre": {
             "es": "Medio Bocadillo",
-            "en": "Medio Bocadillo",
-            "de": "Medio Bocadillo",
-            "ca": "Medio Bocadillo"
+            "en": "Half sandwich",
+            "de": "Halbes Sandwich",
+            "ca": "Mig entrepà"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Medio bocadilo a elegir",
+            "en": "Medio bocadilo of your choice",
+            "de": "Medio bocadilo nach Wahl",
+            "ca": "Medio bocadilo a triar"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         }
       ]
@@ -575,7 +520,7 @@
           "nombre": {
             "es": "Buckbeak",
             "en": "Buckbeak",
-            "de": "Seidenschnabel",
+            "de": "Buckbeak",
             "ca": "Buckbeak"
           },
           "descripcion": {
@@ -584,7 +529,10 @@
             "de": "Salat, Gurke, Zwiebel, Hühnchen, Barbecuesauce",
             "ca": "Enciam, cogombre, ceba, pollastre, salsa barbacoa"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -601,7 +549,32 @@
             "de": "Gekochte Hähnchenstreifen, Tomaten, Zwiebeln, Salat, Mayonnaise, gekochtes Ei, Sriracha-Sauce",
             "ca": "Tires de pollastre bullit, tomàquet, ceba, enciam, maionesa, ou bullit, salsa sriracha"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "huevos"
+          ],
+          "sinGluten": false
+        },
+        {
+          "id": "frances",
+          "nombre": {
+            "es": "Francés",
+            "en": "French",
+            "de": "Französisch",
+            "ca": "Francès"
+          },
+          "descripcion": {
+            "es": "Queso brie, jamón york, lechuga y queso crema",
+            "en": "Brie cheese, cooked ham, lettuce and cream cheese",
+            "de": "Brie, gekochter Schinken, Salat und Frischkäse",
+            "ca": "Formatge Brie, pernil dolç, enciam i formatge crema"
+          },
+          "precio": 7.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -618,7 +591,34 @@
             "de": "Salat, Tomate, Thunfisch, Mayonnaise",
             "ca": "Enciam, tomàquet, tonyina, maionesa"
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "pescado"
+          ],
+          "sinGluten": false
+        },
+        {
+          "id": "italiano",
+          "nombre": {
+            "es": "Italiano",
+            "en": "Italian",
+            "de": "Italienisch",
+            "ca": "Italià"
+          },
+          "descripcion": {
+            "es": "Mozzarella, mortadela, pistacho y albahaca",
+            "en": "Mozzarella, mortadella, pistachio and basil",
+            "de": "Mozzarella, Mortadella, Pistazie und Basilikum",
+            "ca": "Mozzarella, mortadel·la, festuc i alfàbrega"
+          },
+          "precio": 7.9,
+          "alergenos": [
+            "gluten",
+            "leche",
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
@@ -630,29 +630,18 @@
             "ca": "Scabbers"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Lechuga, tomate, atún, surimi,mayonesa.",
+            "en": "Lettuce, tomato, tuna, surimi,mayonnaise.",
+            "de": "Salat, Tomate, Thunfisch, Surimi,Mayonnaise.",
+            "ca": "Enciam, tomàquet, tonyina, surimi,maionesa."
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "3edc6ebe-a308-4885-b949-89cd6d6eeadf",
-          "nombre": {
-            "es": "Snape",
-            "en": "Snape",
-            "de": "Snape",
-            "ca": "Snape"
-          },
-          "descripcion": {
-            "es": "Lechuga, zanahoria, atún, mejillones, almejas, huevo cocido, salsa rosa",
-            "en": "Lettuce, carrot, tuna, mussels, clams, boiled egg, pink sauce",
-            "de": "Salat, Karotte, Thunfisch, Muscheln, gekochtes Ei, rosa Soße",
-            "ca": "Enciam, pastanaga, tonyina, musclos, cloïsses, ou cuit, salsa rosa"
-          },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "crustaceos",
+            "huevos",
+            "pescado"
+          ],
           "sinGluten": false
         },
         {
@@ -669,7 +658,10 @@
             "de": "Salat, Tomate, Zwiebel, Avocado",
             "ca": "Enciam, tomàquet, ceba, alvocat"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -677,7 +669,7 @@
           "nombre": {
             "es": "Veggie",
             "en": "Veggie",
-            "de": "Gemüse",
+            "de": "Veggie",
             "ca": "Veggie"
           },
           "descripcion": {
@@ -686,7 +678,11 @@
             "de": "Salat, Karotte, Mais, Avocado, Mayonnaise, gekochtes Ei",
             "ca": "Enciam, pastanaga, blat de moro, alvocat, maionesa, ou cuit"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "huevos"
+          ],
           "sinGluten": false
         }
       ]
@@ -714,7 +710,11 @@
             "de": "Gekochte Hähnchenstücke, Karotten, Gurken, Röstzwiebeln, Teriyaki-Sauce",
             "ca": "Trossos de pollastre cuit, pastanaga, cogombre, ceba fregida, salsa teriyaki"
           },
-          "precio": null,
+          "precio": 11.9,
+          "alergenos": [
+            "gluten",
+            "soja"
+          ],
           "sinGluten": false
         },
         {
@@ -731,7 +731,12 @@
             "de": "Lachs- oder Hühnchenstücke, eingelegte Zwiebeln, Gurken, Karotten, Mais und ihre Soße",
             "ca": "Trossos de salmó o pollastre, ceba adobada, cogombre, pastanaga, blat de moro, salsa d'aquests"
           },
-          "precio": null,
+          "precio": 11.9,
+          "alergenos": [
+            "gluten",
+            "pescado",
+            "soja"
+          ],
           "sinGluten": false
         }
       ]
@@ -759,7 +764,8 @@
             "de": "Serrano, Lende, Chorizo, Salchichón, Fuet, Landwurst",
             "ca": "Serrano, llom, xoriço, llonganissa, fuet, llonganissa de pagès"
           },
-          "precio": null,
+          "precio": 15.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -771,29 +777,13 @@
             "ca": "Crounch"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Alitas de pollo estilo americano (6 unidades)",
+            "en": "Alitas of pollo estilo americano (6 unidades)",
+            "de": "Alitas de pollo estilo americano (6 unidades)",
+            "ca": "Alitas de pollo estilo americano (6 unidades)"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "f9314f59-ba6d-41fc-a0d0-9f07ceaa1455",
-          "nombre": {
-            "es": "Extra pan",
-            "en": "Extra pan",
-            "de": "Extra pan",
-            "ca": "Extra pan"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -801,8 +791,8 @@
           "nombre": {
             "es": "Incendio",
             "en": "Incendio",
-            "de": "Feuer",
-            "ca": "Incendi"
+            "de": "Incendio",
+            "ca": "Incendio"
           },
           "descripcion": {
             "es": "Totopos, queso, jalapeños, pollo guacamole.",
@@ -810,7 +800,10 @@
             "de": "Tortillachips, Käse, Jalapenos, Hühnchen-Guacamole.",
             "ca": "Totopos, formatge, jalapenys, pollastre guacamole."
           },
-          "precio": null,
+          "precio": 14.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -827,41 +820,11 @@
             "de": "Panierte Hähnchenstreifen.",
             "ca": "Tires de pollastre empanades."
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "5b05e280-ade9-4a8e-bfe0-f9786633de10",
-          "nombre": {
-            "es": "Neville",
-            "en": "Neville",
-            "de": "Neville",
-            "ca": "Neville"
-          },
-          "descripcion": {
-            "es": "Palitos de queso rebozado.",
-            "en": "Breaded cheese balls or sticks.",
-            "de": "Panierte Käsebällchen oder -stangen.",
-            "ca": "Boletes o palets de formatge arrebossat."
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "38e60863-425e-4b82-8ca9-92708c1a51b6",
-          "nombre": {
-            "es": "Plato aguacate",
-            "en": "Plato aguacate",
-            "de": "Plato aguacate",
-            "ca": "Plato aguacate"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [
+            "gluten",
+            "huevos"
+          ],
           "sinGluten": false
         },
         {
@@ -869,7 +832,7 @@
           "nombre": {
             "es": "Riddle",
             "en": "Riddle",
-            "de": "Rätsel",
+            "de": "Riddle",
             "ca": "Riddle"
           },
           "descripcion": {
@@ -878,7 +841,10 @@
             "de": "Verschiedene Käsesorten",
             "ca": "Varietat de formatges"
           },
-          "precio": null,
+          "precio": 15.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -895,7 +861,11 @@
             "de": "Paniertes Hähnchen nach amerikanischer Art",
             "ca": "Pollastre arrebossat a l'estil americà"
           },
-          "precio": null,
+          "precio": 8.9,
+          "alergenos": [
+            "gluten",
+            "huevos"
+          ],
           "sinGluten": false
         },
         {
@@ -912,7 +882,11 @@
             "de": "Verschiedene Wurst- und Käsesorten",
             "ca": "Varietat d'embotits i formatges"
           },
-          "precio": null,
+          "precio": 15.9,
+          "alergenos": [
+            "gluten",
+            "leche"
+          ],
           "sinGluten": false
         }
       ]
@@ -930,85 +904,42 @@
           "id": "d1e37805-6bc0-4613-9f33-2e4f0b2694f2",
           "nombre": {
             "es": "Bola helado vainilla",
-            "en": "Bola helado vainilla",
-            "de": "Bola helado vainilla",
-            "ca": "Bola helado vainilla"
+            "en": "Vanilla ice cream scoop",
+            "de": "Kugel Vanilleeis",
+            "ca": "Bola de gelat de vainilla"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Helado",
+            "en": "Ice cream",
+            "de": "Eis",
+            "ca": "Gelat"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "02f4f646-1a63-49d7-a6a8-a02295618b0c",
-          "nombre": {
-            "es": "Castelobruxo",
-            "en": "Castelobruxo",
-            "de": "Castelobruxo",
-            "ca": "Castelobrux"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "fbc0835b-731d-45ac-90ff-82420a7d49cc",
-          "nombre": {
-            "es": "Crepe",
-            "en": "Crepe",
-            "de": "Crepe",
-            "ca": "Crepe"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "0ff53c45-ba68-456c-8b33-26fd1639d5ae",
-          "nombre": {
-            "es": "Pudding",
-            "en": "Pudding",
-            "de": "Pudding",
-            "ca": "Pudding"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "9e242d34-a878-40f3-a49b-849d42f61a8c",
           "nombre": {
-            "es": "Vasito TIRAMISU",
-            "en": "Vasito TIRAMISU",
-            "de": "Vasito TIRAMISU",
-            "ca": "Vasito TIRAMISU"
+            "es": "Verrine",
+            "en": "Verrine",
+            "de": "Verrine",
+            "ca": "Verrine"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Postres variados en vasitos",
+            "en": "Postres variados en vasitos",
+            "de": "Postres variados en vasitos",
+            "ca": "Postres variados en vasitos"
           },
-          "precio": null,
+          "precio": 5,
+          "alergenos": [
+            "huevos",
+            "leche",
+            "frutosCascara"
+          ],
           "sinGluten": false
         }
       ]
@@ -1023,40 +954,6 @@
       },
       "productos": [
         {
-          "id": "3c6c430e-1745-4d86-aa0e-0d90cda6ca8e",
-          "nombre": {
-            "es": "Caña de chocolate",
-            "en": "Caña de chocolate",
-            "de": "Caña de chocolate",
-            "ca": "Caña de chocolate"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "80d00111-43d4-462f-9dbe-064d1523897d",
-          "nombre": {
-            "es": "Crespells",
-            "en": "Crespells",
-            "de": "Crespells",
-            "ca": "Crespells"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
           "id": "d7e64b08-7931-4571-939d-cc7a75fbaf24",
           "nombre": {
             "es": "Croissant",
@@ -1070,7 +967,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1082,29 +984,39 @@
             "ca": "Daim"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Tarta Sueca de avena, chocolate y almendras caramelizadas",
+            "en": "Tarta Sueca of oats, chocolate and almonds caramelizadas",
+            "de": "Tarta Sueca de Hafer, Schokolade und Mandeln caramelizadas",
+            "ca": "Tarta Sueca de civada, xocolata i ametlles caramelizadas"
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche",
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
           "id": "ff172062-c763-425b-9fa4-da7d6c35106d",
           "nombre": {
             "es": "Gato Mallorquin",
-            "en": "Mallorcan Cat",
-            "de": "Mallorquinische Katze",
-            "ca": "Gat Mallorquin"
+            "en": "Gato Mallorquin",
+            "de": "Gato Mallorquin",
+            "ca": "Gato Mallorquin"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Biscocho de almendra mallorquin",
+            "en": "Biscocho of almendra mallorquin",
+            "de": "Biscocho de almendra mallorquin",
+            "ca": "Biscocho de almendra mallorquin"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "huevos",
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
@@ -1112,8 +1024,8 @@
           "nombre": {
             "es": "Napolitana crema y chocolate",
             "en": "Napolitana crema y chocolate",
-            "de": "Napolitana crema y chocolate",
-            "ca": "Napolitana crema y chocolate"
+            "de": "Napolitana crema y Schokolade",
+            "ca": "Napolitana crema y xocolata"
           },
           "descripcion": {
             "es": null,
@@ -1121,109 +1033,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "30a66118-722b-4776-813a-61c6b213cb10",
-          "nombre": {
-            "es": "Pastelito chocolate y coco",
-            "en": "Pastelito chocolate y coco",
-            "de": "Pastelito chocolate y coco",
-            "ca": "Pastelito chocolate y coco"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": true
-        },
-        {
-          "id": "5a17690c-7119-4297-a6d4-97b37b34c856",
-          "nombre": {
-            "es": "Pastelito de chocolate y almendra",
-            "en": "Pastelito de chocolate y almendra",
-            "de": "Pastelito de chocolate y almendra",
-            "ca": "Pastelito de chocolate y almendra"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": true
-        },
-        {
-          "id": "f229c59f-22f4-4bdd-ad73-4fb5893234c5",
-          "nombre": {
-            "es": "Pastelito manzana",
-            "en": "Pastelito manzana",
-            "de": "Pastelito manzana",
-            "ca": "Pastelito manzana"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "e4f2a09f-aa26-473e-a394-7d111f5594d4",
-          "nombre": {
-            "es": "Pastelito platano",
-            "en": "Pastelito platano",
-            "de": "Pastelito platano",
-            "ca": "Pastelito platano"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "b8df082a-c7af-49cb-8597-6ee51de72864",
-          "nombre": {
-            "es": "Pastelitos de coco y crema",
-            "en": "Pastelitos de coco y crema",
-            "de": "Pastelitos de coco y crema",
-            "ca": "Pastelitos de coco y crema"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": true
-        },
-        {
-          "id": "b5723a9f-dbce-4e00-8f02-2ac4b45b42b7",
-          "nombre": {
-            "es": "Tarta avellana",
-            "en": "Tarta avellana",
-            "de": "Tarta avellana",
-            "ca": "Tarta avellana"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1240,92 +1055,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "bbfb1184-b01b-4dda-8338-c9c6bbe72ea4",
-          "nombre": {
-            "es": "Tarta de chocolate y coco",
-            "en": "Chocolate cake",
-            "de": "Schokoladenkuchen",
-            "ca": "Pastís de xocolata"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "10310354-0080-4b79-b9bc-54ce3da854cc",
-          "nombre": {
-            "es": "Tarta de coco",
-            "en": "Tarta de coco",
-            "de": "Tarta de coco",
-            "ca": "Tarta de coco"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "0d872887-a59e-48d3-a9fb-d44b861503c0",
-          "nombre": {
-            "es": "Tarta de fruta sin gluten",
-            "en": "Tarta de fruta sin gluten",
-            "de": "Tarta de fruta sin gluten",
-            "ca": "Tarta de fruta sin gluten"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": true
-        },
-        {
-          "id": "7d2b0fce-57c8-4aa4-89e9-05017e33de44",
-          "nombre": {
-            "es": "Tarta de matcha",
-            "en": "Tarta de matcha",
-            "de": "Tarta de matcha",
-            "ca": "Tarta de matcha"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "ef2eec19-11d4-4b9c-b4bc-2be3ba797484",
-          "nombre": {
-            "es": "Tarta de Oreo",
-            "en": "Tarta de Oreo",
-            "de": "Tarta de Oreo",
-            "ca": "Tarta de Oreo"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1342,16 +1077,21 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "c5b54097-e560-49fd-8ca9-d07f58088763",
           "nombre": {
             "es": "Tarta de Queso y Fresas",
-            "en": "Tarta de Queso y Fresas",
-            "de": "Tarta de Queso y Fresas",
-            "ca": "Tarta de Queso y Fresas"
+            "en": "Strawberry cheesecake",
+            "de": "Erdbeer-Käsekuchen",
+            "ca": "Pastís de formatge i maduixes"
           },
           "descripcion": {
             "es": null,
@@ -1359,7 +1099,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1376,7 +1121,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1388,21 +1138,26 @@
             "ca": "Tarta entera"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Tartas enteras por encargo.",
+            "en": "Tartas enteras por encargo.",
+            "de": "Tartas enteras por encargo.",
+            "ca": "Tartas enteras por encargo."
           },
-          "precio": null,
+          "precio": 39,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "b404d8a8-948b-4dcd-9962-67f6cd6b7218",
           "nombre": {
             "es": "Tarta Fresas y Nata",
-            "en": "Tarta Fresas y Nata",
-            "de": "Tarta Fresas y Nata",
-            "ca": "Tarta Fresas y Nata"
+            "en": "Strawberry and cream cake",
+            "de": "Erdbeer-Sahne-Torte",
+            "ca": "Pastís de maduixes i nata"
           },
           "descripcion": {
             "es": null,
@@ -1410,24 +1165,12 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "8669f92d-c4fd-4783-adb3-8038d00a555d",
-          "nombre": {
-            "es": "Tarta huesitos",
-            "en": "Tarta huesitos",
-            "de": "Tarta huesitos",
-            "ca": "Tarta huesitos"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "gluten",
+            "huevos",
+            "leche"
+          ],
           "sinGluten": false
         }
       ]
@@ -1446,33 +1189,17 @@
           "nombre": {
             "es": "Americano",
             "en": "Americano",
-            "de": "Amerikanisch",
-            "ca": "Americà"
+            "de": "Americano",
+            "ca": "Americano"
           },
           "descripcion": {
             "es": "Café, Agua caliente",
-            "en": null,
-            "de": null,
-            "ca": null
+            "en": "Coffee, hot water",
+            "de": "Kaffee, heißes Wasser",
+            "ca": "Cafè, aigua calenta"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "854c2fda-10af-411f-82e0-e10dad3621da",
-          "nombre": {
-            "es": "Americano",
-            "en": "Americano",
-            "de": "Amerikanisch",
-            "ca": "Americà"
-          },
-          "descripcion": {
-            "es": "Waffle, toppings, fruta, bowl overnight.",
-            "en": "Waffle, toppings, fruit, bowl overnight.",
-            "de": "Waffel, Belag, Obst, Schüssel über Nacht.",
-            "ca": "Waffle, toppins, fruita, bowl overnight."
-          },
-          "precio": null,
+          "precio": 2.4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1484,63 +1211,73 @@
             "ca": "Babychino"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Crema de leche",
+            "en": "Milk foam",
+            "de": "Milchschaum",
+            "ca": "Escuma de llet"
           },
-          "precio": null,
+          "precio": 0,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "4b999279-2314-4898-a31e-3ee190005bd6",
           "nombre": {
             "es": "Café Bombón",
-            "en": "Bombón Coffee",
+            "en": "Bombón coffee",
             "de": "Bombón-Kaffee",
-            "ca": "Cafè Bombó"
+            "ca": "Cafè bombó"
           },
           "descripcion": {
             "es": "Café, leche condensada",
-            "en": null,
-            "de": null,
-            "ca": null
+            "en": "Coffee, condensed milk",
+            "de": "Kaffee, Kondensmilch",
+            "ca": "Cafè, llet condensada"
           },
-          "precio": null,
+          "precio": 2.4,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "883dcc7b-2115-447c-9afd-fb4651a37998",
           "nombre": {
             "es": "Café con miel",
-            "en": "Coffee with honey",
-            "de": "Kaffee mit Honig",
-            "ca": "Cafè amb mel"
+            "en": "Coffee con miel",
+            "de": "Kaffee con miel",
+            "ca": "Cafè con miel"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con miel",
+            "en": "Espresso shot with honey",
+            "de": "Espresso-Shot mit Honig",
+            "ca": "Càrrega d'espresso amb mel"
           },
-          "precio": null,
+          "precio": 2,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "335fc6a7-0403-4ee1-8e67-6ae75234a26d",
           "nombre": {
             "es": "Café Irlandés",
-            "en": "Irish Coffee",
-            "de": "Irish Coffee",
-            "ca": "Cafè Irlandès"
+            "en": "Coffee Irlandés",
+            "de": "Kaffee Irlandés",
+            "ca": "Cafè Irlandés"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con whisky, azúcar y crema de leche",
+            "en": "Espresso shot with whisky, sugar and milk foam",
+            "de": "Espresso-Shot mit Whisky, Zucker und Milchschaum",
+            "ca": "Càrrega d'espresso amb whisky, sucre i escuma de llet"
           },
-          "precio": null,
+          "precio": 6,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1549,15 +1286,18 @@
             "es": "Cappuccino",
             "en": "Cappuccino",
             "de": "Cappuccino",
-            "ca": "Caputxí"
+            "ca": "Caputxino"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con crema de leche",
+            "en": "Espresso shot with milk foam",
+            "de": "Espresso-Shot mit Milchschaum",
+            "ca": "Càrrega d'espresso amb escuma de llet"
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1566,15 +1306,18 @@
             "es": "Carajillo",
             "en": "Carajillo",
             "de": "Carajillo",
-            "ca": "Carallet"
+            "ca": "Carajillo"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con amazonas o baylies",
+            "en": "Espresso shot with amazonas or baylies",
+            "de": "Espresso-Shot mit amazonas oder baylies",
+            "ca": "Càrrega d'espresso amb amazonas o baylies"
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1582,33 +1325,39 @@
           "nombre": {
             "es": "Chai latte",
             "en": "Chai latte",
-            "de": "Chai Latte",
+            "de": "Chai latte",
             "ca": "Chai latte"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Te chai de chocolate o vainilla",
+            "en": "Te chai of chocolate or vanilla",
+            "de": "Te chai de Schokolade oder Vanille",
+            "ca": "Te chai de xocolata o vainilla"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "31af324c-183a-4be5-baa8-cfca4d8dd1cd",
           "nombre": {
             "es": "Cortado",
-            "en": "Cut",
-            "de": "Schneiden",
-            "ca": "Tallat"
+            "en": "Cortado",
+            "de": "Cortado",
+            "ca": "Cortado"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con poca leche",
+            "en": "Espresso shot with poca milk",
+            "de": "Espresso-Shot mit poca Milch",
+            "ca": "Càrrega d'espresso amb poca llet"
           },
-          "precio": null,
+          "precio": 2,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1617,15 +1366,16 @@
             "es": "Doble espresso",
             "en": "Double espresso",
             "de": "Doppelter Espresso",
-            "ca": "Doble espresso"
+            "ca": "Espresso doble"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Doble carga de espresso",
+            "en": "Double espresso shot",
+            "de": "Doppelter Espresso-Shot",
+            "ca": "Doble càrrega d'espresso"
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1637,12 +1387,13 @@
             "ca": "Espresso"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso",
+            "en": "Espresso shot",
+            "de": "Espresso-Shot",
+            "ca": "Càrrega d'espresso"
           },
-          "precio": null,
+          "precio": 1.8,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1650,16 +1401,19 @@
           "nombre": {
             "es": "Flat White",
             "en": "Flat White",
-            "de": "Flaches Weiß",
+            "de": "Flat White",
             "ca": "Flat White"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Doble carga de espresso con leche caliente",
+            "en": "Double espresso shot with milk caliente",
+            "de": "Doppelter Espresso-Shot mit Milch caliente",
+            "ca": "Doble càrrega d'espresso amb llet caliente"
           },
-          "precio": null,
+          "precio": 3.7,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1671,12 +1425,13 @@
             "ca": "ICE AMERICANO"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con hielo y agua",
+            "en": "Espresso shot with hielo and water",
+            "de": "Espresso-Shot mit hielo und Wasser",
+            "ca": "Càrrega d'espresso amb hielo i aigua"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1688,12 +1443,15 @@
             "ca": "ICE CAPUCCINO"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con hielo picado y crema de leche",
+            "en": "Espresso shot with hielo picado and milk foam",
+            "de": "Espresso-Shot mit hielo picado und Milchschaum",
+            "ca": "Càrrega d'espresso amb hielo picado i escuma de llet"
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1705,12 +1463,15 @@
             "ca": "ICE FLAT WHITE"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Doble carga de espresso con hielo picado y leche",
+            "en": "Double espresso shot with hielo picado and milk",
+            "de": "Doppelter Espresso-Shot mit hielo picado und Milch",
+            "ca": "Doble càrrega d'espresso amb hielo picado i llet"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1722,12 +1483,15 @@
             "ca": "ICE LATTE"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con hielo picado y leche",
+            "en": "Espresso shot with hielo picado and milk",
+            "de": "Espresso-Shot mit hielo picado und Milch",
+            "ca": "Càrrega d'espresso amb hielo picado i llet"
           },
-          "precio": null,
+          "precio": 4.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1739,12 +1503,15 @@
             "ca": "Ice matcha"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Te macha con hielo picado y leche o agua",
+            "en": "Te macha with hielo picado and milk or water",
+            "de": "Te macha mit hielo picado und Milch oder Wasser",
+            "ca": "Te macha amb hielo picado i llet o aigua"
           },
-          "precio": null,
+          "precio": 5.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1756,12 +1523,15 @@
             "ca": "ICE MOCCA"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con chocolate hielo picado y leche",
+            "en": "Espresso shot with chocolate hielo picado and milk",
+            "de": "Espresso-Shot mit Schokolade hielo picado und Milch",
+            "ca": "Càrrega d'espresso amb xocolata hielo picado i llet"
           },
-          "precio": null,
+          "precio": 5.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1773,12 +1543,15 @@
             "ca": "Latte"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con leche caliente",
+            "en": "Espresso shot with milk caliente",
+            "de": "Espresso-Shot mit Milch caliente",
+            "ca": "Càrrega d'espresso amb llet caliente"
           },
-          "precio": null,
+          "precio": 2.7,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1790,12 +1563,15 @@
             "ca": "Latte Macchiato"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Carga de espresso con mucha leche y crema de leche",
+            "en": "Espresso shot with mucha milk and milk foam",
+            "de": "Espresso-Shot mit mucha Milch und Milchschaum",
+            "ca": "Càrrega d'espresso amb mucha llet i escuma de llet"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1803,33 +1579,37 @@
           "nombre": {
             "es": "Lungo",
             "en": "Lungo",
-            "de": "Lunge",
+            "de": "Lungo",
             "ca": "Lungo"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Espresso rebajado con mucha agua",
+            "en": "Expresso rebajado with mucha water",
+            "de": "Expresso rebajado mit mucha Wasser",
+            "ca": "Expresso rebajado amb mucha aigua"
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "c683d3f6-1263-46a9-a910-40ec36624c63",
           "nombre": {
             "es": "Mocca",
-            "en": "Mocha",
-            "de": "Mokka",
-            "ca": "Motxa"
+            "en": "Mocca",
+            "de": "Mocca",
+            "ca": "Mocca"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Café con chocolate liquido y leche",
+            "en": "Coffee with chocolate liquido and milk",
+            "de": "Kaffee mit Schokolade liquido und Milch",
+            "ca": "Cafè amb xocolata liquido i llet"
           },
-          "precio": null,
+          "precio": 3.7,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -1837,16 +1617,17 @@
           "nombre": {
             "es": "Prensa francesa",
             "en": "French press",
-            "de": "Französische Presse",
+            "de": "French Press",
             "ca": "Premsa francesa"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Café molido prensado con agua caliente",
+            "en": "Coffee molido prensado with hot water",
+            "de": "Kaffee molido prensado mit heißes Wasser",
+            "ca": "Cafè molido prensado amb aigua calenta"
           },
-          "precio": null,
+          "precio": 3.7,
+          "alergenos": [],
           "sinGluten": false
         }
       ]
@@ -1865,7 +1646,7 @@
           "nombre": {
             "es": "Breakfast Tea",
             "en": "Breakfast Tea",
-            "de": "Frühstückstee",
+            "de": "Breakfast Tea",
             "ca": "Breakfast Tea"
           },
           "descripcion": {
@@ -1874,24 +1655,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "99d5acf0-5658-46aa-92a7-9eda162ed834",
-          "nombre": {
-            "es": "Infusión de Menta",
-            "en": "Infusión de Menta",
-            "de": "Infusión de Menta",
-            "ca": "Infusión de Menta"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1908,33 +1673,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "1f5155ff-be3d-4bf1-96b5-23ed521a5371",
-          "nombre": {
-            "es": "Menta Fresca",
-            "en": "Fresh Mint",
-            "de": "Frische Minze",
-            "ca": "Menta Fresca"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "5cb60368-8743-4880-ac23-8f49146502e9",
           "nombre": {
             "es": "Poleo Menta",
-            "en": "Mint Pennyroyal",
-            "de": "Minze Pennyroyal",
-            "ca": "Poleo Menta"
+            "en": "Pennyroyal mint",
+            "de": "Poleiminze",
+            "ca": "Poliol menta"
           },
           "descripcion": {
             "es": null,
@@ -1942,7 +1691,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1959,7 +1709,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -1976,16 +1727,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "f7ee6b7d-deb6-44a8-8c3b-2be2a9c5c641",
           "nombre": {
             "es": "Té de Almendra y Canela",
-            "en": "Té de Almendra y Canela",
-            "de": "Té de Almendra y Canela",
-            "ca": "Té de Almendra y Canela"
+            "en": "Tea de almond y Canela",
+            "de": "Tee de Mandel y Canela",
+            "ca": "Te de ametlla y Canela"
           },
           "descripcion": {
             "es": null,
@@ -1993,24 +1745,30 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
           "id": "81ab7765-1341-4e50-afa0-150ebc4a8771",
           "nombre": {
             "es": "Té de Frutos de invierno",
-            "en": "Té de Frutos de invierno",
-            "de": "Té de Frutos de invierno",
-            "ca": "Té de Frutos de invierno"
+            "en": "Tea de Frutos de invierno",
+            "de": "Tee de Frutos de invierno",
+            "ca": "Te de Frutos de invierno"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Trozos de manzana, flores de hibisco, almendras picadas, canela, rooibos, cáscara de Rosa Mosqueta, vainilla.",
+            "en": "Trozos d manzana, flores of hibsco, chopped almonds, cinnamon, rooibos, rosehip peel, vanilla.",
+            "de": "Trozos d manzana, flores de hibsco, gehackte Mandeln, Zimt, Rooibos, Hagebuttenschale, Vanille.",
+            "ca": "Trozos d manzana, flores de hibsco, ametlles picades, canyella, rooibos, pell de rosa mosqueta, vainilla."
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
@@ -2027,16 +1785,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "5888fc3a-d282-4941-813f-614888df5acf",
           "nombre": {
             "es": "Té de jengibre y limón",
-            "en": "Tea",
-            "de": "Tee",
-            "ca": "Te"
+            "en": "Tea gengibre y limon",
+            "de": "Tee gengibre y limon",
+            "ca": "Te gengibre y limon"
           },
           "descripcion": {
             "es": null,
@@ -2044,24 +1803,26 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "3c0d2e9a-1e01-4c01-8d30-5a3477560570",
           "nombre": {
             "es": "Té de Manzana Asada y Canela",
-            "en": "Té de Manzana Asada y Canela",
-            "de": "Té de Manzana Asada y Canela",
-            "ca": "Té de Manzana Asada y Canela"
+            "en": "Tea de Manzana Asada y Canela",
+            "de": "Tee de Manzana Asada y Canela",
+            "ca": "Te de Manzana Asada y Canela"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Trozos de manzana, florea de hibisco, uvas, canela, pétalos de girasol, extracto de vainilla.",
+            "en": "Trozos of manzana, florea of hibisco, grapes, cinnamon, sunflower petals, vanilla extract.",
+            "de": "Trozos de manzana, florea de hibisco, Trauben, Zimt, Sonnenblumenblüten, Vanilleextrakt.",
+            "ca": "Trozos de manzana, florea de hibisco, raïm, canyella, pètals de gira-sol, extracte de vainilla."
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2073,21 +1834,22 @@
             "ca": "Té frío"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Te frio de manzana",
+            "en": "Te frio of manzana",
+            "de": "Te frio de manzana",
+            "ca": "Te frio de manzana"
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "e6e0c56c-8f2b-470f-ad8a-a55726ecd047",
           "nombre": {
             "es": "Té Frutos Rojos",
-            "en": "Red Fruit Tea",
-            "de": "Roter Früchtetee",
-            "ca": "Te Fruits Vermells"
+            "en": "Red berry tea",
+            "de": "Rote-Früchte-Tee",
+            "ca": "Te de fruits vermells"
           },
           "descripcion": {
             "es": null,
@@ -2095,33 +1857,37 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "5a9756eb-2381-4fc8-9e39-e04b81cba8ba",
           "nombre": {
             "es": "Té Matcha",
-            "en": "Matcha Tea",
-            "de": "Matcha-Tee",
+            "en": "Tea Matcha",
+            "de": "Tee Matcha",
             "ca": "Te Matcha"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Te verde macha con leche o agua",
+            "en": "Te verde macha with milk or water",
+            "de": "Te verde macha mit Milch oder Wasser",
+            "ca": "Te verde macha amb llet o aigua"
           },
-          "precio": null,
+          "precio": 3.7,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "99338a32-1e71-486f-aba0-5800e44f764d",
           "nombre": {
             "es": "Té Rojo",
-            "en": "Red Tea",
+            "en": "Red tea",
             "de": "Roter Tee",
-            "ca": "Te Vermell"
+            "ca": "Te vermell"
           },
           "descripcion": {
             "es": null,
@@ -2129,24 +1895,26 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "9353562e-0086-4fff-a867-cb02143b2eb7",
           "nombre": {
             "es": "Té Tropical",
-            "en": "Té Tropical",
-            "de": "Té Tropical",
-            "ca": "Té Tropical"
+            "en": "Tea Tropical",
+            "de": "Tee Tropical",
+            "ca": "Te Tropical"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Té blanco, Té verde, hojas de Zarzamora, chips de Plátano, trozos de Mango, trozos de Piña, hojas de Stevia.",
+            "en": "Té blanco, Té verde, hojas of Zarzamora, chips of Plátano, trozos of Mango, trozos of Piña, hojas of Stevia.",
+            "de": "Té blanco, Té verde, hojas de Zarzamora, chips de Plátano, trozos de Mango, trozos de Piña, hojas de Stevia.",
+            "ca": "Té blanco, Té verde, hojas de Zarzamora, chips de Plátano, trozos de Mango, trozos de Piña, hojas de Stevia."
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2155,7 +1923,7 @@
             "es": "Té Verde",
             "en": "Green tea",
             "de": "Grüner Tee",
-            "ca": "Te Verd"
+            "ca": "Te verd"
           },
           "descripcion": {
             "es": null,
@@ -2163,7 +1931,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         }
       ]
@@ -2191,7 +1960,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2208,7 +1978,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2220,12 +1991,13 @@
             "ca": "Apfelschorle"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco de agua con gas y zumo de manzana",
+            "en": "Refresco of sparkling water and zumo of manzana",
+            "de": "Refresco de Sprudelwasser und zumo de manzana",
+            "ca": "Refresco de aigua amb gas i zumo de manzana"
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2233,7 +2005,7 @@
           "nombre": {
             "es": "Aquarius",
             "en": "Aquarius",
-            "de": "Wassermann",
+            "de": "Aquarius",
             "ca": "Aquarius"
           },
           "descripcion": {
@@ -2242,16 +2014,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "f27025b1-59a5-4611-86ad-d707ce6ce5fc",
           "nombre": {
             "es": "Caña",
-            "en": "Cane",
-            "de": "Stock",
-            "ca": "Canya"
+            "en": "Caña",
+            "de": "Caña",
+            "ca": "Caña"
           },
           "descripcion": {
             "es": null,
@@ -2259,41 +2032,30 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "3337d1a7-43de-4650-9284-7667e7ea2b14",
-          "nombre": {
-            "es": "Cerveza pequeña",
-            "en": "Cerveza pequeña",
-            "de": "Cerveza pequeña",
-            "ca": "Cerveza pequeña"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.7,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
           "id": "af5118f4-43cb-459d-95f9-809d469c3bfa",
           "nombre": {
             "es": "Chocolate Caliente",
-            "en": "Chocolate Caliente",
-            "de": "Chocolate Caliente",
-            "ca": "Chocolate Caliente"
+            "en": "Hot chocolate",
+            "de": "Heiße Schokolade",
+            "ca": "Xocolata calenta"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Chocolate a la taza",
+            "en": "Chocolate a la taza",
+            "de": "Schokolade a la taza",
+            "ca": "Xocolata a la taza"
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -2305,20 +2067,23 @@
             "ca": "Clara"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Cerveza con Sprite",
+            "en": "Beer with Sprite",
+            "de": "Bier mit Sprite",
+            "ca": "Cervesa amb Sprite"
           },
-          "precio": null,
+          "precio": 2.7,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
           "id": "5c430675-ced9-4a26-8fa9-902c9abc9fcd",
           "nombre": {
             "es": "Coca Cola",
-            "en": "Coke",
-            "de": "Koks",
+            "en": "Coca Cola",
+            "de": "Coca Cola",
             "ca": "Coca Cola"
           },
           "descripcion": {
@@ -2327,7 +2092,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2344,16 +2110,37 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
+          "sinGluten": false
+        },
+        {
+          "id": "46804cf1-7166-47b5-9fa7-798f60bb11c3",
+          "nombre": {
+            "es": "ColaCao Energy",
+            "en": "ColaCao Energy",
+            "de": "ColaCao Energy",
+            "ca": "ColaCao Energy"
+          },
+          "descripcion": {
+            "es": "Chocolate con leche preparado en botella",
+            "en": "Chocolate with milk preparado en botella",
+            "de": "Schokolade mit Milch preparado en botella",
+            "ca": "Xocolata amb llet preparado en botella"
+          },
+          "precio": 2.7,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "7d6b8eed-4898-4dfb-b831-89d8521fc6c9",
           "nombre": {
             "es": "Estrella Galicia",
-            "en": "Galicia Star",
-            "de": "Galizienstern",
-            "ca": "Estrella Galícia"
+            "en": "Estrella Galicia",
+            "de": "Estrella Galicia",
+            "ca": "Estrella Galicia"
           },
           "descripcion": {
             "es": null,
@@ -2361,7 +2148,10 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -2370,24 +2160,27 @@
             "es": "Estrella Galicia 0'0",
             "en": "Estrella Galicia 0'0",
             "de": "Estrella Galicia 0'0",
-            "ca": "Estrella Galícia 0'0"
+            "ca": "Estrella Galicia 0'0"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Cerveza sin alcohol",
+            "en": "Non-alcoholic beer",
+            "de": "Alkoholfreies Bier",
+            "ca": "Cervesa sense alcohol"
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
           "id": "ef198120-eb22-48e0-b24c-0fbc5305e569",
           "nombre": {
             "es": "Fanta Limón",
-            "en": "Fanta Lemon",
-            "de": "Fanta-Zitrone",
-            "ca": "Fanta Llimona"
+            "en": "Fanta Limón",
+            "de": "Fanta Limón",
+            "ca": "Fanta Limón"
           },
           "descripcion": {
             "es": null,
@@ -2395,16 +2188,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "7cfc3fad-4e9a-414e-bba4-999c3180b014",
           "nombre": {
             "es": "Fanta Naranja",
-            "en": "Fanta Orange",
-            "de": "Fanta-Orange",
-            "ca": "Fanta Taronja"
+            "en": "Fanta Naranja",
+            "de": "Fanta Naranja",
+            "ca": "Fanta Naranja"
           },
           "descripcion": {
             "es": null,
@@ -2412,7 +2206,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2424,46 +2219,13 @@
             "ca": "Ginger Ale"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco de naranja y genjibre",
+            "en": "Refresco of naranja and ginger",
+            "de": "Refresco de naranja und Ingwer",
+            "ca": "Refresco de naranja i gingebre"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "97f1df39-1dd4-4f9f-9647-33f9cd8d0397",
-          "nombre": {
-            "es": "Ice Tea (Natural)",
-            "en": "Ice Tea (Natural)",
-            "de": "Eistee (natürlich)",
-            "ca": "Ice Tea (Natural)"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "46804cf1-7166-47b5-9fa7-798f60bb11c3",
-          "nombre": {
-            "es": "Lacao",
-            "en": "Lacao",
-            "de": "Lacao",
-            "ca": "Lacau"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2475,29 +2237,13 @@
             "ca": "Limonada"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Limonada casera con sacarina",
+            "en": "Homemade lemonade with saccharin",
+            "de": "Hausgemachte Limonade mit Saccharin",
+            "ca": "Llimonada casolana amb sacarina"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "c6680df8-a375-49de-b8e1-3b05bf971fb1",
-          "nombre": {
-            "es": "Monster grande",
-            "en": "Little monster",
-            "de": "Kleines Monster",
-            "ca": "Monster petit"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2514,7 +2260,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2531,24 +2278,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "1761996c-a7e2-4360-a880-5f4fe5fb266a",
-          "nombre": {
-            "es": "Sangria",
-            "en": "Sangria",
-            "de": "Sangria",
-            "ca": "Sangria"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 4.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2560,12 +2291,15 @@
             "ca": "Shandy"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Cerveza con fanta limon",
+            "en": "Beer with fanta limon",
+            "de": "Bier mit fanta limon",
+            "ca": "Cervesa amb fanta limon"
           },
-          "precio": null,
+          "precio": 2.7,
+          "alergenos": [
+            "gluten"
+          ],
           "sinGluten": false
         },
         {
@@ -2577,12 +2311,13 @@
             "ca": "Spezi"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Cola con Fanta naranja",
+            "en": "Cola with Fanta naranja",
+            "de": "Cola mit Fanta naranja",
+            "ca": "Cola amb Fanta naranja"
           },
-          "precio": null,
+          "precio": 3.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2599,7 +2334,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2611,21 +2347,24 @@
             "ca": "Tinto de Verano"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Vino tinto con fanta limon",
+            "en": "Red wine with fanta limon",
+            "de": "Rotwein mit fanta limon",
+            "ca": "Vi negre amb fanta limon"
           },
-          "precio": null,
+          "precio": 6,
+          "alergenos": [
+            "sulfitos"
+          ],
           "sinGluten": false
         },
         {
           "id": "dc2d4b35-2bf6-463c-a54d-1c23377bcf32",
           "nombre": {
             "es": "Tónica",
-            "en": "Tonic",
-            "de": "Tonic",
-            "ca": "Tònica"
+            "en": "Tónica",
+            "de": "Tónica",
+            "ca": "Tónica"
           },
           "descripcion": {
             "es": null,
@@ -2633,16 +2372,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "f7d318fe-acbe-421f-a824-7ea2d48cf2b0",
           "nombre": {
             "es": "Vaso leche",
-            "en": "Glass of milk",
-            "de": "Glas Milch",
-            "ca": "Got llet"
+            "en": "Vaso leche",
+            "de": "Vaso leche",
+            "ca": "Vaso leche"
           },
           "descripcion": {
             "es": null,
@@ -2650,16 +2390,19 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 1.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "0fbb4305-cd51-4f52-be52-9c6e914594dc",
           "nombre": {
             "es": "Zumo Manzana",
-            "en": "Apple Juice",
+            "en": "Apple juice",
             "de": "Apfelsaft",
-            "ca": "Suc Poma"
+            "ca": "Suc de poma"
           },
           "descripcion": {
             "es": null,
@@ -2667,16 +2410,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "262eaa60-550d-4b95-8674-5777e249d72a",
           "nombre": {
             "es": "Zumo Melocotón",
-            "en": "Peach Juice",
+            "en": "Peach juice",
             "de": "Pfirsichsaft",
-            "ca": "Suc Préssec"
+            "ca": "Suc de préssec"
           },
           "descripcion": {
             "es": null,
@@ -2684,16 +2428,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "c771b7b2-29d5-476d-a601-c80bc4cd5047",
           "nombre": {
             "es": "Zumo naranja",
-            "en": "Zumo naranja",
-            "de": "Zumo naranja",
-            "ca": "Zumo naranja"
+            "en": "Orange juice",
+            "de": "Orangensaft",
+            "ca": "Suc de taronja"
           },
           "descripcion": {
             "es": null,
@@ -2701,16 +2446,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "0978f9d3-2be8-4703-a94a-dc9e6b5aaf7b",
           "nombre": {
             "es": "Zumo Piña",
-            "en": "Pineapple Juice",
+            "en": "Pineapple juice",
             "de": "Ananassaft",
-            "ca": "Suc Pinya"
+            "ca": "Suc de pinya"
           },
           "descripcion": {
             "es": null,
@@ -2718,7 +2464,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 2.5,
+          "alergenos": [],
           "sinGluten": false
         }
       ]
@@ -2741,12 +2488,15 @@
             "ca": "Aperol"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Aperol con Frizzante y agua con gas",
+            "en": "Aperol with Frizzante and sparkling water",
+            "de": "Aperol mit Frizzante und Sprudelwasser",
+            "ca": "Aperol amb Frizzante i aigua amb gas"
           },
-          "precio": null,
+          "precio": 7,
+          "alergenos": [
+            "sulfitos"
+          ],
           "sinGluten": false
         },
         {
@@ -2763,7 +2513,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -2780,16 +2531,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "95ebc7d5-537e-4612-8f24-108dbf6d6cfe",
           "nombre": {
             "es": "Chupito tequila",
-            "en": "Tequila shot",
-            "de": "Tequila-Shot",
-            "ca": "Xarrup tequila"
+            "en": "Chupito tequila",
+            "de": "Chupito tequila",
+            "ca": "Chupito tequila"
           },
           "descripcion": {
             "es": null,
@@ -2797,15 +2549,16 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "55a206aa-d8c8-4d17-b8a3-ecdb590510e1",
           "nombre": {
             "es": "Copa Baileys",
-            "en": "Baileys Cup",
-            "de": "Baileys Cup",
+            "en": "Copa Baileys",
+            "de": "Copa Baileys",
             "ca": "Copa Baileys"
           },
           "descripcion": {
@@ -2814,32 +2567,18 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "a2ded36f-15eb-4717-9a62-f3c177ff90ab",
-          "nombre": {
-            "es": "Copa de cava",
-            "en": "Copa de cava",
-            "de": "Copa de cava",
-            "ca": "Copa de cava"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 4.5,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
           "id": "f7716eb2-5630-494e-b2ad-6f84e18c0f8a",
           "nombre": {
             "es": "Copa de Ron",
-            "en": "Rum Glass",
-            "de": "Rumglas",
+            "en": "Copa de Ron",
+            "de": "Copa de Ron",
             "ca": "Copa de Ron"
           },
           "descripcion": {
@@ -2848,15 +2587,16 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "bc0065ba-ed67-4b31-890e-337adbafb354",
           "nombre": {
             "es": "Copa de Vodka",
-            "en": "Vodka glass",
-            "de": "Wodkaglas",
+            "en": "Copa de Vodka",
+            "de": "Copa de Vodka",
             "ca": "Copa de Vodka"
           },
           "descripcion": {
@@ -2865,15 +2605,16 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "5ac80b71-8458-4f70-85d0-091e17ac0b1f",
           "nombre": {
             "es": "Copa Tequila",
-            "en": "Tequila glass",
-            "de": "Tequila-Glas",
+            "en": "Copa Tequila",
+            "de": "Copa Tequila",
             "ca": "Copa Tequila"
           },
           "descripcion": {
@@ -2882,16 +2623,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "8b36ed86-f694-41eb-a7f8-9e6b7bf20e18",
           "nombre": {
             "es": "Copa Vino Blanco",
-            "en": "White Wine Glass",
-            "de": "Weißweinglas",
-            "ca": "Copa Vi Blanc"
+            "en": "Copa Vino Blanco",
+            "de": "Copa Vino Blanco",
+            "ca": "Copa Vino Blanco"
           },
           "descripcion": {
             "es": null,
@@ -2899,16 +2641,19 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4.5,
+          "alergenos": [
+            "sulfitos"
+          ],
           "sinGluten": false
         },
         {
           "id": "b3cff4c2-18db-471b-9732-86fe001185d2",
           "nombre": {
             "es": "Copa Vino Tinto",
-            "en": "Red Wine Glass",
-            "de": "Rotweinglas",
-            "ca": "Copa Vi Negre"
+            "en": "Copa Vino Tinto",
+            "de": "Copa Vino Tinto",
+            "ca": "Copa Vino Tinto"
           },
           "descripcion": {
             "es": null,
@@ -2916,15 +2661,18 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "sulfitos"
+          ],
           "sinGluten": false
         },
         {
           "id": "a7297d00-8b9b-45c5-8211-d5c887214868",
           "nombre": {
             "es": "Copa whisky",
-            "en": "Whiskey glass",
-            "de": "Whiskyglas",
+            "en": "Copa whisky",
+            "de": "Copa whisky",
             "ca": "Copa whisky"
           },
           "descripcion": {
@@ -2933,16 +2681,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "da1e7a08-d55b-498c-987c-d6e1b0d5d9f7",
           "nombre": {
             "es": "Hierbas dulces",
-            "en": "Sweet herbs",
-            "de": "Süße Kräuter",
-            "ca": "Herbes dolces"
+            "en": "Hierbas sweets",
+            "de": "Hierbas Süßes",
+            "ca": "Hierbas dolços"
           },
           "descripcion": {
             "es": null,
@@ -2950,16 +2699,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "541d9736-deee-4471-87e0-e3aefd1390d9",
           "nombre": {
             "es": "Hierbas mezcladas",
-            "en": "Mixed herbs",
-            "de": "Gemischte Kräuter",
-            "ca": "Herbes barrejades"
+            "en": "Hierbas mezcladas",
+            "de": "Hierbas mezcladas",
+            "ca": "Hierbas mezcladas"
           },
           "descripcion": {
             "es": null,
@@ -2967,16 +2717,17 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "c824be60-9110-4e4f-bf6c-14453a2d32af",
           "nombre": {
             "es": "Hierbas secas",
-            "en": "Dried herbs",
-            "de": "Getrocknete Kräuter",
-            "ca": "Herbes seques"
+            "en": "Hierbas secas",
+            "de": "Hierbas secas",
+            "ca": "Hierbas secas"
           },
           "descripcion": {
             "es": null,
@@ -2984,7 +2735,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -3001,7 +2753,8 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 3,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -3018,7 +2771,10 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 4,
+          "alergenos": [
+            "sulfitos"
+          ],
           "sinGluten": false
         }
       ]
@@ -3036,9 +2792,9 @@
           "id": "2461ef87-99a8-4351-a7af-40166b8e962a",
           "nombre": {
             "es": "43 + Leche",
-            "en": "43 + Milk",
-            "de": "43 + Milch",
-            "ca": "43 + Llet"
+            "en": "43 + Leche",
+            "de": "43 + Leche",
+            "ca": "43 + Leche"
           },
           "descripcion": {
             "es": null,
@@ -3046,7 +2802,10 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [
+            "leche"
+          ],
           "sinGluten": false
         },
         {
@@ -3058,63 +2817,69 @@
             "ca": "Amaretto + refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [
+            "frutosCascara"
+          ],
           "sinGluten": false
         },
         {
           "id": "7a06194d-5c55-4ef9-ad67-32a3c18b6cf6",
           "nombre": {
             "es": "Barceló + Refresco",
-            "en": "Barceló + Soft Drink",
-            "de": "Barceló + Erfrischungsgetränk",
-            "ca": "Barceló + Refresc"
+            "en": "Barceló + Refresco",
+            "de": "Barceló + Refresco",
+            "ca": "Barceló + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "d473e616-f984-47fd-83fb-dee7f270302a",
           "nombre": {
             "es": "Beefeater + Refresco",
-            "en": "Beefeater + Soft Drink",
-            "de": "Beefeater + Erfrischungsgetränk",
-            "ca": "Beefeater + Refresc"
+            "en": "Beefeater + Refresco",
+            "de": "Beefeater + Refresco",
+            "ca": "Beefeater + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "a9f01cec-02bf-4457-a0dd-e14b087e30d6",
           "nombre": {
             "es": "Broockmans + Refresco",
-            "en": "Broockmans + Soft Drink",
-            "de": "Broockmans + Erfrischungsgetränk",
-            "ca": "Broockmans + Refresc"
+            "en": "Broockmans + Refresco",
+            "de": "Broockmans + Refresco",
+            "ca": "Broockmans + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 8.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
@@ -3126,106 +2891,112 @@
             "ca": "Campari + Soda"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "c3dd7521-c29b-4e4b-8940-ae0f90b40d5f",
           "nombre": {
             "es": "Habana Club + Refresco",
-            "en": "Havana Club + Soft Drink",
-            "de": "Havana Club + Erfrischungsgetränk",
-            "ca": "Havana Club + Refresc"
+            "en": "Habana Club + Refresco",
+            "de": "Habana Club + Refresco",
+            "ca": "Habana Club + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "8194774f-8198-4660-a6f1-1a97c042f68f",
           "nombre": {
             "es": "Habana Club especial + Refresco",
-            "en": "Special Havana Club + Soft Drink",
-            "de": "Spezieller Havana Club + Erfrischungsgetränk",
-            "ca": "Havana Club especial + Refresc"
+            "en": "Habana Club especial + Refresco",
+            "de": "Habana Club especial + Refresco",
+            "ca": "Habana Club especial + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 8.5,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "6218fc12-f652-4676-9ebd-c324f089ddfe",
           "nombre": {
             "es": "Hendricks + Refresco",
-            "en": "Hendricks + Soft Drink",
-            "de": "Hendricks + Erfrischungsgetränk",
-            "ca": "Hendricks + Refresc"
+            "en": "Hendricks + Refresco",
+            "de": "Hendricks + Refresco",
+            "ca": "Hendricks + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 9.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "4f76c1ad-9f33-4eab-a760-f310cab15e7f",
           "nombre": {
             "es": "J&B + Refresco",
-            "en": "J&B + Soft Drink",
-            "de": "J&B + Erfrischungsgetränk",
-            "ca": "J&B + Refresc"
+            "en": "J&B + Refresco",
+            "de": "J&B + Refresco",
+            "ca": "J&B + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "06da74d8-578a-4a8b-85a0-15008659ae54",
           "nombre": {
             "es": "Jack Daniels + Refresco",
-            "en": "Jack Daniels + Soft Drink",
-            "de": "Jack Daniels + Erfrischungsgetränk",
-            "ca": "Jack Daniels + Refresc"
+            "en": "Jack Daniels + Refresco",
+            "de": "Jack Daniels + Refresco",
+            "ca": "Jack Daniels + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "a9217d25-4b72-4fd7-9fd3-2bc08299eb11",
           "nombre": {
             "es": "Jack Daniels manzana + Refresco",
-            "en": "Jack Daniels apple + Soft drink",
-            "de": "Jack Daniels Apfel + Erfrischungsgetränk",
-            "ca": "Jack Daniels poma + Refresc"
+            "en": "Jack Daniels manzana + Refresco",
+            "de": "Jack Daniels manzana + Refresco",
+            "ca": "Jack Daniels manzana + Refresco"
           },
           "descripcion": {
             "es": null,
@@ -3233,75 +3004,80 @@
             "de": null,
             "ca": null
           },
-          "precio": null,
+          "precio": 8.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "4d787bce-89d5-4ab8-88c7-078250cd64e0",
           "nombre": {
             "es": "Puerto de Indias + Refresco",
-            "en": "Puerto de Indias + Soft Drink",
-            "de": "Puerto de Indias + Erfrischungsgetränk",
-            "ca": "Port d'Índies + Refresc"
+            "en": "Puerto de Indias + Refresco",
+            "de": "Puerto de Indias + Refresco",
+            "ca": "Puerto de Indias + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "2bfca7d9-a897-4b6f-ad6f-d5c4c5f9f48f",
           "nombre": {
             "es": "Red Label + Refresco",
-            "en": "Red Label + Soft Drink",
-            "de": "Rotes Etikett + Erfrischungsgetränk",
-            "ca": "Xarxa Label + Refresc"
+            "en": "Red Label + Refresco",
+            "de": "Red Label + Refresco",
+            "ca": "Red Label + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "7074fd5b-6d05-493e-8d82-ec56b3728e5e",
           "nombre": {
             "es": "Seagram's + Refresco",
-            "en": "Seagram's + Soft Drink",
-            "de": "Seagram's + Erfrischungsgetränk",
-            "ca": "Seagram's + Refresc"
+            "en": "Seagram's + Refresco",
+            "de": "Seagram's + Refresco",
+            "ca": "Seagram's + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 7.9,
+          "alergenos": [],
           "sinGluten": false
         },
         {
           "id": "6d1ae4a4-6da8-4af0-86fa-a9f060aa0814",
           "nombre": {
             "es": "Smirnoff + Refresco",
-            "en": "Smirnoff + Soft Drink",
-            "de": "Smirnoff + Erfrischungsgetränk",
-            "ca": "Smirnoff + Refresc"
+            "en": "Smirnoff + Refresco",
+            "de": "Smirnoff + Refresco",
+            "ca": "Smirnoff + Refresco"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Refresco a elegir",
+            "en": "Soft drink of your choice",
+            "de": "Softdrink nach Wahl",
+            "ca": "Refresc a triar"
           },
-          "precio": null,
+          "precio": 6.9,
+          "alergenos": [],
           "sinGluten": false
         }
       ]
@@ -3324,80 +3100,13 @@
             "ca": "Expreso Martini"
           },
           "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
+            "es": "Licor de café, vodka, azúcar y una carga de espresso",
+            "en": "Licor of coffee, vodka, sugar and una espresso shot",
+            "de": "Licor de Kaffee, Wodka, Zucker und una Espresso-Shot",
+            "ca": "Licor de cafè, vodka, sucre i una càrrega d'espresso"
           },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "a0e666bb-229f-4c99-93d1-ee4cd4e7e7a1",
-          "nombre": {
-            "es": "Long Island Iced Tea",
-            "en": "Long Island Iced Tea",
-            "de": "Long Island Iced Tea",
-            "ca": "Long Island Iced Tea"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "eaa8e21e-17b8-4490-959a-bd5f3dd5752a",
-          "nombre": {
-            "es": "Lumumba",
-            "en": "Lumumba",
-            "de": "Lumumba",
-            "ca": "Lumumba"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "2773c11a-a6eb-4e33-980e-a0c428e6536d",
-          "nombre": {
-            "es": "Margarita",
-            "en": "Margarita",
-            "de": "Margarita",
-            "ca": "Margarita"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
-          "sinGluten": false
-        },
-        {
-          "id": "83b76c32-465e-4d4c-a0ce-0f929637a18a",
-          "nombre": {
-            "es": "Negroni",
-            "en": "Negroni",
-            "de": "Negroni",
-            "ca": "Negroni"
-          },
-          "descripcion": {
-            "es": null,
-            "en": null,
-            "de": null,
-            "ca": null
-          },
-          "precio": null,
+          "precio": 8.9,
+          "alergenos": [],
           "sinGluten": false
         }
       ]

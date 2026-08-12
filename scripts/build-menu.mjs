@@ -2,9 +2,10 @@
  * Construye src/content/menu.json a partir del export de traducciones del TPV
  * que vive en assets-origen/carta/.
  *
- * El export no trae precios ni la relacion producto -> categoria, asi que la
- * categoria se asigna aqui con el mapa CATEGORIA y el precio queda a null hasta
- * que el cafe lo facilite.
+ * El export no trae la relacion producto -> categoria, asi que la categoria se
+ * asigna aqui con el mapa CATEGORIA. Desde el export del 11/08/2026 si trae
+ * precios (columna "Precio (€)"); los que vengan vacios quedan a null. El del
+ * 12/08/2026 anade la columna "Alérgenos", en castellano y a mano.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -16,7 +17,13 @@ const ORIGEN = join(RAIZ, 'assets-origen', 'carta');
 const IDIOMAS = ['es', 'en', 'de', 'ca'];
 
 /** Columnas de cada idioma en Productos.csv: [nombre, descripcion]. */
-const COLUMNAS = { es: [3, 4], en: [5, 6], de: [9, 10], ca: [17, 18] };
+const COLUMNAS = { es: [5, 6], en: [7, 8], de: [11, 12], ca: [19, 20] };
+
+/** Columna del precio en Productos.csv. */
+const COLUMNA_PRECIO = 3;
+
+/** Columna de alergenos en Productos.csv, en castellano y separados por comas. */
+const COLUMNA_ALERGENOS = 4;
 
 /** Columna del nombre de cada idioma en Categorias.csv. */
 const COLUMNAS_CATEGORIA = { es: 2, en: 3, de: 5, ca: 9 };
@@ -56,7 +63,8 @@ const CATEGORIA = {
   // Sandwich
   Thestral: 'Sandwich', Buckbeak: 'Sandwich', Grindylow: 'Sandwich',
   Veggi: 'Sandwich', Dumbledore: 'Sandwich', Snape: 'Sandwich',
-  skabers: 'Sandwich',
+  skabers: 'Sandwich', Skabers: 'Sandwich', Italiano: 'Sandwich',
+  Frances: 'Sandwich',
   // Poké Bowls
   Gryffindor: 'Poké Bowls', Ravenclaw: 'Poké Bowls',
   // Para Picar
@@ -66,7 +74,7 @@ const CATEGORIA = {
   'Extra pan': 'Para Picar',
   // Dulces
   Castelobruxo: 'Dulces', 'Bola helado vainilla': 'Dulces', Crepe: 'Dulces',
-  'Vasito TIRAMISU': 'Dulces', Pudding: 'Dulces',
+  'Vasito TIRAMISU': 'Dulces', Pudding: 'Dulces', Verrine: 'Dulces',
   // Tartas y bolleria
   'Tarta de coco': 'Tartas y bolleria', 'Tarta de Oreo': 'Tartas y bolleria',
   'Tarta huesitos': 'Tartas y bolleria', 'Tarta macha': 'Tartas y bolleria',
@@ -88,7 +96,8 @@ const CATEGORIA = {
   // Cafes
   'Café Bombón': 'Cafés', Americano: 'Cafés', 'Doble espresso': 'Cafés',
   Lungo: 'Cafés', Babychino: 'Cafés', Mocca: 'Cafés', 'Prensa francesa': 'Cafés',
-  Espresso: 'Cafés', Capuchino: 'Cafés', 'Café con miel': 'Cafés',
+  Espresso: 'Cafés', Expresso: 'Cafés', Capuchino: 'Cafés',
+  'Café con miel': 'Cafés',
   Latte: 'Cafés', Cortado: 'Cafés', 'Flat White': 'Cafés',
   'Café Irlandés': 'Cafés', Carajillo: 'Cafés', 'Latte Macchiato': 'Cafés',
   'ICE LATTE': 'Cafés', 'ICE FLAT WHITE': 'Cafés', 'ICE MOCCA': 'Cafés',
@@ -114,7 +123,8 @@ const CATEGORIA = {
   'Fanta Limón': 'Bebidas', Sprite: 'Bebidas', Tónica: 'Bebidas',
   'Zumo Piña': 'Bebidas', 'Coca Cola': 'Bebidas', 'Coca Cola Zero': 'Bebidas',
   Sangria: 'Bebidas', Limonada: 'Bebidas', 'Zumo naranja': 'Bebidas',
-  Lacao: 'Bebidas', 'Ginger Ale': 'Bebidas', 'Chocolate Caliente': 'Bebidas',
+  Lacao: 'Bebidas', 'Cola Cao energy': 'Bebidas', 'Ginger Ale': 'Bebidas',
+  'Chocolate Caliente': 'Bebidas',
   Shandy: 'Bebidas', Clara: 'Bebidas', Redbull: 'Bebidas', Spezie: 'Bebidas',
   'Vaso leche': 'Bebidas', 'Monster grande': 'Bebidas', Appleshorle: 'Bebidas',
   'Tinto de Verano': 'Bebidas', 'cerveza pequeña': 'Bebidas', Caña: 'Bebidas',
@@ -143,6 +153,56 @@ const CATEGORIA = {
 };
 
 /**
+ * Los 14 alergenos del anexo II del Rgto (UE) 1169/2011, en el orden en que los
+ * lista la norma. El TPV los escribe a mano y con variantes ("leche" y "Leche",
+ * "Frutos de cascara" y "frutos de cáscara", "Huevo" en singular), asi que aqui
+ * se reduce cada celda a estos codigos y el nombre visible sale del diccionario
+ * de idiomas. Un valor desconocido para el build en vez de publicarse a medias.
+ */
+const ALERGENOS = [
+  'gluten', 'crustaceos', 'huevos', 'pescado', 'cacahuetes', 'soja', 'leche',
+  'frutosCascara', 'apio', 'mostaza', 'sesamo', 'sulfitos', 'altramuces',
+  'moluscos',
+];
+
+/** Como escribe el TPV cada alergeno, ya normalizado a minusculas y sin tildes. */
+const ALERGENO_POR_TEXTO = {
+  gluten: 'gluten',
+  crustaceos: 'crustaceos',
+  huevo: 'huevos', huevos: 'huevos',
+  pescado: 'pescado',
+  cacahuete: 'cacahuetes', cacahuetes: 'cacahuetes',
+  soja: 'soja',
+  leche: 'leche',
+  'frutos de cascara': 'frutosCascara', 'frutos secos': 'frutosCascara',
+  apio: 'apio',
+  mostaza: 'mostaza',
+  sesamo: 'sesamo', 'granos de sesamo': 'sesamo',
+  sulfitos: 'sulfitos', 'dioxido de azufre y sulfitos': 'sulfitos',
+  altramuces: 'altramuces',
+  moluscos: 'moluscos',
+};
+
+/** La celda con la que el TPV declara que no lleva ninguno de los 14. */
+const NINGUN_ALERGENO = 'ninguno';
+
+/**
+ * Correcciones sobre la columna de alergenos, confirmadas con el cafe el
+ * 12/08/2026 (ver compliance/alergenos-revision.md). Van aqui y no en la hoja
+ * porque el TPV la reescribe en cada export.
+ */
+const ALERGENOS_CORREGIDOS = {
+  // La avena es cereal con gluten en el anexo II salvo que este certificada, y
+  // la leche vegetal que se usa puede ser de soja. No lleva leche animal.
+  Overnight: ['gluten', 'soja', 'frutosCascara'],
+  // Se sirve con Baileys, que lleva leche.
+  Carajillo: ['leche'],
+  // El nombre ya nombra el alergeno (art. 21), pero declararlo "Ninguno" seria
+  // decir lo contrario.
+  'Vaso leche': ['leche'],
+};
+
+/**
  * Erratas del TPV corregidas solo para la web. Conviene arreglarlas tambien en
  * origen: aqui se pierden en cuanto se reexporte la hoja.
  */
@@ -151,6 +211,10 @@ const ERRATAS = {
   Cruccio: 'Crucio',
   Croissan: 'Croissant',
   skabers: 'Scabbers',
+  Skabers: 'Scabbers',
+  Expresso: 'Espresso',
+  Frances: 'Francés',
+  'Cola Cao energy': 'ColaCao Energy',
   Veggi: 'Veggie',
   Mandragora: 'Mandrágora',
   Mandangus: 'Mundungus',
@@ -217,6 +281,47 @@ const limpiar = (s) => (s ?? '').trim().replace(/\s+/g, ' ');
 /** Normaliza la primera letra: el TPV mezcla "tarta de coco" y "Tarta de coco". */
 const capitalizar = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 
+const slug = (s) => s.toLowerCase().normalize('NFD')
+  .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/**
+ * Precio del TPV a numero. Acepta coma o punto decimal. El TPV marca los
+ * productos gratuitos con la palabra "Gratis", que aqui es un 0 real; lo que no
+ * se pueda leer queda a null y la carta lo muestra como "Consultar".
+ */
+function precioDe(celda) {
+  const texto = limpiar(celda);
+  if (/^gratis$/i.test(texto)) return 0;
+  const n = Number(texto.replace(',', '.').replace(/[^\d.]/g, ''));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+const sinTildes = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+/**
+ * Alergenos declarados de un producto, como codigos del anexo II y en el orden
+ * de la norma. Devuelve [] cuando el cafe ha declarado "Ninguno" y null cuando
+ * la celda esta vacia, que no es lo mismo: sin dato la carta no afirma nada.
+ */
+function alergenosDe(celda, nombre) {
+  const corregidos = ALERGENOS_CORREGIDOS[nombre];
+  if (corregidos) return [...corregidos].sort((a, b) => ALERGENOS.indexOf(a) - ALERGENOS.indexOf(b));
+
+  const texto = limpiar(celda);
+  if (!texto) return null;
+  if (sinTildes(texto) === NINGUN_ALERGENO) return [];
+
+  const codigos = new Set();
+  for (const trozo of texto.split(/[,;]/)) {
+    const clave = sinTildes(limpiar(trozo));
+    if (!clave) continue;
+    const codigo = ALERGENO_POR_TEXTO[clave];
+    if (!codigo) throw new Error(`Alergeno desconocido en "${nombre}": "${trozo.trim()}"`);
+    codigos.add(codigo);
+  }
+  return ALERGENOS.filter((a) => codigos.has(a));
+}
+
 const categorias = leer('Categorías.csv');
 const productos = leer('Productos.csv');
 
@@ -256,10 +361,12 @@ for (const fila of productos) {
   }
 
   agrupados.get(categoria).push({
-    id: fila[0],
+    // Los productos dados de alta a mano en el TPV salen sin Id en el export.
+    id: limpiar(fila[0]) || slug(base),
     nombre: nombres,
     descripcion: descripciones,
-    precio: null, // pendiente: el TPV no exporta precios
+    precio: precioDe(fila[COLUMNA_PRECIO]),
+    alergenos: alergenosDe(fila[COLUMNA_ALERGENOS], base),
     sinGluten,
   });
 }
@@ -270,7 +377,7 @@ const menu = {
   idiomas: IDIOMAS,
   avisoPrecios: 'Precios pendientes de recibir del cafe.',
   categorias: ORDEN.map((c) => ({
-    id: c.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-'),
+    id: slug(c),
     nombre: categoriaPorIdioma.get(c) ?? Object.fromEntries(IDIOMAS.map((l) => [l, c])),
     productos: agrupados.get(c).sort((a, b) => a.nombre.es.localeCompare(b.nombre.es, 'es')),
   })).filter((c) => c.productos.length),
@@ -282,3 +389,15 @@ const total = menu.categorias.reduce((n, c) => n + c.productos.length, 0);
 console.log(`${total} productos en ${menu.categorias.length} categorias`);
 for (const c of menu.categorias) console.log(`  ${c.nombre.es.padEnd(20)} ${c.productos.length}`);
 if (sinCategoria.length) console.log(`\nSIN CATEGORIA (${sinCategoria.length}): ${sinCategoria.join(', ')}`);
+
+const todos = menu.categorias.flatMap((c) => c.productos);
+
+const sinPrecio = todos.filter((p) => p.precio == null);
+if (sinPrecio.length) {
+  console.log(`\nSIN PRECIO (${sinPrecio.length}): ${sinPrecio.map((p) => p.nombre.es).join(', ')}`);
+}
+
+const sinAlergenos = todos.filter((p) => p.alergenos == null);
+if (sinAlergenos.length) {
+  console.log(`\nSIN ALERGENOS (${sinAlergenos.length}): ${sinAlergenos.map((p) => p.nombre.es).join(', ')}`);
+}

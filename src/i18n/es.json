@@ -34,9 +34,29 @@
     "todo": "Todo",
     "sinGluten": "sin ingredientes con gluten",
     "precioPendiente": "Consultar",
+    "gratis": "Gratis",
     "avisoPrecios": "Los precios se muestran en el local. Estamos actualizándolos aquí.",
+    "avisoIva": "Precios en euros con IVA incluido.",
     "filtrarPor": "Filtrar la carta por categoría",
-    "avisoAlergenos": "Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas. Pregúntanos en el local o por teléfono por la información de los 14 alérgenos de cualquier plato."
+    "avisoAlergenos": "Bajo cada plato indicamos los alérgenos declarados por el café. Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas: si tienes alguna alergia, dínoslo en el local.",
+    "alergenosEtiqueta": "Alérgenos",
+    "sinAlergenos": "Ninguno de los 14",
+    "alergeno": {
+      "gluten": "Gluten",
+      "crustaceos": "Crustáceos",
+      "huevos": "Huevos",
+      "pescado": "Pescado",
+      "cacahuetes": "Cacahuetes",
+      "soja": "Soja",
+      "leche": "Leche",
+      "frutosCascara": "Frutos de cáscara",
+      "apio": "Apio",
+      "mostaza": "Mostaza",
+      "sesamo": "Granos de sésamo",
+      "sulfitos": "Dióxido de azufre y sulfitos",
+      "altramuces": "Altramuces",
+      "moluscos": "Moluscos"
+    }
   },
   "juegos": {
     "etiqueta": "Juegos de mesa",

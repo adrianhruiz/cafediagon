@@ -7,7 +7,9 @@ import menu from '../src/content/menu.json';
 import negocio from '../src/content/business.json';
 import galeria from '../src/content/gallery.json';
 import es from '../src/i18n/es.json';
+import en from '../src/i18n/en.json';
 import de from '../src/i18n/de.json';
+import ca from '../src/i18n/ca.json';
 
 const montar = (inicial = 'es') =>
   render(<ProveedorIdioma inicial={inicial}><App /></ProveedorIdioma>);
@@ -113,6 +115,18 @@ describe('carta', () => {
       expect(screen.getByText(es.carta.avisoPrecios)).toBeInTheDocument();
     }
   });
+
+  it('dice que los precios llevan el IVA incluido en cuanto hay precios', () => {
+    // TRLGDCU art. 20: el precio anunciado tiene que ser el final, impuestos
+    // incluidos, y el consumidor tiene que poder saberlo.
+    const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
+    montar();
+    if (hayPrecios) {
+      expect(screen.getByText(es.carta.avisoIva)).toBeInTheDocument();
+    } else {
+      expect(screen.queryByText(es.carta.avisoIva)).not.toBeInTheDocument();
+    }
+  });
 });
 
 describe('galeria', () => {
@@ -149,6 +163,43 @@ describe('carta: alergenos', () => {
   it('avisa de los alergenos siempre, haya precios o no', () => {
     montar();
     expect(screen.getByText(es.carta.avisoAlergenos)).toBeInTheDocument();
+  });
+
+  it('cada producto con alergenos los pinta bajo el plato', () => {
+    // Rgto (UE) 1169/2011: el dato tiene que estar en el soporte donde se
+    // presenta la oferta, no solo a peticion.
+    const { container } = montar();
+    const platos = container.querySelectorAll('#carta .plato');
+    const conAlergenos = container.querySelectorAll('#carta .plato__alergenos');
+    const esperados = menu.categorias
+      .flatMap((c) => c.productos)
+      .filter((p) => p.alergenos != null);
+
+    expect(platos.length).toBe(menu.categorias.flatMap((c) => c.productos).length);
+    expect(conAlergenos.length).toBe(esperados.length);
+  });
+
+  it('no declara "ninguno" en un producto sin dato', () => {
+    const sinDato = menu.categorias
+      .flatMap((c) => c.productos)
+      .filter((p) => p.alergenos == null);
+    const { container } = montar();
+    const textos = [...container.querySelectorAll('#carta .plato')]
+      .filter((li) => sinDato.some((p) => li.textContent.includes(p.nombre.es)))
+      .map((li) => li.textContent);
+
+    for (const texto of textos) {
+      expect(texto, 'un producto sin dato afirma que no lleva alergenos')
+        .not.toContain(es.carta.sinAlergenos);
+    }
+  });
+
+  it('traduce los alergenos a los cuatro idiomas', () => {
+    for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
+      for (const clave of Object.keys(es.carta.alergeno)) {
+        expect(dic.carta.alergeno[clave], `${codigo} no traduce "${clave}"`).toBeTruthy();
+      }
+    }
   });
 
   it('la etiqueta de gluten no declara "sin gluten" a secas', () => {

@@ -21,6 +21,23 @@ export default function Carta() {
   // Sin precios todavia, no tiene sentido prometer una columna de precios.
   const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
 
+  const precioDe = (p) => {
+    if (p.precio == null) return t('carta.precioPendiente');
+    if (p.precio === 0) return t('carta.gratis');
+    return p.precio.toLocaleString(idioma, { style: 'currency', currency: 'EUR' });
+  };
+
+  /**
+   * Rgto (UE) 1169/2011: la lista vacia es una declaracion del cafe ("no lleva
+   * ninguno de los 14") y se dice con todas las letras. Sin dato no se escribe
+   * nada, porque afirmar en negativo lo que no se sabe es peor que callarse.
+   */
+  const alergenosDe = (p) => {
+    if (p.alergenos == null) return null;
+    if (!p.alergenos.length) return t('carta.sinAlergenos');
+    return p.alergenos.map((a) => t(`carta.alergeno.${a}`)).join(', ');
+  };
+
   return (
     <section className="seccion seccion--alt" id="carta">
       <div className="envoltorio">
@@ -50,7 +67,11 @@ export default function Carta() {
           ))}
         </div>
 
-        {!hayPrecios && <p className="carta__aviso">{t('carta.avisoPrecios')}</p>}
+        {/* TRLGDCU art. 20: el precio anunciado es el final, con impuestos
+            incluidos, y conviene decirlo expresamente. */}
+        <p className="carta__aviso">
+          {hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}
+        </p>
 
         {/* Obligatorio: los 14 alergenos hay que informarlos en cualquier soporte
             donde se presente la oferta, tambien en la carta web (Rgto 1169/2011). */}
@@ -66,6 +87,7 @@ export default function Carta() {
             <ul className="carta__lista">
               {c.productos.map((p) => {
                 const desc = campo(p.descripcion);
+                const alergenos = alergenosDe(p);
                 return (
                   <li className="plato" key={p.id}>
                     <div className="plato__cabecera">
@@ -76,13 +98,17 @@ export default function Carta() {
                         )}
                       </h4>
                       <span className="plato__linea" aria-hidden="true" />
-                      <span className="plato__precio">
-                        {p.precio != null
-                          ? p.precio.toLocaleString(idioma, { style: 'currency', currency: 'EUR' })
-                          : t('carta.precioPendiente')}
-                      </span>
+                      <span className="plato__precio">{precioDe(p)}</span>
                     </div>
                     {desc && <p className="plato__descripcion">{desc}</p>}
+                    {alergenos && (
+                      <p className="plato__alergenos">
+                        <span className="plato__alergenos-etiqueta">
+                          {t('carta.alergenosEtiqueta')}:
+                        </span>{' '}
+                        {alergenos}
+                      </p>
+                    )}
                   </li>
                 );
               })}

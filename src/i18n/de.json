@@ -34,9 +34,29 @@
     "todo": "Alles",
     "sinGluten": "ohne glutenhaltige Zutaten",
     "precioPendiente": "Auf Anfrage",
+    "gratis": "Gratis",
     "avisoPrecios": "Die Preise hängen im Café aus. Wir aktualisieren sie hier gerade.",
+    "avisoIva": "Preise in Euro, inklusive MwSt.",
     "filtrarPor": "Karte nach Kategorie filtern",
-    "avisoAlergenos": "Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen. Frag uns im Café oder telefonisch nach den 14 Allergenen in jedem Gericht."
+    "avisoAlergenos": "Unter jedem Gericht stehen die vom Café angegebenen Allergene. Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns im Café Bescheid, wenn du eine Allergie hast.",
+    "alergenosEtiqueta": "Allergene",
+    "sinAlergenos": "Keines der 14",
+    "alergeno": {
+      "gluten": "Gluten",
+      "crustaceos": "Krebstiere",
+      "huevos": "Eier",
+      "pescado": "Fisch",
+      "cacahuetes": "Erdnüsse",
+      "soja": "Soja",
+      "leche": "Milch",
+      "frutosCascara": "Schalenfrüchte",
+      "apio": "Sellerie",
+      "mostaza": "Senf",
+      "sesamo": "Sesamsamen",
+      "sulfitos": "Schwefeldioxid und Sulfite",
+      "altramuces": "Lupinen",
+      "moluscos": "Weichtiere"
+    }
   },
   "juegos": {
     "etiqueta": "Brettspiele",

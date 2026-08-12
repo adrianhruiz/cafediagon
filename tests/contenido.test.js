@@ -36,11 +36,30 @@ describe('carta', () => {
     }
   });
 
-  it('los precios son null o un numero positivo', () => {
+  it('los precios son null o un numero no negativo', () => {
     for (const p of productos) {
       if (p.precio !== null) {
         expect(typeof p.precio).toBe('number');
-        expect(p.precio).toBeGreaterThan(0);
+        // 0 es valido: el TPV marca "Gratis" algun producto (Babychino).
+        expect(p.precio).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it('los alergenos son codigos conocidos, sin repetir y sin texto libre', () => {
+    // Los 14 del anexo II del Rgto (UE) 1169/2011. La lista vacia significa
+    // "ninguno" declarado por el cafe; null significa que no hay dato.
+    const CATORCE = [
+      'gluten', 'crustaceos', 'huevos', 'pescado', 'cacahuetes', 'soja', 'leche',
+      'frutosCascara', 'apio', 'mostaza', 'sesamo', 'sulfitos', 'altramuces',
+      'moluscos',
+    ];
+    for (const p of productos) {
+      if (p.alergenos === null) continue;
+      expect(Array.isArray(p.alergenos), `${p.nombre.es}`).toBe(true);
+      expect(new Set(p.alergenos).size, `${p.nombre.es} repite alergenos`).toBe(p.alergenos.length);
+      for (const a of p.alergenos) {
+        expect(CATORCE, `${p.nombre.es} declara "${a}"`).toContain(a);
       }
     }
   });
