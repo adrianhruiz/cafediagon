@@ -85,10 +85,7 @@ async function procesar(rutaEntrada, nombre, anchos, { cuadrado = false } = {}) 
 
   generados[nombre] = {
     anchos: salidas.map((s) => s.w),
-    // Lo consume <picture> para montar un <source> por formato, en este orden.
-    formatos: FORMATOS.map(({ ext, tipo }) => ({ ext, tipo })),
     ratio: +(meta.width / meta.height).toFixed(4),
-    mayor: salidas.at(-1)?.archivo ?? null,
   };
 }
 
@@ -96,13 +93,20 @@ const kb = (n) => `${Math.round(n / 1024)} KB`;
 
 await procesar(join(ORIGEN, 'logo-hd.jpg'), 'logo', ANCHOS.logo, { cuadrado: true });
 
-for (const archivo of readdirSync(join(ORIGEN, 'posts')).filter((f) => f.endsWith('.jpg'))) {
-  const nombre = basename(archivo, '.jpg');
-  await procesar(join(ORIGEN, 'posts', archivo), nombre, anchosDe(nombre));
+// posts/: lo que estaba publicado en Instagram. fotos/: lo que manda el cafe
+// por Drive, ya preparado por scripts/ingest-fotos.mjs.
+for (const carpeta of ['posts', 'fotos']) {
+  for (const archivo of readdirSync(join(ORIGEN, carpeta)).filter((f) => f.endsWith('.jpg'))) {
+    const nombre = basename(archivo, '.jpg');
+    if (generados[nombre]) throw new Error(`Dos originales se llaman ${nombre}`);
+    await procesar(join(ORIGEN, carpeta, archivo), nombre, anchosDe(nombre));
+  }
 }
 
+// Este json viaja dentro del bundle, asi que la lista de formatos va una sola
+// vez arriba y no repetida en cada una de las 66 imagenes.
 writeFileSync(join(RAIZ, 'src', 'content', 'imagenes.json'),
-  JSON.stringify(generados, null, 2) + '\n');
+  JSON.stringify({ formatos: FORMATOS.map(({ ext, tipo }) => ({ ext, tipo })), imagenes: generados }, null, 2) + '\n');
 
 console.log(`${Object.keys(generados).length} imagenes procesadas`);
 console.log(`originales ${kb(totalOrigen)} -> derivados ${kb(totalDestino)}`);

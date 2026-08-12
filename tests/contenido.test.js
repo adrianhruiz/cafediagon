@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import menu from '../src/content/menu.json';
 import galeria from '../src/content/gallery.json';
 import negocio from '../src/content/business.json';
-import imagenes from '../src/content/imagenes.json';
+import { formatos, imagenes } from '../src/content/imagenes.json';
 import { IDIOMAS } from '../src/i18n/idioma.jsx';
 
 const PUBLICO = join(process.cwd(), 'public', 'images');
@@ -121,7 +121,7 @@ describe('imagenes generadas', () => {
   it('todos los derivados declarados existen en public/images', () => {
     for (const [nombre, datos] of Object.entries(imagenes)) {
       for (const w of datos.anchos) {
-        for (const { ext } of datos.formatos) {
+        for (const { ext } of formatos) {
           const archivo = `${nombre}-${w}.${ext}`;
           expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
         }
@@ -136,11 +136,10 @@ describe('imagenes generadas', () => {
     }
   });
 
-  // El jpg es el src del <img>: sin el, un navegador viejo se queda sin foto.
-  it('cada imagen ofrece avif, webp y jpg de respaldo', () => {
-    for (const [nombre, datos] of Object.entries(imagenes)) {
-      expect(datos.formatos.map((f) => f.ext), nombre).toEqual(['avif', 'webp', 'jpg']);
-    }
+  // El orden manda: <picture> se queda con el primero que entienda el navegador,
+  // y el jpg va al final porque es el src del <img>, o sea el ultimo respaldo.
+  it('los formatos van de mejor a peor y acaban en jpg', () => {
+    expect(formatos.map((f) => f.ext)).toEqual(['avif', 'webp', 'jpg']);
   });
 
   // La precarga esta escrita a mano en index.html y no la revisa el build:

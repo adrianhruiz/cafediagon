@@ -1,7 +1,10 @@
-import imagenes from '../content/imagenes.json';
+import { formatos, imagenes } from '../content/imagenes.json';
 
 /** El jpg no lleva <source>: es el src del <img>, o sea el ultimo respaldo. */
 const RESPALDO = 'jpg';
+
+/** Los que si llevan <source>, en orden de preferencia: avif antes que webp. */
+const FUENTES = formatos.filter(({ ext }) => ext !== RESPALDO);
 
 /**
  * <picture> con avif, webp y respaldo jpg, generados por
@@ -26,7 +29,7 @@ export default function Imagen({ nombre, alt, sizes = '100vw', prioridad = false
 
   return (
     <picture>
-      {datos.formatos.filter(({ ext }) => ext !== RESPALDO).map(({ ext, tipo }) => (
+      {FUENTES.map(({ ext, tipo }) => (
         <source key={ext} type={tipo} srcSet={srcset(ext)} sizes={sizes} />
       ))}
       <img
