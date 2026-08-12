@@ -64,6 +64,25 @@ describe('carta', () => {
     }
   });
 
+  it('no deja a medias las traducciones automaticas del TPV', () => {
+    // El export traduce palabra a palabra y se deja trozos en castellano
+    // ("Espresso shot with hielo picado", "una of cheese").
+    const RESTOS = [
+      'hielo picado', 'baylies', 'florea', 'hibsco', 'Variedad de', 'Variedad of',
+      'una of', 'una de', 'Refresco', 'caliente', 'mucha', 'poca ', 'liquido',
+      'Trozos de', 'Trozos of', 'Alitas', 'Postres variados', 'Tartas enteras',
+      'Biscocho', 'caramelizadas', 'Te macha', 'Te chai', 'Te frio',
+    ];
+    for (const p of productos) {
+      for (const l of ['en', 'de']) {
+        const texto = `${p.nombre[l]} ${p.descripcion[l] ?? ''}`;
+        for (const resto of RESTOS) {
+          expect(texto, `${p.nombre.es} → ${l} sigue con "${resto}"`).not.toContain(resto);
+        }
+      }
+    }
+  });
+
   it('no arrastra las erratas del TPV', () => {
     const texto = JSON.stringify(productos.map((p) => [p.nombre.es, p.descripcion.es]));
     for (const errata of ['Hogwards', 'Cruccio', 'Croissan"', 'cacahuate', 'don sobrasada']) {

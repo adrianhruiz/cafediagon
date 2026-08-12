@@ -228,6 +228,34 @@ const ERRATAS = {
   Appleshorle: 'Apfelschorle',
   Capuchino: 'Cappuccino',
   'Long Island Iced Tee': 'Long Island Iced Tea',
+  Iberiquisimo: 'Iberiquísimo',
+  'Gato Mallorquin': 'Gató mallorquí',
+  'Expreso Martini': 'Espresso Martini',
+  'Vaso leche': 'Vaso de leche',
+  'Bola helado vainilla': 'Bola de helado de vainilla',
+  'Copa whisky': 'Copa de whisky',
+  'Copa de Ron': 'Copa de ron',
+  'copa de Vodka': 'Copa de vodka',
+  'copa Tequila': 'Copa de tequila',
+  'Copa Baileys': 'Copa de Baileys',
+  'Copa Vino Tinto': 'Copa de vino tinto',
+  'Copa Vino Blanco': 'Copa de vino blanco',
+  'Chupito Jack Daniels': 'Chupito de Jack Daniel\'s',
+  'Chupito tequila': 'Chupito de tequila',
+  Redbull: 'Red Bull',
+  'Zumo Manzana': 'Zumo de manzana',
+  'Zumo naranja': 'Zumo de naranja',
+  'Zumo Piña': 'Zumo de piña',
+  'Zumo Melocotón': 'Zumo de melocotón',
+  'Napolitana crema y chocolate': 'Napolitana de crema y chocolate',
+  'Tarta de Queso y Fresas': 'Tarta de queso y fresas',
+  'Tarta Fresas y Nata': 'Tarta de fresas y nata',
+  // El TPV los tiene en mayusculas sostenidas y desentonan con el resto.
+  'ICE LATTE': 'Ice Latte',
+  'ICE FLAT WHITE': 'Ice Flat White',
+  'ICE MOCCA': 'Ice Mocca',
+  'ICE AMERICANO': 'Ice Americano',
+  'ICE CAPUCCINO': 'Ice Cappuccino',
 };
 
 /** Erratas dentro de las descripciones, corregidas solo para la web. */
@@ -240,7 +268,10 @@ const ERRATAS_DESC = [
   [/\bhoishin\b/gi, 'hoisin'],
   [/\bTrozos d manzana\b/gi, 'Trozos de manzana'],
   [/\bflores de hibsco\b/gi, 'flores de hibisco'],
-  [/\bflorea de hibiscо?\b/gi, 'flores de hibisco'],
+  // El TPV escribe "florea" y a veces con una "о" cirilica dentro de "hibisco".
+  [/florea de hibisc[oо]/gi, 'flores de hibisco'],
+  [/\bgenjibre\b/gi, 'jengibre'],
+  [/\bbaylies\b/gi, 'Baileys'],
   [/\bzumo de limon\b/gi, 'zumo de limón'],
   [/\bjamon\b/gi, 'jamón'],
   [/\bsalmon\b/gi, 'salmón'],
@@ -251,9 +282,549 @@ const ERRATAS_DESC = [
   [/\bazucar\b/gi, 'azúcar'],
   [/\bCafe\b/g, 'Café'],
   [/\bplatano\b/gi, 'plátano'],
+  [/\byogurt\b/gi, 'yogur'],
+  [/\bAgua caliente\b/g, 'agua caliente'],
 ];
 
 const corregirDesc = (s) => ERRATAS_DESC.reduce((t, [re, a]) => t.replace(re, a), s);
+
+/** El TPV se deja comas sin espacio detras ("surimi,mayonesa") en los 4 idiomas. */
+const espaciarComas = (s) => s.replace(/,(?=[^\s\d])/g, ', ');
+
+/**
+ * Traducciones del TPV rehechas a mano. El export pasa nombres y descripciones
+ * por un traductor automatico que deja palabras en castellano ("Espresso shot
+ * with hielo picado") o cambia el sentido ("Para Picar" -> "To Chop"). Como las
+ * erratas, esto se pierde en cuanto se reexporte la hoja: lo suyo es corregirlo
+ * tambien en el TPV.
+ *
+ * Cuando los idiomas no decian lo mismo (avena en "Fit", copa de prosecco en
+ * "Luxury"), manda el castellano, que es lo que escribio el cafe.
+ */
+const TRADUCCIONES = {
+  // Desayunos
+  Fit: {
+    descripcion: {
+      en: 'Yoghurt, peanut butter, fruit',
+      de: 'Joghurt, Erdnussbutter, Obst',
+      ca: 'Iogurt, crema de cacauet, fruita',
+    },
+  },
+  Lupin: {
+    descripcion: {
+      en: 'Oats, chia, plant milk, yoghurt, dried fruit',
+      de: 'Hafer, Chia, Pflanzenmilch, Joghurt, Trockenfrüchte',
+      ca: 'Civada, xia, llet vegetal, iogurt, fruita seca',
+    },
+  },
+  // La leche es vegetal (ver compliance/alergenos-revision.md); la hoja no lo dice.
+  Overnight: {
+    descripcion: {
+      es: 'Avena, miel, leche vegetal, frutos secos',
+      en: 'Oats, honey, plant milk, nuts',
+      de: 'Hafer, Honig, Pflanzenmilch, Nüsse',
+      ca: 'Civada, mel, llet vegetal, fruits secs',
+    },
+  },
+  'Luxury (2 personas)': {
+    descripcion: {
+      es: 'Zumo de naranja, tabla de quesos y embutidos ibéricos, fruta, yogur y surtido de panes y bollería.',
+      en: 'Orange juice, board of Iberian cheeses and cured meats, fruit, yoghurt and an assortment of breads and pastries.',
+      de: 'Orangensaft, ein Brett mit iberischem Käse und Wurst, Obst, Joghurt und eine Auswahl an Brot und Gebäck.',
+      ca: 'Suc de taronja, taula de formatges i embotits ibèrics, fruita, iogurt i assortiment de pans i brioixeria.',
+    },
+  },
+  // Tostadas
+  Hogwards: {
+    descripcion: {
+      en: 'Toast with roasted sobrasada, brie cheese and honey.',
+      de: 'Toast mit gerösteter Sobrasada, Brie und Honig.',
+      ca: 'Torrada de sobrassada rostida, formatge brie i mel.',
+    },
+  },
+  Mandragora: {
+    descripcion: { es: 'Tomate, mozzarella, balsámico, albahaca seca y orégano' },
+  },
+  Weasley: {
+    descripcion: { de: 'Toast mit Marmelade und Butter' },
+  },
+  'Variedad de tostadas': {
+    nombre: { en: 'Assorted toasts', de: 'Toast-Auswahl', ca: 'Varietat de torrades' },
+    descripcion: {
+      es: 'Variedad de tostadas (una de queso, una de atún, una de serrano y una vegetariana)',
+      en: 'Assorted toasts (one cheese, one tuna, one Serrano ham and one vegetarian)',
+      de: 'Toast-Auswahl (einer mit Käse, einer mit Thunfisch, einer mit Serrano-Schinken und einer vegetarisch)',
+      ca: 'Varietat de torrades (una de formatge, una de tonyina, una de pernil serrà i una de vegetariana)',
+    },
+  },
+  // Pa amb oli
+  Ibérico: {
+    descripcion: {
+      en: 'Tomato, Serrano ham, cured loin, chorizo and salchichón of your choice',
+      de: 'Tomate, Serrano-Schinken, Lomo, Chorizo und Salchichón nach Wahl',
+      ca: 'Tomàquet, pernil serrà, llom, xoriço i salsitxó a triar',
+    },
+  },
+  Lucius: {
+    descripcion: {
+      en: 'Tomato and cured meat of your choice',
+      de: 'Tomate und Wurst nach Wahl',
+    },
+  },
+  // Bocadillos
+  Dobby: {
+    descripcion: {
+      es: 'Bocadillo en pan de bollo con el embutido que quieras.',
+      en: 'Bun sandwich with the cured meat of your choice.',
+      de: 'Brötchen-Sandwich mit Wurst nach Wahl.',
+      ca: 'Entrepà de pa de brioix amb l\'embotit que vulguis.',
+    },
+  },
+  'Medio Bocadillo': {
+    descripcion: {
+      es: 'Medio bocadillo a elegir',
+      en: 'Half sandwich of your choice',
+      de: 'Halbes Sandwich nach Wahl',
+      ca: 'Mig entrepà a triar',
+    },
+  },
+  // Poke bowls
+  Ravenclaw: {
+    descripcion: {
+      en: 'Pieces of salmon or chicken, pickled onion, cucumber, carrot, corn, hoisin sauce',
+      de: 'Lachs- oder Hähnchenstücke, eingelegte Zwiebeln, Gurke, Karotte, Mais, Hoisin-Sauce',
+      ca: 'Trossos de salmó o pollastre, ceba adobada, cogombre, pastanaga, blat de moro, salsa hoisin',
+    },
+  },
+  // Para picar
+  Bellatrix: {
+    descripcion: {
+      en: 'Serrano ham, cured loin, chorizo, salchichón, fuet and pagès sausage',
+      de: 'Serrano-Schinken, Lomo, Chorizo, Salchichón, Fuet und Landwurst',
+      ca: 'Pernil serrà, llom, xoriço, salsitxó, fuet i llonganissa de pagès',
+    },
+  },
+  Riddle: {
+    descripcion: {
+      en: 'Variety of cheeses, with bread',
+      de: 'Verschiedene Käsesorten, mit Brot',
+      ca: 'Varietat de formatges, amb pa',
+    },
+  },
+  Incendio: {
+    descripcion: {
+      es: 'Totopos, queso, jalapeños, pollo y guacamole.',
+      en: 'Tortilla chips, cheese, jalapeños, chicken and guacamole.',
+      de: 'Tortillachips, Käse, Jalapeños, Hähnchen und Guacamole.',
+      ca: 'Totopos, formatge, jalapenys, pollastre i guacamole.',
+    },
+  },
+  Crounch: {
+    descripcion: {
+      en: 'American-style chicken wings (6 pieces)',
+      de: 'Chicken Wings nach amerikanischer Art (6 Stück)',
+      ca: 'Ales de pollastre a l\'estil americà (6 unitats)',
+    },
+  },
+  // Dulces, tartas y bolleria
+  Verrine: {
+    descripcion: {
+      en: 'Assorted desserts in small glasses',
+      de: 'Verschiedene Desserts im Glas',
+      ca: 'Postres variats en gotets',
+    },
+  },
+  Daim: {
+    descripcion: {
+      es: 'Tarta sueca de avena, chocolate y almendras caramelizadas',
+      en: 'Swedish cake with oats, chocolate and caramelised almonds',
+      de: 'Schwedischer Kuchen mit Hafer, Schokolade und karamellisierten Mandeln',
+      ca: 'Pastís suec de civada, xocolata i ametlles caramel·litzades',
+    },
+  },
+  'Gato Mallorquin': {
+    descripcion: {
+      es: 'Bizcocho de almendra mallorquín',
+      en: 'Mallorcan almond sponge cake',
+      de: 'Mallorquinischer Mandelkuchen',
+      ca: 'Pa de pessic d\'ametlla mallorquí',
+    },
+  },
+  'Tarta entera': {
+    nombre: { en: 'Whole cake', de: 'Ganze Torte', ca: 'Pastís sencer' },
+    descripcion: {
+      en: 'Whole cakes to order.',
+      de: 'Ganze Torten auf Bestellung.',
+      ca: 'Pastissos sencers per encàrrec.',
+    },
+  },
+  'tarta Banoffee': {
+    nombre: { en: 'Banoffee pie', de: 'Banoffee-Torte', ca: 'Pastís Banoffee' },
+  },
+  'Napolitana crema y chocolate': {
+    nombre: {
+      en: 'Cream and chocolate napolitana',
+      de: 'Napolitana mit Creme und Schokolade',
+      ca: 'Napolitana de crema i xocolata',
+    },
+  },
+  // Cafes
+  'Café con miel': {
+    nombre: { en: 'Coffee with honey', de: 'Kaffee mit Honig', ca: 'Cafè amb mel' },
+  },
+  'Café Irlandés': {
+    nombre: { en: 'Irish coffee', de: 'Irish Coffee', ca: 'Cafè irlandès' },
+  },
+  // "baylies" es Baileys. "Amazonas" se deja tal cual: es el licor que pone el
+  // cafe y no hay con que contrastarlo; pendiente de confirmar con ellos.
+  Carajillo: {
+    descripcion: {
+      es: 'Carga de espresso con Amazonas o Baileys',
+      en: 'Espresso shot with Amazonas or Baileys',
+      de: 'Espresso-Shot mit Amazonas oder Baileys',
+      ca: 'Càrrega d\'espresso amb Amazonas o Baileys',
+    },
+  },
+  Cortado: {
+    descripcion: {
+      en: 'Espresso shot with a little milk',
+      de: 'Espresso-Shot mit wenig Milch',
+    },
+  },
+  Latte: {
+    descripcion: {
+      en: 'Espresso shot with hot milk',
+      de: 'Espresso-Shot mit heißer Milch',
+      ca: 'Càrrega d\'espresso amb llet calenta',
+    },
+  },
+  'Flat White': {
+    descripcion: {
+      en: 'Double espresso shot with hot milk',
+      de: 'Doppelter Espresso-Shot mit heißer Milch',
+      ca: 'Doble càrrega d\'espresso amb llet calenta',
+    },
+  },
+  'Latte Macchiato': {
+    descripcion: {
+      en: 'Espresso shot with plenty of milk and milk foam',
+      de: 'Espresso-Shot mit viel Milch und Milchschaum',
+      ca: 'Càrrega d\'espresso amb molta llet i escuma de llet',
+    },
+  },
+  Lungo: {
+    descripcion: {
+      en: 'Espresso diluted with plenty of water',
+      de: 'Mit viel Wasser verlängerter Espresso',
+      ca: 'Espresso rebaixat amb molta aigua',
+    },
+  },
+  Mocca: {
+    descripcion: {
+      es: 'Café con chocolate líquido y leche',
+      en: 'Coffee with liquid chocolate and milk',
+      de: 'Kaffee mit flüssiger Schokolade und Milch',
+      ca: 'Cafè amb xocolata líquida i llet',
+    },
+  },
+  'Prensa francesa': {
+    descripcion: {
+      es: 'Café molido prensado con agua caliente',
+      en: 'Ground coffee pressed with hot water',
+      de: 'Gemahlener Kaffee, mit heißem Wasser aufgebrüht',
+      ca: 'Cafè mòlt premsat amb aigua calenta',
+    },
+  },
+  'ICE AMERICANO': {
+    descripcion: {
+      en: 'Espresso shot with ice and water',
+      de: 'Espresso-Shot mit Eis und Wasser',
+      ca: 'Càrrega d\'espresso amb gel i aigua',
+    },
+  },
+  'ICE CAPUCCINO': {
+    descripcion: {
+      en: 'Espresso shot with crushed ice and milk foam',
+      de: 'Espresso-Shot mit zerstoßenem Eis und Milchschaum',
+      ca: 'Càrrega d\'espresso amb gel picat i escuma de llet',
+    },
+  },
+  'ICE FLAT WHITE': {
+    descripcion: {
+      en: 'Double espresso shot with crushed ice and milk',
+      de: 'Doppelter Espresso-Shot mit zerstoßenem Eis und Milch',
+      ca: 'Doble càrrega d\'espresso amb gel picat i llet',
+    },
+  },
+  'ICE LATTE': {
+    descripcion: {
+      en: 'Espresso shot with crushed ice and milk',
+      de: 'Espresso-Shot mit zerstoßenem Eis und Milch',
+      ca: 'Càrrega d\'espresso amb gel picat i llet',
+    },
+  },
+  'ICE MOCCA': {
+    descripcion: {
+      es: 'Carga de espresso con chocolate, hielo picado y leche',
+      en: 'Espresso shot with chocolate, crushed ice and milk',
+      de: 'Espresso-Shot mit Schokolade, zerstoßenem Eis und Milch',
+      ca: 'Càrrega d\'espresso amb xocolata, gel picat i llet',
+    },
+  },
+  'Ice matcha': {
+    descripcion: {
+      es: 'Té matcha con hielo picado y leche o agua',
+      en: 'Matcha tea with crushed ice and milk or water',
+      de: 'Matcha-Tee mit zerstoßenem Eis und Milch oder Wasser',
+      ca: 'Te matcha amb gel picat i llet o aigua',
+    },
+  },
+  'Chai latte': {
+    descripcion: {
+      es: 'Té chai de chocolate o vainilla',
+      en: 'Chai tea with chocolate or vanilla',
+      de: 'Chai-Tee mit Schokolade oder Vanille',
+      ca: 'Te chai de xocolata o vainilla',
+    },
+  },
+  // Tes e infusiones
+  'Te chai': {
+    nombre: { en: 'Chai tea', de: 'Chai-Tee', ca: 'Te chai' },
+  },
+  'Te de granada': {
+    nombre: { en: 'Pomegranate tea', de: 'Granatapfel-Tee', ca: 'Te de magrana' },
+  },
+  'Te frio': {
+    nombre: { en: 'Iced tea', de: 'Eistee', ca: 'Te fred' },
+    descripcion: {
+      es: 'Té frío de manzana',
+      en: 'Apple iced tea',
+      de: 'Apfel-Eistee',
+      ca: 'Te fred de poma',
+    },
+  },
+  'Té gengibre y limon': {
+    nombre: {
+      en: 'Ginger and lemon tea',
+      de: 'Ingwer-Zitronen-Tee',
+      ca: 'Te de gingebre i llimona',
+    },
+  },
+  'Té Matcha': {
+    nombre: { en: 'Matcha tea', de: 'Matcha-Tee', ca: 'Te matcha' },
+    descripcion: {
+      es: 'Té verde matcha con leche o agua',
+      en: 'Matcha green tea with milk or water',
+      de: 'Matcha-Grüntee mit Milch oder Wasser',
+      ca: 'Te verd matcha amb llet o aigua',
+    },
+  },
+  'Té Tropical': {
+    nombre: { en: 'Tropical tea', de: 'Tropischer Tee', ca: 'Te tropical' },
+    descripcion: {
+      es: 'Té blanco, té verde, hojas de zarzamora, chips de plátano, trozos de mango, trozos de piña, hojas de estevia.',
+      en: 'White tea, green tea, blackberry leaves, banana chips, mango pieces, pineapple pieces, stevia leaves.',
+      de: 'Weißer Tee, grüner Tee, Brombeerblätter, Bananenchips, Mangostücke, Ananasstücke, Steviablätter.',
+      ca: 'Te blanc, te verd, fulles d\'esbarzer, xips de plàtan, trossos de mango, trossos de pinya, fulles d\'estèvia.',
+    },
+  },
+  'Té de Almendra y Canela': {
+    nombre: {
+      en: 'Almond and cinnamon tea',
+      de: 'Mandel-Zimt-Tee',
+      ca: 'Te d\'ametlla i canyella',
+    },
+  },
+  'Té de Manzana Asada y Canela': {
+    nombre: {
+      en: 'Baked apple and cinnamon tea',
+      de: 'Bratapfel-Zimt-Tee',
+      ca: 'Te de poma al forn i canyella',
+    },
+    descripcion: {
+      en: 'Apple pieces, hibiscus flowers, grapes, cinnamon, sunflower petals, vanilla extract.',
+      de: 'Apfelstücke, Hibiskusblüten, Trauben, Zimt, Sonnenblumenblüten, Vanilleextrakt.',
+      ca: 'Trossos de poma, flors d\'hibisc, raïm, canyella, pètals de gira-sol, extracte de vainilla.',
+    },
+  },
+  'Té de Frutos de invierno': {
+    nombre: {
+      en: 'Winter fruits tea',
+      de: 'Winterfrüchte-Tee',
+      ca: 'Te de fruits d\'hivern',
+    },
+    descripcion: {
+      es: 'Trozos de manzana, flores de hibisco, almendras picadas, canela, rooibos, cáscara de rosa mosqueta, vainilla.',
+      en: 'Apple pieces, hibiscus flowers, chopped almonds, cinnamon, rooibos, rosehip peel, vanilla.',
+      de: 'Apfelstücke, Hibiskusblüten, gehackte Mandeln, Zimt, Rooibos, Hagebuttenschalen, Vanille.',
+      ca: 'Trossos de poma, flors d\'hibisc, ametlles picades, canyella, rooibos, pell de rosa mosqueta, vainilla.',
+    },
+  },
+  // Bebidas
+  Appleshorle: {
+    descripcion: {
+      es: 'Refresco de agua con gas y zumo de manzana',
+      en: 'Sparkling water with apple juice',
+      de: 'Sprudelwasser mit Apfelsaft',
+      ca: 'Aigua amb gas amb suc de poma',
+    },
+  },
+  Caña: {
+    nombre: { en: 'Draught beer', de: 'Bier vom Fass', ca: 'Canya' },
+  },
+  'Chocolate Caliente': {
+    descripcion: {
+      en: 'Thick drinking chocolate',
+      de: 'Trinkschokolade',
+      ca: 'Xocolata desfeta',
+    },
+  },
+  'Cola Cao energy': {
+    descripcion: {
+      en: 'Ready-made chocolate milk in a bottle',
+      de: 'Fertige Schokomilch in der Flasche',
+      ca: 'Batut de xocolata amb llet en ampolla',
+    },
+  },
+  'Fanta Limón': {
+    nombre: { en: 'Fanta Lemon', de: 'Fanta Zitrone', ca: 'Fanta de llimona' },
+  },
+  'Fanta Naranja': {
+    nombre: { en: 'Fanta Orange', de: 'Fanta Orange', ca: 'Fanta de taronja' },
+  },
+  Limonada: {
+    nombre: { en: 'Lemonade', de: 'Limonade', ca: 'Llimonada' },
+  },
+  'Ginger Ale': {
+    descripcion: {
+      en: 'Orange and ginger soft drink',
+      de: 'Orangen-Ingwer-Limonade',
+      ca: 'Refresc de taronja i gingebre',
+    },
+  },
+  Shandy: {
+    descripcion: {
+      es: 'Cerveza con Fanta de limón',
+      en: 'Beer with Fanta Lemon',
+      de: 'Bier mit Fanta Zitrone',
+      ca: 'Cervesa amb Fanta de llimona',
+    },
+  },
+  Spezie: {
+    descripcion: {
+      es: 'Cola con Fanta de naranja',
+      en: 'Cola with Fanta Orange',
+      de: 'Cola mit Fanta Orange',
+      ca: 'Cola amb Fanta de taronja',
+    },
+  },
+  'Tinto de Verano': {
+    descripcion: {
+      es: 'Vino tinto con Fanta de limón',
+      en: 'Red wine with Fanta Lemon',
+      de: 'Rotwein mit Fanta Zitrone',
+      ca: 'Vi negre amb Fanta de llimona',
+    },
+  },
+  Tónica: {
+    nombre: { en: 'Tonic water', de: 'Tonic Water', ca: 'Tònica' },
+  },
+  'Vaso leche': {
+    nombre: { en: 'Glass of milk', de: 'Glas Milch', ca: 'Got de llet' },
+  },
+  // Licores. "Hierbas" es el licor mallorquin: el nombre no se traduce.
+  'Hierbas secas': {
+    nombre: {
+      en: 'Dry hierbas liqueur',
+      de: 'Trockener Hierbas-Likör',
+      ca: 'Herbes seques',
+    },
+  },
+  'Hierbas mezcladas': {
+    nombre: {
+      en: 'Mixed hierbas liqueur',
+      de: 'Gemischter Hierbas-Likör',
+      ca: 'Herbes mesclades',
+    },
+  },
+  'Hierbas dulces': {
+    nombre: {
+      en: 'Sweet hierbas liqueur',
+      de: 'Süßer Hierbas-Likör',
+      ca: 'Herbes dolces',
+    },
+  },
+  'Copa whisky': {
+    nombre: { en: 'Glass of whisky', de: 'Glas Whisky', ca: 'Copa de whisky' },
+  },
+  'Copa de Ron': {
+    nombre: { en: 'Glass of rum', de: 'Glas Rum', ca: 'Copa de rom' },
+  },
+  'copa de Vodka': {
+    nombre: { en: 'Glass of vodka', de: 'Glas Wodka', ca: 'Copa de vodka' },
+  },
+  'copa Tequila': {
+    nombre: { en: 'Glass of tequila', de: 'Glas Tequila', ca: 'Copa de tequila' },
+  },
+  'Copa Baileys': {
+    nombre: { en: 'Glass of Baileys', de: 'Glas Baileys', ca: 'Copa de Baileys' },
+  },
+  'Copa Vino Tinto': {
+    nombre: { en: 'Glass of red wine', de: 'Glas Rotwein', ca: 'Copa de vi negre' },
+  },
+  'Copa Vino Blanco': {
+    nombre: { en: 'Glass of white wine', de: 'Glas Weißwein', ca: 'Copa de vi blanc' },
+  },
+  'Chupito Jack Daniels': {
+    nombre: {
+      en: 'Jack Daniel\'s shot',
+      de: 'Jack Daniel\'s Shot',
+      ca: 'Xopet de Jack Daniel\'s',
+    },
+  },
+  'Chupito tequila': {
+    nombre: { en: 'Tequila shot', de: 'Tequila-Shot', ca: 'Xopet de tequila' },
+  },
+  // Combinados
+  '43 + Leche': {
+    nombre: { en: '43 + milk', de: '43 + Milch', ca: '43 + llet' },
+  },
+  'Jack Daniels manzana + Refresco': {
+    nombre: {
+      es: 'Jack Daniel\'s Apple + Refresco',
+      en: 'Jack Daniel\'s Apple + soft drink',
+      de: 'Jack Daniel\'s Apple + Softdrink',
+      ca: 'Jack Daniel\'s Apple + refresc',
+    },
+  },
+  // Cocteles
+  'Expreso Martini': {
+    descripcion: {
+      en: 'Coffee liqueur, vodka, sugar and an espresso shot',
+      de: 'Kaffeelikör, Wodka, Zucker und ein Espresso-Shot',
+    },
+  },
+};
+// "Skabers" y "skabers" son la misma fila segun como la exporte el TPV.
+TRADUCCIONES.Skabers = TRADUCCIONES.skabers = {};
+
+/** El TPV solo traduce la marca de los combinados y deja "Refresco" en castellano. */
+const REFRESCO = { es: 'Refresco', en: 'soft drink', de: 'Softdrink', ca: 'refresc' };
+
+/**
+ * Nombre de categoria corregido por idioma. El TPV traduce "Para Picar" como
+ * "To Chop" / "Zum Hacken", que es cortar en trozos, no picar algo de comer.
+ */
+const CATEGORIAS_TRADUCIDAS = {
+  Tostadas: { en: 'Toasts', de: 'Toasts' },
+  Bocadillos: { en: 'Filled rolls', de: 'Belegte Brötchen' },
+  Sandwich: { es: 'Sándwiches', en: 'Sandwiches', de: 'Sandwiches', ca: 'Sandvitxos' },
+  'Para Picar': { en: 'To share', de: 'Zum Teilen' },
+  'Tartas y bolleria': { es: 'Tartas y bollería', ca: 'Pastissos i brioixeria' },
+  Cafés: { en: 'Coffees', de: 'Kaffees' },
+  Combinados: { en: 'Mixed drinks', de: 'Longdrinks' },
+  Cocteles: { es: 'Cócteles', en: 'Cocktails', de: 'Cocktails', ca: 'Còctels' },
+};
 
 /** Parser de CSV con soporte de comillas y saltos de linea dentro de campo. */
 function parseCsv(texto) {
@@ -327,10 +898,13 @@ const productos = leer('Productos.csv');
 
 // Nombre de categoria por idioma, indexado por su nombre en castellano.
 const categoriaPorIdioma = new Map(
-  categorias.map((f) => [
-    limpiar(f[1]),
-    Object.fromEntries(IDIOMAS.map((l) => [l, limpiar(f[COLUMNAS_CATEGORIA[l]]) || limpiar(f[1])])),
-  ]),
+  categorias.map((f) => {
+    const base = limpiar(f[1]);
+    const nombres = Object.fromEntries(
+      IDIOMAS.map((l) => [l, limpiar(f[COLUMNAS_CATEGORIA[l]]) || base]),
+    );
+    return [base, { ...nombres, ...CATEGORIAS_TRADUCIDAS[base] }];
+  }),
 );
 
 const sinCategoria = [];
@@ -352,13 +926,20 @@ for (const fila of productos) {
     const [ci, cd] = COLUMNAS[l];
     nombres[l] = capitalizar(limpiar(fila[ci])) || capitalizar(ERRATAS[base] ?? base);
     const d = limpiar(fila[cd]).replace(/\s*sin gluten\s*/i, '').replace(/^\((.*)\)$/, '$1');
-    // Las erratas solo se corrigen en castellano; el resto es traduccion suya.
-    descripciones[l] = d ? capitalizar(l === 'es' ? corregirDesc(d) : d) : null;
+    // Las erratas solo se corrigen en castellano; el resto sale de TRADUCCIONES.
+    descripciones[l] = d ? espaciarComas(capitalizar(l === 'es' ? corregirDesc(d) : d)) : null;
   }
   // El nombre propio (Hedwig, Voldemort) no se traduce: se aplica la errata a todos.
   if (ERRATAS[base]) for (const l of IDIOMAS) {
     if (nombres[l].toLowerCase() === base.toLowerCase()) nombres[l] = ERRATAS[base];
   }
+  // Combinados: el TPV deja "Refresco" sin traducir detras de la marca.
+  const marca = /\+\s*refrescos?$/i.test(base) && base.replace(/\s*\+\s*refrescos?$/i, '');
+  if (marca) for (const l of IDIOMAS) nombres[l] = `${marca} + ${REFRESCO[l]}`;
+
+  const traduccion = TRADUCCIONES[base];
+  if (traduccion?.nombre) Object.assign(nombres, traduccion.nombre);
+  if (traduccion?.descripcion) Object.assign(descripciones, traduccion.descripcion);
 
   agrupados.get(categoria).push({
     // Los productos dados de alta a mano en el TPV salen sin Id en el export.
