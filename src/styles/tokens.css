@@ -4,13 +4,17 @@
  * clara y plantas. El azul noche del logo queda para cabecera, pie y juegos.
  *
  * Contraste verificado sobre --crema y sobre --tinta: todos los pares de texto
- * superan 4.5:1 (WCAG AA).
+ * superan 4.5:1 y los bordes de control 3:1 (WCAG AA). tests/contraste.test.js
+ * lo comprueba en cada cambio, asi que no basta con creerse este comentario.
  */
 :root {
   /* del logo */
   --tinta: #202227;
   --tinta-2: #2b3439;
   --tinta-3: #3a3d45;
+  /* Gris apagado para texto secundario. Existe para no bajar el contraste con
+     opacity: un tono fijo se puede medir, una opacidad depende del fondo. */
+  --tinta-4: #5f636b;
   --pergamino: #f8f7cd;
 
   /* base clara */
@@ -18,8 +22,12 @@
   --crema-2: #f1eadc;
   --crema-3: #e2d8c6;
 
+  /* --crema-3 sirve de linea decorativa, pero se queda en 1.2:1 y no puede
+     dibujar el limite de un control. Este pasa de 3:1 sobre las dos cremas. */
+  --borde-control: #8f8270;
+
   /* acentos: cobre oscurecido para que pase AA sobre crema */
-  --cobre: #8a5a32;
+  --cobre: #7d5029;
   --cobre-claro: #c89a5b;
 
   --aviso: #8a2e2e;

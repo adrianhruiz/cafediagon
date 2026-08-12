@@ -1,5 +1,9 @@
 {
   "idioma": "Español",
+  "meta": {
+    "titulo": "Diagon Cafe · Café de especialidad y juegos de mesa en Cala Rajada",
+    "descripcion": "Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos, brunch y cientos de juegos de mesa gratis. Mejor Coffee House de Cala Rajada 2026."
+  },
   "nav": {
     "cafe": "El café",
     "carta": "Carta",
@@ -9,6 +13,7 @@
     "abrirMenu": "Abrir menú",
     "cerrarMenu": "Cerrar menú",
     "cambiarIdioma": "Cambiar idioma",
+    "principal": "Navegación principal",
     "saltar": "Saltar al contenido"
   },
   "hero": {
@@ -25,13 +30,15 @@
     "texto": "Abrimos en enero de 2025 con una idea sencilla: crear un sitio donde todo el mundo se sienta bienvenido. Café de especialidad tratado con respeto, comida preparada cada día y cientos de juegos de mesa para que te quedes el rato que quieras.",
     "datoValoracion": "de valoración media en Google, sobre {n} reseñas",
     "datoJuegos": "juegos de mesa disponibles sin coste",
-    "datoPremio": "Mejor Coffee House de Cala Rajada según Restaurant Guru"
+    "datoPremio": "Mejor Coffee House de Cala Rajada según Restaurant Guru",
+    "fotoAlt": "Pared del café cubierta de láminas enmarcadas de inspiración mágica: libros antiguos, lechuzas y pergaminos de hechizos"
   },
   "carta": {
     "etiqueta": "La carta",
     "titulo": "Qué vas a encontrar",
     "entrada": "{platos} platos y bebidas repartidos en {categorias} categorías. Los desayunos, tostadas y bowls llevan nombre propio.",
     "todo": "Todo",
+    "resultado": "Mostrando: {filtro}",
     "sinGluten": "sin ingredientes con gluten",
     "precioPendiente": "Consultar",
     "gratis": "Gratis",
@@ -63,7 +70,8 @@
     "etiqueta": "Juegos de mesa",
     "titulo": "Coge uno\ny quédate a jugar",
     "texto": "Nuestra estantería está abierta a todo el mundo y no cuesta nada. Desde partidas rápidas de cartas hasta juegos de mesa para toda la tarde. Si no sabes cuál elegir, pregúntanos.",
-    "yMas": "y muchos más"
+    "yMas": "y muchos más",
+    "fotoAlt": "Estantería del café con dos baldas llenas de cajas de juegos de mesa"
   },
   "galeria": {
     "etiqueta": "Galería",

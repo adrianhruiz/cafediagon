@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIdioma } from '../i18n/idioma.jsx';
 import negocio from '../content/business.json';
 import './Donde.css';
@@ -12,6 +12,13 @@ export default function Donde() {
   // previo (art. 22.2 LSSI). Asi el sitio no tiene ningun rastreador no exento
   // y no necesita banner de cookies.
   const [mapaVisible, setMapaVisible] = useState(false);
+  const marco = useRef(null);
+
+  // El boton que enciende el mapa desaparece al pulsarlo y el foco se caeria al
+  // principio del documento. Se lleva al mapa, que es lo que se acaba de pedir.
+  useEffect(() => {
+    if (mapaVisible) marco.current?.focus();
+  }, [mapaVisible]);
 
   // Mapa sin API key: el modo embed publico basta para una ficha estatica.
   const mapa = `https://www.google.com/maps?q=${geo.lat},${geo.lng}&hl=es&z=17&output=embed`;
@@ -65,6 +72,7 @@ export default function Donde() {
 
         {mapaVisible ? (
           <iframe
+            ref={marco}
             className="donde__mapa"
             src={mapa}
             title={t('donde.mapaTitulo')}

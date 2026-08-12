@@ -18,7 +18,7 @@ export default function Juegos() {
       <div className="envoltorio juegos__rejilla">
         <Imagen
           nombre="06-DJEJYueMzZM"
-          alt=""
+          alt={t('juegos.fotoAlt')}
           sizes="(max-width: 900px) 100vw, 50vw"
           className="juegos__foto"
         />

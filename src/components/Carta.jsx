@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useIdioma } from '../i18n/idioma.jsx';
+import { Campo, useIdioma } from '../i18n/idioma.jsx';
 import menu from '../content/menu.json';
 import './Carta.css';
 
@@ -17,6 +17,10 @@ export default function Carta() {
   const visibles = filtro === TODO
     ? menu.categorias
     : menu.categorias.filter((c) => c.id === filtro);
+
+  const nombreDelFiltro = filtro === TODO
+    ? t('carta.todo')
+    : campo(menu.categorias.find((c) => c.id === filtro)?.nombre);
 
   // Sin precios todavia, no tiene sentido prometer una columna de precios.
   const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
@@ -66,10 +70,16 @@ export default function Carta() {
               onClick={() => setFiltro(c.id)}
               aria-pressed={filtro === c.id}
             >
-              {campo(c.nombre)}
+              <Campo valor={c.nombre} />
             </button>
           ))}
         </div>
+
+        {/* Al filtrar se cambia media pagina sin mover el foco: quien no ve la
+            pantalla no se entera de nada si no se le dice (4.1.3). */}
+        <p className="oculto-visual" role="status">
+          {t('carta.resultado', { filtro: nombreDelFiltro })}
+        </p>
 
         {/* TRLGDCU art. 20: el precio anunciado es el final, con impuestos
             incluidos, y conviene decirlo expresamente. */}
@@ -86,9 +96,12 @@ export default function Carta() {
 
         {visibles.map((c) => (
           <section className="carta__categoria" key={c.id} aria-labelledby={`cat-${c.id}`}>
+            {/* La cuenta se oculta al lector: dentro del h3 convertiria el
+                nombre de la seccion en "Tostadas 8", y la propia lista ya
+                anuncia cuantos elementos tiene. */}
             <h3 className="carta__categoria-titulo" id={`cat-${c.id}`}>
-              {campo(c.nombre)}
-              <span className="carta__cuenta">{c.productos.length}</span>
+              <Campo valor={c.nombre} />
+              <span className="carta__cuenta" aria-hidden="true">{c.productos.length}</span>
             </h3>
 
             <ul className="carta__lista">
@@ -99,7 +112,7 @@ export default function Carta() {
                   <li className="plato" key={p.id}>
                     <div className="plato__cabecera">
                       <h4 className="plato__nombre">
-                        {campo(p.nombre)}
+                        <Campo valor={p.nombre} />
                         {p.sinGluten && (
                           <span className="plato__etiqueta">{t('carta.sinGluten')}</span>
                         )}
@@ -107,7 +120,9 @@ export default function Carta() {
                       <span className="plato__linea" aria-hidden="true" />
                       <span className="plato__precio">{precioDe(p)}</span>
                     </div>
-                    {desc && <p className="plato__descripcion">{desc}</p>}
+                    {desc && (
+                      <p className="plato__descripcion"><Campo valor={p.descripcion} /></p>
+                    )}
                     {alergenos && (
                       <p className="plato__alergenos">
                         <span className="plato__alergenos-etiqueta">

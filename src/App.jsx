@@ -17,7 +17,9 @@ export default function App() {
     <>
       <a className="saltar" href="#contenido">{t('nav.saltar')}</a>
       <Cabecera />
-      <main id="contenido">
+      {/* tabIndex -1: sin el, algunos navegadores mueven el scroll con el salto
+          de contenido pero dejan el foco donde estaba. */}
+      <main id="contenido" tabIndex={-1}>
         <Hero />
         <p className="franja-premio">
           <span aria-hidden="true">🏆</span>{' '}

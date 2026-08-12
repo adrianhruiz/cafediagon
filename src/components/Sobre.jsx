@@ -31,9 +31,11 @@ export default function Sobre() {
           </ul>
         </div>
 
+        {/* No es decoracion: la pared de laminas es parte de lo que se cuenta
+            del local y no la describe ningun texto de al lado. */}
         <Imagen
           nombre="21-DEnfYHEMvoF"
-          alt=""
+          alt={t('sobre.fotoAlt')}
           sizes="(max-width: 900px) 100vw, 50vw"
           className="sobre__foto"
         />

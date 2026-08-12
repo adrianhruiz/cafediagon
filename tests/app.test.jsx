@@ -130,12 +130,17 @@ describe('carta', () => {
 });
 
 describe('galeria', () => {
-  it('cada foto lleva texto alternativo', () => {
+  it('cada foto lleva su descripcion en el pie de la figura', () => {
     const { container } = montar();
-    const seccion = container.querySelector('#galeria');
-    const imgs = seccion.querySelectorAll('img');
-    expect(imgs).toHaveLength(galeria.length);
-    for (const img of imgs) expect(img.getAttribute('alt')).toBeTruthy();
+    const figuras = container.querySelectorAll('#galeria figure');
+    expect(figuras).toHaveLength(galeria.length);
+
+    for (const [i, figura] of [...figuras].entries()) {
+      // El alt va vacio a proposito: el pie dice exactamente lo mismo y esta a
+      // la vista, asi que con alt el lector leeria cada foto dos veces.
+      expect(figura.querySelector('img').getAttribute('alt')).toBe('');
+      expect(figura.querySelector('figcaption')).toHaveTextContent(galeria[i].alt.es);
+    }
   });
 });
 
@@ -252,12 +257,14 @@ describe('menu movil', () => {
 });
 
 describe('idiomas', () => {
+  // En pantalla pone "DE", pero el nombre accesible es el idioma escrito en si
+  // mismo: "DE" en voz alta no le dice nada a quien busca el aleman.
   it('el selector cambia los textos de toda la pagina', async () => {
     const usuario = userEvent.setup();
     montar('es');
 
     expect(screen.getByRole('heading', { name: es.carta.titulo })).toBeInTheDocument();
-    await usuario.click(screen.getByRole('button', { name: 'DE' }));
+    await usuario.click(screen.getByRole('button', { name: de.idioma }));
     expect(screen.getByRole('heading', { name: de.carta.titulo })).toBeInTheDocument();
   });
 
@@ -265,10 +272,10 @@ describe('idiomas', () => {
     const usuario = userEvent.setup();
     montar('es');
 
-    expect(screen.getByRole('button', { name: 'ES' })).toHaveAttribute('aria-current', 'true');
-    await usuario.click(screen.getByRole('button', { name: 'CA' }));
-    expect(screen.getByRole('button', { name: 'CA' })).toHaveAttribute('aria-current', 'true');
-    expect(screen.getByRole('button', { name: 'ES' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('button', { name: es.idioma })).toHaveAttribute('aria-current', 'true');
+    await usuario.click(screen.getByRole('button', { name: ca.idioma }));
+    expect(screen.getByRole('button', { name: ca.idioma })).toHaveAttribute('aria-current', 'true');
+    expect(screen.getByRole('button', { name: es.idioma })).not.toHaveAttribute('aria-current');
   });
 
   it('traduce tambien los nombres de las categorias de la carta', async () => {
@@ -276,8 +283,86 @@ describe('idiomas', () => {
     montar('es');
 
     const cat = menu.categorias.find((c) => c.nombre.de && c.nombre.de !== c.nombre.es);
-    await usuario.click(screen.getByRole('button', { name: 'DE' }));
+    await usuario.click(screen.getByRole('button', { name: de.idioma }));
     expect(screen.getByRole('heading', { name: new RegExp(cat.nombre.de, 'i') }))
       .toBeInTheDocument();
+  });
+
+  it('el titulo del documento tambien cambia de idioma', async () => {
+    const usuario = userEvent.setup();
+    montar('es');
+
+    expect(document.title).toBe(es.meta.titulo);
+    await usuario.click(screen.getByRole('button', { name: de.idioma }));
+    expect(document.title).toBe(de.meta.titulo);
+  });
+});
+
+describe('accesibilidad', () => {
+  it('el boton del menu va antes que el menu en el DOM', () => {
+    // Si no, al abrirlo con el teclado el siguiente tabulador se salta los
+    // enlaces y aterriza en los idiomas (2.4.3).
+    const { container } = montar();
+    const boton = container.querySelector('.cabecera__hamburguesa');
+    const menu = container.querySelector('.cabecera__nav');
+
+    expect(boton.compareDocumentPosition(menu) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(boton).toHaveAttribute('aria-controls', menu.id);
+    expect(boton).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('abrir el menu lleva el foco al primer enlace', async () => {
+    const usuario = userEvent.setup();
+    const { container } = montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.nav.abrirMenu }));
+    expect(container.querySelector('.cabecera__nav a')).toHaveFocus();
+  });
+
+  it('Escape cierra el menu y devuelve el foco al boton', async () => {
+    const usuario = userEvent.setup();
+    montar();
+    const boton = screen.getByRole('button', { name: es.nav.abrirMenu });
+
+    await usuario.click(boton);
+    await usuario.keyboard('{Escape}');
+
+    expect(screen.getByRole('button', { name: es.nav.abrirMenu })).toHaveFocus();
+    expect(screen.getByRole('button', { name: es.nav.abrirMenu }))
+      .toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('anuncia por que filtro se esta viendo la carta', async () => {
+    const usuario = userEvent.setup();
+    montar();
+    const grupo = screen.getByRole('group', { name: es.carta.filtrarPor });
+    const primera = menu.categorias[0];
+
+    expect(screen.getByRole('status')).toHaveTextContent(es.carta.todo);
+    await usuario.click(within(grupo).getByRole('button', { name: primera.nombre.es }));
+    expect(screen.getByRole('status')).toHaveTextContent(primera.nombre.es);
+  });
+
+  it('las fotos que aportan contenido llevan alt y las de adorno no', () => {
+    const { container } = montar();
+
+    expect(container.querySelector('.sobre__foto').getAttribute('alt')).toBe(es.sobre.fotoAlt);
+    expect(container.querySelector('.juegos__foto').getAttribute('alt')).toBe(es.juegos.fotoAlt);
+    // El fondo del hero es decoracion: el texto va escrito encima.
+    expect(container.querySelector('.hero__fondo').getAttribute('alt')).toBe('');
+  });
+
+  it('el foco entra en el mapa cuando el visitante lo carga', async () => {
+    const usuario = userEvent.setup();
+    const { container } = montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
+    expect(container.querySelector('iframe')).toHaveFocus();
+  });
+
+  it('la cuenta de productos no se cuela en el nombre de la categoria', () => {
+    const { container } = montar();
+    const cuenta = container.querySelector('.carta__cuenta');
+    expect(cuenta).toHaveAttribute('aria-hidden', 'true');
   });
 });
