@@ -32,11 +32,29 @@ h1, h2, h3, h4, p, li, span, a { overflow-wrap: break-word; }
 
 a { color: inherit; }
 
-/* Foco visible y consistente: el del navegador se pierde sobre fondo oscuro. */
+/*
+ * Foco visible y consistente: el del navegador se pierde sobre fondo oscuro.
+ *
+ * Dos tonos a proposito. Un solo color no vale para toda la pagina: el cobre
+ * claro se ve sobre la cabecera oscura (6.2:1) pero se queda en 2.4:1 sobre el
+ * crema, por debajo del 3:1 que pide 1.4.11. Con anillo oscuro dentro y halo
+ * claro fuera, siempre hay uno de los dos que contrasta con el fondo.
+ */
 :focus-visible {
-  outline: 2px solid var(--cobre-claro);
-  outline-offset: 3px;
+  outline: 2px solid var(--tinta);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--pergamino);
   border-radius: 2px;
+}
+
+/*
+ * La cabecera es sticky: sin esto el ancla deja el titulo de la seccion debajo
+ * de ella y quien llega por el menu o por el salto de contenido aterriza en un
+ * sitio donde no ve el encabezado que acaba de pedir.
+ */
+:target,
+[id] {
+  scroll-margin-top: calc(var(--cab-alto) + var(--paso-2));
 }
 
 .envoltorio { width: min(100% - 2.5rem, var(--ancho)); margin-inline: auto; }
@@ -80,4 +98,28 @@ a { color: inherit; }
 
 @media (max-width: 560px) {
   body { font-size: 16px; }
+}
+
+/*
+ * Modo de contraste alto de Windows: el sistema sustituye la paleta entera, asi
+ * que los limites dibujados con color propio (bordes translucidos, velos,
+ * degradados) desaparecen. Se redibujan con los colores del sistema.
+ */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+    box-shadow: none;
+  }
+  .boton,
+  .carta__filtros button,
+  .donde__mapa-boton,
+  .cabecera__idiomas button {
+    border: 1px solid CanvasText;
+  }
+  /* El velo del hero no se pinta y el texto queda sobre la foto: se quita. */
+  .hero picture { display: none; }
+  .galeria figcaption {
+    background: Canvas;
+    color: CanvasText;
+  }
 }

@@ -83,6 +83,22 @@ castellano automáticamente.
 Un test comprueba que los cuatro idiomas tengan exactamente las mismas claves,
 así que si añades un texto a uno tienes que añadirlo a los cuatro.
 
+## Accesibilidad
+
+El contraste de la paleta no se revisa a ojo: `tests/contraste.test.js` calcula
+los ratios de WCAG sobre los tokens de `src/styles/tokens.css` y falla si un par
+baja de 4,5:1 (texto) o de 3:1 (bordes de control y anillo de foco). Si se
+inventa una combinación nueva de colores, hay que añadirla a la lista de pares
+del test; si no, nadie la comprueba.
+
+Dos cosas que conviene no deshacer sin pensarlo:
+
+- **El botón del menú va antes que el `<nav>` en el DOM** (`Cabecera.jsx`). Si se
+  mueve detrás, al abrir el menú con el teclado el foco se salta los enlaces.
+- **Las fotos de la galería llevan `alt=""` a propósito**: el pie de la figura
+  dice lo mismo y está siempre a la vista, así que con `alt` el lector de
+  pantalla leería cada foto dos veces.
+
 ## Comprobar que se ve bien
 
 ```bash

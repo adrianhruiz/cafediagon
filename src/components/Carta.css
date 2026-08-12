@@ -10,7 +10,9 @@
   letter-spacing: 0.07em;
   text-transform: uppercase;
   background: none;
-  border: 1px solid var(--crema-3);
+  /* El borde es el unico limite del boton sin pulsar: tiene que llegar a 3:1
+     sobre el fondo (1.4.11), y --crema-3 se queda en 1.2:1. */
+  border: 1px solid var(--borde-control);
   color: var(--tinta-3);
   padding: 0.5rem 1rem;
   border-radius: 100px;
@@ -29,7 +31,9 @@
 .carta__aviso {
   font-size: 0.88rem;
   color: var(--cobre);
-  background: rgba(138, 90, 50, 0.07);
+  /* El lavado de cobre bajaba el aviso legal a 4.47:1. El mismo tono de fondo
+     en gris neutro no le come contraste al texto. */
+  background: rgba(95, 99, 107, 0.06);
   border-left: 2px solid var(--cobre);
   padding: 0.6rem 0.9rem;
   margin: 0 0 var(--paso-4);
@@ -49,9 +53,9 @@
 }
 .carta__cuenta {
   font-family: var(--sans);
-  font-size: 0.72rem;
-  color: var(--tinta-3);
-  opacity: 0.6;
+  font-size: 0.78rem;
+  /* Sin opacity: con 0.6 se quedaba en 3.19:1 sobre el fondo alterno. */
+  color: var(--tinta-4);
   letter-spacing: 0.06em;
 }
 
@@ -111,7 +115,8 @@
 .plato__etiqueta {
   display: inline-block;
   margin-left: 0.4rem;
-  font-size: 0.6rem;
+  /* 0.6rem se quedaba en 10px: ilegible en mayusculas y con letter-spacing. */
+  font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   background: var(--crema-3);

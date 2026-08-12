@@ -1,5 +1,9 @@
 {
   "idioma": "Català",
+  "meta": {
+    "titulo": "Diagon Cafe · Cafè d'especialitat i jocs de taula a Cala Rajada",
+    "descripcion": "Cafeteria a Cala Rajada, Mallorca. Cafè d'especialitat, esmorzars, brunch i centenars de jocs de taula gratis. Millor Coffee House de Cala Rajada 2026."
+  },
   "nav": {
     "cafe": "El cafè",
     "carta": "Carta",
@@ -9,6 +13,7 @@
     "abrirMenu": "Obrir menú",
     "cerrarMenu": "Tancar menú",
     "cambiarIdioma": "Canviar idioma",
+    "principal": "Navegació principal",
     "saltar": "Saltar al contingut"
   },
   "hero": {
@@ -25,13 +30,15 @@
     "texto": "Vam obrir el gener de 2025 amb una idea senzilla: crear un lloc on tothom se senti benvingut. Cafè d'especialitat tractat amb respecte, menjar preparat cada dia i centenars de jocs de taula perquè t'hi quedis l'estona que vulguis.",
     "datoValoracion": "de valoració mitjana a Google, sobre {n} ressenyes",
     "datoJuegos": "jocs de taula disponibles sense cost",
-    "datoPremio": "Millor Coffee House de Cala Rajada segons Restaurant Guru"
+    "datoPremio": "Millor Coffee House de Cala Rajada segons Restaurant Guru",
+    "fotoAlt": "Paret del cafè coberta de làmines emmarcades d'inspiració màgica: llibres antics, mussols i pergamins d'encanteris"
   },
   "carta": {
     "etiqueta": "La carta",
     "titulo": "Què hi trobaràs",
     "entrada": "{platos} plats i begudes repartits en {categorias} categories. Els esmorzars, torrades i bols tenen nom propi.",
     "todo": "Tot",
+    "resultado": "Mostrant: {filtro}",
     "sinGluten": "sense ingredients amb gluten",
     "precioPendiente": "Consultar",
     "gratis": "Gratis",
@@ -63,7 +70,8 @@
     "etiqueta": "Jocs de taula",
     "titulo": "Agafa'n un\ni queda't a jugar",
     "texto": "La nostra prestatgeria està oberta a tothom i no costa res. Des de partides ràpides de cartes fins a jocs de taula per a tota la tarda. Si no saps quin triar, pregunta'ns.",
-    "yMas": "i molts més"
+    "yMas": "i molts més",
+    "fotoAlt": "Prestatgeria del cafè amb dos prestatges plens de capses de jocs de taula"
   },
   "galeria": {
     "etiqueta": "Galeria",

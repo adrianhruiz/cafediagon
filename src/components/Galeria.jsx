@@ -1,11 +1,11 @@
-import { useIdioma } from '../i18n/idioma.jsx';
+import { Campo, useIdioma } from '../i18n/idioma.jsx';
 import galeria from '../content/gallery.json';
 import negocio from '../content/business.json';
 import Imagen from './Imagen.jsx';
 import './Galeria.css';
 
 export default function Galeria() {
-  const { t, campo } = useIdioma();
+  const { t } = useIdioma();
 
   return (
     <section className="seccion" id="galeria">
@@ -14,15 +14,17 @@ export default function Galeria() {
         <h2 className="seccion__titulo">{t('galeria.titulo')}</h2>
 
         <ul className="galeria">
+          {/* alt vacio a proposito: el pie dice exactamente lo mismo y esta a
+              la vista, asi que con alt el lector leeria cada foto dos veces. */}
           {galeria.map(({ img, alt }) => (
             <li key={img}>
               <figure>
                 <Imagen
                   nombre={img}
-                  alt={campo(alt)}
+                  alt=""
                   sizes="(max-width: 560px) 50vw, (max-width: 900px) 33vw, 25vw"
                 />
-                <figcaption>{campo(alt)}</figcaption>
+                <figcaption><Campo valor={alt} /></figcaption>
               </figure>
             </li>
           ))}
