@@ -64,6 +64,15 @@ describe('carta', () => {
     }
   });
 
+  it('ningun producto se queda sin dato de alergenos', () => {
+    // La carta ya no escribe "Ninguno de los 14" bajo cada plato: lo dice una
+    // vez el aviso de la cabecera, asi que un plato sin linea afirma que no
+    // lleva ninguno. Si el TPV dejase de exportar la columna, ese silencio
+    // pasaria a ser mentira, y esto tiene que saltar antes de publicarlo.
+    const sinDato = productos.filter((p) => p.alergenos == null).map((p) => p.nombre.es);
+    expect(sinDato, `sin alergenos declarados: ${sinDato.join(', ')}`).toEqual([]);
+  });
+
   it('no deja a medias las traducciones automaticas del TPV', () => {
     // El export traduce palabra a palabra y se deja trozos en castellano
     // ("Espresso shot with hielo picado", "una of cheese").

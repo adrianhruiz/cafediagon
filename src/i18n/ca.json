@@ -38,9 +38,9 @@
     "avisoPrecios": "Els preus es mostren al local. Els estem actualitzant aquí.",
     "avisoIva": "Preus en euros amb IVA inclòs.",
     "filtrarPor": "Filtrar la carta per categoria",
-    "avisoAlergenos": "Sota cada plat indiquem els al·lèrgens declarats pel cafè. Elaborem en una cuina compartida i no podem garantir l'absència de traces: si tens alguna al·lèrgia, digues-nos-ho al local.",
+    "avisoAlergenos": "Sota cada plat indiquem els al·lèrgens declarats pel cafè; si un plat no en porta cap, és que no conté cap dels 14. Elaborem en una cuina compartida i no podem garantir l'absència de traces: si tens alguna al·lèrgia, digues-nos-ho al local.",
     "alergenosEtiqueta": "Al·lèrgens",
-    "sinAlergenos": "Cap dels 14",
+    "alergenosPendientes": "Consulta'ns al local",
     "alergeno": {
       "gluten": "Gluten",
       "crustaceos": "Crustacis",

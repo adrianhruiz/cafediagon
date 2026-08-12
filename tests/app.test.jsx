@@ -171,27 +171,25 @@ describe('carta: alergenos', () => {
     const { container } = montar();
     const platos = container.querySelectorAll('#carta .plato');
     const conAlergenos = container.querySelectorAll('#carta .plato__alergenos');
+    // La lista vacia no pinta linea: lo dice el aviso de la cabecera.
     const esperados = menu.categorias
       .flatMap((c) => c.productos)
-      .filter((p) => p.alergenos != null);
+      .filter((p) => p.alergenos == null || p.alergenos.length);
 
     expect(platos.length).toBe(menu.categorias.flatMap((c) => c.productos).length);
     expect(conAlergenos.length).toBe(esperados.length);
   });
 
-  it('no declara "ninguno" en un producto sin dato', () => {
-    const sinDato = menu.categorias
-      .flatMap((c) => c.productos)
-      .filter((p) => p.alergenos == null);
-    const { container } = montar();
-    const textos = [...container.querySelectorAll('#carta .plato')]
-      .filter((li) => sinDato.some((p) => li.textContent.includes(p.nombre.es)))
-      .map((li) => li.textContent);
+  it('el aviso explica que sin linea de alergenos no lleva ninguno de los 14', () => {
+    // Si no se dice, la ausencia de linea se lee como falta de dato.
+    montar();
+    expect(screen.getByText(es.carta.avisoAlergenos).textContent)
+      .toContain('ninguno de los 14');
+  });
 
-    for (const texto of textos) {
-      expect(texto, 'un producto sin dato afirma que no lleva alergenos')
-        .not.toContain(es.carta.sinAlergenos);
-    }
+  it('ningun plato arrastra el viejo "Ninguno de los 14"', () => {
+    const { container } = montar();
+    expect(container.querySelector('#carta').textContent).not.toContain('Ninguno de los 14');
   });
 
   it('traduce los alergenos a los cuatro idiomas', () => {

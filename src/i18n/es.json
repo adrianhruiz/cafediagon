@@ -38,9 +38,9 @@
     "avisoPrecios": "Los precios se muestran en el local. Estamos actualizándolos aquí.",
     "avisoIva": "Precios en euros con IVA incluido.",
     "filtrarPor": "Filtrar la carta por categoría",
-    "avisoAlergenos": "Bajo cada plato indicamos los alérgenos declarados por el café. Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas: si tienes alguna alergia, dínoslo en el local.",
+    "avisoAlergenos": "Bajo cada plato indicamos los alérgenos declarados por el café; si un plato no los lleva, es que no contiene ninguno de los 14. Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas: si tienes alguna alergia, dínoslo en el local.",
     "alergenosEtiqueta": "Alérgenos",
-    "sinAlergenos": "Ninguno de los 14",
+    "alergenosPendientes": "Consúltanos en el local",
     "alergeno": {
       "gluten": "Gluten",
       "crustaceos": "Crustáceos",

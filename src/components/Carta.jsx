@@ -28,13 +28,17 @@ export default function Carta() {
   };
 
   /**
-   * Rgto (UE) 1169/2011: la lista vacia es una declaracion del cafe ("no lleva
-   * ninguno de los 14") y se dice con todas las letras. Sin dato no se escribe
-   * nada, porque afirmar en negativo lo que no se sabe es peor que callarse.
+   * Rgto (UE) 1169/2011: hay que informar de los 14, pero repetir "Ninguno de
+   * los 14" bajo dos tercios de la carta (aguas, cafes solos, licores) es ruido
+   * que tapa los platos que si llevan algo. La lista vacia se declara una sola
+   * vez en el aviso de arriba y aqui no se escribe nada.
+   *
+   * Sin dato es otra cosa y no puede confundirse con ese silencio: se manda a
+   * preguntar en el local, que es afirmar menos que decir que no lleva nada.
    */
   const alergenosDe = (p) => {
-    if (p.alergenos == null) return null;
-    if (!p.alergenos.length) return t('carta.sinAlergenos');
+    if (p.alergenos == null) return t('carta.alergenosPendientes');
+    if (!p.alergenos.length) return null;
     return p.alergenos.map((a) => t(`carta.alergeno.${a}`)).join(', ');
   };
 

@@ -38,9 +38,9 @@
     "avisoPrecios": "Die Preise hängen im Café aus. Wir aktualisieren sie hier gerade.",
     "avisoIva": "Preise in Euro, inklusive MwSt.",
     "filtrarPor": "Karte nach Kategorie filtern",
-    "avisoAlergenos": "Unter jedem Gericht stehen die vom Café angegebenen Allergene. Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns im Café Bescheid, wenn du eine Allergie hast.",
+    "avisoAlergenos": "Unter jedem Gericht stehen die vom Café angegebenen Allergene; steht dort nichts, enthält das Gericht keines der 14. Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns im Café Bescheid, wenn du eine Allergie hast.",
     "alergenosEtiqueta": "Allergene",
-    "sinAlergenos": "Keines der 14",
+    "alergenosPendientes": "Frag uns im Café",
     "alergeno": {
       "gluten": "Gluten",
       "crustaceos": "Krebstiere",
