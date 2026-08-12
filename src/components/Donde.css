@@ -70,7 +70,7 @@
   gap: 1rem;
   padding: var(--paso-3);
   text-align: center;
-  border: 1px dashed var(--crema-3);
+  border: 1px dashed var(--borde-control);
 }
 
 .donde__mapa-aviso {

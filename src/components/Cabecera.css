@@ -144,5 +144,7 @@
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
-  .cabecera__idiomas button { padding: 0.3rem 0.3rem; font-size: 0.7rem; }
+  /* No se baja de 0.75rem (12px con la base de movil): por debajo el texto en
+     mayusculas con letter-spacing deja de leerse comodo. */
+  .cabecera__idiomas button { padding: 0.3rem 0.3rem; font-size: 0.75rem; }
 }

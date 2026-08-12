@@ -49,6 +49,25 @@
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- La pagina se pinta con JavaScript: sin el, el div de arriba se queda
+       vacio. Lo minimo para que quien llegue sin JS pueda venir al cafe. -->
+  <noscript>
+    <div style="max-width: 40rem; margin: 3rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
+      <h1>Diagon Cafe</h1>
+      <p>Cafetería de especialidad con juegos de mesa en Cala Rajada (Mallorca).</p>
+      <p>Esta web necesita JavaScript para mostrarse entera. Mientras tanto:</p>
+      <ul>
+        <li>Carrer de Méndez Núñez, 17, bajo · 07590 Cala Rajada</li>
+        <li>Teléfono: <a href="tel:+34628505887">628 50 58 87</a></li>
+        <li>Email: <a href="mailto:cafeteriadiagon@gmail.com">cafeteriadiagon@gmail.com</a></li>
+        <li><a href="https://www.instagram.com/cafediagon/">Instagram @cafediagon</a></li>
+      </ul>
+      <p><strong>Alérgenos:</strong> elaboramos en una cocina compartida y no podemos
+        garantizar la ausencia de trazas. Si tienes alguna alergia, dínoslo en el local.</p>
+    </div>
+  </noscript>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

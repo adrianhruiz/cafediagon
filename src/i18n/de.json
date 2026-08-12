@@ -1,5 +1,9 @@
 {
   "idioma": "Deutsch",
+  "meta": {
+    "titulo": "Diagon Cafe · Spezialitätenkaffee und Brettspiele in Cala Rajada",
+    "descripcion": "Café in Cala Rajada, Mallorca. Spezialitätenkaffee, Frühstück, Brunch und Hunderte Brettspiele gratis. Bestes Coffee House in Cala Rajada 2026."
+  },
   "nav": {
     "cafe": "Das Café",
     "carta": "Karte",
@@ -9,6 +13,7 @@
     "abrirMenu": "Menü öffnen",
     "cerrarMenu": "Menü schließen",
     "cambiarIdioma": "Sprache wechseln",
+    "principal": "Hauptnavigation",
     "saltar": "Zum Inhalt springen"
   },
   "hero": {
@@ -25,13 +30,15 @@
     "texto": "Wir haben im Januar 2025 mit einer einfachen Idee eröffnet: ein Ort, an dem sich alle willkommen fühlen. Spezialitätenkaffee mit Sorgfalt zubereitet, täglich frisches Essen und Hunderte von Brettspielen, damit du so lange bleiben kannst, wie du magst.",
     "datoValoracion": "Durchschnittsbewertung bei Google, aus {n} Rezensionen",
     "datoJuegos": "Brettspiele, kostenlos für alle",
-    "datoPremio": "Bestes Coffee House in Cala Rajada laut Restaurant Guru"
+    "datoPremio": "Bestes Coffee House in Cala Rajada laut Restaurant Guru",
+    "fotoAlt": "Caféwand voller gerahmter Bilder mit Magie-Motiven: alte Bücher, Eulen und Zauberspruch-Pergamente"
   },
   "carta": {
     "etiqueta": "Die Karte",
     "titulo": "Das erwartet dich",
     "entrada": "{platos} Gerichte und Getränke in {categorias} Kategorien. Frühstück, Toasts und Bowls tragen eigene Namen.",
     "todo": "Alles",
+    "resultado": "Angezeigt: {filtro}",
     "sinGluten": "ohne glutenhaltige Zutaten",
     "precioPendiente": "Auf Anfrage",
     "gratis": "Gratis",
@@ -63,7 +70,8 @@
     "etiqueta": "Brettspiele",
     "titulo": "Nimm dir eins\nund bleib zum Spielen",
     "texto": "Unser Regal steht allen offen und kostet nichts. Von schnellen Kartenspielen bis zu Brettspielen für einen ganzen Nachmittag. Wenn du dich nicht entscheiden kannst, frag uns einfach.",
-    "yMas": "und viele mehr"
+    "yMas": "und viele mehr",
+    "fotoAlt": "Caféregal mit zwei Böden voller Brettspielschachteln"
   },
   "galeria": {
     "etiqueta": "Galerie",
