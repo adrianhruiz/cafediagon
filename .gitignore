@@ -12,3 +12,8 @@ compliance/
 # Volcado crudo de Apify: contiene datos personales de terceros y no se publica.
 # scrapped/ se genera a partir de aqui con scripts/sanitize-scrapped.mjs.
 scrapped-raw/
+
+# Fotos tal cual salen del movil del cafe (HEIC, ~68 MB): la copia buena esta en
+# su Drive. assets-origen/fotos/ se genera a partir de aqui con
+# scripts/ingest-fotos.mjs y esas si se guardan.
+assets-origen/fotos-crudas/

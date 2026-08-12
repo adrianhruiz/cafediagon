@@ -6,6 +6,14 @@
   <link rel="icon" type="image/jpeg" href="./images/logo-192.jpg" />
   <link rel="apple-touch-icon" href="./images/logo-192.jpg" />
 
+  <!-- La foto del hero es lo mas grande de la primera pantalla y la pinta React,
+       o sea que sin esto no empieza a bajar hasta que el JS ha arrancado.
+       Solo la version avif: quien no la soporte se salta la precarga por el type
+       y pide el webp a su hora, en vez de bajar las dos. tests/contenido.test.js
+       comprueba que el archivo que se nombra aqui existe de verdad. -->
+  <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+        href="./images/17-DEx8Xqxsd16-800.avif" />
+
   <title>Diagon Cafe · Café de especialidad y juegos de mesa en Cala Rajada</title>
   <meta name="description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos, brunch y cientos de juegos de mesa gratis. Mejor Coffee House de Cala Rajada 2026." />
   <meta name="theme-color" content="#202227" />
