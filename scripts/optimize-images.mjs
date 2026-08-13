@@ -48,11 +48,26 @@ const anchosDe = (nombre) => {
  * - webp sube a effort 6 y submuestreo inteligente: mismo peso, menos artefactos
  *   en los bordes de color (las fotos tienen mucho rojo y madera).
  * - mozjpeg solo lo carga quien no soporta ninguno de los otros dos.
+ *
+ * El fondo del hero baja a 32: es el LCP de la pagina y se pinta al 55% de
+ * opacidad y debajo de un velo oscuro, donde el detalle que paga la calidad 50
+ * no llega a verse. La diferencia son decenas de KB en lo primero que carga.
  */
+const CALIDAD_AVIF = 50;
+const CALIDAD_AVIF_FONDO = 32;
+
 const FORMATOS = [
-  { ext: 'avif', tipo: 'image/avif', aplicar: (img) => img.avif({ quality: 50, effort: 4 }) },
+  { ext: 'avif', tipo: 'image/avif', aplicar: (img, { avif }) => img.avif({ quality: avif, effort: 4 }) },
   { ext: 'webp', tipo: 'image/webp', aplicar: (img) => img.webp({ quality: 78, effort: 6, smartSubsample: true }) },
-  { ext: 'jpg', tipo: 'image/jpeg', aplicar: (img) => img.jpeg({ quality: 80, mozjpeg: true }) },
+  {
+    ext: 'jpg',
+    tipo: 'image/jpeg',
+    // Solo en el ancho mas pequeño: lo pide el navegador que no entiende ni
+    // avif ni webp, que hoy no llega al 3%, y la serie completa de jpg eran
+    // 9,8 MB de los 23 MB que se despliegan.
+    soloRespaldo: true,
+    aplicar: (img) => img.jpeg({ quality: 80, mozjpeg: true }),
+  },
 ];
 
 // Se regenera entera: si cambian los anchos, los derivados viejos se quedarian
@@ -63,35 +78,43 @@ mkdirSync(DESTINO, { recursive: true });
 const generados = {};
 let totalOrigen = 0, totalDestino = 0;
 
-async function procesar(rutaEntrada, nombre, anchos, { cuadrado = false } = {}) {
+async function procesar(rutaEntrada, nombre, anchos, {
+  cuadrado = false,
+  avif = CALIDAD_AVIF,
+  // El logo necesita el jpg en todos los anchos aunque la web no lo pida: el
+  // apple-touch-icon de index.html apunta al de 192 y iOS no se fia del webp.
+  jpgCompleto = false,
+} = {}) {
   const meta = await sharp(rutaEntrada).metadata();
   totalOrigen += statSync(rutaEntrada).size;
-  const salidas = [];
 
-  for (const w of anchos) {
-    if (w > meta.width * 1.05) continue; // no ampliar
+  const utiles = anchos.filter((w) => w <= meta.width * 1.05); // no ampliar
+  const respaldo = utiles[0];
+
+  for (const w of utiles) {
     let base = sharp(rutaEntrada).rotate();
     base = cuadrado
       ? base.resize(w, w, { fit: 'cover', position: 'attention' })
       : base.resize(w, null, { withoutEnlargement: true });
 
-    for (const { ext, aplicar } of FORMATOS) {
-      const archivo = `${nombre}-${w}.${ext}`;
-      const info = await aplicar(base.clone()).toFile(join(DESTINO, archivo));
+    for (const { ext, aplicar, soloRespaldo } of FORMATOS) {
+      if (soloRespaldo && !jpgCompleto && w !== respaldo) continue;
+      const info = await aplicar(base.clone(), { avif }).toFile(join(DESTINO, `${nombre}-${w}.${ext}`));
       totalDestino += info.size;
-      if (ext === 'webp') salidas.push({ w, archivo });
     }
   }
 
   generados[nombre] = {
-    anchos: salidas.map((s) => s.w),
+    anchos: utiles,
+    // Ancho del unico jpg que se genera; es el src del <img>.
+    respaldo,
     ratio: +(meta.width / meta.height).toFixed(4),
   };
 }
 
 const kb = (n) => `${Math.round(n / 1024)} KB`;
 
-await procesar(join(ORIGEN, 'logo-hd.jpg'), 'logo', ANCHOS.logo, { cuadrado: true });
+await procesar(join(ORIGEN, 'logo-hd.jpg'), 'logo', ANCHOS.logo, { cuadrado: true, jpgCompleto: true });
 
 // posts/: lo que estaba publicado en Instagram. fotos/: lo que manda el cafe
 // por Drive, ya preparado por scripts/ingest-fotos.mjs.
@@ -99,7 +122,9 @@ for (const carpeta of ['posts', 'fotos']) {
   for (const archivo of readdirSync(join(ORIGEN, carpeta)).filter((f) => f.endsWith('.jpg'))) {
     const nombre = basename(archivo, '.jpg');
     if (generados[nombre]) throw new Error(`Dos originales se llaman ${nombre}`);
-    await procesar(join(ORIGEN, carpeta, archivo), nombre, anchosDe(nombre));
+    await procesar(join(ORIGEN, carpeta, archivo), nombre, anchosDe(nombre), {
+      avif: FONDOS.has(nombre) ? CALIDAD_AVIF_FONDO : CALIDAD_AVIF,
+    });
   }
 }
 

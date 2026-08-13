@@ -6,10 +6,19 @@
  * asigna aqui con el mapa CATEGORIA. Desde el export del 11/08/2026 si trae
  * precios (columna "Precio (€)"); los que vengan vacios quedan a null. El del
  * 12/08/2026 anade la columna "Alérgenos", en castellano y a mano.
+ *
+ * Escribe dos cosas:
+ *
+ * - menu.json, con los cuatro idiomas. Es la fuente de la que sale todo lo
+ *   demas y contra la que se comprueba la carta en los tests.
+ * - menu.<idioma>.json, uno por idioma, que es lo que carga la web. La carta
+ *   entera son 53 KB minificados y tres cuartas partes son idiomas que ese
+ *   visitante no va a leer nunca.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { partir } from './split-menu.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGEN = join(RAIZ, 'assets-origen', 'carta');
@@ -910,6 +919,20 @@ const categoriaPorIdioma = new Map(
 const sinCategoria = [];
 const agrupados = new Map(ORDEN.map((c) => [c, []]));
 
+/**
+ * Id a partir del nombre en castellano. El del TPV es un UUID de 36 caracteres
+ * y aqui solo sirve de clave de lista, asi que son 5,4 KB de payload que no
+ * pinta nadie. El sufijo solo aparece si dos productos acaban con el mismo
+ * slug: es preferible a romper el build de la carta por un nombre repetido.
+ */
+const idsUsados = new Map();
+function idDe(nombre) {
+  const base = slug(nombre);
+  const visto = idsUsados.get(base) ?? 0;
+  idsUsados.set(base, visto + 1);
+  return visto ? `${base}-${visto + 1}` : base;
+}
+
 for (const fila of productos) {
   const base = limpiar(fila[1]);
   if (!base || OCULTOS.has(base)) continue;
@@ -942,8 +965,7 @@ for (const fila of productos) {
   if (traduccion?.descripcion) Object.assign(descripciones, traduccion.descripcion);
 
   agrupados.get(categoria).push({
-    // Los productos dados de alta a mano en el TPV salen sin Id en el export.
-    id: limpiar(fila[0]) || slug(base),
+    id: idDe(nombres.es),
     nombre: nombres,
     descripcion: descripciones,
     precio: precioDe(fila[COLUMNA_PRECIO]),
@@ -965,6 +987,7 @@ const menu = {
 };
 
 writeFileSync(join(RAIZ, 'src', 'content', 'menu.json'), JSON.stringify(menu, null, 2) + '\n');
+partir(menu);
 
 const total = menu.categorias.reduce((n, c) => n + c.productos.length, 0);
 console.log(`${total} productos en ${menu.categorias.length} categorias`);

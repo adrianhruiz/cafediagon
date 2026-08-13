@@ -7,6 +7,21 @@
   padding: 0;
 }
 
+/*
+ * La relacion 1:1 sube aqui desde la figura: da alto definido a la celda sin
+ * mirar lo que lleva dentro, que es lo que permite saltarse el contenido de
+ * las 28 fotos que quedan fuera de pantalla sin que la rejilla se mueva.
+ */
+.galeria li {
+  aspect-ratio: 1;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 230px;
+  /* El alto estimado de arriba tambien vale de ancho minimo, y en una columna
+     1fr eso obliga a la rejilla a medir 230px por columna: a 375px se salia de
+     la pantalla. Con esto la celda puede encoger a lo que le den. */
+  min-width: 0;
+}
+
 .galeria figure {
   margin: 0;
   position: relative;

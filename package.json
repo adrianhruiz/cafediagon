@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "menu": "node scripts/build-menu.mjs",
+    "menu:idiomas": "node scripts/split-menu.mjs",
     "fotos": "node scripts/ingest-fotos.mjs",
     "imagenes": "node scripts/optimize-images.mjs",
     "mockup": "node scripts/build-mockup.mjs",

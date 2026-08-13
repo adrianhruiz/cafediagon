@@ -19,6 +19,7 @@
         96,
         192
       ],
+      "respaldo": 96,
       "ratio": 1
     },
     "01-DJEGzscMJB-": {
@@ -26,6 +27,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.7505
     },
     "02-DJEmP64sTKw": {
@@ -33,18 +35,21 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.7505
     },
     "03-DGiSvn9sOuv": {
       "anchos": [
         400
       ],
+      "respaldo": 400,
       "ratio": 0.5634
     },
     "05-DUtmJDCjNhB": {
       "anchos": [
         400
       ],
+      "respaldo": 400,
       "ratio": 0.5634
     },
     "06-DJEJYueMzZM": {
@@ -53,6 +58,7 @@
         800,
         1080
       ],
+      "respaldo": 400,
       "ratio": 0.7505
     },
     "07-DJEHBedsGDp": {
@@ -60,6 +66,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1.7763
     },
     "08-DJ6H3G-s4Pt": {
@@ -67,12 +74,14 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.8
     },
     "09-DIR0NCcMfZi": {
       "anchos": [
         400
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "10-DUnvf__DJeL": {
@@ -80,12 +89,14 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "11-DFVHXh2Naed": {
       "anchos": [
         400
       ],
+      "respaldo": 400,
       "ratio": 0.5634
     },
     "13-DFp03_QtlEy": {
@@ -93,6 +104,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.9747
     },
     "14-DFp1AKftK7J": {
@@ -100,6 +112,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.9334
     },
     "15-DUbR62njADE": {
@@ -107,6 +120,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "16-DD-oKR-NBc1": {
@@ -114,12 +128,14 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "17-DEx8Xqxsd16": {
       "anchos": [
         800
       ],
+      "respaldo": 800,
       "ratio": 1
     },
     "18-DEQaxLJsijt": {
@@ -127,6 +143,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.8
     },
     "19-DJEFrEEMS8v": {
@@ -134,6 +151,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.7505
     },
     "20-DHX9LwbMjGt": {
@@ -141,6 +159,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.8
     },
     "21-DEnfYHEMvoF": {
@@ -149,6 +168,7 @@
         800,
         1080
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "22-DJJQgZgs7uC": {
@@ -156,6 +176,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "23-DE7ZG9oMwgJ": {
@@ -163,6 +184,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "24-DE7Zd5jMkBE": {
@@ -170,6 +192,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.9507
     },
     "25-DE7Yn7cMwq5": {
@@ -177,6 +200,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "26-DFp0iubtyCs": {
@@ -184,6 +208,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "27-DJEmYZ8s3Al": {
@@ -191,6 +216,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.7505
     },
     "29-DE7bVdWs2KN": {
@@ -198,6 +224,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "30-DEVtjoSsvG2": {
@@ -205,6 +232,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1.3333
     },
     "31-DE7ZVD4MQtq": {
@@ -212,6 +240,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.8
     },
     "bocadillo-de-jamon-serrano": {
@@ -219,6 +248,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "bocadillo-de-tomate-y-mozzarella": {
@@ -226,6 +256,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "cafe-con-leche-arte-latte": {
@@ -233,6 +264,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "cafe-con-leche-con-corazon": {
@@ -240,6 +272,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "cafe-con-leche-y-tarta": {
@@ -247,6 +280,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "cafe-en-la-mano-ventanal": {
@@ -254,6 +288,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "cafe-en-la-mano": {
@@ -261,6 +296,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "cafes-en-la-bandeja": {
@@ -268,6 +304,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "caprese-en-flor": {
@@ -275,6 +312,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "cesta-de-panes-con-salmon-y-aguacate": {
@@ -282,6 +320,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "croissant": {
@@ -289,6 +328,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "donuts-glaseados": {
@@ -296,6 +336,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.9513
     },
     "dos-cafes-con-leche": {
@@ -303,6 +344,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "gofre-de-nutella-y-platano": {
@@ -310,6 +352,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "gofre-de-platano-y-dulce-de-leche": {
@@ -317,6 +360,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "mesa-junto-al-ventanal": {
@@ -324,6 +368,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "nachos-con-queso": {
@@ -331,6 +376,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "poke-bowl-de-pollo": {
@@ -338,6 +384,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "postre-de-crema-con-fresa": {
@@ -345,6 +392,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "sala-con-mural-de-hojas": {
@@ -352,6 +400,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "sandwich-vegetal": {
@@ -359,6 +408,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tabla-de-embutidos": {
@@ -366,6 +416,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tabla-de-quesos": {
@@ -373,6 +424,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1
     },
     "tabla-de-tostadas-variadas": {
@@ -380,6 +432,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tarta-de-fresas-y-nata": {
@@ -387,6 +440,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "tarta-tiramisu": {
@@ -394,6 +448,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.5625
     },
     "tostada-de-aguacate-y-huevo": {
@@ -401,6 +456,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostada-de-atun-y-huevo": {
@@ -408,6 +464,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostada-de-ensaladilla": {
@@ -415,6 +472,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostada-de-huevo-y-aguacate-con-cafe": {
@@ -422,6 +480,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostada-de-huevo-y-tomate": {
@@ -429,6 +488,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostada-de-salmon-y-aguacate": {
@@ -436,6 +496,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 1.3333
     },
     "tostadas-de-jamon-serrano": {
@@ -443,6 +504,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostadas-de-jamon-y-aceite": {
@@ -450,6 +512,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "tostadas-de-salmon-y-huevo": {
@@ -457,6 +520,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.8006
     },
     "tostadas-de-sobrasada-y-queso": {
@@ -464,6 +528,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     },
     "yogur-con-frutos-secos-y-fresa": {
@@ -471,6 +536,7 @@
         400,
         800
       ],
+      "respaldo": 400,
       "ratio": 0.75
     }
   }

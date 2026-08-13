@@ -1,29 +1,92 @@
-import { useMemo, useState } from 'react';
+import { use, useEffect, useMemo, useRef, useState } from 'react';
 import { Campo, useIdioma } from '../i18n/idioma.jsx';
-import menu from '../content/menu.json';
 import './Carta.css';
 
 const TODO = 'todo';
 
+/**
+ * La carta en los cuatro idiomas son 53 KB minificados dentro del bundle, y
+ * tres cuartas partes son texto que ese visitante no va a leer. Cada idioma va
+ * en su propio trozo (scripts/build-menu.mjs los genera) y solo se baja el que
+ * se esta leyendo, cuando hace falta y no antes del primer pintado.
+ *
+ * Las dos tablas van fuera del componente para que sobrevivan a los montajes:
+ * pedidas guarda la promesa (sin esto cada render lanzaria otra peticion) y
+ * resueltas lo que ya ha llegado, que es lo unico que se puede pintar sin
+ * suspender.
+ */
+const pedidas = new Map();
+const resueltas = new Map();
+
+function cartaDe(idioma) {
+  if (!pedidas.has(idioma)) {
+    pedidas.set(idioma, import(`../content/menu.${idioma}.json`).then((m) => {
+      resueltas.set(idioma, m.default);
+      return m.default;
+    }));
+  }
+  return pedidas.get(idioma);
+}
+
+/**
+ * Espera la carta del idioma pedido y se la pasa a la que pinta.
+ *
+ * La primera vez suspende, y el hueco lo pone el <Suspense> de App. Al cambiar
+ * de idioma no vuelve a suspender: sigue dando la carta anterior hasta que la
+ * nueva ha llegado. Si suspendiese, React quitaria media pagina de la pantalla
+ * y perderia el filtro elegido mientras se baja un fichero de 24 KB.
+ *
+ * Va suelto y sin un solo hook detras del use() a proposito: cuando use()
+ * suspende, React vuelve a ejecutar el componente desde arriba, y los hooks que
+ * quedasen despues no llegan a registrarse en la primera pasada. Por eso lo que
+ * pinta la carta es otro componente y recibe el menu por prop.
+ */
 export default function Carta() {
+  const { idioma } = useIdioma();
+  const [, repintar] = useState(0);
+  const ultima = useRef(null);
+  const llegada = resueltas.get(idioma);
+
+  useEffect(() => {
+    if (resueltas.has(idioma)) return;
+    let vivo = true;
+    cartaDe(idioma).then(() => { if (vivo) repintar((n) => n + 1); });
+    return () => { vivo = false; };
+  }, [idioma]);
+
+  // use() se puede llamar bajo condicion, al reves que el resto de hooks: es
+  // justo para esto.
+  const menu = llegada ?? ultima.current ?? use(cartaDe(idioma));
+  ultima.current = menu;
+
+  return <CartaPintada menu={menu} />;
+}
+
+function CartaPintada({ menu }) {
   const { t, campo, idioma } = useIdioma();
   const [filtro, setFiltro] = useState(TODO);
 
   const total = useMemo(
     () => menu.categorias.reduce((n, c) => n + c.productos.length, 0),
-    [],
+    [menu],
   );
 
-  const visibles = filtro === TODO
-    ? menu.categorias
-    : menu.categorias.filter((c) => c.id === filtro);
+  // Los tres recorren las 15 categorias o los 151 productos, y se rehacian en
+  // cada render: tambien al pulsar un filtro y al cambiar de idioma.
+  const visibles = useMemo(
+    () => (filtro === TODO ? menu.categorias : menu.categorias.filter((c) => c.id === filtro)),
+    [menu, filtro],
+  );
 
   const nombreDelFiltro = filtro === TODO
     ? t('carta.todo')
     : campo(menu.categorias.find((c) => c.id === filtro)?.nombre);
 
   // Sin precios todavia, no tiene sentido prometer una columna de precios.
-  const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
+  const hayPrecios = useMemo(
+    () => menu.categorias.some((c) => c.productos.some((p) => p.precio != null)),
+    [menu],
+  );
 
   const precioDe = (p) => {
     if (p.precio == null) return t('carta.precioPendiente');
@@ -94,8 +157,15 @@ export default function Carta() {
           <strong>{t('carta.avisoCocina')}</strong>
         </p>
 
+        {/* --platos alimenta la estimacion de alto de Carta.css: sin ella el
+            navegador no sabe si el bloque que se salta tiene 3 platos o 28. */}
         {visibles.map((c) => (
-          <section className="carta__categoria" key={c.id} aria-labelledby={`cat-${c.id}`}>
+          <section
+            className="carta__categoria"
+            key={c.id}
+            aria-labelledby={`cat-${c.id}`}
+            style={{ '--platos': c.productos.length }}
+          >
             {/* La cuenta se oculta al lector: dentro del h3 convertiria el
                 nombre de la seccion en "Tostadas 8", y la propia lista ya
                 anuncia cuantos elementos tiene. */}
