@@ -11,3 +11,10 @@
   color: var(--cobre-claro);
   font-weight: 600;
 }
+
+/* Hueco de la carta mientras se baja su trozo. Del color de fondo de la propia
+   seccion, para que no se vea una banda distinta al entrar. */
+.carta-hueco {
+  min-height: 60vh;
+  background: var(--crema-2);
+}

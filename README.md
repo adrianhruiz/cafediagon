@@ -20,6 +20,7 @@ npm run dev        # http://localhost:5173/cafediagon/
 | `npm run build` | Compila a `dist/` |
 | `npm test` | Tests unitarios (Vitest) |
 | `npm run menu` | Regenera la carta desde el export del TPV |
+| `npm run menu:idiomas` | Reparte `menu.json` en un fichero por idioma (lo que carga la web) |
 | `npm run fotos` | Prepara las fotos nuevas del café (HEIC del Drive → `assets-origen/fotos/`) |
 | `npm run imagenes` | Regenera `public/images/` desde `assets-origen/` |
 | `npm run check` | Comprueba la maquetación en 6 anchos de pantalla |
@@ -54,7 +55,10 @@ Cuando haya precios, hay dos caminos:
 
 1. Si el TPV puede exportarlos, añade la columna y adapta `scripts/build-menu.mjs`.
 2. Si no, edita `src/content/menu.json` a mano y pon el número en `precio`
-   (`4.5`, no `"4,50 €"` — el formato lo pone la web según el idioma).
+   (`4.5`, no `"4,50 €"` — el formato lo pone la web según el idioma). Después
+   ejecuta `npm run menu:idiomas`: la web no carga `menu.json`, sino un recorte
+   por idioma que sale de él. No uses `npm run menu`, que rehace `menu.json`
+   desde el export del TPV y se llevaría por delante el cambio.
 
 En cuanto un solo producto tenga precio, el aviso desaparece solo.
 

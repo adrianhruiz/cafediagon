@@ -49,7 +49,10 @@ export default function Cabecera() {
     <header className="cabecera">
       <div className="envoltorio cabecera__interior">
         <a className="cabecera__logo" href="#inicio">
-          <Imagen nombre="logo" alt="" sizes="44px" prioridad />
+          {/* ansioso y no prioridad: se ve al entrar, pero son 3,5 KB a 44 px
+              y con fetchpriority alto le disputaba la conexion al hero, que es
+              el LCP y va precargado desde index.html. */}
+          <Imagen nombre="logo" alt="" sizes="44px" ansioso />
           <span>DIAGON</span>
         </a>
 

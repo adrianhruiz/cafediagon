@@ -40,7 +40,25 @@
   border-radius: 0 var(--radio) var(--radio) 0;
 }
 
-.carta__categoria { margin-bottom: 3.4rem; }
+/*
+ * Sin filtrar hay 151 platos en 15 bloques, casi todos fuera de pantalla, y el
+ * navegador calculaba y pintaba los 151 antes de enseñar nada. Con esto se
+ * salta el que no se ve y lo hace cuando toca acercarse.
+ *
+ * El alto declarado es solo la estimacion previa: en cuanto un bloque se pinta
+ * una vez, "auto" se queda con su alto real y no vuelve a estimarlo. Aun asi
+ * tiene que salir aproximada, porque de ella depende el alto de la pagina antes
+ * de que nadie baje: con un valor fijo, los bloques van de 3 platos a 28 y el
+ * documento encogia 3300px segun se recorria, o sea que la barra de scroll no
+ * paraba de moverse. --platos lo pone Carta.jsx en cada bloque.
+ */
+.carta__categoria {
+  margin-bottom: 3.4rem;
+  content-visibility: auto;
+  /* Lo que ocupa un plato de media contando que la lista va a tres columnas. */
+  --alto-plato: 2.6rem;
+  contain-intrinsic-size: auto calc(5rem + var(--platos) * var(--alto-plato));
+}
 
 .carta__categoria-titulo {
   font-size: 1.7rem;
@@ -127,8 +145,15 @@
   font-weight: 600;
 }
 
+@media (max-width: 900px) {
+  /* Dos columnas: cada plato ocupa la mitad mas de alto. */
+  .carta__categoria { --alto-plato: 3.9rem; }
+}
+
 @media (max-width: 560px) {
   .carta__lista { grid-template-columns: 1fr; gap: 1.3rem; }
+  /* Una sola columna: cada plato es una fila entera. */
+  .carta__categoria { --alto-plato: 7.8rem; }
   /* La tira de filtros scrollea en horizontal en vez de ocupar media pantalla. */
   .carta__filtros {
     flex-wrap: nowrap;

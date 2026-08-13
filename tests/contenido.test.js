@@ -2,6 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import menu from '../src/content/menu.json';
+import menuEs from '../src/content/menu.es.json';
+import menuEn from '../src/content/menu.en.json';
+import menuDe from '../src/content/menu.de.json';
+import menuCa from '../src/content/menu.ca.json';
 import galeria from '../src/content/gallery.json';
 import negocio from '../src/content/business.json';
 import { formatos, imagenes } from '../src/content/imagenes.json';
@@ -100,6 +104,70 @@ describe('carta', () => {
   });
 });
 
+describe('carta por idioma', () => {
+  // La web no carga menu.json, sino el recorte de un solo idioma. Si los dos se
+  // separan, los tests de arriba seguirian en verde sobre un fichero que no
+  // pinta nadie: hay que comprobar que dicen lo mismo.
+  const RECORTES = { es: menuEs, en: menuEn, de: menuDe, ca: menuCa };
+
+  it('existe un recorte por cada idioma', () => {
+    expect(Object.keys(RECORTES).sort()).toEqual([...IDIOMAS].sort());
+  });
+
+  it('cada recorte trae las mismas categorias y productos que menu.json', () => {
+    for (const [idioma, recorte] of Object.entries(RECORTES)) {
+      expect(recorte.categorias.map((c) => c.id), idioma)
+        .toEqual(menu.categorias.map((c) => c.id));
+      for (const [i, c] of recorte.categorias.entries()) {
+        expect(c.productos.map((p) => p.id), `${idioma} / ${c.id}`)
+          .toEqual(menu.categorias[i].productos.map((p) => p.id));
+      }
+    }
+  });
+
+  it('cada campo trae un solo idioma: el suyo o el castellano de respaldo', () => {
+    for (const [idioma, recorte] of Object.entries(RECORTES)) {
+      const campos = recorte.categorias.flatMap((c) => [
+        c.nombre,
+        ...c.productos.flatMap((p) => [p.nombre, p.descripcion]),
+      ]);
+      for (const campo of campos) {
+        const claves = Object.keys(campo);
+        expect(claves.length, `${idioma}: ${JSON.stringify(campo)}`).toBeLessThanOrEqual(1);
+        for (const k of claves) expect([idioma, 'es'], idioma).toContain(k);
+      }
+    }
+  });
+
+  it('el texto de cada campo es el que menu.json da para ese idioma', () => {
+    for (const [idioma, recorte] of Object.entries(RECORTES)) {
+      for (const [i, c] of recorte.categorias.entries()) {
+        const original = menu.categorias[i];
+        const esperado = original.nombre[idioma] || original.nombre.es;
+        expect(Object.values(c.nombre)[0], `${idioma} / ${c.id}`).toBe(esperado);
+
+        for (const [j, p] of c.productos.entries()) {
+          const base = original.productos[j];
+          expect(Object.values(p.nombre)[0], `${idioma} / ${base.nombre.es}`)
+            .toBe(base.nombre[idioma] || base.nombre.es);
+          const desc = base.descripcion[idioma] || base.descripcion.es;
+          expect(Object.values(p.descripcion)[0] ?? null, `${idioma} / ${base.nombre.es}`)
+            .toBe(desc ?? null);
+        }
+      }
+    }
+  });
+
+  it('pesa bastante menos que la carta entera', () => {
+    // Es lo unico que justifica partirla en cuatro: si un cambio deshace el
+    // recorte, esto tiene que avisar.
+    const entera = JSON.stringify(menu).length;
+    for (const [idioma, recorte] of Object.entries(RECORTES)) {
+      expect(JSON.stringify(recorte).length, idioma).toBeLessThan(entera * 0.6);
+    }
+  });
+});
+
 describe('galeria', () => {
   it('cada foto tiene alt en los cuatro idiomas', () => {
     for (const f of galeria) {
@@ -118,14 +186,26 @@ describe('galeria', () => {
 });
 
 describe('imagenes generadas', () => {
+  // Del jpg solo se genera el ancho de respaldo: es el src del <img> y lo pide
+  // quien no entiende ni avif ni webp. Los otros dos van en toda la serie.
+  const SERIE_COMPLETA = formatos.filter((f) => f.ext !== 'jpg');
+
   it('todos los derivados declarados existen en public/images', () => {
     for (const [nombre, datos] of Object.entries(imagenes)) {
       for (const w of datos.anchos) {
-        for (const { ext } of formatos) {
+        for (const { ext } of SERIE_COMPLETA) {
           const archivo = `${nombre}-${w}.${ext}`;
           expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
         }
       }
+      expect(existsSync(join(PUBLICO, `${nombre}-${datos.respaldo}.jpg`)),
+        `falta el respaldo de ${nombre}`).toBe(true);
+    }
+  });
+
+  it('el respaldo jpg es uno de los anchos declarados', () => {
+    for (const [nombre, datos] of Object.entries(imagenes)) {
+      expect(datos.anchos, nombre).toContain(datos.respaldo);
     }
   });
 
@@ -150,6 +230,17 @@ describe('imagenes generadas', () => {
     const precargas = [...html.matchAll(/rel="preload"[^>]*href="\.\/images\/([^"]+)"/g)];
     expect(precargas.length).toBe(1);
     for (const [, archivo] of precargas) {
+      expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
+    }
+  });
+
+  // Del jpg ya no se genera la serie entera, y el icono de iOS pide un ancho
+  // que la web no usa en ningun <img>: si se cae, se cae en silencio.
+  it('los iconos declarados en index.html existen', () => {
+    const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+    const iconos = [...html.matchAll(/rel="(?:icon|apple-touch-icon)"[^>]*href="\.\/images\/([^"]+)"/g)];
+    expect(iconos.length).toBe(2);
+    for (const [, archivo] of iconos) {
       expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
     }
   });

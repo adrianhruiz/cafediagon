@@ -11,48 +11,72 @@ import en from '../src/i18n/en.json';
 import de from '../src/i18n/de.json';
 import ca from '../src/i18n/ca.json';
 
-const montar = (inicial = 'es') =>
-  render(<ProveedorIdioma inicial={inicial}><App /></ProveedorIdioma>);
+const TEXTOS = { es, en, de, ca };
+
+/**
+ * La carta va en su propio trozo y su json se baja por idioma, asi que al
+ * montar no esta todavia: primero se ve el hueco de carga. Se espera a que
+ * llegue, que es lo que ve cualquier visitante.
+ */
+const montar = async (inicial = 'es') => {
+  const resultado = render(<ProveedorIdioma inicial={inicial}><App /></ProveedorIdioma>);
+  await screen.findByRole('heading', { name: TEXTOS[inicial].carta.titulo });
+  return resultado;
+};
+
+/**
+ * Cambiar de idioma tambien baja otro trozo. Los textos de la interfaz cambian
+ * al momento, pero la carta llega despues: se espera por el nombre de una
+ * categoria que en ese idioma se escribe distinto que en castellano.
+ */
+const categoriaTraducida = (codigo) =>
+  menu.categorias.find((c) => c.nombre[codigo] && c.nombre[codigo] !== c.nombre.es);
+
+const cambiarIdioma = async (usuario, codigo) => {
+  await usuario.click(screen.getByRole('button', { name: TEXTOS[codigo].idioma }));
+  const cat = categoriaTraducida(codigo);
+  await screen.findByRole('heading', { level: 3, name: new RegExp(`^${cat.nombre[codigo]}`, 'i') });
+};
 
 beforeEach(() => localStorage.clear());
 
 describe('estructura de la pagina', () => {
-  it('pinta todas las secciones', () => {
-    const { container } = montar();
+  it('pinta todas las secciones', async () => {
+    const { container } = await montar();
     for (const id of ['inicio', 'sobre', 'carta', 'juegos', 'galeria', 'donde']) {
       expect(container.querySelector(`#${id}`), `falta la seccion ${id}`).toBeTruthy();
     }
   });
 
-  it('tiene un unico h1', () => {
-    montar();
+  it('tiene un unico h1', async () => {
+    await montar();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
-  it('tiene enlace para saltar al contenido', () => {
-    montar();
+  it('tiene enlace para saltar al contenido', async () => {
+    await montar();
     const salto = screen.getByRole('link', { name: es.nav.saltar });
     expect(salto).toHaveAttribute('href', '#contenido');
   });
 });
 
 describe('contacto', () => {
-  it('el telefono enlaza al numero real', () => {
-    montar();
+  it('el telefono enlaza al numero real', async () => {
+    await montar();
     const enlaces = screen.getAllByRole('link', { name: negocio.telefonoVisible });
     expect(enlaces.length).toBeGreaterThan(0);
     for (const e of enlaces) expect(e).toHaveAttribute('href', `tel:${negocio.telefono}`);
   });
 
-  it('el email enlaza con mailto', () => {
-    montar();
+  it('el email enlaza con mailto', async () => {
+    await montar();
     for (const e of screen.getAllByRole('link', { name: negocio.email })) {
       expect(e).toHaveAttribute('href', `mailto:${negocio.email}`);
     }
   });
 
-  it('los enlaces externos se abren con rel noreferrer', () => {
-    const { container } = montar();
+  it('los enlaces externos se abren con rel noreferrer', async () => {
+    const { container } = await montar();
     for (const a of container.querySelectorAll('a[target="_blank"]')) {
       expect(a.getAttribute('rel'), a.getAttribute('href')).toContain('noreferrer');
     }
@@ -60,8 +84,8 @@ describe('contacto', () => {
 });
 
 describe('carta', () => {
-  it('muestra todas las categorias sin filtrar', () => {
-    montar();
+  it('muestra todas las categorias sin filtrar', async () => {
+    await montar();
     // Nivel 3: los platos son h4 y algunos repiten el nombre de su categoria
     // ("Variedad de tostadas" dentro de "Tostadas").
     for (const c of menu.categorias) {
@@ -72,7 +96,7 @@ describe('carta', () => {
 
   it('filtra al pulsar una categoria', async () => {
     const usuario = userEvent.setup();
-    const { container } = montar();
+    const { container } = await montar();
 
     const primera = menu.categorias[0];
     const grupo = screen.getByRole('group', { name: es.carta.filtrarPor });
@@ -85,7 +109,7 @@ describe('carta', () => {
 
   it('vuelve a mostrarlo todo con el boton Todo', async () => {
     const usuario = userEvent.setup();
-    const { container } = montar();
+    const { container } = await montar();
     const grupo = screen.getByRole('group', { name: es.carta.filtrarPor });
 
     await usuario.click(within(grupo).getByRole('button', { name: menu.categorias[0].nombre.es }));
@@ -97,7 +121,7 @@ describe('carta', () => {
 
   it('marca el filtro activo con aria-pressed', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
     const grupo = screen.getByRole('group', { name: es.carta.filtrarPor });
     const boton = within(grupo).getByRole('button', { name: menu.categorias[0].nombre.es });
 
@@ -106,9 +130,9 @@ describe('carta', () => {
     expect(boton).toHaveAttribute('aria-pressed', 'true');
   });
 
-  it('avisa de que faltan los precios mientras no los haya', () => {
+  it('avisa de que faltan los precios mientras no los haya', async () => {
     const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
-    montar();
+    await montar();
     if (hayPrecios) {
       expect(screen.queryByText(es.carta.avisoPrecios)).not.toBeInTheDocument();
     } else {
@@ -116,11 +140,11 @@ describe('carta', () => {
     }
   });
 
-  it('dice que los precios llevan el IVA incluido en cuanto hay precios', () => {
+  it('dice que los precios llevan el IVA incluido en cuanto hay precios', async () => {
     // TRLGDCU art. 20: el precio anunciado tiene que ser el final, impuestos
     // incluidos, y el consumidor tiene que poder saberlo.
     const hayPrecios = menu.categorias.some((c) => c.productos.some((p) => p.precio != null));
-    montar();
+    await montar();
     if (hayPrecios) {
       expect(screen.getByText(es.carta.avisoIva)).toBeInTheDocument();
     } else {
@@ -130,8 +154,8 @@ describe('carta', () => {
 });
 
 describe('galeria', () => {
-  it('cada foto lleva su descripcion en el pie de la figura', () => {
-    const { container } = montar();
+  it('cada foto lleva su descripcion en el pie de la figura', async () => {
+    const { container } = await montar();
     const figuras = container.querySelectorAll('#galeria figure');
     expect(figuras).toHaveLength(galeria.length);
 
@@ -145,8 +169,8 @@ describe('galeria', () => {
 });
 
 describe('mapa', () => {
-  it('no carga nada de Google hasta que el visitante lo pide', () => {
-    const { container } = montar();
+  it('no carga nada de Google hasta que el visitante lo pide', async () => {
+    const { container } = await montar();
     expect(container.querySelector('iframe')).toBeNull();
     expect(container.innerHTML).not.toContain('google.com');
     expect(screen.getByText(es.donde.mapaAviso)).toBeInTheDocument();
@@ -154,7 +178,7 @@ describe('mapa', () => {
 
   it('monta el iframe al pulsar el boton', async () => {
     const usuario = userEvent.setup();
-    const { container } = montar();
+    const { container } = await montar();
 
     await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
 
@@ -165,13 +189,13 @@ describe('mapa', () => {
 });
 
 describe('carta: alergenos', () => {
-  it('avisa de los alergenos siempre, haya precios o no', () => {
-    montar();
+  it('avisa de los alergenos siempre, haya precios o no', async () => {
+    await montar();
     expect(screen.getByText(es.carta.avisoAlergenos, { exact: false })).toBeInTheDocument();
   });
 
-  it('destaca en negrita lo de la cocina compartida y lo del IVA', () => {
-    const { container } = montar();
+  it('destaca en negrita lo de la cocina compartida y lo del IVA', async () => {
+    const { container } = await montar();
     const negritas = [...container.querySelectorAll('#carta .carta__aviso strong')]
       .map((n) => n.textContent);
 
@@ -179,10 +203,10 @@ describe('carta: alergenos', () => {
     expect(negritas).toContain(es.carta.avisoIva);
   });
 
-  it('cada producto con alergenos los pinta bajo el plato', () => {
+  it('cada producto con alergenos los pinta bajo el plato', async () => {
     // Rgto (UE) 1169/2011: el dato tiene que estar en el soporte donde se
     // presenta la oferta, no solo a peticion.
-    const { container } = montar();
+    const { container } = await montar();
     const platos = container.querySelectorAll('#carta .plato');
     const conAlergenos = container.querySelectorAll('#carta .plato__alergenos');
     // La lista vacia no pinta linea: lo dice el aviso de la cabecera.
@@ -194,19 +218,19 @@ describe('carta: alergenos', () => {
     expect(conAlergenos.length).toBe(esperados.length);
   });
 
-  it('el aviso explica que sin linea de alergenos no lleva ninguno de los 14', () => {
+  it('el aviso explica que sin linea de alergenos no lleva ninguno de los 14', async () => {
     // Si no se dice, la ausencia de linea se lee como falta de dato.
-    montar();
+    await montar();
     expect(screen.getByText(es.carta.avisoAlergenos, { exact: false }).textContent)
       .toContain('ninguno de los 14');
   });
 
-  it('ningun plato arrastra el viejo "Ninguno de los 14"', () => {
-    const { container } = montar();
+  it('ningun plato arrastra el viejo "Ninguno de los 14"', async () => {
+    const { container } = await montar();
     expect(container.querySelector('#carta').textContent).not.toContain('Ninguno de los 14');
   });
 
-  it('traduce los alergenos a los cuatro idiomas', () => {
+  it('traduce los alergenos a los cuatro idiomas', async () => {
     for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
       for (const clave of Object.keys(es.carta.alergeno)) {
         expect(dic.carta.alergeno[clave], `${codigo} no traduce "${clave}"`).toBeTruthy();
@@ -214,7 +238,7 @@ describe('carta: alergenos', () => {
     }
   });
 
-  it('la etiqueta de gluten no declara "sin gluten" a secas', () => {
+  it('la etiqueta de gluten no declara "sin gluten" a secas', async () => {
     // Rgto (UE) 828/2014: "sin gluten" exige <=20 mg/kg en el producto servido.
     for (const [codigo, dic] of Object.entries({ es, de })) {
       expect(dic.carta.sinGluten.toLowerCase(), `${codigo} declara sin gluten a secas`)
@@ -226,7 +250,7 @@ describe('carta: alergenos', () => {
 describe('menu movil', () => {
   it('empieza cerrado y se abre al pulsar', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
     const boton = screen.getByRole('button', { name: es.nav.abrirMenu });
 
     expect(boton).toHaveAttribute('aria-expanded', 'false');
@@ -237,7 +261,7 @@ describe('menu movil', () => {
 
   it('se cierra con Escape', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
 
     await usuario.click(screen.getByRole('button', { name: es.nav.abrirMenu }));
     await usuario.keyboard('{Escape}');
@@ -247,7 +271,7 @@ describe('menu movil', () => {
 
   it('se cierra al pulsar un enlace de navegacion', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
 
     await usuario.click(screen.getByRole('button', { name: es.nav.abrirMenu }));
     await usuario.click(screen.getByRole('link', { name: es.nav.carta }));
@@ -261,48 +285,68 @@ describe('idiomas', () => {
   // mismo: "DE" en voz alta no le dice nada a quien busca el aleman.
   it('el selector cambia los textos de toda la pagina', async () => {
     const usuario = userEvent.setup();
-    montar('es');
+    await montar('es');
 
     expect(screen.getByRole('heading', { name: es.carta.titulo })).toBeInTheDocument();
-    await usuario.click(screen.getByRole('button', { name: de.idioma }));
+    await cambiarIdioma(usuario, 'de');
     expect(screen.getByRole('heading', { name: de.carta.titulo })).toBeInTheDocument();
   });
 
   it('marca el idioma activo', async () => {
     const usuario = userEvent.setup();
-    montar('es');
+    await montar('es');
 
     expect(screen.getByRole('button', { name: es.idioma })).toHaveAttribute('aria-current', 'true');
-    await usuario.click(screen.getByRole('button', { name: ca.idioma }));
+    await cambiarIdioma(usuario, 'ca');
     expect(screen.getByRole('button', { name: ca.idioma })).toHaveAttribute('aria-current', 'true');
     expect(screen.getByRole('button', { name: es.idioma })).not.toHaveAttribute('aria-current');
   });
 
   it('traduce tambien los nombres de las categorias de la carta', async () => {
     const usuario = userEvent.setup();
-    montar('es');
+    await montar('es');
 
     const cat = menu.categorias.find((c) => c.nombre.de && c.nombre.de !== c.nombre.es);
-    await usuario.click(screen.getByRole('button', { name: de.idioma }));
+    await cambiarIdioma(usuario, 'de');
     expect(screen.getByRole('heading', { name: new RegExp(cat.nombre.de, 'i') }))
       .toBeInTheDocument();
   });
 
   it('el titulo del documento tambien cambia de idioma', async () => {
     const usuario = userEvent.setup();
-    montar('es');
+    await montar('es');
 
     expect(document.title).toBe(es.meta.titulo);
-    await usuario.click(screen.getByRole('button', { name: de.idioma }));
+    await cambiarIdioma(usuario, 'de');
     expect(document.title).toBe(de.meta.titulo);
+  });
+
+  // La carta de cada idioma se baja aparte: mientras llega hay que seguir
+  // viendo la de antes y no el hueco de carga.
+  it('no vacia la carta mientras se baja el idioma nuevo', async () => {
+    const usuario = userEvent.setup();
+    const { container } = await montar('es');
+
+    const antes = container.querySelectorAll('#carta .plato').length;
+    expect(antes).toBeGreaterThan(0);
+
+    // Justo despues de pulsar, el trozo aleman no ha llegado. Lo que no puede
+    // pasar es que aparezca el hueco de carga con la carta ya leida detras.
+    await usuario.click(screen.getByRole('button', { name: de.idioma }));
+    expect(container.querySelector('.carta-hueco')).toBeNull();
+    expect(container.querySelectorAll('#carta .plato')).toHaveLength(antes);
+
+    const cat = categoriaTraducida('de');
+    await screen.findByRole('heading', { level: 3, name: new RegExp(`^${cat.nombre.de}`, 'i') });
+    expect(container.querySelectorAll('#carta .plato')).toHaveLength(antes);
   });
 });
 
 describe('accesibilidad', () => {
-  it('el boton del menu va antes que el menu en el DOM', () => {
+  it('el boton del menu va antes que el menu en el DOM', async () => {
     // Si no, al abrirlo con el teclado el siguiente tabulador se salta los
     // enlaces y aterriza en los idiomas (2.4.3).
-    const { container } = montar();
+    const { container } = await montar();
     const boton = container.querySelector('.cabecera__hamburguesa');
     const menu = container.querySelector('.cabecera__nav');
 
@@ -313,7 +357,7 @@ describe('accesibilidad', () => {
 
   it('abrir el menu lleva el foco al primer enlace', async () => {
     const usuario = userEvent.setup();
-    const { container } = montar();
+    const { container } = await montar();
 
     await usuario.click(screen.getByRole('button', { name: es.nav.abrirMenu }));
     expect(container.querySelector('.cabecera__nav a')).toHaveFocus();
@@ -321,7 +365,7 @@ describe('accesibilidad', () => {
 
   it('Escape cierra el menu y devuelve el foco al boton', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
     const boton = screen.getByRole('button', { name: es.nav.abrirMenu });
 
     await usuario.click(boton);
@@ -334,7 +378,7 @@ describe('accesibilidad', () => {
 
   it('anuncia por que filtro se esta viendo la carta', async () => {
     const usuario = userEvent.setup();
-    montar();
+    await montar();
     const grupo = screen.getByRole('group', { name: es.carta.filtrarPor });
     const primera = menu.categorias[0];
 
@@ -343,8 +387,8 @@ describe('accesibilidad', () => {
     expect(screen.getByRole('status')).toHaveTextContent(primera.nombre.es);
   });
 
-  it('las fotos que aportan contenido llevan alt y las de adorno no', () => {
-    const { container } = montar();
+  it('las fotos que aportan contenido llevan alt y las de adorno no', async () => {
+    const { container } = await montar();
 
     expect(container.querySelector('.sobre__foto').getAttribute('alt')).toBe(es.sobre.fotoAlt);
     expect(container.querySelector('.juegos__foto').getAttribute('alt')).toBe(es.juegos.fotoAlt);
@@ -354,14 +398,14 @@ describe('accesibilidad', () => {
 
   it('el foco entra en el mapa cuando el visitante lo carga', async () => {
     const usuario = userEvent.setup();
-    const { container } = montar();
+    const { container } = await montar();
 
     await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
     expect(container.querySelector('iframe')).toHaveFocus();
   });
 
-  it('la cuenta de productos no se cuela en el nombre de la categoria', () => {
-    const { container } = montar();
+  it('la cuenta de productos no se cuela en el nombre de la categoria', async () => {
+    const { container } = await montar();
     const cuenta = container.querySelector('.carta__cuenta');
     expect(cuenta).toHaveAttribute('aria-hidden', 'true');
   });

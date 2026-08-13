@@ -29,8 +29,10 @@ jobs:
       - run: npm ci
       - name: Regenerar la carta desde el export del TPV
         run: npm run menu
+      # Tambien los menu.<idioma>.json, que salen del mismo script y son lo que
+      # carga la web: si se quedan atras, la carta publicada no es la del TPV.
       - name: Comprobar que la carta commiteada esta al dia
-        run: git diff --exit-code src/content/menu.json
+        run: git diff --exit-code src/content/
       - run: npm test
       - run: npm run build
 
