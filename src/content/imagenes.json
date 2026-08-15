@@ -13,6 +13,11 @@
       "tipo": "image/jpeg"
     }
   ],
+  "compartir": {
+    "archivo": "compartir-1080.jpg",
+    "ancho": 1080,
+    "alto": 567
+  },
   "imagenes": {
     "logo": {
       "anchos": [
