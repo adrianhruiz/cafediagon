@@ -7,6 +7,15 @@ export default function Sobre() {
   const { t, idioma } = useIdioma();
   const valoracion = negocio.google.valoracion.toLocaleString(idioma, { minimumFractionDigits: 1 });
 
+  /**
+   * La media de Google cambia sola y aqui esta escrita a mano. Sin fecha, una
+   * cifra vieja se lee como actual y pasa a ser una afirmacion falsa; con ella
+   * es un dato historico que sigue siendo cierto por mucho que envejezca.
+   * tests/contenido.test.js avisa cuando toca refrescarla.
+   */
+  const fecha = new Date(negocio.google.fecha)
+    .toLocaleDateString(idioma, { year: 'numeric', month: 'long' });
+
   return (
     <section className="seccion" id="sobre">
       <div className="envoltorio sobre">
@@ -18,7 +27,7 @@ export default function Sobre() {
           <ul className="sobre__datos">
             <li>
               <b>{valoracion}</b>
-              <span>{t('sobre.datoValoracion', { n: negocio.google.resenas })}</span>
+              <span>{t('sobre.datoValoracion', { n: negocio.google.resenas, fecha })}</span>
             </li>
             <li>
               <b>+200</b>

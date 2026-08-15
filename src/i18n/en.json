@@ -28,7 +28,7 @@
     "etiqueta": "The café",
     "titulo": "A little magic\nin Cala Rajada",
     "texto": "We opened in January 2025 with a simple idea: a place where everyone feels welcome. Specialty coffee treated with respect, food prepared fresh every day, and hundreds of board games so you can stay as long as you like.",
-    "datoValoracion": "average rating on Google, from {n} reviews",
+    "datoValoracion": "average rating on Google, from {n} reviews (as of {fecha})",
     "datoJuegos": "board games free for everyone",
     "datoPremio": "Best Coffee House in Cala Rajada according to Restaurant Guru",
     "fotoAlt": "Café wall covered in framed magic-themed prints: old books, owls and spell parchments"

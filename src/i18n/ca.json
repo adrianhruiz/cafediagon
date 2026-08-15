@@ -28,7 +28,7 @@
     "etiqueta": "El cafè",
     "titulo": "Un racó amb màgia\na Cala Rajada",
     "texto": "Vam obrir el gener de 2025 amb una idea senzilla: crear un lloc on tothom se senti benvingut. Cafè d'especialitat tractat amb respecte, menjar preparat cada dia i centenars de jocs de taula perquè t'hi quedis l'estona que vulguis.",
-    "datoValoracion": "de valoració mitjana a Google, sobre {n} ressenyes",
+    "datoValoracion": "de valoració mitjana a Google, sobre {n} ressenyes (dada de {fecha})",
     "datoJuegos": "jocs de taula disponibles sense cost",
     "datoPremio": "Millor Coffee House de Cala Rajada segons Restaurant Guru",
     "fotoAlt": "Paret del cafè coberta de làmines emmarcades d'inspiració màgica: llibres antics, mussols i pergamins d'encanteris"

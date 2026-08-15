@@ -14,6 +14,10 @@ import legalDe from '../src/content/legal.de.json';
 import legalCa from '../src/content/legal.ca.json';
 import { formatos, imagenes } from '../src/content/imagenes.json';
 import { IDIOMAS } from '../src/i18n/idioma.jsx';
+import es from '../src/i18n/es.json';
+import en from '../src/i18n/en.json';
+import de from '../src/i18n/de.json';
+import ca from '../src/i18n/ca.json';
 
 const PUBLICO = join(process.cwd(), 'public', 'images');
 
@@ -264,6 +268,51 @@ describe('datos del negocio', () => {
     expect(negocio.geo.lat).toBeLessThan(40.0);
     expect(negocio.geo.lng).toBeGreaterThan(2.3);
     expect(negocio.geo.lng).toBeLessThan(3.5);
+  });
+
+  // La media de Google esta escrita a mano y cambia sola. Una cifra sin fecha
+  // se lee como actual, y en cuanto deja de serlo es una afirmacion falsa sobre
+  // algo que influye en la decision de venir: publicidad enganosa. La fecha la
+  // convierte en un dato historico, que no caduca; estos tests vigilan que la
+  // fecha exista, sea creible y no se quede tan vieja que el dato ya no diga
+  // nada util.
+  describe('valoracion de Google', () => {
+    const MESES_MAXIMO = 6;
+    const fecha = new Date(negocio.google.fecha);
+
+    it('lleva fecha, y es una fecha de verdad', () => {
+      expect(negocio.google.fecha).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(Number.isNaN(fecha.getTime())).toBe(false);
+    });
+
+    it('no viene del futuro', () => {
+      expect(fecha.getTime()).toBeLessThanOrEqual(Date.now());
+    });
+
+    it(`no tiene mas de ${MESES_MAXIMO} meses`, () => {
+      // Cuando esto se ponga rojo no hay bug: toca mirar la ficha de Google,
+      // actualizar valoracion, resenas y fecha en business.json, y ya.
+      const limite = new Date();
+      limite.setMonth(limite.getMonth() - MESES_MAXIMO);
+      const meses = Math.floor((Date.now() - fecha.getTime()) / (1000 * 60 * 60 * 24 * 30.44));
+      expect(fecha.getTime(), `el dato de Google tiene ~${meses} meses: refrescalo`)
+        .toBeGreaterThan(limite.getTime());
+    });
+
+    it('la valoracion y el numero de resenas son creibles', () => {
+      expect(negocio.google.valoracion).toBeGreaterThan(0);
+      expect(negocio.google.valoracion).toBeLessThanOrEqual(5);
+      expect(Number.isInteger(negocio.google.resenas)).toBe(true);
+      expect(negocio.google.resenas).toBeGreaterThan(0);
+    });
+
+    it('los cuatro idiomas dicen de cuando es el dato', () => {
+      for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
+        expect(dic.sobre.datoValoracion, `${codigo} no coloca {fecha}`).toContain('{fecha}');
+        expect(dic.sobre.datoValoracion, `${codigo} no dice que es de Google`)
+          .toMatch(/google/i);
+      }
+    });
   });
 
   it('el horario sigue pendiente y el codigo lo contempla', () => {

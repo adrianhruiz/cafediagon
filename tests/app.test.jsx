@@ -75,6 +75,20 @@ describe('contacto', () => {
     }
   });
 
+  it('la valoracion de Google sale fechada y con su fuente', async () => {
+    // Sin fecha, una media vieja se lee como actual. Con ella es un dato
+    // historico y no se convierte en falso por el paso del tiempo.
+    const { container } = await montar();
+    const dato = container.querySelector('.sobre__datos li').textContent;
+
+    expect(dato).toContain(String(negocio.google.resenas));
+    expect(dato).toMatch(/google/i);
+    // "julio de 2026" en castellano: el mes escrito, no la fecha ISO.
+    const mes = new Date(negocio.google.fecha)
+      .toLocaleDateString('es', { year: 'numeric', month: 'long' });
+    expect(dato).toContain(mes);
+  });
+
   it('el premio se anuncia enlazando a lo que lo acredita', async () => {
     // Directiva Omnibus: una distincion que se anuncia y no se puede comprobar
     // es publicidad enganosa. Si algun dia se queda sin URL, esto salta antes

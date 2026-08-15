@@ -28,7 +28,7 @@
     "etiqueta": "El café",
     "titulo": "Un rincón con magia\nen Cala Rajada",
     "texto": "Abrimos en enero de 2025 con una idea sencilla: crear un sitio donde todo el mundo se sienta bienvenido. Café de especialidad tratado con respeto, comida preparada cada día y cientos de juegos de mesa para que te quedes el rato que quieras.",
-    "datoValoracion": "de valoración media en Google, sobre {n} reseñas",
+    "datoValoracion": "de valoración media en Google, sobre {n} reseñas (dato de {fecha})",
     "datoJuegos": "juegos de mesa disponibles sin coste",
     "datoPremio": "Mejor Coffee House de Cala Rajada según Restaurant Guru",
     "fotoAlt": "Pared del café cubierta de láminas enmarcadas de inspiración mágica: libros antiguos, lechuzas y pergaminos de hechizos"
