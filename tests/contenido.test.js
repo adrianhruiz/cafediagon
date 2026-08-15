@@ -254,6 +254,45 @@ describe('imagenes generadas', () => {
   });
 });
 
+describe('URL por idioma en index.html', () => {
+  // Los cuatro idiomas son el mismo documento: sin hreflang el buscador solo ve
+  // uno. Las etiquetas estan escritas a mano, asi que si se añade un idioma al
+  // diccionario y nadie toca el HTML, esto se cae en vez de dejarlo sin indexar.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const alternativas = Object.fromEntries(
+    [...html.matchAll(/rel="alternate"\s+hreflang="([\w-]+)"\s+href="([^"]+)"/g)]
+      .map(([, codigo, url]) => [codigo, url]),
+  );
+
+  it('hay una alternativa por idioma, mas la x-default', () => {
+    expect(Object.keys(alternativas).sort()).toEqual([...IDIOMAS, 'x-default'].sort());
+  });
+
+  it('cada alternativa pide su idioma con ?lang=', () => {
+    for (const idioma of IDIOMAS) {
+      expect(alternativas[idioma]).toBe(`${negocio.web}?lang=${idioma}`);
+    }
+    // x-default no fija idioma: es la que decide por el idioma del navegador.
+    expect(alternativas['x-default']).toBe(negocio.web);
+  });
+
+  it('la canonica y la ficha de Google apuntan a la misma direccion', () => {
+    const canonica = html.match(/rel="canonical"\s+href="([^"]+)"/);
+    expect(canonica?.[1]).toBe(negocio.web);
+
+    const bloque = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+    expect(JSON.parse(bloque[1]).url).toBe(negocio.web);
+  });
+
+  it('la web declarada acaba en la barra del base del build', () => {
+    // vite.config.js publica en /cafediagon/: si el base cambia y business.json
+    // no, los hreflang apuntarian a una URL que no existe.
+    const config = readFileSync(join(process.cwd(), 'vite.config.js'), 'utf8');
+    const base = config.match(/base:.*\?\?\s*'([^']+)'/)[1];
+    expect(new URL(negocio.web).pathname).toBe(base);
+  });
+});
+
 describe('datos del negocio', () => {
   it('el telefono esta en formato internacional sin espacios', () => {
     expect(negocio.telefono).toMatch(/^\+\d{9,15}$/);
@@ -513,11 +552,13 @@ describe('textos legales', () => {
     }
   });
 
-  it('la privacidad declara el unico dato que se guarda en el navegador', () => {
+  it('la privacidad declara todo lo que se guarda en el navegador', () => {
     // Si algun dia se guarda otra cosa, la declaracion deja de ser cierta.
     for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
       const texto = cadenasDe(dic.privacidad).join(' ');
-      expect(texto, `${idioma} no declara la clave`).toContain('diagon:idioma');
+      for (const clave of ['diagon:idioma', 'diagon:mapa']) {
+        expect(texto, `${idioma} no declara ${clave}`).toContain(clave);
+      }
       expect(texto, `${idioma} no cita el art. 22.2 LSSI`).toContain('22.2');
     }
   });

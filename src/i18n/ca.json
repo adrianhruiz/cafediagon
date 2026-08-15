@@ -100,7 +100,9 @@
     "comoLlegar": "Obrir a Google Maps",
     "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe",
     "mapaAviso": "El mapa el carrega Google. En mostrar-lo, Google rebrà la teva adreça IP i podrà desar dades al teu navegador.",
-    "mapaCargar": "Carregar el mapa"
+    "mapaCargar": "Carregar el mapa",
+    "mapaOcultar": "Amagar el mapa",
+    "mapaRecordar": "Recordem la teva decisió en aquest navegador per no tornar-t'ho a preguntar. La pots retirar quan vulguis amb «Amagar el mapa»."
   },
   "pie": {
     "contacto": "Contacte",

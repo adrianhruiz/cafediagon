@@ -130,7 +130,7 @@
               ["Data processed", "IP address, device data and whatever Google stores in your browser."],
               ["Purpose", "To show the map with the café's location."],
               ["Legal basis", "Your consent, given by pressing the button (art. 6(1)(a) GDPR and art. 22.2 LSSI)."],
-              ["How to withdraw it", "By not pressing the button, or by reloading the page: the map will not load again until you ask for it. Data already stored can be cleared from your browser."],
+              ["How to withdraw it", "By pressing “Hide the map”: the map disappears, the item that remembered your choice is deleted and it will not load again until you ask for it. Whatever Google stored can be cleared from your browser."],
               ["Recipients", "Google Ireland Limited and its group companies, as controllers of their own processing."]
             ]
           }
@@ -145,14 +145,23 @@
       {
         "titulo": "What is stored in your browser",
         "bloques": [
-          { "p": "This website uses no cookies. It stores a single item in the browser's local storage:" },
+          { "p": "This website uses no cookies. It stores two items in the browser's local storage, and only if you cause them:" },
           {
             "datos": [
               ["Name", "diagon:idioma"],
-              ["What for", "To remember the language you chose, so it is not asked again on your next visit."],
+              ["What for", "To remember the language you chose, so it is not asked again on your next visit. It is only written if you press the language selector: the language detected from your browser is not stored."],
               ["Content", "The language code: es, ca, en or de. It identifies nobody."],
               ["Duration", "Until you clear it from your browser."],
               ["Consent", "Not required: it is a preference you chose yourself and is exempt under art. 22.2 LSSI."]
+            ]
+          },
+          {
+            "datos": [
+              ["Name", "diagon:mapa"],
+              ["What for", "To remember that you asked for the Google map to load, so you are not asked again on every visit. It only exists if you asked for it."],
+              ["Content", "A 1. It identifies nobody."],
+              ["Duration", "Until you press “Hide the map” or clear it from your browser."],
+              ["Consent", "Storing it does not need any: it is what remembers the decision you made (art. 22.2 LSSI). Withdrawing your consent deletes it."]
             ]
           },
           { "p": "Since there are no cookies and no third-party trackers, this website does not need a cookie banner." }

@@ -130,7 +130,7 @@
               ["Dades tractades", "Adreça IP, dades del dispositiu i la informació que Google desi al teu navegador."],
               ["Finalitat", "Mostrar el mapa amb la ubicació del cafè."],
               ["Base jurídica", "El teu consentiment, que dones en prémer el botó (art. 6.1.a RGPD i art. 22.2 LSSI)."],
-              ["Com es retira", "No prement el botó, o recarregant la pàgina: el mapa no es torna a carregar fins que el demanis un altre cop. Les dades ja desades s'esborren des del teu navegador."],
+              ["Com es retira", "Prement «Amagar el mapa»: el mapa desapareix, s'esborra la dada que recordava la teva decisió i no es torna a carregar fins que el demanis un altre cop. El que Google hagi desat s'esborra des del teu navegador."],
               ["Destinataris", "Google Ireland Limited i les empreses del seu grup, com a responsables del seu propi tractament."]
             ]
           }
@@ -145,14 +145,23 @@
       {
         "titulo": "El que es desa al teu navegador",
         "bloques": [
-          { "p": "Aquesta web no fa servir galetes. Desa una única dada a l'emmagatzematge local del navegador:" },
+          { "p": "Aquesta web no fa servir galetes. Desa dues dades a l'emmagatzematge local del navegador, i només si les provoques tu:" },
           {
             "datos": [
               ["Nom", "diagon:idioma"],
-              ["Per a què", "Recordar l'idioma que has triat, per no tornar-lo a demanar en la propera visita."],
+              ["Per a què", "Recordar l'idioma que has triat, per no tornar-lo a demanar en la propera visita. Només s'escriu si prems el selector d'idioma: el que es detecta del navegador no es desa."],
               ["Contingut", "El codi de l'idioma: es, ca, en o de. No identifica ningú."],
               ["Durada", "Fins que l'esborris des del teu navegador."],
               ["Consentiment", "No cal: és una preferència triada per tu i està exempta d'acord amb l'art. 22.2 LSSI."]
+            ]
+          },
+          {
+            "datos": [
+              ["Nom", "diagon:mapa"],
+              ["Per a què", "Recordar que has demanat carregar el mapa de Google, per no tornar-t'ho a preguntar a cada visita. Només existeix si l'has demanat."],
+              ["Contingut", "Un 1. No identifica ningú."],
+              ["Durada", "Fins que prems «Amagar el mapa» o l'esborris des del teu navegador."],
+              ["Consentiment", "Desar-la no en necessita: és el que recorda la decisió que has pres tu (art. 22.2 LSSI). Retirar el consentiment esborra la dada."]
             ]
           },
           { "p": "Com que no hi ha cap galeta ni cap rastrejador de tercers, aquesta web no necessita bàner de galetes." }

@@ -142,10 +142,19 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
     expect(texto).toContain(negocio.nif);
   });
 
-  it('declara el dato que se guarda en el navegador', async () => {
-    // Exento de consentimiento (art. 22.2 LSSI), pero hay que declararlo.
+  it('declara los datos que se guardan en el navegador', async () => {
+    // Exentos de consentimiento (art. 22.2 LSSI), pero hay que declararlos.
     const { container } = await abrir('#privacidad');
-    expect(container.querySelector('.legal').textContent).toContain('diagon:idioma');
+    const texto = container.querySelector('.legal').textContent;
+
+    expect(texto).toContain('diagon:idioma');
+    expect(texto).toContain('diagon:mapa');
+  });
+
+  it('explica como se retira el consentimiento del mapa', async () => {
+    // Art. 7.3 RGPD: hay que decir que se puede retirar y por donde.
+    const { container } = await abrir('#privacidad');
+    expect(container.querySelector('.legal').textContent).toContain(es.donde.mapaOcultar);
   });
 
   it('declara la transferencia internacional del alojamiento', async () => {

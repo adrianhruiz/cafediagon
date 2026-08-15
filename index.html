@@ -20,7 +20,21 @@
   <meta name="description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos, brunch y cientos de juegos de mesa gratis. Mejor Coffee House de Cala Rajada 2026." />
   <meta name="theme-color" content="#202227" />
 
+  <!-- Los cuatro idiomas son el mismo documento pintado con otro diccionario,
+       asi que sin esto solo hay una URL y el buscador solo puede indexar el
+       castellano. Con ?lang= cada idioma tiene direccion propia, se puede
+       compartir y se indexa; x-default es la que decide por el idioma del
+       navegador. tests/contenido.test.js comprueba que estan los cuatro y que
+       apuntan a la web declarada en business.json. -->
+  <link rel="canonical" href="https://adrianhruiz.github.io/cafediagon/" />
+  <link rel="alternate" hreflang="es" href="https://adrianhruiz.github.io/cafediagon/?lang=es" />
+  <link rel="alternate" hreflang="en" href="https://adrianhruiz.github.io/cafediagon/?lang=en" />
+  <link rel="alternate" hreflang="de" href="https://adrianhruiz.github.io/cafediagon/?lang=de" />
+  <link rel="alternate" hreflang="ca" href="https://adrianhruiz.github.io/cafediagon/?lang=ca" />
+  <link rel="alternate" hreflang="x-default" href="https://adrianhruiz.github.io/cafediagon/" />
+
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://adrianhruiz.github.io/cafediagon/" />
   <meta property="og:site_name" content="Diagon Cafe" />
   <meta property="og:title" content="Diagon Cafe · Café de especialidad y juegos de mesa" />
   <meta property="og:description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos y cientos de juegos de mesa gratis." />
@@ -40,6 +54,7 @@
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
     "name": "Diagon Cafe",
+    "url": "https://adrianhruiz.github.io/cafediagon/",
     "description": "Cafetería de especialidad en Cala Rajada con cientos de juegos de mesa a disposición de los clientes.",
     "address": {
       "@type": "PostalAddress",

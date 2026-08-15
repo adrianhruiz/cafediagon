@@ -100,7 +100,9 @@
     "comoLlegar": "In Google Maps öffnen",
     "mapaTitulo": "Karte mit dem Standort des Diagon Cafe",
     "mapaAviso": "Die Karte wird von Google geladen. Beim Anzeigen erhält Google deine IP-Adresse und kann Daten in deinem Browser speichern.",
-    "mapaCargar": "Karte laden"
+    "mapaCargar": "Karte laden",
+    "mapaOcultar": "Karte ausblenden",
+    "mapaRecordar": "Wir merken uns deine Entscheidung in diesem Browser, damit du nicht erneut gefragt wirst. Du kannst sie jederzeit über „Karte ausblenden“ zurückziehen."
   },
   "pie": {
     "contacto": "Kontakt",

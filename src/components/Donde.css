@@ -65,6 +65,15 @@
   background: var(--crema-3);
 }
 
+/* Mapa cargado: el marco y, debajo, el boton que retira el consentimiento. */
+.donde__mapa-zona {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.donde__mapa-zona .donde__mapa { flex: 1; }
+
 /* Marcador previo al consentimiento: nada de esto sale de la propia web. */
 .donde__mapa--previo {
   display: flex;
@@ -85,6 +94,10 @@
   color: var(--tinta-3);
 }
 
+/* Lo de que la decision se recuerda es letra pequena: importa, pero no es lo
+   que hay que leer antes de decidir. */
+.donde__mapa-aviso--menor { font-size: 0.78rem; }
+
 .donde__mapa-boton {
   font-family: var(--sans);
   font-size: 0.82rem;
@@ -100,6 +113,16 @@
   transition: background 0.2s ease;
 }
 .donde__mapa-boton:hover { background: var(--tinta-2); }
+
+/* Retirar el consentimiento tiene que ser tan facil como darlo (art. 7.3 RGPD),
+   pero este boton no compite con el contenido: mismo tamano, sin relleno. Los
+   colores son pares ya medidos en tests/contraste.test.js. */
+.donde__mapa-boton--suave {
+  color: var(--cobre);
+  background: transparent;
+  border: 1px solid var(--borde-control);
+}
+.donde__mapa-boton--suave:hover { color: var(--crema); background: var(--cobre); }
 
 @media (max-width: 900px) {
   .donde { grid-template-columns: 1fr; }

@@ -78,8 +78,15 @@ Ten en cuenta dos cosas:
 
 ## Idiomas
 
-Español, inglés, alemán y catalán. El idioma se detecta del navegador y se
-recuerda en el navegador del visitante.
+Español, inglés, alemán y catalán. El idioma sale, por este orden, del parámetro
+`?lang=` de la URL, de lo que el visitante haya elegido antes y del idioma del
+navegador.
+
+`?lang=de` es lo que hace que un enlace se pueda compartir en un idioma
+concreto: al pulsar el selector, el idioma se escribe en la barra de direcciones
+con `replaceState` (sin llenar el historial y sin tocar el hash, que es la ruta
+de las páginas legales). `index.html` declara un `hreflang` por idioma con esa
+misma URL, y un test comprueba que estén los cuatro.
 
 Los textos de interfaz están en `src/i18n/`. Los nombres y descripciones de los
 platos vienen del TPV, que los tiene traducidos al 66 %; lo que falte cae al
@@ -87,6 +94,22 @@ castellano automáticamente.
 
 Un test comprueba que los cuatro idiomas tengan exactamente las mismas claves,
 así que si añades un texto a uno tienes que añadirlo a los cuatro.
+
+## Qué se guarda en el navegador
+
+Ninguna cookie. Dos claves en `localStorage`, las dos a través de
+`src/almacen.js` (que envuelve todo en `try/catch`: en modo privado revienta y
+ninguna preferencia vale una página rota):
+
+- `diagon:idioma` — solo se escribe si el visitante pulsa el selector. El idioma
+  detectado del navegador **no** se guarda: no es una elección suya y la política
+  de privacidad dice "el idioma que has elegido".
+- `diagon:mapa` — recuerda que pidió cargar el mapa de Google, para no
+  preguntárselo en cada visita. El botón "Ocultar el mapa" lo quita y borra la
+  clave, que es lo que exige el art. 7.3 del RGPD para retirar un consentimiento.
+
+Si se guarda algo más, hay que declararlo en los cuatro `legal.*.json`: un test
+comprueba que la política de privacidad nombre cada clave.
 
 ## Accesibilidad
 

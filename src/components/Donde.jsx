@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { borrar, guardar, leer } from '../almacen.js';
 import { useIdioma } from '../i18n/idioma.jsx';
 import negocio from '../content/business.json';
 import './Donde.css';
+
+/** Recuerda que el visitante ya dijo que si al mapa. Solo existe si lo dijo. */
+const CLAVE_MAPA = 'diagon:mapa';
 
 export default function Donde() {
   const { t } = useIdioma();
@@ -11,14 +15,39 @@ export default function Donde() {
   // IP a Google y usa almacenamiento del navegador, y eso exige consentimiento
   // previo (art. 22.2 LSSI). Asi el sitio no tiene ningun rastreador no exento
   // y no necesita banner de cookies.
-  const [mapaVisible, setMapaVisible] = useState(false);
+  //
+  // La respuesta se recuerda para no volver a preguntar en cada visita. Lo que
+  // se guarda es la decision, no un identificador, y tiene que poder retirarse
+  // con la misma facilidad con que se dio (art. 7.3 RGPD): de ahi el boton de
+  // ocultar, que quita el mapa y borra el dato.
+  const [mapaVisible, setMapaVisible] = useState(() => leer(CLAVE_MAPA) === '1');
   const marco = useRef(null);
+  const boton = useRef(null);
+  const anterior = useRef(mapaVisible);
 
   // El boton que enciende el mapa desaparece al pulsarlo y el foco se caeria al
-  // principio del documento. Se lleva al mapa, que es lo que se acaba de pedir.
+  // principio del documento. Se lleva al mapa, que es lo que se acaba de pedir,
+  // y al ocultarlo vuelve al boton que lo enciende.
   useEffect(() => {
+    // Solo cuando cambia, no al montar: si el consentimiento venia guardado, el
+    // mapa ya esta puesto y llevar ahi el foco dejaria a quien entra en el
+    // final de la portada sin haber pedido nada.
+    const cambio = anterior.current !== mapaVisible;
+    anterior.current = mapaVisible;
+    if (!cambio) return;
     if (mapaVisible) marco.current?.focus();
+    else boton.current?.focus();
   }, [mapaVisible]);
+
+  const mostrarMapa = () => {
+    setMapaVisible(true);
+    guardar(CLAVE_MAPA, '1');
+  };
+
+  const ocultarMapa = () => {
+    setMapaVisible(false);
+    borrar(CLAVE_MAPA);
+  };
 
   // Mapa sin API key: el modo embed publico basta para una ficha estatica.
   const mapa = `https://www.google.com/maps?q=${geo.lat},${geo.lng}&hl=es&z=17&output=embed`;
@@ -78,22 +107,37 @@ export default function Donde() {
         </div>
 
         {mapaVisible ? (
-          <iframe
-            ref={marco}
-            className="donde__mapa"
-            src={mapa}
-            title={t('donde.mapaTitulo')}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
+          <div className="donde__mapa-zona">
+            <iframe
+              ref={marco}
+              className="donde__mapa"
+              src={mapa}
+              title={t('donde.mapaTitulo')}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <button
+              type="button"
+              className="donde__mapa-boton donde__mapa-boton--suave"
+              onClick={ocultarMapa}
+            >
+              {t('donde.mapaOcultar')}
+            </button>
+          </div>
         ) : (
           <div className="donde__mapa donde__mapa--previo">
             <p className="donde__mapa-aviso">{t('donde.mapaAviso')}</p>
+            {/* Antes del boton: quien lo pulsa tiene que haber leido ya que la
+                respuesta se recuerda, no enterarse despues. */}
+            <p className="donde__mapa-aviso donde__mapa-aviso--menor">
+              {t('donde.mapaRecordar')}
+            </p>
             <button
+              ref={boton}
               type="button"
               className="donde__mapa-boton"
-              onClick={() => setMapaVisible(true)}
+              onClick={mostrarMapa}
             >
               {t('donde.mapaCargar')}
             </button>

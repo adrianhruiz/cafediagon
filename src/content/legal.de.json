@@ -130,7 +130,7 @@
               ["Verarbeitete Daten", "IP-Adresse, Gerätedaten und was Google in deinem Browser speichert."],
               ["Zweck", "Die Karte mit dem Standort des Cafés anzeigen."],
               ["Rechtsgrundlage", "Deine Einwilligung, die du mit dem Druck auf den Knopf gibst (Art. 6 Abs. 1 lit. a DSGVO und Art. 22.2 LSSI)."],
-              ["Widerruf", "Indem du den Knopf nicht drückst oder die Seite neu lädst: Die Karte lädt erst wieder, wenn du sie erneut anforderst. Bereits gespeicherte Daten löschst du in deinem Browser."],
+              ["Widerruf", "Mit dem Knopf „Karte ausblenden“: Die Karte verschwindet, der Eintrag, der deine Entscheidung gemerkt hat, wird gelöscht, und die Karte lädt erst wieder, wenn du sie erneut anforderst. Was Google gespeichert hat, löschst du in deinem Browser."],
               ["Empfänger", "Google Ireland Limited und ihre Konzerngesellschaften, als Verantwortliche ihrer eigenen Verarbeitung."]
             ]
           }
@@ -145,14 +145,23 @@
       {
         "titulo": "Was in deinem Browser gespeichert wird",
         "bloques": [
-          { "p": "Diese Website verwendet keine Cookies. Sie speichert einen einzigen Eintrag im lokalen Speicher des Browsers:" },
+          { "p": "Diese Website verwendet keine Cookies. Sie speichert zwei Einträge im lokalen Speicher des Browsers, und nur wenn du sie auslöst:" },
           {
             "datos": [
               ["Name", "diagon:idioma"],
-              ["Wofür", "Die gewählte Sprache merken, damit sie beim nächsten Besuch nicht erneut abgefragt wird."],
+              ["Wofür", "Die gewählte Sprache merken, damit sie beim nächsten Besuch nicht erneut abgefragt wird. Er wird nur geschrieben, wenn du die Sprachauswahl drückst: Die aus dem Browser erkannte Sprache wird nicht gespeichert."],
               ["Inhalt", "Das Sprachkürzel: es, ca, en oder de. Es identifiziert niemanden."],
               ["Dauer", "Bis du ihn in deinem Browser löschst."],
               ["Einwilligung", "Nicht erforderlich: Es ist eine von dir gewählte Voreinstellung und nach Art. 22.2 LSSI ausgenommen."]
+            ]
+          },
+          {
+            "datos": [
+              ["Name", "diagon:mapa"],
+              ["Wofür", "Merken, dass du die Google-Karte laden wolltest, damit du nicht bei jedem Besuch erneut gefragt wirst. Er existiert nur, wenn du sie angefordert hast."],
+              ["Inhalt", "Eine 1. Sie identifiziert niemanden."],
+              ["Dauer", "Bis du „Karte ausblenden“ drückst oder ihn in deinem Browser löschst."],
+              ["Einwilligung", "Zum Speichern nicht erforderlich: Er merkt sich genau die Entscheidung, die du getroffen hast (Art. 22.2 LSSI). Der Widerruf löscht ihn."]
             ]
           },
           { "p": "Da es weder Cookies noch fremde Tracker gibt, braucht diese Website kein Cookie-Banner." }

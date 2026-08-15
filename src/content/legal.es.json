@@ -130,7 +130,7 @@
               ["Datos tratados", "Dirección IP, datos del dispositivo y la información que Google guarde en tu navegador."],
               ["Finalidad", "Mostrar el mapa con la ubicación del café."],
               ["Base jurídica", "Tu consentimiento, que das al pulsar el botón (art. 6.1.a RGPD y art. 22.2 LSSI)."],
-              ["Cómo se retira", "No pulsando el botón, o recargando la página: el mapa no vuelve a cargarse hasta que lo pidas otra vez. Los datos ya guardados se borran desde tu navegador."],
+              ["Cómo se retira", "Pulsando «Ocultar el mapa»: el mapa desaparece, se borra el dato que recordaba tu decisión y no vuelve a cargarse hasta que lo pidas otra vez. Lo que Google haya guardado se borra desde tu navegador."],
               ["Destinatarios", "Google Ireland Limited y las empresas de su grupo, como responsables de su propio tratamiento."]
             ]
           }
@@ -145,14 +145,23 @@
       {
         "titulo": "Lo que se guarda en tu navegador",
         "bloques": [
-          { "p": "Esta web no usa cookies. Guarda un único dato en el almacenamiento local del navegador:" },
+          { "p": "Esta web no usa cookies. Guarda dos datos en el almacenamiento local del navegador, y solo si eres tú quien los provoca:" },
           {
             "datos": [
               ["Nombre", "diagon:idioma"],
-              ["Para qué", "Recordar el idioma que has elegido, para no volver a preguntarlo en la siguiente visita."],
+              ["Para qué", "Recordar el idioma que has elegido, para no volver a preguntarlo en la siguiente visita. Solo se escribe si pulsas el selector de idioma: el que se detecta del navegador no se guarda."],
               ["Contenido", "El código del idioma: es, ca, en o de. No identifica a nadie."],
               ["Duración", "Hasta que lo borres desde tu navegador."],
               ["Consentimiento", "No hace falta: es una preferencia elegida por ti y está exenta conforme al art. 22.2 LSSI."]
+            ]
+          },
+          {
+            "datos": [
+              ["Nombre", "diagon:mapa"],
+              ["Para qué", "Recordar que has pedido cargar el mapa de Google, para no volver a preguntártelo en cada visita. Solo existe si lo has pedido."],
+              ["Contenido", "Un 1. No identifica a nadie."],
+              ["Duración", "Hasta que pulses «Ocultar el mapa» o lo borres desde tu navegador."],
+              ["Consentimiento", "Guardarlo no lo necesita: es lo que recuerda la decisión que has tomado tú (art. 22.2 LSSI). Retirar el consentimiento borra el dato."]
             ]
           },
           { "p": "Como no hay ninguna cookie ni ningún rastreador de terceros, esta web no necesita banner de cookies." }

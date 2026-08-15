@@ -261,6 +261,50 @@ describe('mapa', () => {
     expect(marco).toBeTruthy();
     expect(marco.getAttribute('src')).toContain('google.com/maps');
   });
+
+  it('recuerda el consentimiento para no volver a preguntarlo', async () => {
+    const usuario = userEvent.setup();
+    await montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
+    expect(localStorage.getItem('diagon:mapa')).toBe('1');
+  });
+
+  it('con el consentimiento guardado el mapa ya esta puesto al entrar', async () => {
+    localStorage.setItem('diagon:mapa', '1');
+    const { container } = await montar();
+
+    expect(container.querySelector('iframe')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: es.donde.mapaCargar })).not.toBeInTheDocument();
+  });
+
+  it('no roba el foco al entrar con el consentimiento guardado', async () => {
+    // El visitante no ha pedido nada en esta visita: llevarle el foco al mapa
+    // seria dejarle en el final de la portada sin haberlo tocado.
+    localStorage.setItem('diagon:mapa', '1');
+    const { container } = await montar();
+
+    expect(container.querySelector('iframe')).not.toHaveFocus();
+  });
+
+  it('ocultar el mapa lo quita y borra el consentimiento', async () => {
+    // Art. 7.3 RGPD: retirarlo tiene que ser tan facil como haberlo dado.
+    const usuario = userEvent.setup();
+    localStorage.setItem('diagon:mapa', '1');
+    const { container } = await montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaOcultar }));
+
+    expect(container.querySelector('iframe')).toBeNull();
+    expect(container.innerHTML).not.toContain('google.com/maps');
+    expect(localStorage.getItem('diagon:mapa')).toBeNull();
+    expect(screen.getByRole('button', { name: es.donde.mapaCargar })).toBeInTheDocument();
+  });
+
+  it('avisa de que la decision se recuerda antes de pedirla', async () => {
+    await montar();
+    expect(screen.getByText(es.donde.mapaRecordar)).toBeInTheDocument();
+  });
 });
 
 describe('carta: alergenos', () => {
@@ -477,6 +521,18 @@ describe('accesibilidad', () => {
 
     await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
     expect(container.querySelector('iframe')).toHaveFocus();
+  });
+
+  it('al ocultar el mapa el foco vuelve al boton que lo enciende', async () => {
+    // El boton pulsado desaparece con el mapa: sin esto el foco se cae al
+    // principio del documento y el teclado tiene que rehacer el camino.
+    const usuario = userEvent.setup();
+    await montar();
+
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
+    await usuario.click(screen.getByRole('button', { name: es.donde.mapaOcultar }));
+
+    expect(screen.getByRole('button', { name: es.donde.mapaCargar })).toHaveFocus();
   });
 
   it('la cuenta de productos no se cuela en el nombre de la categoria', async () => {
