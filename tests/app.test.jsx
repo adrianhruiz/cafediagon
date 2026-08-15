@@ -244,66 +244,38 @@ describe('galeria', () => {
 });
 
 describe('mapa', () => {
-  it('no carga nada de Google hasta que el visitante lo pide', async () => {
-    const { container } = await montar();
-    expect(container.querySelector('iframe')).toBeNull();
-    expect(container.innerHTML).not.toContain('google.com');
-    expect(screen.getByText(es.donde.mapaAviso)).toBeInTheDocument();
-  });
-
-  it('monta el iframe al pulsar el boton', async () => {
-    const usuario = userEvent.setup();
+  it('se ve al entrar y no pide nada a Google', async () => {
+    // El iframe de Google mandaba la IP del visitante y escribia en su
+    // navegador antes de consentir nada (art. 22.2 LSSI). Ahora el mapa es una
+    // imagen de esta misma web: si alguien vuelve a incrustarlo, esto salta.
     const { container } = await montar();
 
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
-
-    const marco = container.querySelector('iframe');
-    expect(marco).toBeTruthy();
-    expect(marco.getAttribute('src')).toContain('google.com/maps');
-  });
-
-  it('recuerda el consentimiento para no volver a preguntarlo', async () => {
-    const usuario = userEvent.setup();
-    await montar();
-
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
-    expect(localStorage.getItem('diagon:mapa')).toBe('1');
-  });
-
-  it('con el consentimiento guardado el mapa ya esta puesto al entrar', async () => {
-    localStorage.setItem('diagon:mapa', '1');
-    const { container } = await montar();
-
-    expect(container.querySelector('iframe')).toBeTruthy();
-    expect(screen.queryByRole('button', { name: es.donde.mapaCargar })).not.toBeInTheDocument();
-  });
-
-  it('no roba el foco al entrar con el consentimiento guardado', async () => {
-    // El visitante no ha pedido nada en esta visita: llevarle el foco al mapa
-    // seria dejarle en el final de la portada sin haberlo tocado.
-    localStorage.setItem('diagon:mapa', '1');
-    const { container } = await montar();
-
-    expect(container.querySelector('iframe')).not.toHaveFocus();
-  });
-
-  it('ocultar el mapa lo quita y borra el consentimiento', async () => {
-    // Art. 7.3 RGPD: retirarlo tiene que ser tan facil como haberlo dado.
-    const usuario = userEvent.setup();
-    localStorage.setItem('diagon:mapa', '1');
-    const { container } = await montar();
-
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaOcultar }));
-
+    expect(container.querySelector('#donde a.donde__mapa img')).toBeTruthy();
     expect(container.querySelector('iframe')).toBeNull();
     expect(container.innerHTML).not.toContain('google.com/maps');
-    expect(localStorage.getItem('diagon:mapa')).toBeNull();
-    expect(screen.getByRole('button', { name: es.donde.mapaCargar })).toBeInTheDocument();
   });
 
-  it('avisa de que la decision se recuerda antes de pedirla', async () => {
+  it('el mapa lleva a Google Maps y se abre fuera', async () => {
+    const { container } = await montar();
+    const enlace = container.querySelector('a.donde__mapa');
+
+    expect(enlace).toHaveAttribute('href', negocio.maps);
+    expect(enlace).toHaveAttribute('target', '_blank');
+    expect(enlace.querySelector('img')).toHaveAttribute('alt', es.donde.mapaTitulo);
+  });
+
+  it('atribuye las teselas a OpenStreetMap, como pide su licencia', async () => {
+    const { container } = await montar();
+    const credito = container.querySelector('.donde__mapa-credito');
+
+    expect(credito).toHaveTextContent('OpenStreetMap');
+    expect(credito.querySelector('a'))
+      .toHaveAttribute('href', 'https://www.openstreetmap.org/copyright');
+  });
+
+  it('el mapa no guarda nada en el navegador', async () => {
     await montar();
-    expect(screen.getByText(es.donde.mapaRecordar)).toBeInTheDocument();
+    expect(localStorage.getItem('diagon:mapa')).toBeNull();
   });
 });
 
@@ -515,24 +487,14 @@ describe('accesibilidad', () => {
     expect(container.querySelector('.hero__fondo').getAttribute('alt')).toBe('');
   });
 
-  it('el foco entra en el mapa cuando el visitante lo carga', async () => {
-    const usuario = userEvent.setup();
+  it('el mapa es un enlace con nombre, no una imagen suelta', async () => {
+    // Es lo unico que lleva a Google Maps desde la propia imagen: sin alt, el
+    // enlace se anuncia por su URL y no dice a donde va (2.4.4).
     const { container } = await montar();
+    const enlace = container.querySelector('a.donde__mapa');
 
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
-    expect(container.querySelector('iframe')).toHaveFocus();
-  });
-
-  it('al ocultar el mapa el foco vuelve al boton que lo enciende', async () => {
-    // El boton pulsado desaparece con el mapa: sin esto el foco se cae al
-    // principio del documento y el teclado tiene que rehacer el camino.
-    const usuario = userEvent.setup();
-    await montar();
-
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaCargar }));
-    await usuario.click(screen.getByRole('button', { name: es.donde.mapaOcultar }));
-
-    expect(screen.getByRole('button', { name: es.donde.mapaCargar })).toHaveFocus();
+    expect(enlace.querySelector('img').getAttribute('alt')).toBe(es.donde.mapaTitulo);
+    expect(enlace.getAttribute('alt')).toBeNull();
   });
 
   it('la cuenta de productos no se cuela en el nombre de la categoria', async () => {

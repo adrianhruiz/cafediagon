@@ -11,6 +11,7 @@
     "menu": "node scripts/build-menu.mjs",
     "menu:idiomas": "node scripts/split-menu.mjs",
     "fotos": "node scripts/ingest-fotos.mjs",
+    "mapa": "node scripts/build-mapa.mjs",
     "imagenes": "node scripts/optimize-images.mjs",
     "mockup": "node scripts/build-mockup.mjs",
     "sanitize": "node scripts/sanitize-scrapped.mjs",

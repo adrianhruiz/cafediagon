@@ -22,6 +22,7 @@ npm run dev        # http://localhost:5173/cafediagon/
 | `npm run menu` | Regenera la carta desde el export del TPV |
 | `npm run menu:idiomas` | Reparte `menu.json` en un fichero por idioma (lo que carga la web) |
 | `npm run fotos` | Prepara las fotos nuevas del café (HEIC del Drive → `assets-origen/fotos/`) |
+| `npm run mapa` | Redibuja el mapa de «Dónde estamos» con teselas de OpenStreetMap |
 | `npm run imagenes` | Regenera `public/images/` desde `assets-origen/` |
 | `npm run check` | Comprueba la maquetación en 6 anchos de pantalla |
 
@@ -97,19 +98,34 @@ así que si añades un texto a uno tienes que añadirlo a los cuatro.
 
 ## Qué se guarda en el navegador
 
-Ninguna cookie. Dos claves en `localStorage`, las dos a través de
-`src/almacen.js` (que envuelve todo en `try/catch`: en modo privado revienta y
-ninguna preferencia vale una página rota):
+Ninguna cookie y ninguna petición a terceros. Una sola clave en `localStorage`,
+a través de `src/almacen.js` (que envuelve todo en `try/catch`: en modo privado
+revienta y ninguna preferencia vale una página rota):
 
 - `diagon:idioma` — solo se escribe si el visitante pulsa el selector. El idioma
   detectado del navegador **no** se guarda: no es una elección suya y la política
   de privacidad dice "el idioma que has elegido".
-- `diagon:mapa` — recuerda que pidió cargar el mapa de Google, para no
-  preguntárselo en cada visita. El botón "Ocultar el mapa" lo quita y borra la
-  clave, que es lo que exige el art. 7.3 del RGPD para retirar un consentimiento.
 
 Si se guarda algo más, hay que declararlo en los cuatro `legal.*.json`: un test
 comprueba que la política de privacidad nombre cada clave.
+
+## El mapa
+
+El mapa de «Dónde estamos» es una imagen servida por la propia web, no el iframe
+de Google Maps. El iframe manda la IP del visitante a Google y escribe en su
+navegador antes de que consienta nada (art. 22.2 LSSI): o se pedía permiso con
+un botón —fricción para lo que casi todo el mundo quiere, ver dónde cae el
+café—, o había que montar banner de cookies.
+
+`npm run mapa` descarga las teselas de OpenStreetMap, las pega, planta la
+chincheta y deja `assets-origen/mapa/mapa.jpg`; después `npm run imagenes` genera
+los derivados. **Solo hay que ejecutarlo si cambia la dirección del café**: el
+jpg vive en el repositorio porque la política de uso de OSM no admite que un
+build pida teselas en cada despliegue.
+
+La atribución (licencia ODbL) va quemada en la esquina de la imagen y repetida
+como enlace bajo el mapa. Si el mapa deja de recortarse o se cambia por otra
+cosa, las dos tienen que seguir ahí.
 
 ## Accesibilidad
 

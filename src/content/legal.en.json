@@ -39,13 +39,13 @@
         "titulo": "Intellectual and industrial property",
         "bloques": [
           { "p": "The texts, photographs, logo and design of this website belong to the owner or are used with permission. They may not be reproduced, distributed or publicly communicated without written consent, other than uses expressly allowed by law." },
-          { "p": "Third-party names, trade marks and logos shown here —Instagram, Google, Restaurant Guru— belong to their respective owners and are cited only to identify them." }
+          { "p": "Third-party names, trade marks and logos shown here —Instagram, Google, Restaurant Guru— belong to their respective owners and are cited only to identify them. The map is drawn from OpenStreetMap data, © its contributors, available under the ODbL licence." }
         ]
       },
       {
         "titulo": "Links to third-party sites",
         "bloques": [
-          { "p": "This website links to outside services such as Instagram and Google Maps. The owner does not control those sites and is not responsible for their content or for the data processing they carry out: once you follow a link, their own terms and policies apply. The Google map is not loaded until you explicitly ask for it." }
+          { "p": "This website links to outside services such as Instagram and Google Maps. The owner does not control those sites and is not responsible for their content or for the data processing they carry out: once you follow a link, their own terms and policies apply. The map shown on the website is an image of our own: nothing is loaded from Google unless you follow the link." }
         ]
       },
       {
@@ -122,18 +122,10 @@
         ]
       },
       {
-        "titulo": "Google Maps map",
+        "titulo": "The map in “Find us”",
         "bloques": [
-          { "p": "The map does not load by itself: until you press the button, this website does not contact Google or download anything from it." },
-          {
-            "datos": [
-              ["Data processed", "IP address, device data and whatever Google stores in your browser."],
-              ["Purpose", "To show the map with the café's location."],
-              ["Legal basis", "Your consent, given by pressing the button (art. 6(1)(a) GDPR and art. 22.2 LSSI)."],
-              ["How to withdraw it", "By pressing “Hide the map”: the map disappears, the item that remembered your choice is deleted and it will not load again until you ask for it. Whatever Google stored can be cleared from your browser."],
-              ["Recipients", "Google Ireland Limited and its group companies, as controllers of their own processing."]
-            ]
-          }
+          { "p": "The map you see on this website is an image served by this website itself, drawn from OpenStreetMap data. It is not an embedded Google map: looking at it sends nothing to anyone, asks for no data, stores no data and needs no consent from you." },
+          { "p": "If you press the map or the “Open in Google Maps” link, you leave this website and enter Google Maps, a Google service with its own privacy policy. From that point on the processing is done by Google, and we receive no data about your visit." }
         ]
       },
       {
@@ -145,7 +137,7 @@
       {
         "titulo": "What is stored in your browser",
         "bloques": [
-          { "p": "This website uses no cookies. It stores two items in the browser's local storage, and only if you cause them:" },
+          { "p": "This website uses no cookies. It stores a single item in the browser's local storage, and only if you cause it:" },
           {
             "datos": [
               ["Name", "diagon:idioma"],
@@ -155,15 +147,6 @@
               ["Consent", "Not required: it is a preference you chose yourself and is exempt under art. 22.2 LSSI."]
             ]
           },
-          {
-            "datos": [
-              ["Name", "diagon:mapa"],
-              ["What for", "To remember that you asked for the Google map to load, so you are not asked again on every visit. It only exists if you asked for it."],
-              ["Content", "A 1. It identifies nobody."],
-              ["Duration", "Until you press “Hide the map” or clear it from your browser."],
-              ["Consent", "Storing it does not need any: it is what remembers the decision you made (art. 22.2 LSSI). Withdrawing your consent deletes it."]
-            ]
-          },
           { "p": "Since there are no cookies and no third-party trackers, this website does not need a cookie banner." }
         ]
       },
@@ -171,7 +154,7 @@
         "titulo": "International transfers",
         "bloques": [
           { "p": "Hosting the site on GitHub Pages means GitHub, Inc. (United States) processes the connection logs. GitHub belongs to the Microsoft group, which is certified under the EU-US Data Privacy Framework covered by the European Commission adequacy decision of 10 July 2023, and additionally applies standard contractual clauses." },
-          { "p": "If you load the map, or write to the Gmail mailbox, Google may process data outside the European Economic Area under equivalent safeguards." }
+          { "p": "If you write to the Gmail mailbox, Google may process data outside the European Economic Area under equivalent safeguards." }
         ]
       },
       {

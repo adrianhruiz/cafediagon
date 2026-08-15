@@ -552,14 +552,30 @@ describe('textos legales', () => {
     }
   });
 
-  it('la privacidad declara todo lo que se guarda en el navegador', () => {
+  it('la privacidad declara el unico dato que se guarda en el navegador', () => {
     // Si algun dia se guarda otra cosa, la declaracion deja de ser cierta.
     for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
       const texto = cadenasDe(dic.privacidad).join(' ');
-      for (const clave of ['diagon:idioma', 'diagon:mapa']) {
-        expect(texto, `${idioma} no declara ${clave}`).toContain(clave);
-      }
+      expect(texto, `${idioma} no declara la clave`).toContain('diagon:idioma');
       expect(texto, `${idioma} no cita el art. 22.2 LSSI`).toContain('22.2');
+    }
+  });
+
+  it('la privacidad explica que el mapa es una imagen propia', () => {
+    // El mapa dejo de ser un iframe de Google: mientras lo sea una imagen, la
+    // privacidad tiene que decirlo y citar de donde salen las teselas.
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      const texto = cadenasDe(dic.privacidad).join(' ');
+      expect(texto, `${idioma} no cita OpenStreetMap`).toContain('OpenStreetMap');
+      expect(texto, `${idioma} sigue declarando la clave del mapa`).not.toContain('diagon:mapa');
+    }
+  });
+
+  it('el aviso legal atribuye el mapa a OpenStreetMap (ODbL)', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      const texto = cadenasDe(dic.aviso).join(' ');
+      expect(texto, `${idioma} no atribuye las teselas`).toContain('OpenStreetMap');
+      expect(texto, `${idioma} no nombra la licencia`).toContain('ODbL');
     }
   });
 });

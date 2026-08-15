@@ -36,9 +36,12 @@ const ANCHOS = { fondo: [800], destacada: [400, 800, 1080], normal: [400, 800], 
 const FONDOS = new Set(['17-DEx8Xqxsd16']);
 const DESTACADAS = new Set(['06-DJEJYueMzZM', '21-DEnfYHEMvoF']);
 
+/** El mapa de scripts/build-mapa.mjs: se ve a media pagina, como las destacadas. */
+const MAPA = 'mapa';
+
 const anchosDe = (nombre) => {
   if (FONDOS.has(nombre)) return ANCHOS.fondo;
-  if (DESTACADAS.has(nombre)) return ANCHOS.destacada;
+  if (DESTACADAS.has(nombre) || nombre === MAPA) return ANCHOS.destacada;
   return ANCHOS.normal;
 };
 
@@ -55,6 +58,13 @@ const anchosDe = (nombre) => {
  */
 const CALIDAD_AVIF = 50;
 const CALIDAD_AVIF_FONDO = 32;
+
+/**
+ * El mapa no es una foto: son lineas finas y nombres de calle de 10 px, y a 50
+ * el nombre de la calle del cafe se emborrona. 68 lo deja legible y sigue
+ * pesando menos que el webp.
+ */
+const CALIDAD_AVIF_MAPA = 68;
 
 const FORMATOS = [
   { ext: 'avif', tipo: 'image/avif', aplicar: (img, { avif }) => img.avif({ quality: avif, effort: 4 }) },
@@ -117,14 +127,16 @@ const kb = (n) => `${Math.round(n / 1024)} KB`;
 await procesar(join(ORIGEN, 'logo-hd.jpg'), 'logo', ANCHOS.logo, { cuadrado: true, jpgCompleto: true });
 
 // posts/: lo que estaba publicado en Instagram. fotos/: lo que manda el cafe
-// por Drive, ya preparado por scripts/ingest-fotos.mjs.
-for (const carpeta of ['posts', 'fotos']) {
+// por Drive, ya preparado por scripts/ingest-fotos.mjs. mapa/: lo que dibuja
+// scripts/build-mapa.mjs con las teselas de OpenStreetMap.
+for (const carpeta of ['posts', 'fotos', 'mapa']) {
   for (const archivo of readdirSync(join(ORIGEN, carpeta)).filter((f) => f.endsWith('.jpg'))) {
     const nombre = basename(archivo, '.jpg');
     if (generados[nombre]) throw new Error(`Dos originales se llaman ${nombre}`);
-    await procesar(join(ORIGEN, carpeta, archivo), nombre, anchosDe(nombre), {
-      avif: FONDOS.has(nombre) ? CALIDAD_AVIF_FONDO : CALIDAD_AVIF,
-    });
+    let avif = CALIDAD_AVIF;
+    if (FONDOS.has(nombre)) avif = CALIDAD_AVIF_FONDO;
+    if (nombre === MAPA) avif = CALIDAD_AVIF_MAPA;
+    await procesar(join(ORIGEN, carpeta, archivo), nombre, anchosDe(nombre), { avif });
   }
 }
 

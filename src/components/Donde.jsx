@@ -1,56 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
-import { borrar, guardar, leer } from '../almacen.js';
 import { useIdioma } from '../i18n/idioma.jsx';
 import negocio from '../content/business.json';
+import Imagen from './Imagen.jsx';
 import './Donde.css';
 
-/** Recuerda que el visitante ya dijo que si al mapa. Solo existe si lo dijo. */
-const CLAVE_MAPA = 'diagon:mapa';
+/** Licencia de las teselas con las que esta dibujado el mapa (ODbL). */
+const OSM = 'https://www.openstreetmap.org/copyright';
 
 export default function Donde() {
   const { t } = useIdioma();
-  const { direccion, geo } = negocio;
+  const { direccion } = negocio;
 
-  // El iframe no se monta hasta que el visitante lo pide: cargarlo comunica su
-  // IP a Google y usa almacenamiento del navegador, y eso exige consentimiento
-  // previo (art. 22.2 LSSI). Asi el sitio no tiene ningun rastreador no exento
-  // y no necesita banner de cookies.
-  //
-  // La respuesta se recuerda para no volver a preguntar en cada visita. Lo que
-  // se guarda es la decision, no un identificador, y tiene que poder retirarse
-  // con la misma facilidad con que se dio (art. 7.3 RGPD): de ahi el boton de
-  // ocultar, que quita el mapa y borra el dato.
-  const [mapaVisible, setMapaVisible] = useState(() => leer(CLAVE_MAPA) === '1');
-  const marco = useRef(null);
-  const boton = useRef(null);
-  const anterior = useRef(mapaVisible);
-
-  // El boton que enciende el mapa desaparece al pulsarlo y el foco se caeria al
-  // principio del documento. Se lleva al mapa, que es lo que se acaba de pedir,
-  // y al ocultarlo vuelve al boton que lo enciende.
-  useEffect(() => {
-    // Solo cuando cambia, no al montar: si el consentimiento venia guardado, el
-    // mapa ya esta puesto y llevar ahi el foco dejaria a quien entra en el
-    // final de la portada sin haber pedido nada.
-    const cambio = anterior.current !== mapaVisible;
-    anterior.current = mapaVisible;
-    if (!cambio) return;
-    if (mapaVisible) marco.current?.focus();
-    else boton.current?.focus();
-  }, [mapaVisible]);
-
-  const mostrarMapa = () => {
-    setMapaVisible(true);
-    guardar(CLAVE_MAPA, '1');
-  };
-
-  const ocultarMapa = () => {
-    setMapaVisible(false);
-    borrar(CLAVE_MAPA);
-  };
-
-  // Mapa sin API key: el modo embed publico basta para una ficha estatica.
-  const mapa = `https://www.google.com/maps?q=${geo.lat},${geo.lng}&hl=es&z=17&output=embed`;
+  // El mapa es una imagen servida por esta misma web, dibujada en el build por
+  // scripts/build-mapa.mjs con teselas de OpenStreetMap. El iframe de Google
+  // mandaba la IP del visitante a Google y escribia en su navegador antes de
+  // que consintiera nada (art. 22.2 LSSI), asi que habia que pedirle permiso
+  // con un boton: mucha friccion para lo que casi todo el mundo quiere, que es
+  // ver donde cae el cafe. Asi se ve al entrar, no sale ni una peticion a
+  // terceros y la web sigue sin necesitar banner de cookies. Quien quiera
+  // llegar hasta aqui pulsa y se va a Google Maps, que es una visita suya a
+  // otro sitio.
 
   return (
     <section className="seccion seccion--alt" id="donde">
@@ -106,43 +74,23 @@ export default function Donde() {
           </ul>
         </div>
 
-        {mapaVisible ? (
-          <div className="donde__mapa-zona">
-            <iframe
-              ref={marco}
-              className="donde__mapa"
-              src={mapa}
-              title={t('donde.mapaTitulo')}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
+        <div className="donde__mapa-zona">
+          {/* El mapa entero lleva a Google Maps, que es lo que se espera al
+              pulsarlo, y ahi ya decide el visitante: es una salida de la web,
+              no una carga de terceros dentro de ella. */}
+          <a className="donde__mapa" href={negocio.maps} target="_blank" rel="noreferrer">
+            <Imagen
+              nombre="mapa"
+              alt={t('donde.mapaTitulo')}
+              sizes="(max-width: 900px) 92vw, 46vw"
             />
-            <button
-              type="button"
-              className="donde__mapa-boton donde__mapa-boton--suave"
-              onClick={ocultarMapa}
-            >
-              {t('donde.mapaOcultar')}
-            </button>
-          </div>
-        ) : (
-          <div className="donde__mapa donde__mapa--previo">
-            <p className="donde__mapa-aviso">{t('donde.mapaAviso')}</p>
-            {/* Antes del boton: quien lo pulsa tiene que haber leido ya que la
-                respuesta se recuerda, no enterarse despues. */}
-            <p className="donde__mapa-aviso donde__mapa-aviso--menor">
-              {t('donde.mapaRecordar')}
-            </p>
-            <button
-              ref={boton}
-              type="button"
-              className="donde__mapa-boton"
-              onClick={mostrarMapa}
-            >
-              {t('donde.mapaCargar')}
-            </button>
-          </div>
-        )}
+          </a>
+          {/* La atribucion de OpenStreetMap la pide su licencia (ODbL). Va
+              tambien quemada en la propia imagen, por si se comparte suelta. */}
+          <p className="donde__mapa-credito">
+            <a href={OSM} target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
+          </p>
+        </div>
       </div>
     </section>
   );

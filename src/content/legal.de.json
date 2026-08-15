@@ -39,13 +39,13 @@
         "titulo": "Urheber- und gewerbliche Schutzrechte",
         "bloques": [
           { "p": "Texte, Fotos, Logo und Gestaltung dieser Website gehören der Inhaberin oder werden mit Erlaubnis genutzt. Sie dürfen ohne schriftliche Zustimmung nicht vervielfältigt, verbreitet oder öffentlich zugänglich gemacht werden, abgesehen von den gesetzlich ausdrücklich erlaubten Nutzungen." },
-          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt." }
+          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt. Die Karte ist aus OpenStreetMap-Daten gezeichnet, © deren Mitwirkende, verfügbar unter der ODbL-Lizenz." }
         ]
       },
       {
         "titulo": "Links zu fremden Seiten",
         "bloques": [
-          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Die Google-Karte wird erst geladen, wenn du sie ausdrücklich anforderst." }
+          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Die Karte auf der Website ist ein eigenes Bild: Von Google wird nichts geladen, solange du dem Link nicht folgst." }
         ]
       },
       {
@@ -122,18 +122,10 @@
         ]
       },
       {
-        "titulo": "Google-Maps-Karte",
+        "titulo": "Die Karte unter „So findest du uns“",
         "bloques": [
-          { "p": "Die Karte lädt nicht von selbst: Bis du den Knopf drückst, nimmt diese Website keinen Kontakt zu Google auf und lädt nichts von dort." },
-          {
-            "datos": [
-              ["Verarbeitete Daten", "IP-Adresse, Gerätedaten und was Google in deinem Browser speichert."],
-              ["Zweck", "Die Karte mit dem Standort des Cafés anzeigen."],
-              ["Rechtsgrundlage", "Deine Einwilligung, die du mit dem Druck auf den Knopf gibst (Art. 6 Abs. 1 lit. a DSGVO und Art. 22.2 LSSI)."],
-              ["Widerruf", "Mit dem Knopf „Karte ausblenden“: Die Karte verschwindet, der Eintrag, der deine Entscheidung gemerkt hat, wird gelöscht, und die Karte lädt erst wieder, wenn du sie erneut anforderst. Was Google gespeichert hat, löschst du in deinem Browser."],
-              ["Empfänger", "Google Ireland Limited und ihre Konzerngesellschaften, als Verantwortliche ihrer eigenen Verarbeitung."]
-            ]
-          }
+          { "p": "Die Karte auf dieser Website ist ein Bild, das diese Website selbst ausliefert und das aus OpenStreetMap-Daten gezeichnet ist. Es ist keine eingebettete Google-Karte: Beim Ansehen wird niemandem etwas übermittelt, es werden keine Daten abgefragt oder gespeichert, und du musst in nichts einwilligen." },
+          { "p": "Wenn du auf die Karte oder auf „In Google Maps öffnen“ drückst, verlässt du diese Website und gelangst zu Google Maps, einem Dienst von Google mit eigener Datenschutzerklärung. Ab da verarbeitet Google, und wir erhalten keine Daten über deinen Besuch." }
         ]
       },
       {
@@ -145,7 +137,7 @@
       {
         "titulo": "Was in deinem Browser gespeichert wird",
         "bloques": [
-          { "p": "Diese Website verwendet keine Cookies. Sie speichert zwei Einträge im lokalen Speicher des Browsers, und nur wenn du sie auslöst:" },
+          { "p": "Diese Website verwendet keine Cookies. Sie speichert einen einzigen Eintrag im lokalen Speicher des Browsers, und nur wenn du ihn auslöst:" },
           {
             "datos": [
               ["Name", "diagon:idioma"],
@@ -155,15 +147,6 @@
               ["Einwilligung", "Nicht erforderlich: Es ist eine von dir gewählte Voreinstellung und nach Art. 22.2 LSSI ausgenommen."]
             ]
           },
-          {
-            "datos": [
-              ["Name", "diagon:mapa"],
-              ["Wofür", "Merken, dass du die Google-Karte laden wolltest, damit du nicht bei jedem Besuch erneut gefragt wirst. Er existiert nur, wenn du sie angefordert hast."],
-              ["Inhalt", "Eine 1. Sie identifiziert niemanden."],
-              ["Dauer", "Bis du „Karte ausblenden“ drückst oder ihn in deinem Browser löschst."],
-              ["Einwilligung", "Zum Speichern nicht erforderlich: Er merkt sich genau die Entscheidung, die du getroffen hast (Art. 22.2 LSSI). Der Widerruf löscht ihn."]
-            ]
-          },
           { "p": "Da es weder Cookies noch fremde Tracker gibt, braucht diese Website kein Cookie-Banner." }
         ]
       },
@@ -171,7 +154,7 @@
         "titulo": "Übermittlungen in Drittländer",
         "bloques": [
           { "p": "Das Hosting auf GitHub Pages bedeutet, dass GitHub, Inc. (USA) die Verbindungsprotokolle verarbeitet. GitHub gehört zur Microsoft-Gruppe, die nach dem EU-US Data Privacy Framework zertifiziert ist, das durch den Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023 gedeckt ist, und wendet zusätzlich Standardvertragsklauseln an." },
-          { "p": "Wenn du die Karte lädst oder an das Gmail-Postfach schreibst, kann Google Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit gleichwertigen Garantien." }
+          { "p": "Wenn du an das Gmail-Postfach schreibst, kann Google Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit gleichwertigen Garantien." }
         ]
       },
       {

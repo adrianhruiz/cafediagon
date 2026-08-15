@@ -142,19 +142,19 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
     expect(texto).toContain(negocio.nif);
   });
 
-  it('declara los datos que se guardan en el navegador', async () => {
-    // Exentos de consentimiento (art. 22.2 LSSI), pero hay que declararlos.
+  it('declara el dato que se guarda en el navegador', async () => {
+    // Exento de consentimiento (art. 22.2 LSSI), pero hay que declararlo.
     const { container } = await abrir('#privacidad');
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('diagon:idioma');
-    expect(texto).toContain('diagon:mapa');
+    // El mapa dejo de guardar nada: si vuelve a hacerlo, hay que declararlo.
+    expect(texto).not.toContain('diagon:mapa');
   });
 
-  it('explica como se retira el consentimiento del mapa', async () => {
-    // Art. 7.3 RGPD: hay que decir que se puede retirar y por donde.
+  it('dice que el mapa es una imagen propia y no un mapa de Google', async () => {
     const { container } = await abrir('#privacidad');
-    expect(container.querySelector('.legal').textContent).toContain(es.donde.mapaOcultar);
+    expect(container.querySelector('.legal').textContent).toContain('OpenStreetMap');
   });
 
   it('declara la transferencia internacional del alojamiento', async () => {
@@ -178,7 +178,10 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('6.1.f');
-    expect(texto).toContain('6.1.a');
+    expect(texto).toContain('6.1.b');
+    // Ya no hay ningun tratamiento que dependa del consentimiento: el mapa dejo
+    // de ser un iframe de Google y no queda nada que pedir (art. 6.1.a).
+    expect(texto).not.toContain('6.1.a');
   });
 });
 

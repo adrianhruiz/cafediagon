@@ -56,75 +56,41 @@
   color: var(--tinta-3);
 }
 
-.donde__mapa {
-  width: 100%;
-  min-height: 380px;
-  height: 100%;
-  border: 0;
-  border-radius: var(--radio);
-  background: var(--crema-3);
-}
-
-/* Mapa cargado: el marco y, debajo, el boton que retira el consentimiento. */
+/* El mapa se queda arriba en su columna: no se estira para igualar la altura de
+   la ficha de datos, que es mas larga, porque estirarlo lo recortaria. */
 .donde__mapa-zona {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-.donde__mapa-zona .donde__mapa { flex: 1; }
-
-/* Marcador previo al consentimiento: nada de esto sale de la propia web. */
-.donde__mapa--previo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: var(--paso-3);
-  text-align: center;
-  border: 1px dashed var(--borde-control);
+  align-self: start;
+  gap: 0.4rem;
 }
 
-.donde__mapa-aviso {
+/* El mapa es una imagen, no un iframe: se redondea como el resto de fotos. */
+.donde__mapa {
+  display: block;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--crema-3);
+}
+.donde__mapa picture { display: block; }
+/* Sin recorte: la imagen lleva quemada la atribucion de OpenStreetMap en una
+   esquina, y un object-fit: cover se la comia a medias. */
+.donde__mapa img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Atribucion de OpenStreetMap: la pide la ODbL, y va debajo del mapa ademas de
+   quemada en la propia imagen. */
+.donde__mapa-credito {
   margin: 0;
-  max-width: 26rem;
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.75rem;
   color: var(--tinta-3);
 }
-
-/* Lo de que la decision se recuerda es letra pequena: importa, pero no es lo
-   que hay que leer antes de decidir. */
-.donde__mapa-aviso--menor { font-size: 0.78rem; }
-
-.donde__mapa-boton {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--crema);
-  background: var(--cobre);
-  border: 0;
-  border-radius: 100px;
-  padding: 0.7rem 1.4rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.donde__mapa-boton:hover { background: var(--tinta-2); }
-
-/* Retirar el consentimiento tiene que ser tan facil como darlo (art. 7.3 RGPD),
-   pero este boton no compite con el contenido: mismo tamano, sin relleno. Los
-   colores son pares ya medidos en tests/contraste.test.js. */
-.donde__mapa-boton--suave {
-  color: var(--cobre);
-  background: transparent;
-  border: 1px solid var(--borde-control);
-}
-.donde__mapa-boton--suave:hover { color: var(--crema); background: var(--cobre); }
+.donde__mapa-credito a { color: var(--tinta-3); }
+.donde__mapa-credito a:hover { color: var(--cobre); }
 
 @media (max-width: 900px) {
   .donde { grid-template-columns: 1fr; }
-  .donde__mapa { min-height: 300px; }
 }

@@ -39,13 +39,13 @@
         "titulo": "Propietat intel·lectual i industrial",
         "bloques": [
           { "p": "Els textos, les fotografies, el logotip i el disseny d'aquesta web pertanyen a la titular o es fan servir amb autorització. No es poden reproduir, distribuir ni comunicar públicament sense permís escrit, tret dels usos que la llei permeti expressament." },
-          { "p": "Els noms, marques i logotips de tercers que hi apareixen —Instagram, Google, Restaurant Guru— pertanyen als seus titulars i se citen només per identificar-los." }
+          { "p": "Els noms, marques i logotips de tercers que hi apareixen —Instagram, Google, Restaurant Guru— pertanyen als seus titulars i se citen només per identificar-los. El mapa està dibuixat amb dades d'OpenStreetMap, © els seus col·laboradors, disponibles sota la llicència ODbL." }
         ]
       },
       {
         "titulo": "Enllaços a llocs de tercers",
         "bloques": [
-          { "p": "Aquesta web enllaça a serveis aliens, com Instagram i Google Maps. La titular no controla aquests llocs ni respon dels seus continguts ni del tractament de dades que facin: en seguir un enllaç s'apliquen les seves pròpies condicions i polítiques. El mapa de Google no es carrega fins que el demanes expressament." }
+          { "p": "Aquesta web enllaça a serveis aliens, com Instagram i Google Maps. La titular no controla aquests llocs ni respon dels seus continguts ni del tractament de dades que facin: en seguir un enllaç s'apliquen les seves pròpies condicions i polítiques. El mapa que es veu a la web és una imatge pròpia: de Google no es carrega res mentre no segueixis l'enllaç." }
         ]
       },
       {
@@ -122,18 +122,10 @@
         ]
       },
       {
-        "titulo": "Mapa de Google Maps",
+        "titulo": "El mapa d'«On som»",
         "bloques": [
-          { "p": "El mapa no es carrega tot sol: fins que no prems el botó, aquesta web no es comunica amb Google ni en baixa res." },
-          {
-            "datos": [
-              ["Dades tractades", "Adreça IP, dades del dispositiu i la informació que Google desi al teu navegador."],
-              ["Finalitat", "Mostrar el mapa amb la ubicació del cafè."],
-              ["Base jurídica", "El teu consentiment, que dones en prémer el botó (art. 6.1.a RGPD i art. 22.2 LSSI)."],
-              ["Com es retira", "Prement «Amagar el mapa»: el mapa desapareix, s'esborra la dada que recordava la teva decisió i no es torna a carregar fins que el demanis un altre cop. El que Google hagi desat s'esborra des del teu navegador."],
-              ["Destinataris", "Google Ireland Limited i les empreses del seu grup, com a responsables del seu propi tractament."]
-            ]
-          }
+          { "p": "El mapa que es veu a la web és una imatge servida per aquesta mateixa web, dibuixada a partir de dades d'OpenStreetMap. No és un mapa incrustat de Google: en veure'l no es comunica res a ningú, no es demana ni es desa cap dada i no cal que hi consentis res." },
+          { "p": "Si prems el mapa o l'enllaç «Obrir a Google Maps», surts d'aquesta web i entres a Google Maps, que és un servei de Google amb la seva pròpia política de privacitat. A partir d'aquí el tractament el fa Google, i nosaltres no rebem cap dada de la teva visita." }
         ]
       },
       {
@@ -145,7 +137,7 @@
       {
         "titulo": "El que es desa al teu navegador",
         "bloques": [
-          { "p": "Aquesta web no fa servir galetes. Desa dues dades a l'emmagatzematge local del navegador, i només si les provoques tu:" },
+          { "p": "Aquesta web no fa servir galetes. Desa una única dada a l'emmagatzematge local del navegador, i només si la provoques tu:" },
           {
             "datos": [
               ["Nom", "diagon:idioma"],
@@ -155,15 +147,6 @@
               ["Consentiment", "No cal: és una preferència triada per tu i està exempta d'acord amb l'art. 22.2 LSSI."]
             ]
           },
-          {
-            "datos": [
-              ["Nom", "diagon:mapa"],
-              ["Per a què", "Recordar que has demanat carregar el mapa de Google, per no tornar-t'ho a preguntar a cada visita. Només existeix si l'has demanat."],
-              ["Contingut", "Un 1. No identifica ningú."],
-              ["Durada", "Fins que prems «Amagar el mapa» o l'esborris des del teu navegador."],
-              ["Consentiment", "Desar-la no en necessita: és el que recorda la decisió que has pres tu (art. 22.2 LSSI). Retirar el consentiment esborra la dada."]
-            ]
-          },
           { "p": "Com que no hi ha cap galeta ni cap rastrejador de tercers, aquesta web no necessita bàner de galetes." }
         ]
       },
@@ -171,7 +154,7 @@
         "titulo": "Transferències internacionals",
         "bloques": [
           { "p": "Allotjar la web a GitHub Pages implica que GitHub, Inc. (Estats Units) tracti els registres de connexió. GitHub pertany al grup Microsoft, adherit al Marc de Privacitat de Dades UE-EUA emparat per la decisió d'adequació de la Comissió Europea de 10 de juliol de 2023, i aplica a més clàusules contractuals tipus." },
-          { "p": "Si carregues el mapa, o si ens escrius a la bústia de Gmail, Google pot tractar dades fora de l'Espai Econòmic Europeu amb garanties equivalents." }
+          { "p": "Si ens escrius a la bústia de Gmail, Google pot tractar dades fora de l'Espai Econòmic Europeu amb garanties equivalents." }
         ]
       },
       {
