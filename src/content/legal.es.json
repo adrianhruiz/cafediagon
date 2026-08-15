@@ -1,0 +1,195 @@
+{
+  "actualizado": "Última actualización: 15 de agosto de 2026",
+  "identidad": {
+    "titular": "Titular",
+    "nif": "NIF",
+    "nombreComercial": "Nombre comercial",
+    "domicilio": "Domicilio",
+    "telefono": "Teléfono",
+    "email": "Correo electrónico",
+    "actividad": "Actividad",
+    "actividadValor": "Cafetería. Epígrafe 672.3 del IAE (cafeterías de una taza), sección primera.",
+    "licencia": "Título habilitante",
+    "licenciaValor": "Declaración responsable de actividad presentada ante el {organo}, expediente {expediente}."
+  },
+  "aviso": {
+    "titulo": "Aviso legal",
+    "entrada": "Aquí está la información que exige el artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE): quién responde de esta web y en qué condiciones se puede usar.",
+    "secciones": [
+      {
+        "titulo": "Titular del sitio web",
+        "bloques": [{ "identidad": "completa" }]
+      },
+      {
+        "titulo": "Objeto del sitio",
+        "bloques": [
+          { "p": "Esta web es informativa: presenta el café, su carta y su ubicación. No vende nada por internet, no permite reservar mesa y no tiene formularios ni área de usuario. El pedido y el pago se hacen siempre en el local." },
+          { "p": "Usar la web implica aceptar este aviso legal en la versión publicada en cada momento. La titular puede modificar cuando lo considere oportuno los contenidos, la presentación y la configuración del sitio." }
+        ]
+      },
+      {
+        "titulo": "La carta publicada aquí",
+        "bloques": [
+          { "p": "Los precios y los alérgenos que aparecen en la carta son los que declara el café y pueden cambiar. Los precios se expresan en euros e incluyen los impuestos aplicables." },
+          { "p": "La información de alérgenos se publica conforme al Reglamento (UE) 1169/2011. Elaboramos en una cocina compartida y no se puede garantizar la ausencia de trazas: si tienes una alergia o una intolerancia, dilo en el local antes de pedir." },
+          { "p": "Si la carta de la web y la del local no coinciden, vale la del local." }
+        ]
+      },
+      {
+        "titulo": "Propiedad intelectual e industrial",
+        "bloques": [
+          { "p": "Los textos, las fotografías, el logotipo y el diseño de esta web pertenecen a la titular o se usan con autorización. No se pueden reproducir, distribuir ni comunicar públicamente sin permiso escrito, salvo los usos que la ley permita expresamente." },
+          { "p": "Los nombres, marcas y logotipos de terceros que aparecen —Instagram, Google, Restaurant Guru— pertenecen a sus titulares y se citan solo para identificarlos." }
+        ]
+      },
+      {
+        "titulo": "Enlaces a sitios de terceros",
+        "bloques": [
+          { "p": "Esta web enlaza a servicios ajenos, como Instagram y Google Maps. La titular no controla esos sitios ni responde de sus contenidos ni del tratamiento de datos que hagan: al seguir un enlace se aplican sus propias condiciones y políticas. El mapa de Google no se carga hasta que lo pides expresamente." }
+        ]
+      },
+      {
+        "titulo": "Responsabilidad",
+        "bloques": [
+          { "p": "Se pone un cuidado razonable en que lo publicado sea correcto y esté al día, pero no se garantiza que esté libre de errores ni que el sitio esté siempre disponible." },
+          { "p": "La web se aloja en GitHub Pages (GitHub, Inc.), así que su disponibilidad depende de ese proveedor. No se responde de las interrupciones, fallos de red o incidencias ajenas que impidan acceder al sitio." }
+        ]
+      },
+      {
+        "titulo": "Protección de datos",
+        "bloques": [
+          { "p": "El tratamiento de datos personales asociado a esta web se explica en la política de privacidad, enlazada al final de esta página y en el pie del sitio." }
+        ]
+      },
+      {
+        "titulo": "Legislación aplicable y reclamaciones",
+        "bloques": [
+          { "p": "Este aviso legal se rige por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a derecho; cuando la otra parte sea consumidora, los de su domicilio." },
+          { "p": "El establecimiento dispone de hojas oficiales de reclamación a disposición de la clientela." }
+        ]
+      },
+      {
+        "titulo": "Contacto",
+        "bloques": [
+          { "p": "Para cualquier cuestión sobre este aviso legal: {email} o {telefono}." }
+        ]
+      }
+    ]
+  },
+  "privacidad": {
+    "titulo": "Política de privacidad",
+    "entrada": "Qué datos personales se tratan a través de esta web, para qué, con qué base jurídica y qué puedes hacer al respecto. Conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).",
+    "secciones": [
+      {
+        "titulo": "Responsable del tratamiento",
+        "bloques": [
+          { "identidad": "responsable" },
+          { "p": "No hay delegado de protección de datos: la actividad no está entre las que obligan a designarlo (art. 37 RGPD)." }
+        ]
+      },
+      {
+        "titulo": "En resumen",
+        "bloques": [
+          { "p": "Esta web no tiene formularios, no crea cuentas de usuario, no usa cookies y no lleva ninguna herramienta de analítica ni de publicidad. Los únicos tratamientos son los que se describen a continuación." }
+        ]
+      },
+      {
+        "titulo": "Consultas por correo electrónico o por teléfono",
+        "bloques": [
+          {
+            "datos": [
+              ["Datos tratados", "Los que incluyas en tu mensaje o en tu llamada: nombre, dirección de correo, teléfono y el contenido de la consulta."],
+              ["Finalidad", "Atender y responder lo que nos preguntas."],
+              ["Base jurídica", "Tu propia solicitud: medidas precontractuales e interés legítimo en atender a quien nos escribe (art. 6.1.b y 6.1.f RGPD)."],
+              ["Conservación", "Mientras dure la conversación y, después, el tiempo necesario para responder de las obligaciones que se deriven de ella."],
+              ["Destinatarios", "El correo se recibe en un buzón de Gmail, prestado por Google, que puede acceder a los mensajes conforme a sus propias condiciones."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Visitas a la web",
+        "bloques": [
+          {
+            "datos": [
+              ["Datos tratados", "Dirección IP, fecha y hora, página solicitada, navegador y sistema operativo."],
+              ["Finalidad", "Servir las páginas, mantener la seguridad del sitio y detectar abusos."],
+              ["Base jurídica", "Interés legítimo en prestar y proteger el servicio (art. 6.1.f RGPD)."],
+              ["Conservación", "El plazo que aplique el proveedor de alojamiento. No se guarda ninguna copia propia de esos registros."],
+              ["Destinatarios", "GitHub, Inc. (grupo Microsoft), que aloja la web en GitHub Pages."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Mapa de Google Maps",
+        "bloques": [
+          { "p": "El mapa no se carga solo: hasta que pulsas el botón, esta web no se comunica con Google ni baja nada suyo." },
+          {
+            "datos": [
+              ["Datos tratados", "Dirección IP, datos del dispositivo y la información que Google guarde en tu navegador."],
+              ["Finalidad", "Mostrar el mapa con la ubicación del café."],
+              ["Base jurídica", "Tu consentimiento, que das al pulsar el botón (art. 6.1.a RGPD y art. 22.2 LSSI)."],
+              ["Cómo se retira", "No pulsando el botón, o recargando la página: el mapa no vuelve a cargarse hasta que lo pidas otra vez. Los datos ya guardados se borran desde tu navegador."],
+              ["Destinatarios", "Google Ireland Limited y las empresas de su grupo, como responsables de su propio tratamiento."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Enlaces a redes sociales",
+        "bloques": [
+          { "p": "El enlace a Instagram te lleva fuera de esta web. A partir de ahí el tratamiento lo hace Meta conforme a su propia política, y nosotros no recibimos ningún dato de tu visita." }
+        ]
+      },
+      {
+        "titulo": "Lo que se guarda en tu navegador",
+        "bloques": [
+          { "p": "Esta web no usa cookies. Guarda un único dato en el almacenamiento local del navegador:" },
+          {
+            "datos": [
+              ["Nombre", "diagon:idioma"],
+              ["Para qué", "Recordar el idioma que has elegido, para no volver a preguntarlo en la siguiente visita."],
+              ["Contenido", "El código del idioma: es, ca, en o de. No identifica a nadie."],
+              ["Duración", "Hasta que lo borres desde tu navegador."],
+              ["Consentimiento", "No hace falta: es una preferencia elegida por ti y está exenta conforme al art. 22.2 LSSI."]
+            ]
+          },
+          { "p": "Como no hay ninguna cookie ni ningún rastreador de terceros, esta web no necesita banner de cookies." }
+        ]
+      },
+      {
+        "titulo": "Transferencias internacionales",
+        "bloques": [
+          { "p": "Alojar la web en GitHub Pages implica que GitHub, Inc. (Estados Unidos) trate los registros de conexión. GitHub pertenece al grupo Microsoft, adherido al Marco de Privacidad de Datos UE-EE. UU. amparado por la decisión de adecuación de la Comisión Europea de 10 de julio de 2023, y aplica además cláusulas contractuales tipo." },
+          { "p": "Si cargas el mapa, o si nos escribes al buzón de Gmail, Google puede tratar datos fuera del Espacio Económico Europeo con garantías equivalentes." }
+        ]
+      },
+      {
+        "titulo": "Destinatarios y cesiones",
+        "bloques": [
+          { "p": "No se venden ni se ceden datos a terceros. Solo se comunican a administraciones, jueces y tribunales cuando lo exige una obligación legal, y a los proveedores citados en esta política." }
+        ]
+      },
+      {
+        "titulo": "Tus derechos",
+        "bloques": [
+          { "p": "Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, y retirar en cualquier momento el consentimiento que hayas dado, escribiendo a {email} o por correo postal al domicilio indicado arriba. Dinos qué derecho ejerces y acompaña algún dato que permita identificarte." },
+          { "p": "Si crees que no se han atendido como debían, puedes reclamar ante la Agencia Española de Protección de Datos: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
+        ]
+      },
+      {
+        "titulo": "Decisiones automatizadas y menores",
+        "bloques": [
+          { "p": "No se elaboran perfiles ni se toman decisiones automatizadas. La web no se dirige a menores de 14 años y no recoge datos suyos de forma consciente." }
+        ]
+      },
+      {
+        "titulo": "Cambios en esta política",
+        "bloques": [
+          { "p": "Esta política se actualizará si cambian los tratamientos o la normativa. La fecha de la última revisión figura al principio de la página." }
+        ]
+      }
+    ]
+  }
+}

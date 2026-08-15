@@ -1,5 +1,14 @@
 {
   "nombre": "Diagon Cafe",
+  "titular": "Bárbara María Fuster Galmés",
+  "nif": "41537014A",
+  "formaJuridica": "persona-fisica",
+  "iae": "672.3",
+  "licencia": {
+    "tipo": "declaracion-responsable",
+    "expediente": "1384/2025",
+    "organo": "Ajuntament de Capdepera"
+  },
   "direccion": {
     "calle": "Carrer de Méndez Núñez, 17, bajo",
     "cp": "07590",

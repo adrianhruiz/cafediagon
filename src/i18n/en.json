@@ -95,6 +95,13 @@
   "pie": {
     "contacto": "Contact",
     "siguenos": "Follow us",
-    "derechos": "All rights reserved"
+    "derechos": "All rights reserved",
+    "legal": "Legal links",
+    "avisoLegal": "Legal notice",
+    "privacidad": "Privacy policy"
+  },
+  "legal": {
+    "etiqueta": "Legal information",
+    "volver": "Back to the home page"
   }
 }

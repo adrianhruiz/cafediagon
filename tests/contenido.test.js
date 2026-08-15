@@ -8,6 +8,10 @@ import menuDe from '../src/content/menu.de.json';
 import menuCa from '../src/content/menu.ca.json';
 import galeria from '../src/content/gallery.json';
 import negocio from '../src/content/business.json';
+import legalEs from '../src/content/legal.es.json';
+import legalEn from '../src/content/legal.en.json';
+import legalDe from '../src/content/legal.de.json';
+import legalCa from '../src/content/legal.ca.json';
 import { formatos, imagenes } from '../src/content/imagenes.json';
 import { IDIOMAS } from '../src/i18n/idioma.jsx';
 
@@ -265,5 +269,146 @@ describe('datos del negocio', () => {
   it('el horario sigue pendiente y el codigo lo contempla', () => {
     // Cuando llegue, sera un array; hasta entonces null activa el aviso.
     expect(negocio.horario === null || Array.isArray(negocio.horario)).toBe(true);
+  });
+
+  // Sin estos datos no se puede publicar el aviso legal, y publicarlo a medias
+  // es peor que no tenerlo: identifica mal a quien responde del sitio.
+  it('identifica al titular con nombre y NIF (LSSI art. 10)', () => {
+    expect(negocio.titular).toBeTruthy();
+    expect(negocio.titular).not.toBe(negocio.nombre);
+    // DNI de persona fisica o CIF de sociedad.
+    expect(negocio.nif).toMatch(/^(\d{8}[A-Z]|[A-Z]\d{7}[0-9A-Z])$/);
+  });
+
+  it('declara el titulo habilitante de la actividad', () => {
+    expect(negocio.licencia.expediente).toBeTruthy();
+    expect(negocio.licencia.organo).toBeTruthy();
+  });
+
+  it('la forma juridica cuadra con lo que el aviso legal deja fuera', () => {
+    // Persona fisica: no hay datos registrales que publicar. Si algun dia pasa
+    // a sociedad, el art. 10.1.b pide los del Registro Mercantil y este test
+    // avisa de que el aviso legal se queda corto.
+    expect(negocio.formaJuridica).toBe('persona-fisica');
+  });
+});
+
+describe('textos legales', () => {
+  const IDIOMAS_LEGAL = { es: legalEs, en: legalEn, de: legalDe, ca: legalCa };
+  const DOCUMENTOS = ['aviso', 'privacidad'];
+
+  /** Los marcadores {x} que los textos pueden pedirle a business.json. */
+  const MARCADORES = ['email', 'telefono', 'nombre', 'titular', 'organo', 'expediente'];
+
+  /** Todas las cadenas de un documento, ya sean parrafos, listas o fichas. */
+  const cadenasDe = (doc) => [
+    doc.titulo,
+    doc.entrada,
+    ...doc.secciones.flatMap((s) => [
+      s.titulo,
+      ...s.bloques.flatMap((b) => {
+        if (b.p) return [b.p];
+        if (b.lista) return b.lista;
+        if (b.datos) return b.datos.flat();
+        return [];
+      }),
+    ]),
+  ];
+
+  /**
+   * Esqueleto del documento: que bloques lleva cada seccion y de que tipo. Sin
+   * esto una traduccion puede perder una seccion entera y nadie se entera hasta
+   * que alguien lee el aleman.
+   */
+  const forma = (doc) =>
+    doc.secciones.map((s) => s.bloques.map((b) => {
+      const tipo = Object.keys(b)[0];
+      if (tipo === 'datos') return `datos:${b.datos.length}`;
+      if (tipo === 'lista') return `lista:${b.lista.length}`;
+      if (tipo === 'identidad') return `identidad:${b.identidad}`;
+      return tipo;
+    }));
+
+  it('existe el texto legal de cada idioma', () => {
+    expect(Object.keys(IDIOMAS_LEGAL).sort()).toEqual([...IDIOMAS].sort());
+  });
+
+  it('los cuatro idiomas traen los dos documentos completos', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      expect(dic.actualizado, idioma).toBeTruthy();
+      for (const doc of DOCUMENTOS) {
+        expect(dic[doc]?.titulo, `${idioma} / ${doc}`).toBeTruthy();
+        expect(dic[doc]?.entrada, `${idioma} / ${doc}`).toBeTruthy();
+        expect(dic[doc]?.secciones?.length, `${idioma} / ${doc}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('cada traduccion tiene las mismas secciones y bloques que el castellano', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      for (const doc of DOCUMENTOS) {
+        expect(forma(dic[doc]), `${idioma} / ${doc}`).toEqual(forma(legalEs[doc]));
+      }
+    }
+  });
+
+  it('las etiquetas de la ficha de identificacion estan en los cuatro idiomas', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      for (const clave of Object.keys(legalEs.identidad)) {
+        expect(dic.identidad[clave], `${idioma} no traduce "${clave}"`).toBeTruthy();
+      }
+    }
+  });
+
+  it('ningun texto se queda vacio', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      for (const doc of DOCUMENTOS) {
+        for (const cadena of cadenasDe(dic[doc])) {
+          expect(typeof cadena, `${idioma} / ${doc}`).toBe('string');
+          expect(cadena.trim(), `${idioma} / ${doc}`).not.toBe('');
+        }
+      }
+    }
+  });
+
+  it('los marcadores {x} son datos que el codigo sabe rellenar', () => {
+    // Un {marcador} mal escrito no rompe nada: se publica tal cual en el aviso
+    // legal, que es justo donde no puede salir un hueco sin rellenar.
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      const textos = [
+        ...DOCUMENTOS.flatMap((doc) => cadenasDe(dic[doc])),
+        dic.identidad.licenciaValor,
+        dic.identidad.actividadValor,
+      ];
+      for (const texto of textos) {
+        for (const [, clave] of texto.matchAll(/\{(\w+)\}/g)) {
+          expect(MARCADORES, `${idioma} usa {${clave}}`).toContain(clave);
+        }
+      }
+    }
+  });
+
+  it('cada fila de una ficha es una etiqueta y un valor', () => {
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      for (const doc of DOCUMENTOS) {
+        for (const seccion of dic[doc].secciones) {
+          for (const bloque of seccion.bloques) {
+            if (!bloque.datos) continue;
+            for (const fila of bloque.datos) {
+              expect(fila.length, `${idioma} / ${seccion.titulo}`).toBe(2);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  it('la privacidad declara el unico dato que se guarda en el navegador', () => {
+    // Si algun dia se guarda otra cosa, la declaracion deja de ser cierta.
+    for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
+      const texto = cadenasDe(dic.privacidad).join(' ');
+      expect(texto, `${idioma} no declara la clave`).toContain('diagon:idioma');
+      expect(texto, `${idioma} no cita el art. 22.2 LSSI`).toContain('22.2');
+    }
   });
 });

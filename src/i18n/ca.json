@@ -95,6 +95,13 @@
   "pie": {
     "contacto": "Contacte",
     "siguenos": "Segueix-nos",
-    "derechos": "Tots els drets reservats"
+    "derechos": "Tots els drets reservats",
+    "legal": "Enllaços legals",
+    "avisoLegal": "Avís legal",
+    "privacidad": "Política de privacitat"
+  },
+  "legal": {
+    "etiqueta": "Informació legal",
+    "volver": "Tornar a l'inici"
   }
 }

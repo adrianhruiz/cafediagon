@@ -18,3 +18,7 @@
   min-height: 60vh;
   background: var(--crema-2);
 }
+
+/* Lo mismo para el aviso legal y la privacidad: su trozo tampoco esta en el
+   arranque y sin esto el pie subiria hasta debajo de la cabecera. */
+.legal-hueco { min-height: 70vh; }

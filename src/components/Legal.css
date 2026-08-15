@@ -1,0 +1,74 @@
+/* Texto largo: una columna estrecha se lee mejor que el ancho del envoltorio. */
+.legal__hoja { max-width: 72ch; }
+
+.legal__titulo { white-space: normal; }
+
+.legal__fecha {
+  color: var(--tinta-4);
+  font-size: 0.9rem;
+  margin: 0 0 var(--paso-4);
+}
+
+.legal__seccion { margin-bottom: var(--paso-4); }
+
+.legal__seccion h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  padding-top: var(--paso-2);
+  border-top: 1px solid var(--crema-3);
+}
+
+.legal__seccion p { color: var(--tinta-3); }
+
+.legal__lista {
+  color: var(--tinta-3);
+  padding-left: var(--paso-3);
+}
+
+/* Ficha de datos: etiqueta y valor en dos columnas cuando hay sitio, y uno
+   debajo del otro en movil, que es donde la etiqueta se queda sin ancho. */
+.legal__ficha {
+  margin: 0 0 var(--paso-3);
+  color: var(--tinta-3);
+}
+
+.legal__fila {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) 1fr;
+  gap: 0 var(--paso-2);
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--crema-2);
+}
+
+/* La ficha ya va seguida del borde de la siguiente seccion: dos lineas juntas
+   se ven como un renglon vacio. */
+.legal__fila:last-child { border-bottom: none; }
+
+.legal__fila dt {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.legal__fila dd { margin: 0; }
+
+.legal__fila a { color: var(--cobre); }
+
+.legal__pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--paso-3);
+  padding-top: var(--paso-3);
+  border-top: 1px solid var(--crema-3);
+}
+
+.legal__pie a {
+  color: var(--cobre);
+  /* 44 px de area tactil: son los dos unicos enlaces de salida de la pagina. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .legal__fila { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,195 @@
+{
+  "actualizado": "Letzte Aktualisierung: 15. August 2026",
+  "identidad": {
+    "titular": "Inhaberin",
+    "nif": "Steuernummer (NIF)",
+    "nombreComercial": "Geschäftsbezeichnung",
+    "domicilio": "Anschrift",
+    "telefono": "Telefon",
+    "email": "E-Mail",
+    "actividad": "Tätigkeit",
+    "actividadValor": "Café. Spanische Gewerbesteuer-Position 672.3 (Cafés der Kategorie „eine Tasse“), Abschnitt I.",
+    "licencia": "Genehmigungstitel",
+    "licenciaValor": "Verantwortliche Tätigkeitserklärung, eingereicht beim {organo}, Aktenzeichen {expediente}."
+  },
+  "aviso": {
+    "titulo": "Impressum",
+    "entrada": "Hier stehen die Angaben, die Artikel 10 des spanischen Gesetzes 34/2002 über Dienste der Informationsgesellschaft und elektronischen Geschäftsverkehr (LSSI-CE) verlangt: wer für diese Website verantwortlich ist und unter welchen Bedingungen sie genutzt werden darf.",
+    "secciones": [
+      {
+        "titulo": "Inhaberin der Website",
+        "bloques": [{ "identidad": "completa" }]
+      },
+      {
+        "titulo": "Zweck der Website",
+        "bloques": [
+          { "p": "Diese Website ist rein informativ: Sie stellt das Café, seine Karte und seinen Standort vor. Es wird nichts online verkauft, es können keine Tische reserviert werden, und es gibt weder Formulare noch Benutzerkonten. Bestellung und Bezahlung finden immer im Lokal statt." },
+          { "p": "Die Nutzung der Website bedeutet, dieses Impressum in der jeweils veröffentlichten Fassung anzunehmen. Die Inhaberin kann Inhalte, Darstellung und Konfiguration der Website jederzeit ändern." }
+        ]
+      },
+      {
+        "titulo": "Die hier veröffentlichte Karte",
+        "bloques": [
+          { "p": "Die Preise und Allergene auf der Karte sind die vom Café angegebenen und können sich ändern. Die Preise sind in Euro und enthalten die anfallenden Steuern." },
+          { "p": "Die Allergenangaben werden gemäß Verordnung (EU) 1169/2011 veröffentlicht. Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns vor der Bestellung Bescheid, wenn du eine Allergie oder eine Unverträglichkeit hast." },
+          { "p": "Weichen die Karte auf dieser Website und die im Lokal voneinander ab, gilt die im Lokal." }
+        ]
+      },
+      {
+        "titulo": "Urheber- und gewerbliche Schutzrechte",
+        "bloques": [
+          { "p": "Texte, Fotos, Logo und Gestaltung dieser Website gehören der Inhaberin oder werden mit Erlaubnis genutzt. Sie dürfen ohne schriftliche Zustimmung nicht vervielfältigt, verbreitet oder öffentlich zugänglich gemacht werden, abgesehen von den gesetzlich ausdrücklich erlaubten Nutzungen." },
+          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt." }
+        ]
+      },
+      {
+        "titulo": "Links zu fremden Seiten",
+        "bloques": [
+          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Die Google-Karte wird erst geladen, wenn du sie ausdrücklich anforderst." }
+        ]
+      },
+      {
+        "titulo": "Haftung",
+        "bloques": [
+          { "p": "Es wird angemessene Sorgfalt darauf verwendet, dass die veröffentlichten Angaben richtig und aktuell sind; es wird aber nicht garantiert, dass sie fehlerfrei sind oder dass die Website jederzeit erreichbar ist." },
+          { "p": "Die Website wird auf GitHub Pages (GitHub, Inc.) gehostet, ihre Verfügbarkeit hängt also von diesem Anbieter ab. Für Ausfälle, Netzstörungen oder fremde Vorfälle, die den Zugang verhindern, wird nicht gehaftet." }
+        ]
+      },
+      {
+        "titulo": "Datenschutz",
+        "bloques": [
+          { "p": "Die Verarbeitung personenbezogener Daten im Zusammenhang mit dieser Website wird in der Datenschutzerklärung erläutert, verlinkt am Ende dieser Seite und im Seitenfuß." }
+        ]
+      },
+      {
+        "titulo": "Anwendbares Recht und Beschwerden",
+        "bloques": [
+          { "p": "Für dieses Impressum gilt spanisches Recht. Für Streitigkeiten sind die nach den geltenden Regeln zuständigen Gerichte zuständig; ist die andere Partei Verbraucherin oder Verbraucher, die Gerichte ihres Wohnsitzes." },
+          { "p": "Im Lokal liegen amtliche Beschwerdeformulare für die Gäste bereit." }
+        ]
+      },
+      {
+        "titulo": "Kontakt",
+        "bloques": [
+          { "p": "Für alles rund um dieses Impressum: {email} oder {telefono}." }
+        ]
+      }
+    ]
+  },
+  "privacidad": {
+    "titulo": "Datenschutzerklärung",
+    "entrada": "Welche personenbezogenen Daten über diese Website verarbeitet werden, wozu, auf welcher Rechtsgrundlage und was du dagegen tun kannst. Nach der Verordnung (EU) 2016/679 (DSGVO) und dem spanischen Organgesetz 3/2018 (LOPDGDD).",
+    "secciones": [
+      {
+        "titulo": "Verantwortliche",
+        "bloques": [
+          { "identidad": "responsable" },
+          { "p": "Es gibt keinen Datenschutzbeauftragten: Die Tätigkeit gehört nicht zu denen, die eine Benennung verlangen (Art. 37 DSGVO)." }
+        ]
+      },
+      {
+        "titulo": "Kurz gefasst",
+        "bloques": [
+          { "p": "Diese Website hat keine Formulare, legt keine Benutzerkonten an, verwendet keine Cookies und enthält keine Analyse- oder Werbewerkzeuge. Die einzigen Verarbeitungen sind die folgenden." }
+        ]
+      },
+      {
+        "titulo": "Anfragen per E-Mail oder Telefon",
+        "bloques": [
+          {
+            "datos": [
+              ["Verarbeitete Daten", "Was du in deiner Nachricht oder deinem Anruf mitteilst: Name, E-Mail-Adresse, Telefonnummer und der Inhalt der Anfrage."],
+              ["Zweck", "Deine Anfrage bearbeiten und beantworten."],
+              ["Rechtsgrundlage", "Deine eigene Anfrage: vorvertragliche Maßnahmen und berechtigtes Interesse daran, denen zu antworten, die uns schreiben (Art. 6 Abs. 1 lit. b und f DSGVO)."],
+              ["Speicherdauer", "Solange der Austausch dauert und danach so lange, wie es zur Erfüllung der daraus entstehenden Pflichten nötig ist."],
+              ["Empfänger", "Die Post geht in ein Gmail-Postfach von Google ein, das nach seinen eigenen Bedingungen auf die Nachrichten zugreifen kann."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Besuche der Website",
+        "bloques": [
+          {
+            "datos": [
+              ["Verarbeitete Daten", "IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem."],
+              ["Zweck", "Die Seiten ausliefern, die Website absichern und Missbrauch erkennen."],
+              ["Rechtsgrundlage", "Berechtigtes Interesse an der Bereitstellung und dem Schutz des Dienstes (Art. 6 Abs. 1 lit. f DSGVO)."],
+              ["Speicherdauer", "Die Frist, die der Hosting-Anbieter anwendet. Eine eigene Kopie dieser Protokolle wird nicht aufbewahrt."],
+              ["Empfänger", "GitHub, Inc. (Microsoft-Gruppe), die die Website auf GitHub Pages hostet."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Google-Maps-Karte",
+        "bloques": [
+          { "p": "Die Karte lädt nicht von selbst: Bis du den Knopf drückst, nimmt diese Website keinen Kontakt zu Google auf und lädt nichts von dort." },
+          {
+            "datos": [
+              ["Verarbeitete Daten", "IP-Adresse, Gerätedaten und was Google in deinem Browser speichert."],
+              ["Zweck", "Die Karte mit dem Standort des Cafés anzeigen."],
+              ["Rechtsgrundlage", "Deine Einwilligung, die du mit dem Druck auf den Knopf gibst (Art. 6 Abs. 1 lit. a DSGVO und Art. 22.2 LSSI)."],
+              ["Widerruf", "Indem du den Knopf nicht drückst oder die Seite neu lädst: Die Karte lädt erst wieder, wenn du sie erneut anforderst. Bereits gespeicherte Daten löschst du in deinem Browser."],
+              ["Empfänger", "Google Ireland Limited und ihre Konzerngesellschaften, als Verantwortliche ihrer eigenen Verarbeitung."]
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "Links zu sozialen Netzwerken",
+        "bloques": [
+          { "p": "Der Instagram-Link führt von dieser Website weg. Ab da verarbeitet Meta nach seiner eigenen Richtlinie, und wir erhalten keine Daten über deinen Besuch." }
+        ]
+      },
+      {
+        "titulo": "Was in deinem Browser gespeichert wird",
+        "bloques": [
+          { "p": "Diese Website verwendet keine Cookies. Sie speichert einen einzigen Eintrag im lokalen Speicher des Browsers:" },
+          {
+            "datos": [
+              ["Name", "diagon:idioma"],
+              ["Wofür", "Die gewählte Sprache merken, damit sie beim nächsten Besuch nicht erneut abgefragt wird."],
+              ["Inhalt", "Das Sprachkürzel: es, ca, en oder de. Es identifiziert niemanden."],
+              ["Dauer", "Bis du ihn in deinem Browser löschst."],
+              ["Einwilligung", "Nicht erforderlich: Es ist eine von dir gewählte Voreinstellung und nach Art. 22.2 LSSI ausgenommen."]
+            ]
+          },
+          { "p": "Da es weder Cookies noch fremde Tracker gibt, braucht diese Website kein Cookie-Banner." }
+        ]
+      },
+      {
+        "titulo": "Übermittlungen in Drittländer",
+        "bloques": [
+          { "p": "Das Hosting auf GitHub Pages bedeutet, dass GitHub, Inc. (USA) die Verbindungsprotokolle verarbeitet. GitHub gehört zur Microsoft-Gruppe, die nach dem EU-US Data Privacy Framework zertifiziert ist, das durch den Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023 gedeckt ist, und wendet zusätzlich Standardvertragsklauseln an." },
+          { "p": "Wenn du die Karte lädst oder an das Gmail-Postfach schreibst, kann Google Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit gleichwertigen Garantien." }
+        ]
+      },
+      {
+        "titulo": "Empfänger und Weitergabe",
+        "bloques": [
+          { "p": "Daten werden weder verkauft noch an Dritte weitergegeben. Sie werden nur an Behörden und Gerichte übermittelt, wenn eine gesetzliche Pflicht dies verlangt, sowie an die in dieser Erklärung genannten Anbieter." }
+        ]
+      },
+      {
+        "titulo": "Deine Rechte",
+        "bloques": [
+          { "p": "Du kannst die Rechte auf Auskunft, Berichtigung, Löschung, Widerspruch, Einschränkung der Verarbeitung und Datenübertragbarkeit ausüben und eine erteilte Einwilligung jederzeit widerrufen, per E-Mail an {email} oder per Post an die oben genannte Anschrift. Sag uns, welches Recht du ausübst, und lege etwas bei, womit wir dich identifizieren können." },
+          { "p": "Wenn du meinst, dein Anliegen sei nicht richtig behandelt worden, kannst du dich bei der spanischen Datenschutzbehörde beschweren: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
+        ]
+      },
+      {
+        "titulo": "Automatisierte Entscheidungen und Minderjährige",
+        "bloques": [
+          { "p": "Es findet kein Profiling und keine automatisierte Entscheidungsfindung statt. Die Website richtet sich nicht an Kinder unter 14 Jahren und erhebt deren Daten nicht wissentlich." }
+        ]
+      },
+      {
+        "titulo": "Änderungen dieser Erklärung",
+        "bloques": [
+          { "p": "Diese Erklärung wird aktualisiert, wenn sich die Verarbeitungen oder die Rechtslage ändern. Das Datum der letzten Überarbeitung steht oben auf der Seite." }
+        ]
+      }
+    ]
+  }
+}

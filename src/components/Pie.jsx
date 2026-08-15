@@ -30,9 +30,18 @@ export default function Pie() {
           </div>
         </div>
 
-        <p className="pie__legal">
-          © {new Date().getFullYear()} {negocio.nombre}. {t('pie.derechos')}.
-        </p>
+        <div className="pie__cierre">
+          <p className="pie__legal">
+            © {new Date().getFullYear()} {negocio.nombre}. {t('pie.derechos')}.
+          </p>
+
+          {/* LSSI art. 10: el aviso legal tiene que estar accesible de forma
+              permanente, facil y directa, y el pie sale en todas las vistas. */}
+          <nav className="pie__enlaces-legales" aria-label={t('pie.legal')}>
+            <a href="#aviso-legal">{t('pie.avisoLegal')}</a>
+            <a href="#privacidad">{t('pie.privacidad')}</a>
+          </nav>
+        </div>
       </div>
     </footer>
   );

@@ -28,4 +28,15 @@ if (typeof globalThis.localStorage?.getItem !== 'function') {
   }
 }
 
+/*
+ * jsdom no implementa scrollTo y lo anuncia con un volcado de pila por cada
+ * navegacion a una pagina legal. No hay nada que comprobar en un scroll: se
+ * silencia con una funcion vacia para no enterrar los fallos de verdad.
+ */
+if (globalThis.window) {
+  globalThis.window.scrollTo = () => {};
+  // Element.scrollIntoView ni siquiera existe en jsdom: llamarlo revienta.
+  globalThis.window.Element.prototype.scrollIntoView = () => {};
+}
+
 afterEach(cleanup);
