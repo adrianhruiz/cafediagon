@@ -2,7 +2,8 @@
   "idioma": "Deutsch",
   "meta": {
     "titulo": "Diagon Cafe · Spezialitätenkaffee und Brettspiele in Cala Rajada",
-    "descripcion": "Café in Cala Rajada, Mallorca. Spezialitätenkaffee, Frühstück, Brunch und Hunderte Brettspiele gratis. Bestes Coffee House in Cala Rajada 2026."
+    "descripcion": "Café in Cala Rajada, Mallorca. Spezialitätenkaffee, Frühstück, Brunch und Hunderte Brettspiele gratis. Bestes Coffee House in Cala Rajada 2026.",
+    "imagenAlt": "Die Espressomaschine des Diagon Cafe mit Tassen darauf, bereit zum Servieren"
   },
   "nav": {
     "cafe": "Das Café",
@@ -17,9 +18,9 @@
     "saltar": "Zum Inhalt springen"
   },
   "hero": {
-    "ubicacion": "Cala Rajada · Mallorca",
-    "titulo": "Spezialitätenkaffee\nund Brettspiele",
-    "entrada": "Ein gemütlicher Ort für guten Kaffee, mit Liebe zubereitetes Essen und schöne Stunden am Tisch.",
+    "ubicacion": "Mallorca · Balearen",
+    "titulo": "Spezialitätenkaffee\nund Brettspiele\nin Cala Rajada",
+    "entrada": "Frühstück, Brunch und mit Liebe zubereitetes Essen, an einem gemütlichen Ort, an dem du so lange bleiben kannst, wie du magst.",
     "verCarta": "Zur Karte",
     "comoLlegar": "Anfahrt"
   },

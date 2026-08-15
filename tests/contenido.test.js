@@ -12,7 +12,7 @@ import legalEs from '../src/content/legal.es.json';
 import legalEn from '../src/content/legal.en.json';
 import legalDe from '../src/content/legal.de.json';
 import legalCa from '../src/content/legal.ca.json';
-import { formatos, imagenes } from '../src/content/imagenes.json';
+import { compartir, formatos, imagenes } from '../src/content/imagenes.json';
 import { IDIOMAS } from '../src/i18n/idioma.jsx';
 import es from '../src/i18n/es.json';
 import en from '../src/i18n/en.json';
@@ -235,7 +235,7 @@ describe('imagenes generadas', () => {
   // un 404 en cada visita.
   it('la imagen precargada en index.html existe', () => {
     const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
-    const precargas = [...html.matchAll(/rel="preload"[^>]*href="\.\/images\/([^"]+)"/g)];
+    const precargas = [...html.matchAll(/rel="preload"[^>]*href="%BASE_URL%images\/([^"]+)"/g)];
     expect(precargas.length).toBe(1);
     for (const [, archivo] of precargas) {
       expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
@@ -246,7 +246,7 @@ describe('imagenes generadas', () => {
   // que la web no usa en ningun <img>: si se cae, se cae en silencio.
   it('los iconos declarados en index.html existen', () => {
     const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
-    const iconos = [...html.matchAll(/rel="(?:icon|apple-touch-icon)"[^>]*href="\.\/images\/([^"]+)"/g)];
+    const iconos = [...html.matchAll(/rel="(?:icon|apple-touch-icon)"[^>]*href="%BASE_URL%images\/([^"]+)"/g)];
     expect(iconos.length).toBe(2);
     for (const [, archivo] of iconos) {
       expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
@@ -254,10 +254,12 @@ describe('imagenes generadas', () => {
   });
 });
 
-describe('URL por idioma en index.html', () => {
-  // Los cuatro idiomas son el mismo documento: sin hreflang el buscador solo ve
-  // uno. Las etiquetas estan escritas a mano, asi que si se añade un idioma al
-  // diccionario y nadie toca el HTML, esto se cae en vez de dejarlo sin indexar.
+describe('index.html como plantilla', () => {
+  // index.html ya no es la pagina que se publica: es de donde saca las doce
+  // scripts/prerender.mjs, que reescribe la canonica y los hreflang en cada
+  // una. Lo que se comprueba aqui es que la plantilla es coherente por si sola,
+  // porque es tambien lo que sirve el servidor de desarrollo. Que cada pagina
+  // publicada acabe con lo suyo lo comprueba tests/prerender.test.js.
   const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
   const alternativas = Object.fromEntries(
     [...html.matchAll(/rel="alternate"\s+hreflang="([\w-]+)"\s+href="([^"]+)"/g)]
@@ -268,20 +270,30 @@ describe('URL por idioma en index.html', () => {
     expect(Object.keys(alternativas).sort()).toEqual([...IDIOMAS, 'x-default'].sort());
   });
 
-  it('cada alternativa pide su idioma con ?lang=', () => {
-    for (const idioma of IDIOMAS) {
-      expect(alternativas[idioma]).toBe(`${negocio.web}?lang=${idioma}`);
-    }
-    // x-default no fija idioma: es la que decide por el idioma del navegador.
-    expect(alternativas['x-default']).toBe(negocio.web);
-  });
-
-  it('la canonica y la ficha de Google apuntan a la misma direccion', () => {
+  it('la plantilla es la portada en castellano', () => {
     const canonica = html.match(/rel="canonical"\s+href="([^"]+)"/);
     expect(canonica?.[1]).toBe(negocio.web);
+    expect(alternativas['x-default']).toBe(negocio.web);
 
     const bloque = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
     expect(JSON.parse(bloque[1]).url).toBe(negocio.web);
+  });
+
+  it('ninguna alternativa vuelve al ?lang= de antes', () => {
+    // Era una sola direccion para los cuatro idiomas: GitHub Pages sirve el
+    // mismo fichero sea cual sea el parametro, asi que las tres traducciones
+    // eran el castellano y la canonica las declaraba duplicados suyos.
+    for (const url of Object.values(alternativas)) {
+      expect(url, `${url} sigue pidiendo el idioma por parametro`).not.toContain('lang=');
+      expect(url.startsWith(negocio.web), `${url} no cuelga de la web`).toBe(true);
+    }
+  });
+
+  it('no queda un <noscript> que duplique la pagina prerenderizada', () => {
+    // Tenia dentro la direccion, el telefono y el titular, para quien llegase
+    // sin JavaScript. Ahora ese visitante recibe la web entera ya pintada, y el
+    // bloque se veria ademas de ella, no en su lugar.
+    expect(html).not.toContain('<noscript>');
   });
 
   it('la web declarada acaba en la barra del base del build', () => {
@@ -439,6 +451,239 @@ describe('datos del negocio', () => {
     // a sociedad, el art. 10.1.b pide los del Registro Mercantil y este test
     // avisa de que el aviso legal se queda corto.
     expect(negocio.formaJuridica).toBe('persona-fisica');
+  });
+});
+
+describe('ficha de Google (JSON-LD)', () => {
+  // La ficha es lo que Google lee para decidir si este cafe sale en una busqueda
+  // local, y es el unico trozo de la web que no mira nadie: si se separa de
+  // business.json o de la carta, se publica mal y no hay pantalla donde se note.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const ficha = JSON.parse(
+    html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1],
+  );
+
+  /** Los ficheros que la ficha nombra viven en public/images, servidos por la web. */
+  const archivoDe = (url) => {
+    expect(url.startsWith(`${negocio.web}images/`), `${url} no cuelga de la web`).toBe(true);
+    return url.slice(`${negocio.web}images/`.length);
+  };
+
+  it('se identifica con un @id estable colgado de la web', () => {
+    // Sin @id la ficha es anonima y no se puede referenciar desde otra pagina.
+    // Cuando el prerender parta la web en una URL por idioma, las cuatro tienen
+    // que seguir hablando del mismo negocio, y eso lo dice este identificador.
+    expect(ficha['@id']).toBe(`${negocio.web}#negocio`);
+    expect(ficha.url).toBe(negocio.web);
+  });
+
+  it('las fotos y el logo son URLs absolutas de ficheros que existen', () => {
+    // Google descarta las rutas relativas en JSON-LD, y una absoluta rota se
+    // queda sin foto en el resultado sin avisar de nada.
+    expect(Array.isArray(ficha.image)).toBe(true);
+    expect(ficha.image.length).toBeGreaterThan(0);
+    for (const url of [...ficha.image, ficha.logo]) {
+      const archivo = archivoDe(url);
+      expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
+    }
+  });
+
+  it('las fotos de la ficha son jpg y del ancho grande', () => {
+    // El respaldo jpg solo se genera en un ancho por foto: si la ficha apunta a
+    // uno pequeno, Google recibe una miniatura. Y avif/webp no son formatos que
+    // se pueda dar por hecho que entienda cualquier rastreador.
+    for (const url of ficha.image) {
+      const archivo = archivoDe(url);
+      const [, nombre, ancho] = archivo.match(/^(.+)-(\d+)\.jpg$/) ?? [];
+      expect(nombre, `${url} no es un jpg del pipeline de imagenes`).toBeTruthy();
+      expect(Number(ancho), `${archivo} es demasiado pequena para la ficha`)
+        .toBeGreaterThanOrEqual(800);
+      // La tarjeta de compartir es el unico jpg que no sale de la serie de
+      // <picture>: se recorta aparte y no tiene entrada en imagenes.
+      if (archivo === compartir.archivo) continue;
+      expect(imagenes[nombre]?.respaldo, `${nombre} no tiene ese respaldo`).toBe(Number(ancho));
+    }
+  });
+
+  it('ofrece la foto en mas de una proporcion', () => {
+    // Google elige entre las fotos declaradas segun donde vaya a pintar el
+    // resultado, y con una sola proporcion recorta el como puede.
+    expect(ficha.image.length).toBeGreaterThan(1);
+    expect(ficha.image, 'la ficha no ofrece la tarjeta apaisada')
+      .toContain(`${negocio.web}images/${compartir.archivo}`);
+  });
+
+  it('el contacto y la direccion son los de business.json', () => {
+    expect(ficha.telephone).toBe(negocio.telefono);
+    expect(ficha.email).toBe(negocio.email);
+    expect(ficha.address.streetAddress).toBe(negocio.direccion.calle);
+    expect(ficha.address.postalCode).toBe(negocio.direccion.cp);
+    expect(ficha.address.addressLocality).toBe(negocio.direccion.localidad);
+    expect(ficha.address.addressCountry).toBe(negocio.direccion.pais);
+    expect(ficha.geo.latitude).toBe(negocio.geo.lat);
+    expect(ficha.geo.longitude).toBe(negocio.geo.lng);
+  });
+
+  it('el mapa, la apertura y el Instagram son los de business.json', () => {
+    expect(ficha.hasMap).toBe(negocio.maps);
+    expect(ficha.foundingDate).toBe(negocio.aperturaDesde);
+    expect(ficha.sameAs).toContain(negocio.instagram);
+  });
+
+  it('hasMenu apunta a una seccion que la web pinta de verdad', () => {
+    // La carta no es una pagina aparte: es un ancla de la portada. Si alguien le
+    // cambia el id al <section>, el enlace de la ficha deja de llevar a ninguna
+    // parte y Google se queda sin saber donde esta la carta.
+    const ancla = ficha.hasMenu.replace(negocio.web, '');
+    expect(ancla).toMatch(/^#[\w-]+$/);
+    const carta = readFileSync(join(process.cwd(), 'src', 'components', 'Carta.jsx'), 'utf8');
+    expect(carta, `nadie pinta ${ancla}`).toContain(`id="${ancla.slice(1)}"`);
+  });
+
+  it('la moneda es la que marcan los precios de la carta', () => {
+    expect(ficha.currenciesAccepted).toBe('EUR');
+  });
+
+  // priceRange es una afirmacion sobre lo que cuesta venir, y los precios suben
+  // solos con cada export del TPV. Se ata a la carta para que, cuando deje de
+  // ser cierta, salte aqui y no en la cabeza de quien llegue con otra idea.
+  describe('priceRange', () => {
+    /** Gasto por persona que representa cada simbolo, en euros. */
+    const BANDAS = { '€': 15, '€€': 30, '€€€': 60, '€€€€': Infinity };
+
+    const medianaDe = (id) => {
+      const categoria = menu.categorias.find((c) => c.id === id);
+      const precios = categoria.productos
+        .map((p) => p.precio)
+        .filter((p) => typeof p === 'number' && p > 0)
+        .sort((a, b) => a - b);
+      expect(precios.length, `${id} se ha quedado sin precios`).toBeGreaterThan(0);
+      return precios[Math.floor(precios.length / 2)];
+    };
+
+    it('es uno de los simbolos que Google entiende', () => {
+      expect(Object.keys(BANDAS)).toContain(ficha.priceRange);
+    });
+
+    it('la banda declarada aguanta un cubierto tipo de la carta', () => {
+      // Cubierto tipo: un cafe y algo de comer, que es a lo que se viene.
+      const cubierto = medianaDe('cafes') + medianaDe('desayunos');
+      const simbolos = Object.keys(BANDAS);
+      const banda = simbolos.find((s) => cubierto <= BANDAS[s]);
+      expect(banda, `un cubierto tipo sale por ${cubierto.toFixed(2)} €: toca declarar "${banda}"`)
+        .toBe(ficha.priceRange);
+    });
+  });
+
+  it('sigue sin declarar una valoracion propia', () => {
+    // Decision deliberada: una valoracion que se pone el negocio a si mismo es
+    // self-serving review para Google y publicidad no verificable para la
+    // Directiva Omnibus. La media de Google se dice en el texto visible de
+    // "El cafe", citando de donde sale y de cuando es.
+    expect(ficha.aggregateRating).toBeUndefined();
+    expect(ficha.review).toBeUndefined();
+  });
+});
+
+describe('tarjeta al compartir el enlace', () => {
+  // Un cafe de pueblo se comparte por WhatsApp, y lo que se pega ahi no es la
+  // web: es lo que el rastreador saque de estas etiquetas. Estan escritas a mano
+  // y ninguna se ve en pantalla, asi que se caen en silencio.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const etiquetas = Object.fromEntries(
+    [...html.matchAll(/<meta\s+(?:property|name)="((?:og|twitter):[\w:]+)"\s+content="([^"]*)"/g)]
+      .map(([, clave, valor]) => [clave, valor]),
+  );
+
+  it('promete una imagen grande y la da', () => {
+    // twitter:card ya prometia una tarjeta con foto: sin og:image la vista
+    // previa sale en gris, que es peor que no prometer nada.
+    expect(etiquetas['twitter:card']).toBe('summary_large_image');
+    expect(etiquetas['og:image']).toBeTruthy();
+  });
+
+  it('la imagen es una URL absoluta de un archivo que existe', () => {
+    // El rastreador no esta en la pagina: una ruta relativa no la sabe resolver.
+    const url = etiquetas['og:image'];
+    expect(url.startsWith(`${negocio.web}images/`), `${url} no cuelga de la web`).toBe(true);
+    const archivo = url.slice(`${negocio.web}images/`.length);
+    expect(archivo).toBe(compartir.archivo);
+    expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
+  });
+
+  it('el tamano declarado es el que mide el recorte', () => {
+    // Facebook reserva el hueco con estas dos cifras antes de bajar la imagen:
+    // si no cuadran, la vista previa pega un salto al cargar.
+    expect(Number(etiquetas['og:image:width'])).toBe(compartir.ancho);
+    expect(Number(etiquetas['og:image:height'])).toBe(compartir.alto);
+    expect(etiquetas['og:image:type']).toBe('image/jpeg');
+  });
+
+  it('el recorte es el apaisado que piden las redes', () => {
+    // 1,91:1. Si se desvia, cada red recorta por su cuenta y se pierde justo lo
+    // que se habia elegido ensenar.
+    const proporcion = compartir.ancho / compartir.alto;
+    expect(proporcion).toBeGreaterThan(1.87);
+    expect(proporcion).toBeLessThan(1.95);
+  });
+
+  it('la imagen tiene un alt que la describe', () => {
+    const alt = etiquetas['og:image:alt'];
+    expect(alt?.trim()).toBeTruthy();
+    // Repetir la descripcion de la pagina no describe la foto: quien lee la
+    // tarjeta con un lector de pantalla ya tiene ese texto al lado.
+    expect(alt).not.toBe(etiquetas['og:description']);
+  });
+
+  it('la tarjeta apunta a la misma direccion que la canonica', () => {
+    expect(etiquetas['og:url']).toBe(negocio.web);
+    expect(etiquetas['og:type']).toBe('website');
+    expect(etiquetas['og:site_name']).toBe(negocio.nombre);
+  });
+});
+
+describe('el titular dice donde esta el cafe', () => {
+  // El h1 es lo que mas pesa de la pagina para un buscador, y nadie busca
+  // "cafe de especialidad" a secas: se busca con el pueblo delante. Estaba solo
+  // en un <p> pequeno encima del titular, que pesa mucho menos.
+  const DICCIONARIOS = { es, en, de, ca };
+  const LOCALIDAD = negocio.direccion.localidad;
+
+  it('los cuatro titulares nombran la localidad', () => {
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.hero.titulo, `el h1 en ${codigo} no nombra ${LOCALIDAD}`).toContain(LOCALIDAD);
+    }
+  });
+
+  it('los cuatro titulos de pestana nombran la localidad', () => {
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.meta.titulo, `el <title> en ${codigo} no nombra ${LOCALIDAD}`).toContain(LOCALIDAD);
+      expect(dic.meta.descripcion, `la descripcion en ${codigo} no nombra ${LOCALIDAD}`)
+        .toContain(LOCALIDAD);
+    }
+  });
+
+  it('la linea de encima del titular no repite la localidad', () => {
+    // Antes el pueblo estaba ahi y ahora esta en el h1: volver a ponerlo deja
+    // el mismo nombre dos veces seguidas en pantalla, que se lee como relleno.
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.hero.ubicacion, `${codigo} repite ${LOCALIDAD} encima del h1`)
+        .not.toContain(LOCALIDAD);
+    }
+  });
+
+  it('el titular sigue cabiendo en tres lineas', () => {
+    // .hero__titulo va a white-space: pre-line y hasta 5,4rem: los saltos de
+    // linea del diccionario son la maquetacion, no un detalle del texto.
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      const lineas = dic.hero.titulo.split('\n');
+      expect(lineas.length, `${codigo} parte el h1 en ${lineas.length} lineas`)
+        .toBeLessThanOrEqual(3);
+      for (const linea of lineas) {
+        expect(linea.length, `${codigo}: "${linea}" es muy larga para el hero`)
+          .toBeLessThanOrEqual(24);
+      }
+    }
   });
 });
 

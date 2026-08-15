@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "menu": "node scripts/build-menu.mjs",
     "menu:idiomas": "node scripts/split-menu.mjs",

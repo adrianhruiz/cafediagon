@@ -39,6 +39,30 @@ const DESTACADAS = new Set(['06-DJEJYueMzZM', '21-DEnfYHEMvoF']);
 /** El mapa de scripts/build-mapa.mjs: se ve a media pagina, como las destacadas. */
 const MAPA = 'mapa';
 
+/**
+ * La tarjeta con la que se ve la web al compartir el enlace (WhatsApp, Facebook,
+ * X). No entra en <picture> ni en ningun srcset: es un jpg suelto, de tamano
+ * fijo, que solo piden los rastreadores. Por eso no lleva avif ni webp: hay
+ * previsualizadores que no los entienden y se quedarian sin imagen.
+ *
+ * 1,91:1 es lo que recortan todas las redes. Darsela ya recortada evita que
+ * cada una decida por su cuenta que trozo de la foto tira.
+ */
+const COMPARTIR = {
+  origen: ['posts', '17-DEx8Xqxsd16.jpg'],
+  proporcion: 1200 / 630,
+  // La foto es cuadrada y hay que tirar casi la mitad. El recorte automatico
+  // (position 'attention') se queda con la balda de las botellas, y la tarjeta
+  // acaba siendo un estante de licores: no es lo que se comparte de un cafe con
+  // juegos de mesa al que va gente con ninos. Abajo estan la maquina y las
+  // tazas, que es lo que se reconoce de un vistazo.
+  recorte: 'bottom',
+  // Lo que piden las redes. Si el original no da para tanto se recorta a lo que
+  // haya: su minimo para la tarjeta grande es 600x314 y los 1080 de Instagram
+  // lo pasan de sobra, asi que no compensa inventarse pixeles.
+  anchoMaximo: 1200,
+};
+
 const anchosDe = (nombre) => {
   if (FONDOS.has(nombre)) return ANCHOS.fondo;
   if (DESTACADAS.has(nombre) || nombre === MAPA) return ANCHOS.destacada;
@@ -122,6 +146,26 @@ async function procesar(rutaEntrada, nombre, anchos, {
   };
 }
 
+/**
+ * La foto de la tarjeta ya se ha contado en totalOrigen al procesarla como una
+ * mas: aqui solo suma lo que ocupa el recorte.
+ */
+async function procesarCompartir() {
+  const ruta = join(ORIGEN, ...COMPARTIR.origen);
+  const meta = await sharp(ruta).metadata();
+  const ancho = Math.min(COMPARTIR.anchoMaximo, meta.width);
+  const alto = Math.round(ancho / COMPARTIR.proporcion);
+  const archivo = `compartir-${ancho}.jpg`;
+
+  const info = await sharp(ruta).rotate()
+    .resize(ancho, alto, { fit: 'cover', position: COMPARTIR.recorte })
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(join(DESTINO, archivo));
+  totalDestino += info.size;
+
+  return { archivo, ancho, alto };
+}
+
 const kb = (n) => `${Math.round(n / 1024)} KB`;
 
 await procesar(join(ORIGEN, 'logo-hd.jpg'), 'logo', ANCHOS.logo, { cuadrado: true, jpgCompleto: true });
@@ -140,10 +184,21 @@ for (const carpeta of ['posts', 'fotos', 'mapa']) {
   }
 }
 
+const compartir = await procesarCompartir();
+
 // Este json viaja dentro del bundle, asi que la lista de formatos va una sola
 // vez arriba y no repetida en cada una de las 66 imagenes.
+//
+// La tarjeta va aparte de imagenes: no tiene anchos ni formatos entre los que
+// elegir, y sus medidas hay que declararlas en las etiquetas og: de index.html,
+// donde no se pueden calcular. Aqui es donde se sabe cuanto mide de verdad.
 writeFileSync(join(RAIZ, 'src', 'content', 'imagenes.json'),
-  JSON.stringify({ formatos: FORMATOS.map(({ ext, tipo }) => ({ ext, tipo })), imagenes: generados }, null, 2) + '\n');
+  JSON.stringify({
+    formatos: FORMATOS.map(({ ext, tipo }) => ({ ext, tipo })),
+    compartir,
+    imagenes: generados,
+  }, null, 2) + '\n');
 
 console.log(`${Object.keys(generados).length} imagenes procesadas`);
+console.log(`tarjeta para compartir ${compartir.ancho}x${compartir.alto}`);
 console.log(`originales ${kb(totalOrigen)} -> derivados ${kb(totalDestino)}`);

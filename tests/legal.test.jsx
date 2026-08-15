@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProveedorIdioma } from '../src/i18n/idioma.jsx';
+import { AVISO, PORTADA, PRIVACIDAD, ruta } from '../src/rutas.js';
 import App from '../src/App.jsx';
 import negocio from '../src/content/business.json';
 import es from '../src/i18n/es.json';
@@ -10,97 +11,85 @@ import legalEs from '../src/content/legal.es.json';
 import legalDe from '../src/content/legal.de.json';
 
 /**
- * Las dos paginas legales viven en el hash y su componente va en un trozo
- * aparte: se monta con el hash puesto y se espera al h1, que es lo primero que
- * aparece cuando el trozo ha llegado.
+ * Cada pagina legal es ahora una direccion propia y un fichero propio, asi que
+ * el componente recibe cual le toca en vez de leerla del hash. Su codigo va en
+ * un trozo aparte: se espera al h1, que es lo primero que aparece cuando ha
+ * llegado.
  */
-const montar = (hash = '', idioma = 'es') => {
-  window.location.hash = hash;
-  return render(<ProveedorIdioma inicial={idioma}><App /></ProveedorIdioma>);
-};
+const montar = (pagina = PORTADA, idioma = 'es') =>
+  render(<ProveedorIdioma inicial={idioma}><App pagina={pagina} /></ProveedorIdioma>);
 
-const abrir = async (hash, idioma = 'es') => {
-  const resultado = montar(hash, idioma);
+const abrir = async (pagina, idioma = 'es') => {
+  const resultado = montar(pagina, idioma);
   const textos = idioma === 'de' ? legalDe : legalEs;
-  const doc = hash === '#privacidad' ? textos.privacidad : textos.aviso;
+  const doc = pagina === PRIVACIDAD ? textos.privacidad : textos.aviso;
   await screen.findByRole('heading', { level: 1, name: doc.titulo });
   return resultado;
 };
 
-beforeEach(() => {
-  localStorage.clear();
-  window.location.hash = '';
-});
+beforeEach(() => localStorage.clear());
 
 describe('acceso a los textos legales', () => {
   it('el pie enlaza al aviso legal y a la privacidad', async () => {
     montar();
     // El pie no depende de la carta: esta desde el primer pintado.
     expect(await screen.findByRole('link', { name: es.pie.avisoLegal }))
-      .toHaveAttribute('href', '#aviso-legal');
+      .toHaveAttribute('href', ruta('es', AVISO));
     expect(screen.getByRole('link', { name: es.pie.privacidad }))
-      .toHaveAttribute('href', '#privacidad');
+      .toHaveAttribute('href', ruta('es', PRIVACIDAD));
   });
 
-  it('el enlace del pie abre el aviso legal sin recargar', async () => {
-    const usuario = userEvent.setup();
-    montar();
-
-    await usuario.click(await screen.findByRole('link', { name: es.pie.avisoLegal }));
-
-    expect(await screen.findByRole('heading', { level: 1, name: legalEs.aviso.titulo }))
-      .toBeInTheDocument();
+  it('los enlaces del pie se quedan en el idioma que se esta leyendo', async () => {
+    // Desde la portada en aleman, el aviso legal que toca es el aleman, no el
+    // castellano: son dos direcciones distintas y cada una es una pagina.
+    montar(PORTADA, 'de');
+    expect(await screen.findByRole('link', { name: de.pie.avisoLegal }))
+      .toHaveAttribute('href', ruta('de', AVISO));
   });
 
   it('los enlaces legales siguen en el pie dentro de las propias paginas legales', async () => {
     // LSSI art. 10: acceso permanente, facil y directo, tambien desde alli.
-    await abrir('#aviso-legal');
+    await abrir(AVISO);
     expect(screen.getAllByRole('link', { name: es.pie.privacidad }).length)
       .toBeGreaterThan(0);
   });
 
   it('la pagina legal sustituye a la portada, no se le suma', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     expect(container.querySelector('#carta')).toBeNull();
     expect(container.querySelector('#donde')).toBeNull();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
-  it('un hash que no es legal sigue siendo un ancla de la portada', async () => {
-    montar('#donde');
-    await screen.findByRole('heading', { name: es.carta.titulo });
+  it('la portada no pinta ninguna pagina legal', () => {
+    montar(PORTADA);
+    // El h1 de la portada es el del hero, que no va en ningun trozo aparte:
+    // esta desde el primer pintado y no hay que esperar a nada.
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(es.hero.titulo);
     expect(screen.queryByRole('heading', { level: 1, name: legalEs.aviso.titulo }))
       .not.toBeInTheDocument();
   });
 
-  it('el salto al contenido no echa de la pagina legal', async () => {
-    // El hash es la ruta: si #contenido llegase a la barra de direcciones,
-    // saltarse la cabecera devolveria a la portada.
+  it('el salto al contenido lleva el foco al main tambien en una pagina legal', async () => {
+    // Ya no hay que hacer nada a mano: el hash dejo de ser la ruta, asi que
+    // #contenido vuelve a ser el ancla que dice ser. Lo que hay que comprobar
+    // es que sigue habiendo donde aterrizar.
     const usuario = userEvent.setup();
-    const { container } = await abrir('#aviso-legal');
+    const { container } = await abrir(AVISO);
 
-    await usuario.click(screen.getByRole('link', { name: es.nav.saltar }));
+    const salto = screen.getByRole('link', { name: es.nav.saltar });
+    expect(salto).toHaveAttribute('href', '#contenido');
 
+    await usuario.click(salto);
     expect(screen.getByRole('heading', { level: 1, name: legalEs.aviso.titulo }))
       .toBeInTheDocument();
-    expect(container.querySelector('#contenido')).toHaveFocus();
-    expect(window.location.hash).toBe('#aviso-legal');
-  });
-
-  it('el foco entra en el contenido al abrir una pagina legal', async () => {
-    const usuario = userEvent.setup();
-    const { container } = montar();
-
-    await usuario.click(await screen.findByRole('link', { name: es.pie.privacidad }));
-    await screen.findByRole('heading', { level: 1, name: legalEs.privacidad.titulo });
-
-    expect(container.querySelector('#contenido')).toHaveFocus();
+    expect(container.querySelector('#contenido')).toBeInTheDocument();
   });
 });
 
 describe('aviso legal: identificacion del prestador (LSSI art. 10)', () => {
   it('publica el nombre del titular y su NIF', async () => {
-    const { container } = await abrir('#aviso-legal');
+    const { container } = await abrir(AVISO);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain(negocio.titular);
@@ -108,7 +97,7 @@ describe('aviso legal: identificacion del prestador (LSSI art. 10)', () => {
   });
 
   it('publica domicilio, telefono y correo de contacto directo', async () => {
-    const { container } = await abrir('#aviso-legal');
+    const { container } = await abrir(AVISO);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain(negocio.direccion.calle);
@@ -118,7 +107,7 @@ describe('aviso legal: identificacion del prestador (LSSI art. 10)', () => {
   });
 
   it('publica el titulo habilitante de la actividad', async () => {
-    const { container } = await abrir('#aviso-legal');
+    const { container } = await abrir(AVISO);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain(negocio.licencia.expediente);
@@ -127,7 +116,7 @@ describe('aviso legal: identificacion del prestador (LSSI art. 10)', () => {
 
   it('no se queda en el nombre comercial', async () => {
     // "Diagon Cafe" no identifica a nadie: es lo que ya decia el pie antes.
-    const { container } = await abrir('#aviso-legal');
+    const { container } = await abrir(AVISO);
     expect(container.querySelector('.legal').textContent).not.toBe(negocio.nombre);
     expect(negocio.titular).not.toBe(negocio.nombre);
   });
@@ -135,7 +124,7 @@ describe('aviso legal: identificacion del prestador (LSSI art. 10)', () => {
 
 describe('politica de privacidad (RGPD arts. 13-14)', () => {
   it('identifica al responsable con nombre y NIF', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain(negocio.titular);
@@ -144,7 +133,7 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
 
   it('declara el dato que se guarda en el navegador', async () => {
     // Exento de consentimiento (art. 22.2 LSSI), pero hay que declararlo.
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('diagon:idioma');
@@ -153,12 +142,12 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
   });
 
   it('dice que el mapa es una imagen propia y no un mapa de Google', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     expect(container.querySelector('.legal').textContent).toContain('OpenStreetMap');
   });
 
   it('declara la transferencia internacional del alojamiento', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('GitHub');
@@ -166,7 +155,7 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
   });
 
   it('explica los derechos y la autoridad de control', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('portabilidad');
@@ -174,7 +163,7 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
   });
 
   it('dice por que base juridica se trata cada cosa', async () => {
-    const { container } = await abrir('#privacidad');
+    const { container } = await abrir(PRIVACIDAD);
     const texto = container.querySelector('.legal').textContent;
 
     expect(texto).toContain('6.1.f');
@@ -186,31 +175,25 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
 });
 
 describe('paginas legales en los cuatro idiomas', () => {
-  it('el aviso legal se sirve en el idioma elegido', async () => {
-    await abrir('#aviso-legal', 'de');
+  it('el aviso legal se sirve en el idioma de su direccion', async () => {
+    await abrir(AVISO, 'de');
     expect(screen.getByRole('heading', { level: 1, name: legalDe.aviso.titulo }))
       .toBeInTheDocument();
   });
 
-  it('cambiar de idioma cambia el texto legal sin salir de la pagina', async () => {
-    const usuario = userEvent.setup();
-    await abrir('#privacidad', 'es');
-
-    await usuario.click(screen.getByRole('button', { name: de.idioma }));
-
-    expect(await screen.findByRole('heading', { level: 1, name: legalDe.privacidad.titulo }))
-      .toBeInTheDocument();
+  it('el selector de idioma no saca de la pagina legal', async () => {
+    // Desde la privacidad en castellano, DE lleva a la privacidad en aleman y
+    // no a la portada, que es lo que haria un enlace fijo a la raiz.
+    await abrir(PRIVACIDAD, 'es');
+    expect(screen.getByRole('link', { name: de.idioma }))
+      .toHaveAttribute('href', ruta('de', PRIVACIDAD));
   });
 
-  it('cada pagina legal enlaza a la otra', async () => {
-    const usuario = userEvent.setup();
-    const { container } = await abrir('#aviso-legal');
+  it('cada pagina legal enlaza a la otra y a la portada de su idioma', async () => {
+    const { container } = await abrir(AVISO, 'de');
 
     const enlaces = [...container.querySelectorAll('.legal__pie a')];
-    expect(enlaces.map((a) => a.getAttribute('href'))).toEqual(['#privacidad', '#inicio']);
-
-    await usuario.click(enlaces[0]);
-    expect(await screen.findByRole('heading', { level: 1, name: legalEs.privacidad.titulo }))
-      .toBeInTheDocument();
+    expect(enlaces.map((a) => a.getAttribute('href')))
+      .toEqual([ruta('de', PRIVACIDAD), ruta('de')]);
   });
 });

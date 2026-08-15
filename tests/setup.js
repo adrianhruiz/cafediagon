@@ -1,6 +1,24 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
 import { afterEach } from 'vitest';
+import { cartaDe } from '../src/components/Carta.jsx';
+import { IDIOMAS } from '../src/i18n/idioma.jsx';
+
+/*
+ * La carta de cada idioma se baja en su propio trozo, y montarla suspende hasta
+ * que llega. React solo reintenta un <Suspense> suspendido cuando la promesa se
+ * resuelve dentro de act(), y en vitest eso solo pasa en el primer montaje de
+ * cada fichero: a partir del segundo, el primer idioma que se pide se queda
+ * colgado para siempre.
+ *
+ * No es un fallo de la web. En un navegador de verdad React reintenta solo, y
+ * lo que se publica ni siquiera llega a suspender, que scripts/prerender.mjs
+ * deja la carta ya pintada en el fichero. Es el entorno de pruebas.
+ *
+ * Se bajan los cuatro antes de empezar: asi Carta.jsx los encuentra resueltos y
+ * pinta sin suspender, y un test puede montar la web en cualquier idioma.
+ */
+await Promise.all(IDIOMAS.map((idioma) => cartaDe(idioma)));
 
 /*
  * Con esta combinacion de vitest y jsdom, globalThis.localStorage llega como un

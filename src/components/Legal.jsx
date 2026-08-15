@@ -1,4 +1,5 @@
 import { useIdioma } from '../i18n/idioma.jsx';
+import { AVISO, PRIVACIDAD, ruta } from '../rutas.js';
 import negocio from '../content/business.json';
 import es from '../content/legal.es.json';
 import en from '../content/legal.en.json';
@@ -12,10 +13,6 @@ import './Legal.css';
  * no pesa en el arranque, que es lo que habia que proteger.
  */
 const TEXTOS = { es, en, de, ca };
-
-/** Las dos paginas legales, por su trozo de URL. */
-export const AVISO = 'aviso-legal';
-export const PRIVACIDAD = 'privacidad';
 
 /** Filas de la ficha de identificacion segun donde se pinte. */
 const FILAS = {
@@ -98,7 +95,7 @@ function Bloque({ bloque, identidad, valores, datos }) {
  * Las dos son la misma pagina con otro texto, asi que el componente no sabe de
  * cual se trata: recibe el trozo de URL y pinta el documento que le toca.
  */
-export default function Legal({ pagina }) {
+export default function Legal({ pagina = AVISO }) {
   const { idioma, t } = useIdioma();
   const textos = TEXTOS[idioma] ?? TEXTOS.es;
   const esAviso = pagina !== PRIVACIDAD;
@@ -142,10 +139,10 @@ export default function Legal({ pagina }) {
         ))}
 
         <nav className="legal__pie" aria-label={t('legal.etiqueta')}>
-          <a href={`#${esAviso ? PRIVACIDAD : AVISO}`}>
+          <a href={ruta(idioma, esAviso ? PRIVACIDAD : AVISO)}>
             {esAviso ? t('pie.privacidad') : t('pie.avisoLegal')}
           </a>
-          <a href="#inicio">{t('legal.volver')}</a>
+          <a href={ruta(idioma)}>{t('legal.volver')}</a>
         </nav>
       </div>
     </section>
