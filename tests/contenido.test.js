@@ -630,6 +630,51 @@ describe('tarjeta al compartir el enlace', () => {
   });
 });
 
+describe('el titular dice donde esta el cafe', () => {
+  // El h1 es lo que mas pesa de la pagina para un buscador, y nadie busca
+  // "cafe de especialidad" a secas: se busca con el pueblo delante. Estaba solo
+  // en un <p> pequeno encima del titular, que pesa mucho menos.
+  const DICCIONARIOS = { es, en, de, ca };
+  const LOCALIDAD = negocio.direccion.localidad;
+
+  it('los cuatro titulares nombran la localidad', () => {
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.hero.titulo, `el h1 en ${codigo} no nombra ${LOCALIDAD}`).toContain(LOCALIDAD);
+    }
+  });
+
+  it('los cuatro titulos de pestana nombran la localidad', () => {
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.meta.titulo, `el <title> en ${codigo} no nombra ${LOCALIDAD}`).toContain(LOCALIDAD);
+      expect(dic.meta.descripcion, `la descripcion en ${codigo} no nombra ${LOCALIDAD}`)
+        .toContain(LOCALIDAD);
+    }
+  });
+
+  it('la linea de encima del titular no repite la localidad', () => {
+    // Antes el pueblo estaba ahi y ahora esta en el h1: volver a ponerlo deja
+    // el mismo nombre dos veces seguidas en pantalla, que se lee como relleno.
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      expect(dic.hero.ubicacion, `${codigo} repite ${LOCALIDAD} encima del h1`)
+        .not.toContain(LOCALIDAD);
+    }
+  });
+
+  it('el titular sigue cabiendo en tres lineas', () => {
+    // .hero__titulo va a white-space: pre-line y hasta 5,4rem: los saltos de
+    // linea del diccionario son la maquetacion, no un detalle del texto.
+    for (const [codigo, dic] of Object.entries(DICCIONARIOS)) {
+      const lineas = dic.hero.titulo.split('\n');
+      expect(lineas.length, `${codigo} parte el h1 en ${lineas.length} lineas`)
+        .toBeLessThanOrEqual(3);
+      for (const linea of lineas) {
+        expect(linea.length, `${codigo}: "${linea}" es muy larga para el hero`)
+          .toBeLessThanOrEqual(24);
+      }
+    }
+  });
+});
+
 describe('textos legales', () => {
   const IDIOMAS_LEGAL = { es: legalEs, en: legalEn, de: legalDe, ca: legalCa };
   const DOCUMENTOS = ['aviso', 'privacidad'];
