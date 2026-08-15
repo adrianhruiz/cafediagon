@@ -150,6 +150,59 @@ describe.skipIf(!hayBuild)('paginas publicadas', () => {
     }
   });
 
+  describe('sitemap.xml', () => {
+    const xml = hayBuild && existsSync(join(DIST, 'sitemap.xml'))
+      ? readFileSync(join(DIST, 'sitemap.xml'), 'utf8') : '';
+    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
+
+    it('lista exactamente las paginas que se publican', () => {
+      // Si se anade un idioma y el sitemap se queda atras, Google no se entera
+      // de las tres paginas nuevas y nadie ve que falta nada.
+      expect(locs.sort()).toEqual(RUTAS.map(({ idioma, pagina }) => urlAbsoluta(idioma, pagina)).sort());
+    });
+
+    it('todo lo que lista existe como fichero', () => {
+      for (const url of locs) {
+        const camino = new URL(url).pathname.slice(BASE.length);
+        expect(existsSync(join(DIST, camino, 'index.html')), `${url} no existe`).toBe(true);
+      }
+    });
+
+    it('cada direccion declara sus traducciones', () => {
+      // Es la forma que pide Google de decirlo en el sitemap, y va ademas de
+      // los hreflang del <head>, no en su lugar.
+      const bloques = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, b]) => b);
+      expect(bloques.length).toBe(RUTAS.length);
+      for (const bloque of bloques) {
+        const loc = bloque.match(/<loc>([^<]+)<\/loc>/)[1];
+        const codigos = [...bloque.matchAll(/hreflang="([\w-]+)"/g)].map(([, c]) => c);
+        expect(codigos.sort(), loc).toEqual([...IDIOMAS, 'x-default'].sort());
+      }
+    });
+
+    it('no se inventa una fecha de modificacion', () => {
+      // Aqui solo se sabe cuando se ha construido, que no es cuando ha cambiado
+      // el contenido: una fecha que se mueve en cada despliegue no es un dato.
+      expect(xml).not.toContain('<lastmod>');
+    });
+  });
+
+  describe('robots.txt', () => {
+    const robots = hayBuild && existsSync(join(DIST, 'robots.txt'))
+      ? readFileSync(join(DIST, 'robots.txt'), 'utf8') : '';
+
+    it('no bloquea nada', () => {
+      // Las doce paginas son las doce que interesa indexar, y assets/ e images/
+      // tienen que poder leerse o Google renderiza la web sin estilos ni fotos.
+      expect(robots).toContain('User-agent: *');
+      expect(robots).not.toContain('Disallow:');
+    });
+
+    it('apunta al sitemap con su direccion completa', () => {
+      expect(robots).toContain(`Sitemap: ${negocio.web}sitemap.xml`);
+    });
+  });
+
   describe('ficha del negocio', () => {
     const fichaDe = (html) => {
       const bloque = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
