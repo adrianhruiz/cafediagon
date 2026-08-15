@@ -12,6 +12,13 @@
   font-weight: 600;
 }
 
+/* El color no cambia —esta medido sobre el fondo de la franja—, asi que el
+   subrayado es lo que dice que se puede pulsar. */
+.franja-premio a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Hueco de la carta mientras se baja su trozo. Del color de fondo de la propia
    seccion, para que no se vea una banda distinta al entrar. */
 .carta-hueco {

@@ -75,6 +75,31 @@ describe('contacto', () => {
     }
   });
 
+  it('el premio se anuncia enlazando a lo que lo acredita', async () => {
+    // Directiva Omnibus: una distincion que se anuncia y no se puede comprobar
+    // es publicidad enganosa. Si algun dia se queda sin URL, esto salta antes
+    // de que la franja vuelva a afirmarlo a secas.
+    await montar();
+    expect(negocio.premio.url).toMatch(/^https:\/\//);
+
+    // Los dos sitios donde se afirma: la franja y el dato de "El cafe". El
+    // nombre del premio es el mismo en ambos, asi que se piden a la vez.
+    const enlaces = screen.getAllByRole('link', { name: new RegExp(es.premio, 'i') });
+    expect(enlaces).toHaveLength(2);
+    for (const enlace of enlaces) {
+      expect(enlace).toHaveAttribute('href', negocio.premio.url);
+    }
+  });
+
+  it('no trae de vuelta ningun recurso del sello de Restaurant Guru', async () => {
+    // El badge que dan para pegar carga una hoja de estilos de su CDN: eso es
+    // una peticion a un tercero en cada visita, justo lo que se quito con el
+    // mapa para no necesitar banner de cookies.
+    const { container } = await montar();
+    expect(container.innerHTML).not.toContain('infcdn.net');
+    expect(container.querySelector('link[rel="stylesheet"]')).toBeNull();
+  });
+
   it('los enlaces externos se abren con rel noreferrer', async () => {
     const { container } = await montar();
     for (const a of container.querySelectorAll('a[target="_blank"]')) {

@@ -94,9 +94,15 @@ export default function App() {
         ) : (
           <>
             <Hero />
+            {/* Directiva Omnibus: una distincion anunciada tiene que poder
+                comprobarse. Se enlaza a la ficha que la acredita en vez de
+                incrustar el sello de Restaurant Guru, que trae una hoja de
+                estilos de su CDN y devolveria un rastreador a la web. */}
             <p className="franja-premio">
               <span aria-hidden="true">🏆</span>{' '}
-              <b>{negocio.premio.entidad} {negocio.premio.anyo}</b> — {t('premio')}
+              <a href={negocio.premio.url} target="_blank" rel="noreferrer">
+                <b>{negocio.premio.entidad} {negocio.premio.anyo}</b> — {t('premio')}
+              </a>
             </p>
             <Sobre />
             {/* El hueco reserva alto para que la pagina no pegue un salto cuando

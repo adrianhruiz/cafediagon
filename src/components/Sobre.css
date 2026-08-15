@@ -26,6 +26,13 @@
   align-items: baseline;
   font-size: 0.96rem;
 }
+/* Enlace de acreditacion del premio: subrayado para que se vea que lleva a
+   otro sitio, sin cambiar de color y perder el contraste medido. */
+.sobre__premio {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .sobre__datos b {
   font-family: var(--serif);
   font-size: 1.5rem;

@@ -24,7 +24,12 @@
   "instagram": "https://www.instagram.com/cafediagon/",
   "maps": "https://maps.app.goo.gl/d2g11FBeK4i8gxYLA",
   "google": { "valoracion": 4.7, "resenas": 67 },
-  "premio": { "entidad": "Restaurant Guru", "anyo": 2026 },
+  "premio": {
+    "entidad": "Restaurant Guru",
+    "anyo": 2026,
+    "url": "https://es.restaurantguru.com/Diagon-Cafe-Cala-Ratjada",
+    "comprobado": "2026-08-15"
+  },
   "aperturaDesde": "2025-01-14",
   "horario": null
 }

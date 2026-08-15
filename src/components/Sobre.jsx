@@ -26,7 +26,12 @@ export default function Sobre() {
             </li>
             <li>
               <b>{negocio.premio.anyo}</b>
-              <span>{t('sobre.datoPremio')}</span>
+              {/* Mismo motivo que la franja: la distincion se anuncia con el
+                  enlace que permite comprobarla. */}
+              <span>
+                <a className="sobre__premio" href={negocio.premio.url}
+                   target="_blank" rel="noreferrer">{t('sobre.datoPremio')}</a>
+              </span>
             </li>
           </ul>
         </div>
