@@ -33,8 +33,11 @@ jobs:
       # carga la web: si se quedan atras, la carta publicada no es la del TPV.
       - name: Comprobar que la carta commiteada esta al dia
         run: git diff --exit-code src/content/
-      - run: npm test
+      # El build va antes que los tests a proposito: tests/prerender.test.js lee
+      # las doce paginas que deja en dist/, que es lo que se publica de verdad.
+      # Sin dist/ esos tests se saltan y el prerender viajaria sin comprobar.
       - run: npm run build
+      - run: npm test
 
   deploy:
     # Solo main despliega: develop se queda en verificacion.

@@ -14,11 +14,14 @@ const TODO = 'todo';
  * pedidas guarda la promesa (sin esto cada render lanzaria otra peticion) y
  * resueltas lo que ya ha llegado, que es lo unico que se puede pintar sin
  * suspender.
+ *
+ * cartaDe se exporta solo para tests/setup.js, que la usa para bajar los cuatro
+ * idiomas antes de empezar. El motivo esta explicado alli.
  */
 const pedidas = new Map();
 const resueltas = new Map();
 
-function cartaDe(idioma) {
+export function cartaDe(idioma) {
   if (!pedidas.has(idioma)) {
     pedidas.set(idioma, import(`../content/menu.${idioma}.json`).then((m) => {
       resueltas.set(idioma, m.default);
@@ -31,10 +34,11 @@ function cartaDe(idioma) {
 /**
  * Espera la carta del idioma pedido y se la pasa a la que pinta.
  *
- * La primera vez suspende, y el hueco lo pone el <Suspense> de App. Al cambiar
- * de idioma no vuelve a suspender: sigue dando la carta anterior hasta que la
- * nueva ha llegado. Si suspendiese, React quitaria media pagina de la pantalla
- * y perderia el filtro elegido mientras se baja un fichero de 24 KB.
+ * La primera vez suspende, y el hueco lo pone el <Suspense> de App. El efecto
+ * es lo que despierta al componente cuando el trozo llega: sin el, la promesa
+ * se resuelve y nadie vuelve a pintar. Con el prerender esto casi no se ve, que
+ * el fichero publicado ya trae la carta hecha, pero se sigue recorriendo al
+ * hidratar y en el servidor de desarrollo.
  *
  * Va suelto y sin un solo hook detras del use() a proposito: cuando use()
  * suspende, React vuelve a ejecutar el componente desde arriba, y los hooks que

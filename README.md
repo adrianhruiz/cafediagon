@@ -17,7 +17,7 @@ npm run dev        # http://localhost:5173/cafediagon/
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Compila a `dist/` |
+| `npm run build` | Compila a `dist/` y prerenderiza las 12 páginas |
 | `npm test` | Tests unitarios (Vitest) |
 | `npm run menu` | Regenera la carta desde el export del TPV |
 | `npm run menu:idiomas` | Reparte `menu.json` en un fichero por idioma (lo que carga la web) |
@@ -77,17 +77,40 @@ Ten en cuenta dos cosas:
   `ERRATAS` y `ERRATAS_DESC`). Conviene arreglarlas también en el TPV: si no,
   vuelven en cada export.
 
+## Direcciones
+
+Cada idioma y cada documento tienen su propia URL, y su propio fichero. El
+castellano se queda en la raíz porque es el idioma por defecto y la `x-default`:
+
+```
+/cafediagon/                    /cafediagon/en/    /cafediagon/de/    /cafediagon/ca/
+/cafediagon/aviso-legal/        /cafediagon/en/aviso-legal/    …
+/cafediagon/privacidad/         /cafediagon/en/privacidad/     …
+```
+
+Son 12 páginas y las escribe `scripts/prerender.mjs` al final del build, cada
+una con su `lang`, su `<title>`, su canónica y los `hreflang` de sus hermanas.
+`src/rutas.js` es la única fuente de esas direcciones: de ahí salen los enlaces
+de la web, los ficheros del prerender y el `sitemap.xml`.
+
+Antes había una sola URL: el idioma iba en `?lang=` y las páginas legales en el
+hash. Ninguna de las dos cosas la ve un buscador, y como GitHub Pages sirve el
+mismo fichero sea cual sea el parámetro, las cuatro traducciones eran el mismo
+documento en castellano con una canónica que las declaraba duplicados suyos.
+`src/main.jsx` sigue traduciendo esas direcciones a las nuevas, porque hay
+enlaces compartidos por ahí.
+
 ## Idiomas
 
-Español, inglés, alemán y catalán. El idioma sale, por este orden, del parámetro
-`?lang=` de la URL, de lo que el visitante haya elegido antes y del idioma del
-navegador.
+Español, inglés, alemán y catalán. El idioma lo fija la dirección y nada más: no
+hay detección automática. Google pide justo eso, que cada URL sirva siempre el
+idioma que declara, y de emparejar a cada visitante con su traducción se
+encargan los `hreflang` en la lista de resultados, antes de entrar.
 
-`?lang=de` es lo que hace que un enlace se pueda compartir en un idioma
-concreto: al pulsar el selector, el idioma se escribe en la barra de direcciones
-con `replaceState` (sin llenar el historial y sin tocar el hash, que es la ruta
-de las páginas legales). `index.html` declara un `hreflang` por idioma con esa
-misma URL, y un test comprueba que estén los cuatro.
+El selector de la cabecera son cuatro enlaces, no cuatro botones: se pueden
+copiar y abrir en otra pestaña, y un rastreador puede seguirlos. Al pulsarlos se
+guarda la elección, y quien vuelve por una dirección sin prefijo aterriza en su
+idioma (lo hace `src/main.jsx` antes de pintar nada).
 
 Los textos de interfaz están en `src/i18n/`. Los nombres y descripciones de los
 platos vienen del TPV, que los tiene traducidos al 66 %; lo que falte cae al
@@ -142,6 +165,14 @@ Dos cosas que conviene no deshacer sin pensarlo:
 - **Las fotos de la galería llevan `alt=""` a propósito**: el pie de la figura
   dice lo mismo y está siempre a la vista, así que con `alt` el lector de
   pantalla leería cada foto dos veces.
+- **`index.html` ya no es la página que se publica**, es la plantilla de la que
+  `scripts/prerender.mjs` saca las 12. Por eso las rutas a `public/` van con
+  `%BASE_URL%` y no con `./`: desde `/de/aviso-legal/` una ruta relativa buscaría
+  las imágenes en `/de/aviso-legal/images/`.
+- **`tests/setup.js` se baja la carta de los cuatro idiomas antes de empezar.**
+  En vitest, React solo reintenta el primer `<Suspense>` frío de cada fichero;
+  sin esto, el segundo test que monte la web en un idioma nuevo se queda colgado.
+  Es del entorno de pruebas, no de la web: el motivo largo está en el fichero.
 
 ## Comprobar que se ve bien
 
@@ -153,6 +184,10 @@ npm run check http://localhost:4173/cafediagon/
 
 Mide el desbordamiento horizontal y las imágenes rotas en 320, 375, 390, 768,
 1280 y 1920 px, y deja las capturas en `design/capturas/`.
+
+`vite preview` sirve `dist/`, así que es la única forma de ver las 12 páginas
+tal y como quedan publicadas (`/cafediagon/de/`, `/cafediagon/aviso-legal/`…).
+`tests/prerender.test.js` las lee de ahí: si no has construido, se salta.
 
 ## Fotos
 

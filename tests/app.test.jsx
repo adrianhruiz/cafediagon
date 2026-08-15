@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProveedorIdioma } from '../src/i18n/idioma.jsx';
+import { ruta } from '../src/rutas.js';
 import App from '../src/App.jsx';
 import menu from '../src/content/menu.json';
 import negocio from '../src/content/business.json';
@@ -20,23 +21,15 @@ const TEXTOS = { es, en, de, ca };
  */
 const montar = async (inicial = 'es') => {
   const resultado = render(<ProveedorIdioma inicial={inicial}><App /></ProveedorIdioma>);
-  await screen.findByRole('heading', { name: TEXTOS[inicial].carta.titulo });
+  // El primer montaje de cada idioma paga la transformacion de su json, que en
+  // vitest se pasa del segundo por defecto de findBy.
+  await screen.findByRole('heading', { name: TEXTOS[inicial].carta.titulo }, { timeout: 10000 });
   return resultado;
 };
 
-/**
- * Cambiar de idioma tambien baja otro trozo. Los textos de la interfaz cambian
- * al momento, pero la carta llega despues: se espera por el nombre de una
- * categoria que en ese idioma se escribe distinto que en castellano.
- */
+/** Una categoria que en ese idioma se escribe distinto que en castellano. */
 const categoriaTraducida = (codigo) =>
   menu.categorias.find((c) => c.nombre[codigo] && c.nombre[codigo] !== c.nombre.es);
-
-const cambiarIdioma = async (usuario, codigo) => {
-  await usuario.click(screen.getByRole('button', { name: TEXTOS[codigo].idioma }));
-  const cat = categoriaTraducida(codigo);
-  await screen.findByRole('heading', { level: 3, name: new RegExp(`^${cat.nombre[codigo]}`, 'i') });
-};
 
 beforeEach(() => localStorage.clear());
 
@@ -215,12 +208,10 @@ describe('horario', () => {
     expect(screen.queryByText(es.donde.horarioPendiente)).not.toBeInTheDocument();
   });
 
-  it('los dias se traducen al cambiar de idioma', async () => {
+  it('los dias salen traducidos', async () => {
     // Sin esto un aleman leeria "Miércoles" en medio de su horario.
-    const usuario = userEvent.setup();
-    const { container } = await montar('es');
+    const { container } = await montar('de');
 
-    await cambiarIdioma(usuario, 'de');
     const texto = container.querySelector('.donde__horario').textContent;
     expect(texto).toContain(de.donde.dias.miercoles);
     expect(texto).toContain(de.donde.cerrado);
@@ -372,64 +363,53 @@ describe('menu movil', () => {
 });
 
 describe('idiomas', () => {
+  // El selector ya no cambia un estado: cada idioma es una direccion y cada una
+  // se sirve prerenderizada. Lo que hay que comprobar es que los cuatro enlaces
+  // llevan donde dicen y que la pagina se pinta entera en el idioma que le toca.
+  //
   // En pantalla pone "DE", pero el nombre accesible es el idioma escrito en si
   // mismo: "DE" en voz alta no le dice nada a quien busca el aleman.
-  it('el selector cambia los textos de toda la pagina', async () => {
+  it('cada idioma es un enlace a su direccion', async () => {
+    await montar('es');
+
+    for (const codigo of ['es', 'en', 'de', 'ca']) {
+      expect(screen.getByRole('link', { name: TEXTOS[codigo].idioma }), codigo)
+        .toHaveAttribute('href', ruta(codigo));
+    }
+  });
+
+  it('marca el idioma que se esta leyendo', async () => {
+    await montar('ca');
+
+    expect(screen.getByRole('link', { name: ca.idioma })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: es.idioma })).not.toHaveAttribute('aria-current');
+  });
+
+  it('pulsar un idioma lo guarda para la proxima visita', async () => {
+    // Es lo unico que se guarda en el navegador, y solo al pulsar: asi quien
+    // vuelve por una direccion sin prefijo aterriza en su idioma. Lo hace
+    // src/main.jsx antes de pintar nada.
     const usuario = userEvent.setup();
     await montar('es');
 
-    expect(screen.getByRole('heading', { name: es.carta.titulo })).toBeInTheDocument();
-    await cambiarIdioma(usuario, 'de');
+    await usuario.click(screen.getByRole('link', { name: de.idioma }));
+    expect(localStorage.getItem('diagon:idioma')).toBe('de');
+  });
+
+  it('la pagina se pinta entera en el idioma de su direccion', async () => {
+    await montar('de');
+
     expect(screen.getByRole('heading', { name: de.carta.titulo })).toBeInTheDocument();
-  });
-
-  it('marca el idioma activo', async () => {
-    const usuario = userEvent.setup();
-    await montar('es');
-
-    expect(screen.getByRole('button', { name: es.idioma })).toHaveAttribute('aria-current', 'true');
-    await cambiarIdioma(usuario, 'ca');
-    expect(screen.getByRole('button', { name: ca.idioma })).toHaveAttribute('aria-current', 'true');
-    expect(screen.getByRole('button', { name: es.idioma })).not.toHaveAttribute('aria-current');
-  });
-
-  it('traduce tambien los nombres de las categorias de la carta', async () => {
-    const usuario = userEvent.setup();
-    await montar('es');
-
-    const cat = menu.categorias.find((c) => c.nombre.de && c.nombre.de !== c.nombre.es);
-    await cambiarIdioma(usuario, 'de');
-    expect(screen.getByRole('heading', { name: new RegExp(cat.nombre.de, 'i') }))
-      .toBeInTheDocument();
-  });
-
-  it('el titulo del documento tambien cambia de idioma', async () => {
-    const usuario = userEvent.setup();
-    await montar('es');
-
-    expect(document.title).toBe(es.meta.titulo);
-    await cambiarIdioma(usuario, 'de');
+    expect(screen.queryByRole('heading', { name: es.carta.titulo })).not.toBeInTheDocument();
     expect(document.title).toBe(de.meta.titulo);
   });
 
-  // La carta de cada idioma se baja aparte: mientras llega hay que seguir
-  // viendo la de antes y no el hueco de carga.
-  it('no vacia la carta mientras se baja el idioma nuevo', async () => {
-    const usuario = userEvent.setup();
-    const { container } = await montar('es');
-
-    const antes = container.querySelectorAll('#carta .plato').length;
-    expect(antes).toBeGreaterThan(0);
-
-    // Justo despues de pulsar, el trozo aleman no ha llegado. Lo que no puede
-    // pasar es que aparezca el hueco de carga con la carta ya leida detras.
-    await usuario.click(screen.getByRole('button', { name: de.idioma }));
-    expect(container.querySelector('.carta-hueco')).toBeNull();
-    expect(container.querySelectorAll('#carta .plato')).toHaveLength(antes);
+  it('traduce tambien los nombres de las categorias de la carta', async () => {
+    await montar('de');
 
     const cat = categoriaTraducida('de');
-    await screen.findByRole('heading', { level: 3, name: new RegExp(`^${cat.nombre.de}`, 'i') });
-    expect(container.querySelectorAll('#carta .plato')).toHaveLength(antes);
+    expect(screen.getByRole('heading', { level: 3, name: new RegExp(`^${cat.nombre.de}`, 'i') }))
+      .toBeInTheDocument();
   });
 });
 
