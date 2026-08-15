@@ -46,6 +46,10 @@
   font-size: 0.95rem;
 }
 
+/* El dia de cierre se distingue por el tono, no solo por la palabra: --tinta-4
+   es un gris fijo y medido, no una opacidad que dependa del fondo. */
+.donde__horario--cerrado { color: var(--tinta-4); }
+
 .donde__pendiente {
   margin: 0;
   font-size: 0.92rem;

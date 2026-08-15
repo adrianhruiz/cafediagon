@@ -84,6 +84,16 @@
     "direccion": "Address",
     "horario": "Opening hours",
     "horarioPendiente": "Ask us for our hours by phone or on Instagram",
+    "cerrado": "Closed",
+    "dias": {
+      "lunes": "Monday",
+      "martes": "Tuesday",
+      "miercoles": "Wednesday",
+      "jueves": "Thursday",
+      "viernes": "Friday",
+      "sabado": "Saturday",
+      "domingo": "Sunday"
+    },
     "telefono": "Phone",
     "email": "Email",
     "instagram": "Instagram",

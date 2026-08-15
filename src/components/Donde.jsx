@@ -44,10 +44,17 @@ export default function Donde() {
 
             <li>
               <h3>{t('donde.horario')}</h3>
+              {/* El horario se guarda por dia y en 24 h, no como frase hecha:
+                  asi el nombre del dia sale del diccionario de idiomas y el
+                  aleman no lee "lunes". El mismo dato alimenta el
+                  openingHoursSpecification del JSON-LD. */}
               {negocio.horario
                 ? <ul className="donde__horario">
                     {negocio.horario.map((h) => (
-                      <li key={h.dias}><span>{h.dias}</span><span>{h.horas}</span></li>
+                      <li key={h.dia} className={h.cerrado ? 'donde__horario--cerrado' : undefined}>
+                        <span>{t(`donde.dias.${h.dia}`)}</span>
+                        <span>{h.cerrado ? t('donde.cerrado') : `${h.abre} – ${h.cierra}`}</span>
+                      </li>
                     ))}
                   </ul>
                 : <p className="donde__pendiente">{t('donde.horarioPendiente')}</p>}

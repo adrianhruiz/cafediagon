@@ -192,6 +192,42 @@ describe('carta', () => {
   });
 });
 
+describe('horario', () => {
+  it('pinta los siete dias con sus horas', async () => {
+    const { container } = await montar();
+    const filas = container.querySelectorAll('.donde__horario li');
+    expect(filas).toHaveLength(negocio.horario.length);
+
+    for (const [i, fila] of [...filas].entries()) {
+      const dia = negocio.horario[i];
+      expect(fila).toHaveTextContent(es.donde.dias[dia.dia]);
+      if (dia.cerrado) {
+        expect(fila).toHaveTextContent(es.donde.cerrado);
+      } else {
+        expect(fila).toHaveTextContent(dia.abre);
+        expect(fila).toHaveTextContent(dia.cierra);
+      }
+    }
+  });
+
+  it('ya no sale el aviso de horario pendiente', async () => {
+    await montar();
+    expect(screen.queryByText(es.donde.horarioPendiente)).not.toBeInTheDocument();
+  });
+
+  it('los dias se traducen al cambiar de idioma', async () => {
+    // Sin esto un aleman leeria "Miércoles" en medio de su horario.
+    const usuario = userEvent.setup();
+    const { container } = await montar('es');
+
+    await cambiarIdioma(usuario, 'de');
+    const texto = container.querySelector('.donde__horario').textContent;
+    expect(texto).toContain(de.donde.dias.miercoles);
+    expect(texto).toContain(de.donde.cerrado);
+    expect(texto).not.toContain(es.donde.dias.miercoles);
+  });
+});
+
 describe('galeria', () => {
   it('cada foto lleva su descripcion en el pie de la figura', async () => {
     const { container } = await montar();

@@ -315,9 +315,70 @@ describe('datos del negocio', () => {
     });
   });
 
-  it('el horario sigue pendiente y el codigo lo contempla', () => {
-    // Cuando llegue, sera un array; hasta entonces null activa el aviso.
-    expect(negocio.horario === null || Array.isArray(negocio.horario)).toBe(true);
+  describe('horario', () => {
+    // Los siete en orden: si falta uno, la seccion "Donde estamos" deja un
+    // hueco y quien lo lea no sabe si ese dia se abre o no.
+    const SEMANA = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+
+    it('trae los siete dias, en orden y sin repetir', () => {
+      expect(Array.isArray(negocio.horario)).toBe(true);
+      expect(negocio.horario.map((h) => h.dia)).toEqual(SEMANA);
+    });
+
+    it('cada dia o abre con dos horas validas o esta cerrado', () => {
+      for (const h of negocio.horario) {
+        if (h.cerrado) {
+          expect(h.abre, `${h.dia} esta cerrado y trae hora`).toBeUndefined();
+          expect(h.cierra, `${h.dia} esta cerrado y trae hora`).toBeUndefined();
+          continue;
+        }
+        for (const hora of [h.abre, h.cierra]) {
+          expect(hora, `${h.dia}`).toMatch(/^([01]\d|2[0-3]):[0-5]\d$/);
+        }
+        expect(h.abre.localeCompare(h.cierra), `${h.dia} cierra antes de abrir`).toBeLessThan(0);
+      }
+    });
+
+    it('los cuatro idiomas nombran los siete dias y el cierre', () => {
+      for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
+        expect(dic.donde.cerrado, `${codigo} no traduce "cerrado"`).toBeTruthy();
+        for (const dia of SEMANA) {
+          expect(dic.donde.dias?.[dia], `${codigo} no traduce "${dia}"`).toBeTruthy();
+        }
+      }
+    });
+
+    // El JSON-LD de index.html esta escrito a mano y es lo que lee Google para
+    // decir "abierto ahora" en los resultados. Si se separa de business.json,
+    // la web y el buscador dicen cosas distintas y nadie se entera.
+    it('el JSON-LD de index.html dice el mismo horario que business.json', () => {
+      const DIA_SCHEMA = {
+        lunes: 'Monday', martes: 'Tuesday', miercoles: 'Wednesday', jueves: 'Thursday',
+        viernes: 'Friday', sabado: 'Saturday', domingo: 'Sunday',
+      };
+      const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+      const bloque = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+      expect(bloque, 'no hay JSON-LD en index.html').toBeTruthy();
+      const ficha = JSON.parse(bloque[1]);
+
+      // Se aplana a "dia -> abre-cierra" para poder comparar sin depender de
+      // como se hayan agrupado los dias en el JSON-LD.
+      const declarado = {};
+      for (const tramo of ficha.openingHoursSpecification) {
+        for (const dia of [tramo.dayOfWeek].flat()) {
+          declarado[dia] = `${tramo.opens}-${tramo.closes}`;
+        }
+      }
+
+      const esperado = Object.fromEntries(negocio.horario.map((h) => [
+        DIA_SCHEMA[h.dia],
+        // Schema.org no tiene "cerrado": el dia sin horas se declara con un
+        // tramo de duracion cero, que es como lo entiende Google.
+        h.cerrado ? '00:00-00:00' : `${h.abre}-${h.cierra}`,
+      ]));
+
+      expect(declarado).toEqual(esperado);
+    });
   });
 
   // Sin estos datos no se puede publicar el aviso legal, y publicarlo a medias

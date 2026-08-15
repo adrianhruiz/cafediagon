@@ -84,6 +84,16 @@
     "direccion": "Dirección",
     "horario": "Horario",
     "horarioPendiente": "Consúltanos el horario por teléfono o en Instagram",
+    "cerrado": "Cerrado",
+    "dias": {
+      "lunes": "Lunes",
+      "martes": "Martes",
+      "miercoles": "Miércoles",
+      "jueves": "Jueves",
+      "viernes": "Viernes",
+      "sabado": "Sábado",
+      "domingo": "Domingo"
+    },
     "telefono": "Teléfono",
     "email": "Email",
     "instagram": "Instagram",

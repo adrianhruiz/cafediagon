@@ -31,5 +31,13 @@
     "comprobado": "2026-08-15"
   },
   "aperturaDesde": "2025-01-14",
-  "horario": null
+  "horario": [
+    { "dia": "lunes", "abre": "09:00", "cierra": "20:00" },
+    { "dia": "martes", "cerrado": true },
+    { "dia": "miercoles", "abre": "09:00", "cierra": "20:00" },
+    { "dia": "jueves", "abre": "09:00", "cierra": "20:00" },
+    { "dia": "viernes", "abre": "09:00", "cierra": "20:00" },
+    { "dia": "sabado", "abre": "08:00", "cierra": "18:00" },
+    { "dia": "domingo", "abre": "09:00", "cierra": "20:00" }
+  ]
 }

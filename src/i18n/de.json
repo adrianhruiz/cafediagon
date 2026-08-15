@@ -84,6 +84,16 @@
     "direccion": "Adresse",
     "horario": "Öffnungszeiten",
     "horarioPendiente": "Frag uns telefonisch oder auf Instagram nach unseren Öffnungszeiten",
+    "cerrado": "Geschlossen",
+    "dias": {
+      "lunes": "Montag",
+      "martes": "Dienstag",
+      "miercoles": "Mittwoch",
+      "jueves": "Donnerstag",
+      "viernes": "Freitag",
+      "sabado": "Samstag",
+      "domingo": "Sonntag"
+    },
     "telefono": "Telefon",
     "email": "E-Mail",
     "instagram": "Instagram",

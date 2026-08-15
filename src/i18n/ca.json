@@ -84,6 +84,16 @@
     "direccion": "Adreça",
     "horario": "Horari",
     "horarioPendiente": "Consulta'ns l'horari per telèfon o a Instagram",
+    "cerrado": "Tancat",
+    "dias": {
+      "lunes": "Dilluns",
+      "martes": "Dimarts",
+      "miercoles": "Dimecres",
+      "jueves": "Dijous",
+      "viernes": "Divendres",
+      "sabado": "Dissabte",
+      "domingo": "Diumenge"
+    },
     "telefono": "Telèfon",
     "email": "Correu",
     "instagram": "Instagram",
