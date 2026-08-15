@@ -442,6 +442,125 @@ describe('datos del negocio', () => {
   });
 });
 
+describe('ficha de Google (JSON-LD)', () => {
+  // La ficha es lo que Google lee para decidir si este cafe sale en una busqueda
+  // local, y es el unico trozo de la web que no mira nadie: si se separa de
+  // business.json o de la carta, se publica mal y no hay pantalla donde se note.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const ficha = JSON.parse(
+    html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1],
+  );
+
+  /** Los ficheros que la ficha nombra viven en public/images, servidos por la web. */
+  const archivoDe = (url) => {
+    expect(url.startsWith(`${negocio.web}images/`), `${url} no cuelga de la web`).toBe(true);
+    return url.slice(`${negocio.web}images/`.length);
+  };
+
+  it('se identifica con un @id estable colgado de la web', () => {
+    // Sin @id la ficha es anonima y no se puede referenciar desde otra pagina.
+    // Cuando el prerender parta la web en una URL por idioma, las cuatro tienen
+    // que seguir hablando del mismo negocio, y eso lo dice este identificador.
+    expect(ficha['@id']).toBe(`${negocio.web}#negocio`);
+    expect(ficha.url).toBe(negocio.web);
+  });
+
+  it('las fotos y el logo son URLs absolutas de ficheros que existen', () => {
+    // Google descarta las rutas relativas en JSON-LD, y una absoluta rota se
+    // queda sin foto en el resultado sin avisar de nada.
+    expect(Array.isArray(ficha.image)).toBe(true);
+    expect(ficha.image.length).toBeGreaterThan(0);
+    for (const url of [...ficha.image, ficha.logo]) {
+      const archivo = archivoDe(url);
+      expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
+    }
+  });
+
+  it('las fotos de la ficha son jpg y del ancho grande', () => {
+    // El respaldo jpg solo se genera en un ancho por foto: si la ficha apunta a
+    // uno pequeno, Google recibe una miniatura. Y avif/webp no son formatos que
+    // se pueda dar por hecho que entienda cualquier rastreador.
+    for (const url of ficha.image) {
+      const [, nombre, ancho] = archivoDe(url).match(/^(.+)-(\d+)\.jpg$/) ?? [];
+      expect(nombre, `${url} no es un jpg del pipeline de imagenes`).toBeTruthy();
+      expect(imagenes[nombre]?.respaldo, `${nombre} no tiene ese respaldo`).toBe(Number(ancho));
+      expect(Number(ancho), `${nombre} es demasiado pequena para la ficha`)
+        .toBeGreaterThanOrEqual(800);
+    }
+  });
+
+  it('el contacto y la direccion son los de business.json', () => {
+    expect(ficha.telephone).toBe(negocio.telefono);
+    expect(ficha.email).toBe(negocio.email);
+    expect(ficha.address.streetAddress).toBe(negocio.direccion.calle);
+    expect(ficha.address.postalCode).toBe(negocio.direccion.cp);
+    expect(ficha.address.addressLocality).toBe(negocio.direccion.localidad);
+    expect(ficha.address.addressCountry).toBe(negocio.direccion.pais);
+    expect(ficha.geo.latitude).toBe(negocio.geo.lat);
+    expect(ficha.geo.longitude).toBe(negocio.geo.lng);
+  });
+
+  it('el mapa, la apertura y el Instagram son los de business.json', () => {
+    expect(ficha.hasMap).toBe(negocio.maps);
+    expect(ficha.foundingDate).toBe(negocio.aperturaDesde);
+    expect(ficha.sameAs).toContain(negocio.instagram);
+  });
+
+  it('hasMenu apunta a una seccion que la web pinta de verdad', () => {
+    // La carta no es una pagina aparte: es un ancla de la portada. Si alguien le
+    // cambia el id al <section>, el enlace de la ficha deja de llevar a ninguna
+    // parte y Google se queda sin saber donde esta la carta.
+    const ancla = ficha.hasMenu.replace(negocio.web, '');
+    expect(ancla).toMatch(/^#[\w-]+$/);
+    const carta = readFileSync(join(process.cwd(), 'src', 'components', 'Carta.jsx'), 'utf8');
+    expect(carta, `nadie pinta ${ancla}`).toContain(`id="${ancla.slice(1)}"`);
+  });
+
+  it('la moneda es la que marcan los precios de la carta', () => {
+    expect(ficha.currenciesAccepted).toBe('EUR');
+  });
+
+  // priceRange es una afirmacion sobre lo que cuesta venir, y los precios suben
+  // solos con cada export del TPV. Se ata a la carta para que, cuando deje de
+  // ser cierta, salte aqui y no en la cabeza de quien llegue con otra idea.
+  describe('priceRange', () => {
+    /** Gasto por persona que representa cada simbolo, en euros. */
+    const BANDAS = { '€': 15, '€€': 30, '€€€': 60, '€€€€': Infinity };
+
+    const medianaDe = (id) => {
+      const categoria = menu.categorias.find((c) => c.id === id);
+      const precios = categoria.productos
+        .map((p) => p.precio)
+        .filter((p) => typeof p === 'number' && p > 0)
+        .sort((a, b) => a - b);
+      expect(precios.length, `${id} se ha quedado sin precios`).toBeGreaterThan(0);
+      return precios[Math.floor(precios.length / 2)];
+    };
+
+    it('es uno de los simbolos que Google entiende', () => {
+      expect(Object.keys(BANDAS)).toContain(ficha.priceRange);
+    });
+
+    it('la banda declarada aguanta un cubierto tipo de la carta', () => {
+      // Cubierto tipo: un cafe y algo de comer, que es a lo que se viene.
+      const cubierto = medianaDe('cafes') + medianaDe('desayunos');
+      const simbolos = Object.keys(BANDAS);
+      const banda = simbolos.find((s) => cubierto <= BANDAS[s]);
+      expect(banda, `un cubierto tipo sale por ${cubierto.toFixed(2)} €: toca declarar "${banda}"`)
+        .toBe(ficha.priceRange);
+    });
+  });
+
+  it('sigue sin declarar una valoracion propia', () => {
+    // Decision deliberada: una valoracion que se pone el negocio a si mismo es
+    // self-serving review para Google y publicidad no verificable para la
+    // Directiva Omnibus. La media de Google se dice en el texto visible de
+    // "El cafe", citando de donde sale y de cuando es.
+    expect(ficha.aggregateRating).toBeUndefined();
+    expect(ficha.review).toBeUndefined();
+  });
+});
+
 describe('textos legales', () => {
   const IDIOMAS_LEGAL = { es: legalEs, en: legalEn, de: legalDe, ca: legalCa };
   const DOCUMENTOS = ['aviso', 'privacidad'];
