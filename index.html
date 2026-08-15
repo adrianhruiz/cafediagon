@@ -42,7 +42,27 @@
   <meta property="og:locale:alternate" content="en_GB" />
   <meta property="og:locale:alternate" content="de_DE" />
   <meta property="og:locale:alternate" content="ca_ES" />
+
+  <!-- La tarjeta que se ve al pegar el enlace en WhatsApp, que es por donde se
+       comparte un cafe de pueblo. Sin og:image la vista previa sale en gris y
+       twitter:card ya prometia una imagen grande.
+
+       La ruta es absoluta porque quien lee esto no es un navegador que este en
+       la pagina: es un rastreador que solo tiene el HTML.
+
+       El ancho y el alto los pone scripts/optimize-images.mjs en imagenes.json
+       al recortar la tarjeta, y tests/contenido.test.js comprueba que lo que se
+       declara aqui es lo que mide el archivo: si no cuadran, Facebook reserva
+       un hueco de otro tamano y la vista previa pega un salto.
+
+       No hay twitter:image: X se queda con og:image cuando no lo encuentra, y
+       tener la misma URL escrita dos veces es una para olvidarse de cambiar. -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://adrianhruiz.github.io/cafediagon/images/compartir-1080.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="567" />
+  <meta property="og:image:alt" content="La cafetera del Diagon Cafe con las tazas encima, listas para servir" />
 
   <!-- Ficha para Google: es lo que hace que salgan en busquedas locales.
        Sin aggregateRating a proposito: una valoracion declarada por el propio
@@ -64,7 +84,10 @@
     "name": "Diagon Cafe",
     "url": "https://adrianhruiz.github.io/cafediagon/",
     "description": "Cafetería de especialidad en Cala Rajada con cientos de juegos de mesa a disposición de los clientes.",
-    "image": ["https://adrianhruiz.github.io/cafediagon/images/17-DEx8Xqxsd16-800.jpg"],
+    "image": [
+      "https://adrianhruiz.github.io/cafediagon/images/17-DEx8Xqxsd16-800.jpg",
+      "https://adrianhruiz.github.io/cafediagon/images/compartir-1080.jpg"
+    ],
     "logo": "https://adrianhruiz.github.io/cafediagon/images/logo-192.jpg",
     "address": {
       "@type": "PostalAddress",

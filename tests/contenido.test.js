@@ -12,7 +12,7 @@ import legalEs from '../src/content/legal.es.json';
 import legalEn from '../src/content/legal.en.json';
 import legalDe from '../src/content/legal.de.json';
 import legalCa from '../src/content/legal.ca.json';
-import { formatos, imagenes } from '../src/content/imagenes.json';
+import { compartir, formatos, imagenes } from '../src/content/imagenes.json';
 import { IDIOMAS } from '../src/i18n/idioma.jsx';
 import es from '../src/i18n/es.json';
 import en from '../src/i18n/en.json';
@@ -481,12 +481,24 @@ describe('ficha de Google (JSON-LD)', () => {
     // uno pequeno, Google recibe una miniatura. Y avif/webp no son formatos que
     // se pueda dar por hecho que entienda cualquier rastreador.
     for (const url of ficha.image) {
-      const [, nombre, ancho] = archivoDe(url).match(/^(.+)-(\d+)\.jpg$/) ?? [];
+      const archivo = archivoDe(url);
+      const [, nombre, ancho] = archivo.match(/^(.+)-(\d+)\.jpg$/) ?? [];
       expect(nombre, `${url} no es un jpg del pipeline de imagenes`).toBeTruthy();
-      expect(imagenes[nombre]?.respaldo, `${nombre} no tiene ese respaldo`).toBe(Number(ancho));
-      expect(Number(ancho), `${nombre} es demasiado pequena para la ficha`)
+      expect(Number(ancho), `${archivo} es demasiado pequena para la ficha`)
         .toBeGreaterThanOrEqual(800);
+      // La tarjeta de compartir es el unico jpg que no sale de la serie de
+      // <picture>: se recorta aparte y no tiene entrada en imagenes.
+      if (archivo === compartir.archivo) continue;
+      expect(imagenes[nombre]?.respaldo, `${nombre} no tiene ese respaldo`).toBe(Number(ancho));
     }
+  });
+
+  it('ofrece la foto en mas de una proporcion', () => {
+    // Google elige entre las fotos declaradas segun donde vaya a pintar el
+    // resultado, y con una sola proporcion recorta el como puede.
+    expect(ficha.image.length).toBeGreaterThan(1);
+    expect(ficha.image, 'la ficha no ofrece la tarjeta apaisada')
+      .toContain(`${negocio.web}images/${compartir.archivo}`);
   });
 
   it('el contacto y la direccion son los de business.json', () => {
@@ -558,6 +570,63 @@ describe('ficha de Google (JSON-LD)', () => {
     // "El cafe", citando de donde sale y de cuando es.
     expect(ficha.aggregateRating).toBeUndefined();
     expect(ficha.review).toBeUndefined();
+  });
+});
+
+describe('tarjeta al compartir el enlace', () => {
+  // Un cafe de pueblo se comparte por WhatsApp, y lo que se pega ahi no es la
+  // web: es lo que el rastreador saque de estas etiquetas. Estan escritas a mano
+  // y ninguna se ve en pantalla, asi que se caen en silencio.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const etiquetas = Object.fromEntries(
+    [...html.matchAll(/<meta\s+(?:property|name)="((?:og|twitter):[\w:]+)"\s+content="([^"]*)"/g)]
+      .map(([, clave, valor]) => [clave, valor]),
+  );
+
+  it('promete una imagen grande y la da', () => {
+    // twitter:card ya prometia una tarjeta con foto: sin og:image la vista
+    // previa sale en gris, que es peor que no prometer nada.
+    expect(etiquetas['twitter:card']).toBe('summary_large_image');
+    expect(etiquetas['og:image']).toBeTruthy();
+  });
+
+  it('la imagen es una URL absoluta de un archivo que existe', () => {
+    // El rastreador no esta en la pagina: una ruta relativa no la sabe resolver.
+    const url = etiquetas['og:image'];
+    expect(url.startsWith(`${negocio.web}images/`), `${url} no cuelga de la web`).toBe(true);
+    const archivo = url.slice(`${negocio.web}images/`.length);
+    expect(archivo).toBe(compartir.archivo);
+    expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
+  });
+
+  it('el tamano declarado es el que mide el recorte', () => {
+    // Facebook reserva el hueco con estas dos cifras antes de bajar la imagen:
+    // si no cuadran, la vista previa pega un salto al cargar.
+    expect(Number(etiquetas['og:image:width'])).toBe(compartir.ancho);
+    expect(Number(etiquetas['og:image:height'])).toBe(compartir.alto);
+    expect(etiquetas['og:image:type']).toBe('image/jpeg');
+  });
+
+  it('el recorte es el apaisado que piden las redes', () => {
+    // 1,91:1. Si se desvia, cada red recorta por su cuenta y se pierde justo lo
+    // que se habia elegido ensenar.
+    const proporcion = compartir.ancho / compartir.alto;
+    expect(proporcion).toBeGreaterThan(1.87);
+    expect(proporcion).toBeLessThan(1.95);
+  });
+
+  it('la imagen tiene un alt que la describe', () => {
+    const alt = etiquetas['og:image:alt'];
+    expect(alt?.trim()).toBeTruthy();
+    // Repetir la descripcion de la pagina no describe la foto: quien lee la
+    // tarjeta con un lector de pantalla ya tiene ese texto al lado.
+    expect(alt).not.toBe(etiquetas['og:description']);
+  });
+
+  it('la tarjeta apunta a la misma direccion que la canonica', () => {
+    expect(etiquetas['og:url']).toBe(negocio.web);
+    expect(etiquetas['og:type']).toBe('website');
+    expect(etiquetas['og:site_name']).toBe(negocio.nombre);
   });
 });
 
