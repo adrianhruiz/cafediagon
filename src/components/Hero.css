@@ -44,11 +44,18 @@
   margin: 0 0 1.4rem;
 }
 
+/**
+ * pre-line: los saltos del diccionario son la maquetacion del titular, y son
+ * tres lineas contadas. A 5,4rem la primera ya no cabia en los 760 px del
+ * contenido y se partia sola, asi que el h1 salia en cuatro y empujaba los
+ * botones contra el borde de la pantalla. 4,2rem deja que quepa entera.
+ */
 .hero__titulo {
-  font-size: clamp(2rem, 7.5vw, 5.4rem);
+  font-size: clamp(2rem, 7.5vw, 4.2rem);
   color: var(--pergamino);
   margin-bottom: 1.2rem;
   white-space: pre-line;
+  text-wrap: balance;
 }
 
 .hero__entrada {
