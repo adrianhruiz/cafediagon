@@ -1,9 +1,10 @@
 import { useIdioma } from '../i18n/idioma.jsx';
+import { AVISO, PRIVACIDAD, ruta } from '../rutas.js';
 import negocio from '../content/business.json';
 import './Pie.css';
 
 export default function Pie() {
-  const { t } = useIdioma();
+  const { idioma, t } = useIdioma();
   const { direccion } = negocio;
 
   return (
@@ -38,8 +39,8 @@ export default function Pie() {
           {/* LSSI art. 10: el aviso legal tiene que estar accesible de forma
               permanente, facil y directa, y el pie sale en todas las vistas. */}
           <nav className="pie__enlaces-legales" aria-label={t('pie.legal')}>
-            <a href="#aviso-legal">{t('pie.avisoLegal')}</a>
-            <a href="#privacidad">{t('pie.privacidad')}</a>
+            <a href={ruta(idioma, AVISO)}>{t('pie.avisoLegal')}</a>
+            <a href={ruta(idioma, PRIVACIDAD)}>{t('pie.privacidad')}</a>
           </nav>
         </div>
       </div>

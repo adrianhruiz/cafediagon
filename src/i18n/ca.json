@@ -2,7 +2,8 @@
   "idioma": "Català",
   "meta": {
     "titulo": "Diagon Cafe · Cafè d'especialitat i jocs de taula a Cala Rajada",
-    "descripcion": "Cafeteria a Cala Rajada, Mallorca. Cafè d'especialitat, esmorzars, brunch i centenars de jocs de taula gratis. Millor Coffee House de Cala Rajada 2026."
+    "descripcion": "Cafeteria a Cala Rajada, Mallorca. Cafè d'especialitat, esmorzars, brunch i centenars de jocs de taula gratis. Millor Coffee House de Cala Rajada 2026.",
+    "imagenAlt": "La cafetera del Diagon Cafe amb les tasses a sobre, a punt per servir"
   },
   "nav": {
     "cafe": "El cafè",

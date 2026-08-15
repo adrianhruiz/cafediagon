@@ -235,7 +235,7 @@ describe('imagenes generadas', () => {
   // un 404 en cada visita.
   it('la imagen precargada en index.html existe', () => {
     const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
-    const precargas = [...html.matchAll(/rel="preload"[^>]*href="\.\/images\/([^"]+)"/g)];
+    const precargas = [...html.matchAll(/rel="preload"[^>]*href="%BASE_URL%images\/([^"]+)"/g)];
     expect(precargas.length).toBe(1);
     for (const [, archivo] of precargas) {
       expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
@@ -246,7 +246,7 @@ describe('imagenes generadas', () => {
   // que la web no usa en ningun <img>: si se cae, se cae en silencio.
   it('los iconos declarados en index.html existen', () => {
     const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
-    const iconos = [...html.matchAll(/rel="(?:icon|apple-touch-icon)"[^>]*href="\.\/images\/([^"]+)"/g)];
+    const iconos = [...html.matchAll(/rel="(?:icon|apple-touch-icon)"[^>]*href="%BASE_URL%images\/([^"]+)"/g)];
     expect(iconos.length).toBe(2);
     for (const [, archivo] of iconos) {
       expect(existsSync(join(PUBLICO, archivo)), `falta ${archivo}`).toBe(true);
@@ -254,10 +254,12 @@ describe('imagenes generadas', () => {
   });
 });
 
-describe('URL por idioma en index.html', () => {
-  // Los cuatro idiomas son el mismo documento: sin hreflang el buscador solo ve
-  // uno. Las etiquetas estan escritas a mano, asi que si se añade un idioma al
-  // diccionario y nadie toca el HTML, esto se cae en vez de dejarlo sin indexar.
+describe('index.html como plantilla', () => {
+  // index.html ya no es la pagina que se publica: es de donde saca las doce
+  // scripts/prerender.mjs, que reescribe la canonica y los hreflang en cada
+  // una. Lo que se comprueba aqui es que la plantilla es coherente por si sola,
+  // porque es tambien lo que sirve el servidor de desarrollo. Que cada pagina
+  // publicada acabe con lo suyo lo comprueba tests/prerender.test.js.
   const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
   const alternativas = Object.fromEntries(
     [...html.matchAll(/rel="alternate"\s+hreflang="([\w-]+)"\s+href="([^"]+)"/g)]
@@ -268,20 +270,30 @@ describe('URL por idioma en index.html', () => {
     expect(Object.keys(alternativas).sort()).toEqual([...IDIOMAS, 'x-default'].sort());
   });
 
-  it('cada alternativa pide su idioma con ?lang=', () => {
-    for (const idioma of IDIOMAS) {
-      expect(alternativas[idioma]).toBe(`${negocio.web}?lang=${idioma}`);
-    }
-    // x-default no fija idioma: es la que decide por el idioma del navegador.
-    expect(alternativas['x-default']).toBe(negocio.web);
-  });
-
-  it('la canonica y la ficha de Google apuntan a la misma direccion', () => {
+  it('la plantilla es la portada en castellano', () => {
     const canonica = html.match(/rel="canonical"\s+href="([^"]+)"/);
     expect(canonica?.[1]).toBe(negocio.web);
+    expect(alternativas['x-default']).toBe(negocio.web);
 
     const bloque = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
     expect(JSON.parse(bloque[1]).url).toBe(negocio.web);
+  });
+
+  it('ninguna alternativa vuelve al ?lang= de antes', () => {
+    // Era una sola direccion para los cuatro idiomas: GitHub Pages sirve el
+    // mismo fichero sea cual sea el parametro, asi que las tres traducciones
+    // eran el castellano y la canonica las declaraba duplicados suyos.
+    for (const url of Object.values(alternativas)) {
+      expect(url, `${url} sigue pidiendo el idioma por parametro`).not.toContain('lang=');
+      expect(url.startsWith(negocio.web), `${url} no cuelga de la web`).toBe(true);
+    }
+  });
+
+  it('no queda un <noscript> que duplique la pagina prerenderizada', () => {
+    // Tenia dentro la direccion, el telefono y el titular, para quien llegase
+    // sin JavaScript. Ahora ese visitante recibe la web entera ya pintada, y el
+    // bloque se veria ademas de ella, no en su lugar.
+    expect(html).not.toContain('<noscript>');
   });
 
   it('la web declarada acaba en la barra del base del build', () => {

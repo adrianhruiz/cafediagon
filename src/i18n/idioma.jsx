@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo } from 'react';
 import { guardar, leer } from '../almacen.js';
 import es from './es.json';
 import en from './en.json';
@@ -17,53 +17,21 @@ export const NOMBRE_IDIOMA = Object.fromEntries(
 
 const CLAVE = 'diagon:idioma';
 
-/** Parametro que fija el idioma en la URL: ?lang=de. */
-export const PARAMETRO = 'lang';
-
-/** El idioma que pide la URL, o null si no pide ninguno que exista. */
-export function idiomaDeUrl(busqueda = globalThis.location?.search) {
-  const pedido = new URLSearchParams(busqueda ?? '').get(PARAMETRO);
-  return IDIOMAS.includes(pedido) ? pedido : null;
-}
-
 /**
- * Deja el idioma elegido en la barra de direcciones. Asi el enlace se puede
- * compartir y abre la misma pagina en el mismo idioma, que es algo que el
- * almacenamiento local no puede hacer: solo vale para quien ya esta aqui.
+ * El idioma que el visitante eligio a mano en otra visita, o null.
  *
- * replaceState y no pushState: cambiar de idioma no es navegar, y meterlo en el
- * historial obligaria a pulsar atras una vez por cada cambio. El hash se
- * conserva porque es la ruta de las paginas legales.
+ * Solo se guarda lo que se elige pulsando: el idioma del navegador no es una
+ * eleccion suya, y la politica de privacidad declara "el idioma que has
+ * elegido". Sirve para una sola cosa, en src/main.jsx: mandar a su idioma a
+ * quien vuelve a entrar por una direccion sin prefijo.
  */
-function escribirEnUrl(idioma) {
-  const { location, history } = globalThis;
-  if (!location?.href || typeof history?.replaceState !== 'function') return;
-  const url = new URL(location.href);
-  url.searchParams.set(PARAMETRO, idioma);
-  history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+export function idiomaGuardado(almacen = globalThis.localStorage) {
+  const guardado = leer(CLAVE, almacen);
+  return IDIOMAS.includes(guardado) ? guardado : null;
 }
 
-/**
- * Elige idioma inicial: el de la URL, si no el guardado, si no el del
- * navegador, si no castellano. La URL manda porque quien abre un enlace con
- * ?lang=de espera esa pagina en aleman, aunque su navegador vaya en otro idioma.
- */
-export function idiomaInicial(
-  navegador = globalThis.navigator,
-  almacen = globalThis.localStorage,
-  busqueda = globalThis.location?.search,
-) {
-  const pedido = idiomaDeUrl(busqueda);
-  if (pedido) return pedido;
-
-  const guardado = leer(CLAVE, almacen);
-  if (IDIOMAS.includes(guardado)) return guardado;
-
-  for (const etiqueta of navegador?.languages ?? [navegador?.language].filter(Boolean)) {
-    const base = String(etiqueta).toLowerCase().split('-')[0];
-    if (IDIOMAS.includes(base)) return base;
-  }
-  return IDIOMA_POR_DEFECTO;
+export function guardarIdioma(codigo, almacen = globalThis.localStorage) {
+  if (IDIOMAS.includes(codigo)) guardar(CLAVE, codigo, almacen);
 }
 
 /**
@@ -91,35 +59,22 @@ export function idiomaDeCampo(obj, idioma) {
 
 const Contexto = createContext(null);
 
-export function ProveedorIdioma({ children, inicial }) {
-  const [idioma, setIdioma] = useState(() => inicial ?? idiomaInicial());
+/**
+ * El idioma ya no cambia mientras se esta en la pagina: lo fija la direccion y
+ * cada uno tiene la suya. Cambiar de idioma es ir a otra pagina, no un estado
+ * que se mueve por dentro, asi que aqui no hay nada que actualizar.
+ */
+export function ProveedorIdioma({ children, inicial = IDIOMA_POR_DEFECTO }) {
+  const idioma = IDIOMAS.includes(inicial) ? inicial : IDIOMA_POR_DEFECTO;
 
   useEffect(() => {
+    // El prerender ya lo deja escrito en el fichero que se sirve. Esto es para
+    // el servidor de desarrollo, donde el HTML de partida siempre es el mismo.
     document.documentElement.lang = idioma;
-    // El titulo y la descripcion tambien son contenido: si se quedan en
-    // castellano, el lector de pantalla anuncia la pestaña en un idioma y la
-    // pagina en otro.
-    document.title = traducir(idioma, 'meta.titulo');
-    document.querySelector('meta[name="description"]')
-      ?.setAttribute('content', traducir(idioma, 'meta.descripcion'));
   }, [idioma]);
-
-  /**
-   * Solo se guarda lo que el visitante elige a mano. Antes se escribia tambien
-   * el idioma detectado del navegador, que no es una eleccion suya: la
-   * politica de privacidad declara "el idioma que has elegido", y guardar algo
-   * que nadie ha elegido no era eso.
-   */
-  const elegir = (nuevo) => {
-    if (!IDIOMAS.includes(nuevo)) return;
-    setIdioma(nuevo);
-    guardar(CLAVE, nuevo);
-    escribirEnUrl(nuevo);
-  };
 
   const valor = useMemo(() => ({
     idioma,
-    setIdioma: elegir,
     t: (ruta, valores) => traducir(idioma, ruta, valores),
     /** Toma el campo del idioma activo de un objeto {es,en,de,ca}. */
     campo: (obj) => obj?.[idioma] ?? obj?.[IDIOMA_POR_DEFECTO] ?? null,

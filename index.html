@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- El favicon se ve a 16-32 px: el de 192 pesaba 12,8 KB para eso. El de
        apple-touch-icon si tiene que ser grande, va a la pantalla de inicio. -->
-  <link rel="icon" type="image/jpeg" href="./images/logo-96.jpg" />
-  <link rel="apple-touch-icon" href="./images/logo-192.jpg" />
+  <!-- %BASE_URL% y no ./: este fichero es la plantilla de la que
+       scripts/prerender.mjs saca las doce paginas, y desde /de/aviso-legal/ una
+       ruta relativa buscaria las imagenes en /de/aviso-legal/images/. -->
+  <link rel="icon" type="image/jpeg" href="%BASE_URL%images/logo-96.jpg" />
+  <link rel="apple-touch-icon" href="%BASE_URL%images/logo-192.jpg" />
 
   <!-- La foto del hero es lo mas grande de la primera pantalla y la pinta React,
        o sea que sin esto no empieza a bajar hasta que el JS ha arrancado.
@@ -14,30 +17,33 @@
        y pide el webp a su hora, en vez de bajar las dos. tests/contenido.test.js
        comprueba que el archivo que se nombra aqui existe de verdad. -->
   <link rel="preload" as="image" type="image/avif" fetchpriority="high"
-        href="./images/17-DEx8Xqxsd16-800.avif" />
+        href="%BASE_URL%images/17-DEx8Xqxsd16-800.avif" />
 
   <title>Diagon Cafe · Café de especialidad y juegos de mesa en Cala Rajada</title>
   <meta name="description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos, brunch y cientos de juegos de mesa gratis. Mejor Coffee House de Cala Rajada 2026." />
   <meta name="theme-color" content="#202227" />
 
-  <!-- Los cuatro idiomas son el mismo documento pintado con otro diccionario,
-       asi que sin esto solo hay una URL y el buscador solo puede indexar el
-       castellano. Con ?lang= cada idioma tiene direccion propia, se puede
-       compartir y se indexa; x-default es la que decide por el idioma del
-       navegador. tests/contenido.test.js comprueba que estan los cuatro y que
-       apuntan a la web declarada en business.json. -->
+  <!-- Canonica y traducciones. Lo que hay escrito aqui es lo que le toca a la
+       portada en castellano; scripts/prerender.mjs reescribe el bloque entero
+       en cada una de las doce paginas, con la direccion de esa pagina en la
+       canonica y las de sus tres hermanas en los hreflang.
+
+       Antes las cuatro alternativas se pedian por parametro, y las cuatro
+       servian el mismo fichero con la misma canonica apuntando al castellano:
+       para Google, tres duplicados de una pagina que se declaraban a si mismos
+       duplicados. Ahora cada idioma es un fichero con su canonica propia. -->
   <link rel="canonical" href="https://adrianhruiz.github.io/cafediagon/" />
-  <link rel="alternate" hreflang="es" href="https://adrianhruiz.github.io/cafediagon/?lang=es" />
-  <link rel="alternate" hreflang="en" href="https://adrianhruiz.github.io/cafediagon/?lang=en" />
-  <link rel="alternate" hreflang="de" href="https://adrianhruiz.github.io/cafediagon/?lang=de" />
-  <link rel="alternate" hreflang="ca" href="https://adrianhruiz.github.io/cafediagon/?lang=ca" />
+  <link rel="alternate" hreflang="es" href="https://adrianhruiz.github.io/cafediagon/" />
+  <link rel="alternate" hreflang="en" href="https://adrianhruiz.github.io/cafediagon/en/" />
+  <link rel="alternate" hreflang="de" href="https://adrianhruiz.github.io/cafediagon/de/" />
+  <link rel="alternate" hreflang="ca" href="https://adrianhruiz.github.io/cafediagon/ca/" />
   <link rel="alternate" hreflang="x-default" href="https://adrianhruiz.github.io/cafediagon/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://adrianhruiz.github.io/cafediagon/" />
   <meta property="og:site_name" content="Diagon Cafe" />
-  <meta property="og:title" content="Diagon Cafe · Café de especialidad y juegos de mesa" />
-  <meta property="og:description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos y cientos de juegos de mesa gratis." />
+  <meta property="og:title" content="Diagon Cafe · Café de especialidad y juegos de mesa en Cala Rajada" />
+  <meta property="og:description" content="Cafetería en Cala Rajada, Mallorca. Café de especialidad, desayunos, brunch y cientos de juegos de mesa gratis. Mejor Coffee House de Cala Rajada 2026." />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:locale:alternate" content="en_GB" />
   <meta property="og:locale:alternate" content="de_DE" />
@@ -131,29 +137,13 @@
   </script>
 </head>
 <body>
+  <!-- Lo que se publica no llega vacio: scripts/prerender.mjs deja aqui dentro
+       la pagina entera ya pintada, y el JavaScript solo se engancha a lo que ya
+       hay. Aqui habia un bloque de respaldo con la direccion, el telefono y el
+       titular, que era lo minimo para quien llegase sin JavaScript; ahora ese
+       visitante recibe la web completa, incluidas la carta y las paginas
+       legales, y dejarlo puesto significaria ensenarle dos veces lo mismo. -->
   <div id="root"></div>
-
-  <!-- La pagina se pinta con JavaScript: sin el, el div de arriba se queda
-       vacio. Lo minimo para que quien llegue sin JS pueda venir al cafe. -->
-  <noscript>
-    <div style="max-width: 40rem; margin: 3rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
-      <h1>Diagon Cafe</h1>
-      <p>Cafetería de especialidad con juegos de mesa en Cala Rajada (Mallorca).</p>
-      <p>Esta web necesita JavaScript para mostrarse entera. Mientras tanto:</p>
-      <ul>
-        <li>Carrer de Méndez Núñez, 17, bajo · 07590 Cala Rajada</li>
-        <li>Teléfono: <a href="tel:+34628505887">628 50 58 87</a></li>
-        <li>Email: <a href="mailto:cafeteriadiagon@gmail.com">cafeteriadiagon@gmail.com</a></li>
-        <li><a href="https://www.instagram.com/cafediagon/">Instagram @cafediagon</a></li>
-      </ul>
-      <p><strong>Alérgenos:</strong> elaboramos en una cocina compartida y no podemos
-        garantizar la ausencia de trazas. Si tienes alguna alergia, dínoslo en el local.</p>
-      <!-- El aviso legal se pinta con JavaScript: sin el, al menos la
-           identificacion que exige el art. 10 de la LSSI tiene que verse. -->
-      <p><strong>Titular:</strong> Bárbara María Fuster Galmés · NIF 41537014A ·
-        Carrer de Méndez Núñez, 17, 07590 Cala Rajada (Capdepera), Illes Balears</p>
-    </div>
-  </noscript>
 
   <script type="module" src="/src/main.jsx"></script>
 </body>

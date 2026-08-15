@@ -54,25 +54,27 @@
 }
 .cabecera__nav a:hover { opacity: 1; border-color: var(--cobre-claro); }
 
+/* Eran botones y ahora son enlaces, porque cada idioma tiene su direccion. En
+   pantalla no cambia nada: el aspecto era este ya. */
 .cabecera__idiomas { display: flex; gap: 0.15rem; }
-.cabecera__idiomas button {
-  background: none;
-  border: 0;
+.cabecera__idiomas a {
   color: var(--crema);
-  font: inherit;
+  text-decoration: none;
   font-size: 0.74rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  cursor: pointer;
   padding: 0.3rem 0.42rem;
   opacity: 0.55;
   border-bottom: 1px solid transparent;
   transition: opacity var(--transicion);
+  /* Area tactil completa sin ensanchar: la altura no compite por el espacio.
+     Con flex, ademas, el texto se queda centrado dentro de los 44 px. */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
-.cabecera__idiomas button:hover { opacity: 0.85; }
-/* Area tactil completa sin ensanchar: la altura no compite por el espacio. */
-.cabecera__idiomas button { min-height: 44px; }
-.cabecera__idiomas button[aria-current='true'] {
+.cabecera__idiomas a:hover { opacity: 0.85; }
+.cabecera__idiomas a[aria-current='page'] {
   opacity: 1;
   color: var(--cobre-claro);
   border-bottom-color: var(--cobre-claro);
@@ -146,5 +148,5 @@
   }
   /* No se baja de 0.75rem (12px con la base de movil): por debajo el texto en
      mayusculas con letter-spacing deja de leerse comodo. */
-  .cabecera__idiomas button { padding: 0.3rem 0.3rem; font-size: 0.75rem; }
+  .cabecera__idiomas a { padding: 0.3rem 0.3rem; font-size: 0.75rem; }
 }

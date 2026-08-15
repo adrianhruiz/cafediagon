@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import {
-  ProveedorIdioma, IDIOMAS, IDIOMA_POR_DEFECTO, idiomaDeUrl, idiomaInicial, traducir, useIdioma,
+  ProveedorIdioma, IDIOMAS, IDIOMA_POR_DEFECTO, guardarIdioma, idiomaGuardado, traducir, useIdioma,
 } from '../src/i18n/idioma.jsx';
+import { AVISO, leerRuta, PAGINAS, PORTADA, PRIVACIDAD, RUTAS, ruta, urlAbsoluta } from '../src/rutas.js';
+import negocio from '../src/content/business.json';
 import es from '../src/i18n/es.json';
 import en from '../src/i18n/en.json';
 import de from '../src/i18n/de.json';
@@ -58,61 +59,62 @@ describe('traducir', () => {
   });
 });
 
-describe('idiomaInicial', () => {
-  const almacenVacio = { getItem: () => null, setItem: () => {} };
+describe('rutas', () => {
+  // Cada idioma y cada pagina tienen ahora direccion propia, que es lo que hace
+  // que se puedan indexar por separado. Antes el idioma iba en ?lang= y las
+  // paginas legales en el hash: ni una cosa ni la otra las ve un buscador.
+  const BASE = '/cafediagon/';
 
-  it('usa el idioma guardado por encima del navegador', () => {
-    const almacen = { getItem: () => 'de', setItem: () => {} };
-    expect(idiomaInicial({ languages: ['es-ES'] }, almacen)).toBe('de');
+  it('el castellano se queda en la raiz y los demas llevan prefijo', () => {
+    // Un /es/ seria una segunda direccion con el mismo contenido que la raiz.
+    expect(ruta(IDIOMA_POR_DEFECTO)).toBe(BASE);
+    expect(ruta('de')).toBe(`${BASE}de/`);
+    expect(ruta('ca')).toBe(`${BASE}ca/`);
   });
 
-  it('detecta el idioma del navegador', () => {
-    expect(idiomaInicial({ languages: ['de-DE', 'en'] }, almacenVacio)).toBe('de');
-    expect(idiomaInicial({ languages: ['ca-ES'] }, almacenVacio)).toBe('ca');
+  it('las paginas legales cuelgan del idioma', () => {
+    expect(ruta('es', AVISO)).toBe(`${BASE}aviso-legal/`);
+    expect(ruta('de', AVISO)).toBe(`${BASE}de/aviso-legal/`);
+    expect(ruta('ca', PRIVACIDAD)).toBe(`${BASE}ca/privacidad/`);
   });
 
-  it('cae al castellano con un idioma que no soportamos', () => {
-    expect(idiomaInicial({ languages: ['ja-JP'] }, almacenVacio)).toBe(IDIOMA_POR_DEFECTO);
+  it('leerRuta deshace lo que hace ruta', () => {
+    for (const { idioma, pagina } of RUTAS) {
+      expect(leerRuta(ruta(idioma, pagina)), `${idioma} / ${pagina}`).toEqual({ idioma, pagina });
+    }
   });
 
-  it('no revienta si localStorage lanza (modo privado)', () => {
-    const roto = { getItem: () => { throw new Error('denegado'); } };
-    expect(idiomaInicial({ languages: ['en'] }, roto)).toBe('en');
+  it('una direccion que no existe cae en la portada en castellano', () => {
+    // La web se publica en un sitio estatico: cualquiera puede escribir lo que
+    // quiera en la barra de direcciones y no puede reventar por eso.
+    expect(leerRuta(`${BASE}ja/`)).toEqual({ idioma: 'es', pagina: PORTADA });
+    expect(leerRuta(`${BASE}de/lo-que-sea/`)).toEqual({ idioma: 'de', pagina: PORTADA });
+    expect(leerRuta(BASE)).toEqual({ idioma: 'es', pagina: PORTADA });
   });
 
-  it('la URL manda sobre lo guardado y sobre el navegador', () => {
-    // Quien recibe un enlace con ?lang=de espera esa pagina en aleman aunque su
-    // navegador vaya en castellano y tenga otra cosa guardada.
-    const almacen = { getItem: () => 'ca', setItem: () => {} };
-    expect(idiomaInicial({ languages: ['es-ES'] }, almacen, '?lang=de')).toBe('de');
+  it('hay una pagina por idioma y documento, sin repetir', () => {
+    expect(RUTAS.length).toBe(IDIOMAS.length * (PAGINAS.length + 1));
+    const direcciones = RUTAS.map(({ idioma, pagina }) => ruta(idioma, pagina));
+    expect(new Set(direcciones).size).toBe(direcciones.length);
   });
 
-  it('un ?lang que no existe no tapa lo guardado', () => {
-    const almacen = { getItem: () => 'ca', setItem: () => {} };
-    expect(idiomaInicial({ languages: ['es-ES'] }, almacen, '?lang=ja')).toBe('ca');
-  });
-});
-
-describe('idiomaDeUrl', () => {
-  it('lee el idioma del parametro lang', () => {
-    expect(idiomaDeUrl('?lang=en')).toBe('en');
-    expect(idiomaDeUrl('?otro=1&lang=ca')).toBe('ca');
-  });
-
-  it('devuelve null si no hay parametro o no es un idioma nuestro', () => {
-    expect(idiomaDeUrl('')).toBeNull();
-    expect(idiomaDeUrl('?lang=ja')).toBeNull();
+  it('la direccion absoluta cuelga de la web declarada en business.json', () => {
+    // Es lo que va en la canonica, en los hreflang y en las og:, donde una ruta
+    // relativa no la sabe resolver nadie: quien las lee no esta en la pagina.
+    for (const { idioma, pagina } of RUTAS) {
+      const url = urlAbsoluta(idioma, pagina);
+      expect(url.startsWith(negocio.web), url).toBe(true);
+      expect(new URL(url).pathname).toBe(ruta(idioma, pagina));
+    }
   });
 });
 
 function Sonda() {
-  const { idioma, t, setIdioma } = useIdioma();
+  const { idioma, t } = useIdioma();
   return (
     <div>
       <p data-testid="titulo">{t('carta.titulo')}</p>
       <p data-testid="codigo">{idioma}</p>
-      <button onClick={() => setIdioma('de')}>a aleman</button>
-      <button onClick={() => setIdioma('xx')}>invalido</button>
     </div>
   );
 }
@@ -123,67 +125,53 @@ describe('ProveedorIdioma', () => {
     history.replaceState(null, '', '/');
   });
 
-  it('cambia los textos al cambiar de idioma', async () => {
-    const usuario = userEvent.setup();
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-
-    expect(screen.getByTestId('titulo')).toHaveTextContent(es.carta.titulo);
-    await usuario.click(screen.getByText('a aleman'));
+  it('pinta en el idioma que le dan', () => {
+    render(<ProveedorIdioma inicial="de"><Sonda /></ProveedorIdioma>);
     expect(screen.getByTestId('titulo')).toHaveTextContent(de.carta.titulo);
   });
 
-  it('actualiza el atributo lang del documento', async () => {
-    const usuario = userEvent.setup();
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-
-    expect(document.documentElement.lang).toBe('es');
-    await usuario.click(screen.getByText('a aleman'));
+  it('escribe el idioma en el atributo lang del documento', () => {
+    render(<ProveedorIdioma inicial="de"><Sonda /></ProveedorIdioma>);
     expect(document.documentElement.lang).toBe('de');
   });
 
-  it('ignora un idioma que no existe', async () => {
-    const usuario = userEvent.setup();
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-
-    await usuario.click(screen.getByText('invalido'));
-    expect(screen.getByTestId('codigo')).toHaveTextContent('es');
+  it('cae al castellano con un idioma que no existe', () => {
+    render(<ProveedorIdioma inicial="xx"><Sonda /></ProveedorIdioma>);
+    expect(screen.getByTestId('codigo')).toHaveTextContent(IDIOMA_POR_DEFECTO);
+    expect(screen.getByTestId('titulo')).toHaveTextContent(es.carta.titulo);
   });
 
-  it('recuerda el idioma elegido', async () => {
-    const usuario = userEvent.setup();
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
+  it('no guarda nada por el hecho de pintar', () => {
+    // Solo se guarda lo que se elige pulsando. El idioma que trae la direccion
+    // no es una eleccion de quien entra: puede venir de un enlace de otro.
+    render(<ProveedorIdioma inicial="de"><Sonda /></ProveedorIdioma>);
+    expect(localStorage.getItem('diagon:idioma')).toBeNull();
+  });
+});
 
-    await usuario.click(screen.getByText('a aleman'));
+describe('idioma guardado', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('guarda y devuelve la eleccion', () => {
+    guardarIdioma('de');
+    expect(idiomaGuardado()).toBe('de');
     expect(localStorage.getItem('diagon:idioma')).toBe('de');
   });
 
-  it('no guarda nada mientras el visitante no elija', () => {
-    // El idioma detectado del navegador no es una eleccion suya: escribirlo al
-    // entrar contradecia lo que declara la politica de privacidad.
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-    expect(localStorage.getItem('diagon:idioma')).toBeNull();
+  it('no guarda un idioma que no existe', () => {
+    guardarIdioma('ja');
+    expect(idiomaGuardado()).toBeNull();
   });
 
-  it('deja el idioma elegido en la URL sin tocar la ruta ni el hash', async () => {
-    // Es lo que hace que el enlace se pueda compartir: el almacenamiento local
-    // solo sirve para quien ya esta aqui.
-    const usuario = userEvent.setup();
-    history.replaceState(null, '', '/cafediagon/#carta');
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-
-    await usuario.click(screen.getByText('a aleman'));
-
-    expect(location.pathname).toBe('/cafediagon/');
-    expect(new URLSearchParams(location.search).get('lang')).toBe('de');
-    expect(location.hash).toBe('#carta');
+  it('no se cree lo que hay guardado si ya no es un idioma nuestro', () => {
+    localStorage.setItem('diagon:idioma', 'ja');
+    expect(idiomaGuardado()).toBeNull();
   });
 
-  it('no llena el historial al cambiar de idioma', async () => {
-    const usuario = userEvent.setup();
-    const largo = history.length;
-    render(<ProveedorIdioma inicial="es"><Sonda /></ProveedorIdioma>);
-
-    await usuario.click(screen.getByText('a aleman'));
-    expect(history.length).toBe(largo);
+  it('no revienta si localStorage lanza (modo privado)', () => {
+    const roto = { getItem: () => { throw new Error('denegado'); },
+      setItem: () => { throw new Error('denegado'); } };
+    expect(idiomaGuardado(roto)).toBeNull();
+    expect(() => guardarIdioma('de', roto)).not.toThrow();
   });
 });
