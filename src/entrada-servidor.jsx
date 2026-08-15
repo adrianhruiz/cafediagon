@@ -13,6 +13,7 @@ import './styles/global.css';
 export { RUTAS, ruta, urlAbsoluta, PORTADA } from './rutas.js';
 export { metaDe } from './meta.js';
 export { IDIOMAS, IDIOMA_POR_DEFECTO } from './i18n/idioma.jsx';
+export { default as negocio } from './content/business.json';
 
 /**
  * prerenderToNodeStream y no renderToStaticMarkup: la carta y las paginas

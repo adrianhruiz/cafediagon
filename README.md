@@ -93,6 +93,14 @@ una con su `lang`, su `<title>`, su canónica y los `hreflang` de sus hermanas.
 `src/rutas.js` es la única fuente de esas direcciones: de ahí salen los enlaces
 de la web, los ficheros del prerender y el `sitemap.xml`.
 
+El mismo script escribe `sitemap.xml` (las 12 direcciones, cada una con sus
+traducciones) y `robots.txt`. Ojo con el segundo: **un `robots.txt` en una
+subcarpeta no lo lee ningún rastreador**, tiene que estar en la raíz del
+dominio, y la web vive en `adrianhruiz.github.io/cafediagon/`. Se escribe
+igualmente porque no cuesta nada y pasa a valer el día que haya dominio propio.
+El sitemap sí funciona desde la subcarpeta, y además se le puede dar a Google
+directamente en Search Console.
+
 Antes había una sola URL: el idioma iba en `?lang=` y las páginas legales en el
 hash. Ninguna de las dos cosas la ve un buscador, y como GitHub Pages sirve el
 mismo fichero sea cual sea el parámetro, las cuatro traducciones eran el mismo

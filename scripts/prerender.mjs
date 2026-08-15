@@ -44,7 +44,7 @@ const vite = await createServer({
 });
 
 const {
-  pintar, metaDe, urlAbsoluta, ruta, RUTAS, IDIOMAS, IDIOMA_POR_DEFECTO, PORTADA,
+  pintar, metaDe, urlAbsoluta, ruta, RUTAS, IDIOMAS, IDIOMA_POR_DEFECTO, PORTADA, negocio,
 } = await vite.ssrLoadModule('/src/entrada-servidor.jsx');
 
 const plantilla = readFileSync(join(DIST, 'index.html'), 'utf8');
@@ -136,7 +136,61 @@ for (const { idioma, pagina } of RUTAS) {
   escritas += 1;
 }
 
+/*
+ * El sitemap sale de la misma lista que las paginas, que es todo el motivo de
+ * escribirlo aqui: una lista escrita a mano se separa de lo publicado en cuanto
+ * alguien anade un idioma, y se separa en silencio.
+ *
+ * Cada <url> declara sus traducciones con xhtml:link, que es la forma que pide
+ * Google de decirlo en el sitemap. Es la misma informacion que los hreflang del
+ * <head>, y darsela por los dos sitios es lo recomendado.
+ *
+ * Sin <lastmod>: aqui solo se sabe cuando se ha construido, que no es cuando ha
+ * cambiado el contenido. Una fecha que se mueve en cada despliegue sin que haya
+ * cambiado nada no es un dato, es ruido, y Google acaba ignorandola.
+ */
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+  '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+  ...RUTAS.map(({ idioma, pagina }) => [
+    '  <url>',
+    `    <loc>${urlAbsoluta(idioma, pagina)}</loc>`,
+    ...IDIOMAS.map((codigo) =>
+      `    <xhtml:link rel="alternate" hreflang="${codigo}" href="${urlAbsoluta(codigo, pagina)}" />`),
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${urlAbsoluta(IDIOMA_POR_DEFECTO, pagina)}" />`,
+    '  </url>',
+  ].join('\n')),
+  '</urlset>',
+  '',
+].join('\n');
+
+writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
+
+/*
+ * robots.txt tiene que estar en la raiz del dominio para que lo lea nadie, y la
+ * web vive en una subcarpeta de adrianhruiz.github.io: mientras siga ahi, este
+ * fichero no lo va a mirar ningun rastreador. Se escribe igualmente porque no
+ * cuesta nada y pasa a valer el dia que la web tenga dominio propio, que es
+ * cuando la raiz sera suya.
+ *
+ * El sitemap si funciona desde la subcarpeta: cubre las direcciones que cuelgan
+ * de ella, y ademas se le puede dar a Google directamente en Search Console.
+ *
+ * No se bloquea nada. Las doce paginas son las doce que interesa que se
+ * indexen, y assets/ e images/ tienen que poder leerse o Google renderiza la
+ * web sin estilos y sin fotos.
+ */
+writeFileSync(join(DIST, 'robots.txt'), [
+  'User-agent: *',
+  'Allow: /',
+  '',
+  `Sitemap: ${negocio.web}sitemap.xml`,
+  '',
+].join('\n'));
+
 await vite.close();
 
 console.log(`${escritas} paginas prerenderizadas en dist/`);
 for (const { idioma, pagina } of RUTAS) console.log(`  ${ruta(idioma, pagina)}`);
+console.log('  sitemap.xml y robots.txt');
