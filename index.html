@@ -48,14 +48,24 @@
        Sin aggregateRating a proposito: una valoracion declarada por el propio
        negocio y sin fuente es self-serving review para Google y publicidad no
        verificable para la Directiva Omnibus. La media de Google se dice en el
-       texto visible de la seccion "El cafe", donde si consta de donde sale. -->
+       texto visible de la seccion "El cafe", donde si consta de donde sale.
+
+       Tampoco lleva acceptsReservations ni paymentAccepted: el cafe no ha
+       declarado ninguna de las dos cosas y la ficha no es sitio para suponer.
+
+       Todo lo que sale aqui esta tambien en business.json o en la carta, y
+       tests/contenido.test.js compara las dos copias: la ficha es lo que lee
+       el buscador y nadie la mira, asi que si se separan no se entera nadie. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
+    "@id": "https://adrianhruiz.github.io/cafediagon/#negocio",
     "name": "Diagon Cafe",
     "url": "https://adrianhruiz.github.io/cafediagon/",
     "description": "Cafetería de especialidad en Cala Rajada con cientos de juegos de mesa a disposición de los clientes.",
+    "image": ["https://adrianhruiz.github.io/cafediagon/images/17-DEx8Xqxsd16-800.jpg"],
+    "logo": "https://adrianhruiz.github.io/cafediagon/images/logo-192.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Carrer de Méndez Núñez, 17, bajo",
@@ -88,6 +98,11 @@
     "telephone": "+34628505887",
     "email": "cafeteriadiagon@gmail.com",
     "servesCuisine": ["Café de especialidad", "Desayunos", "Brunch"],
+    "currenciesAccepted": "EUR",
+    "foundingDate": "2025-01-14",
+    "hasMap": "https://maps.app.goo.gl/d2g11FBeK4i8gxYLA",
+    "hasMenu": "https://adrianhruiz.github.io/cafediagon/#carta",
+    "priceRange": "€",
     "sameAs": ["https://www.instagram.com/cafediagon/"]
   }
   </script>
