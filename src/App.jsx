@@ -34,9 +34,15 @@ export default function App({ pagina = PORTADA }) {
     // servidor de desarrollo, que sirve siempre el index.html de la raiz.
     const { titulo, descripcion } = metaDe(idioma, pagina);
     document.title = titulo;
-    const etiqueta = document.querySelector('meta[name="description"]');
-    if (descripcion) etiqueta?.setAttribute('content', descripcion);
-    else etiqueta?.remove();
+
+    // Solo se escribe cuando hay algo que escribir, nunca se borra. En las
+    // paginas legales metaDe no trae descripcion (la pone el prerender, que es
+    // el unico que puede leer los textos legales sin cargarlos en el bundle):
+    // si aqui se quitara, Google, que ejecuta el JavaScript, veria como
+    // desaparece la que traia el fichero.
+    if (descripcion) {
+      document.querySelector('meta[name="description"]')?.setAttribute('content', descripcion);
+    }
   }, [idioma, pagina]);
 
   return (

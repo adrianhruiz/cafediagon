@@ -20,10 +20,11 @@ export function metaDe(idioma, pagina = PORTADA) {
     };
   }
 
-  // Las paginas legales no llevan descripcion. Escribir una obligaria a
-  // inventarse un resumen comercial de un texto que no lo es, y Google saca uno
-  // del propio documento mejor que el que se pondria aqui. El titulo si hace
-  // falta: sin el, las ocho serian "Diagon Cafe" en la lista de resultados.
+  // De las paginas legales aqui solo sale el titulo. La descripcion es la
+  // entrada de cada documento, y para leerla harian falta los cuatro
+  // legal.*.json: 16 KB que Legal.jsx carga en un trozo aparte a proposito, y
+  // que importarlos aqui devolveria al bundle que baja todo el mundo. La pone
+  // metaDePagina() en src/entrada-servidor.jsx, que solo corre en el build.
   const nombre = traducir(idioma, pagina === AVISO ? 'pie.avisoLegal' : 'pie.privacidad');
   return { titulo: `${nombre} · ${negocio.nombre}`, descripcion: null, imagenAlt };
 }
