@@ -232,17 +232,29 @@ describe('horario', () => {
 });
 
 describe('galeria', () => {
-  it('cada foto lleva su descripcion en el pie de la figura', async () => {
+  it('cada foto lleva su descripcion en el alt', async () => {
+    // La descripcion se pintaba debajo, sobre una franja opaca que tapaba el
+    // tercio inferior de la foto. Ahora vive en el alt: se dice lo mismo, se
+    // ve la imagen entera y no queda texto sin nadie que lo lea.
     const { container } = await montar();
-    const figuras = container.querySelectorAll('#galeria figure');
-    expect(figuras).toHaveLength(galeria.length);
+    const fotos = container.querySelectorAll('#galeria img');
+    expect(fotos).toHaveLength(galeria.length);
 
-    for (const [i, figura] of [...figuras].entries()) {
-      // El alt va vacio a proposito: el pie dice exactamente lo mismo y esta a
-      // la vista, asi que con alt el lector leeria cada foto dos veces.
-      expect(figura.querySelector('img').getAttribute('alt')).toBe('');
-      expect(figura.querySelector('figcaption')).toHaveTextContent(galeria[i].alt.es);
+    for (const [i, foto] of [...fotos].entries()) {
+      expect(foto.getAttribute('alt')).toBe(galeria[i].alt.es);
     }
+    expect(container.querySelector('#galeria figcaption'),
+      'la franja del pie ha vuelto a taparlas').toBeNull();
+  });
+
+  it('el alt esta en el idioma de la pagina', async () => {
+    // Sin esto un aleman oiria la descripcion en castellano con voz alemana.
+    const { container } = await montar('de');
+    const foto = container.querySelector('#galeria img');
+
+    expect(foto.getAttribute('alt')).toBe(galeria[0].alt.de);
+    // Traducidas las cuatro, asi que no hace falta marcar ningun idioma suelto.
+    expect(foto.getAttribute('lang')).toBeNull();
   });
 
   it('no cuelga un enlace suelto debajo de la rejilla', async () => {

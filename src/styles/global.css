@@ -117,8 +117,4 @@ a { color: inherit; }
   }
   /* El velo del hero no se pinta y el texto queda sobre la foto: se quita. */
   .hero picture { display: none; }
-  .galeria figcaption {
-    background: Canvas;
-    color: CanvasText;
-  }
 }
