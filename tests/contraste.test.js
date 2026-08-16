@@ -81,11 +81,10 @@ describe('contraste de la paleta', () => {
     expect(contraste(color('cobre'), fondo)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('el pie de la galeria pasa AA en la peor foto posible', () => {
-    // rgba(32, 34, 39, 0.88) sobre una foto blanca, que es el caso mas claro.
-    const fondo = mezclar(color('tinta'), [255, 255, 255], 0.88);
-    expect(contraste([255, 255, 255], fondo)).toBeGreaterThanOrEqual(4.5);
-  });
+  // El pie de la galeria se medía aqui: era texto blanco sobre una franja
+  // rgba(32, 34, 39, 0.88) pegada al borde de cada foto. Ya no existe, que la
+  // franja tapaba el tercio de abajo de la imagen; la descripcion vive ahora en
+  // el alt, donde no hay color que medir.
 });
 
 /**

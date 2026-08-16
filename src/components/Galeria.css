@@ -8,7 +8,7 @@
 }
 
 /*
- * La relacion 1:1 sube aqui desde la figura: da alto definido a la celda sin
+ * La relacion 1:1 sube aqui desde la foto: da alto definido a la celda sin
  * mirar lo que lleva dentro, que es lo que permite saltarse el contenido de
  * las fotos que quedan fuera de pantalla sin que la rejilla se mueva.
  */
@@ -20,15 +20,14 @@
      1fr eso obliga a la rejilla a medir 230px por columna: a 375px se salia de
      la pantalla. Con esto la celda puede encoger a lo que le den. */
   min-width: 0;
-}
-
-.galeria figure {
-  margin: 0;
-  position: relative;
   overflow: hidden;
   border-radius: var(--radio);
-  aspect-ratio: 1;
   background: var(--crema-3);
+}
+
+.galeria picture {
+  display: block;
+  height: 100%;
 }
 
 .galeria img {
@@ -37,26 +36,7 @@
   object-fit: cover;
   transition: transform 0.5s ease;
 }
-.galeria figure:hover img { transform: scale(1.05); }
-
-/*
- * El pie se ve siempre. Antes aparecia con el hover y se apoyaba en
- * :focus-within para el teclado, pero dentro de la figura no hay nada
- * enfocable, asi que ese respaldo no llegaba a dispararse nunca: quien navega
- * sin raton no veia ni uno.
- *
- * Fondo plano en vez de degradado: sobre la parte alta del degradado el texto
- * blanco caia a 2.5:1 cuando la foto era clara.
- */
-.galeria figcaption {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 0.55rem 0.9rem 0.7rem;
-  background: rgba(32, 34, 39, 0.88);
-  color: #fff;
-  font-size: 0.78rem;
-  line-height: 1.35;
-}
+.galeria li:hover img { transform: scale(1.05); }
 
 @media (max-width: 560px) {
   .galeria { grid-template-columns: 1fr 1fr; gap: 0.45rem; }
