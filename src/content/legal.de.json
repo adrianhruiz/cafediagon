@@ -44,19 +44,13 @@
   },
   "privacidad": {
     "titulo": "Datenschutzerklärung",
-    "entrada": "Welche personenbezogenen Daten über diese Website verarbeitet werden, wozu, auf welcher Rechtsgrundlage und was du dagegen tun kannst. Nach der Verordnung (EU) 2016/679 (DSGVO) und dem spanischen Organgesetz 3/2018 (LOPDGDD).",
+    "entrada": "Welche personenbezogenen Daten über diese Website verarbeitet werden, wozu und was du dagegen tun kannst. Nach der Verordnung (EU) 2016/679 (DSGVO) und dem spanischen Organgesetz 3/2018 (LOPDGDD).",
     "secciones": [
       {
         "titulo": "Verantwortliche",
         "bloques": [
           { "identidad": "responsable" },
-          { "p": "Es gibt keinen Datenschutzbeauftragten: Die Tätigkeit gehört nicht zu denen, die eine Benennung verlangen (Art. 37 DSGVO)." }
-        ]
-      },
-      {
-        "titulo": "Kurz gefasst",
-        "bloques": [
-          { "p": "Diese Website hat keine Formulare, legt keine Benutzerkonten an, verwendet keine Cookies und enthält keine Analyse- oder Werbewerkzeuge. Die einzigen Verarbeitungen sind die folgenden." }
+          { "p": "Es gibt keinen Datenschutzbeauftragten: Die Tätigkeit gehört nicht zu denen, die eine Benennung verlangen (Art. 37 DSGVO). Diese Website hat keine Formulare, legt keine Benutzerkonten an, verwendet keine Cookies und enthält keine Analyse- oder Werbewerkzeuge: Die einzigen Verarbeitungen sind die folgenden." }
         ]
       },
       {
@@ -64,11 +58,11 @@
         "bloques": [
           {
             "datos": [
-              ["Verarbeitete Daten", "Was du in deiner Nachricht oder deinem Anruf mitteilst: Name, E-Mail-Adresse, Telefonnummer und der Inhalt der Anfrage."],
+              ["Verarbeitete Daten", "Name, E-Mail, Telefonnummer und der Inhalt deiner Nachricht oder deines Anrufs."],
               ["Zweck", "Deine Anfrage bearbeiten und beantworten."],
-              ["Rechtsgrundlage", "Deine eigene Anfrage: vorvertragliche Maßnahmen und berechtigtes Interesse daran, denen zu antworten, die uns schreiben (Art. 6 Abs. 1 lit. b und f DSGVO)."],
-              ["Speicherdauer", "Solange der Austausch dauert und danach so lange, wie es zur Erfüllung der daraus entstehenden Pflichten nötig ist."],
-              ["Empfänger", "Die Post geht in ein Gmail-Postfach von Google ein, das nach seinen eigenen Bedingungen auf die Nachrichten zugreifen kann."]
+              ["Rechtsgrundlage", "Deine eigene Anfrage: vorvertragliche Maßnahmen und berechtigtes Interesse am Antworten (Art. 6 Abs. 1 lit. b und f DSGVO)."],
+              ["Speicherdauer", "Solange der Austausch dauert und so lange, wie es für die daraus entstehenden Pflichten nötig ist."],
+              ["Empfänger", "Google: Die Post geht in ein Gmail-Postfach ein und Google kann auf die Nachrichten zugreifen."]
             ]
           }
         ]
@@ -81,64 +75,30 @@
               ["Verarbeitete Daten", "IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem."],
               ["Zweck", "Die Seiten ausliefern, die Website absichern und Missbrauch erkennen."],
               ["Rechtsgrundlage", "Berechtigtes Interesse an der Bereitstellung und dem Schutz des Dienstes (Art. 6 Abs. 1 lit. f DSGVO)."],
-              ["Speicherdauer", "Die Frist, die der Hosting-Anbieter anwendet. Eine eigene Kopie dieser Protokolle wird nicht aufbewahrt."],
+              ["Speicherdauer", "Die Frist, die der Hosting-Anbieter anwendet. Eine eigene Kopie wird nicht aufbewahrt."],
               ["Empfänger", "GitHub, Inc. (Microsoft-Gruppe), die die Website auf GitHub Pages hostet."]
             ]
           }
         ]
       },
       {
-        "titulo": "Links zu anderen Seiten",
-        "bloques": [
-          { "p": "Die Links zu Instagram und zu Google Maps führen von dieser Website weg; solange du sie nicht anklickst, wird von beiden nichts geladen. Ab da verarbeitet Meta oder Google nach der eigenen Richtlinie, und wir erhalten keine Daten über deinen Besuch." }
-        ]
-      },
-      {
         "titulo": "Was in deinem Browser gespeichert wird",
         "bloques": [
-          { "p": "Diese Website verwendet keine Cookies. Sie speichert einen einzigen Eintrag im lokalen Speicher des Browsers, und nur wenn du ihn auslöst:" },
-          {
-            "datos": [
-              ["Name", "diagon:idioma"],
-              ["Wofür", "Die gewählte Sprache merken, damit sie beim nächsten Besuch nicht erneut abgefragt wird. Er wird nur geschrieben, wenn du die Sprachauswahl drückst: Die aus dem Browser erkannte Sprache wird nicht gespeichert."],
-              ["Inhalt", "Das Sprachkürzel: es, ca, en oder de. Es identifiziert niemanden."],
-              ["Dauer", "Bis du ihn in deinem Browser löschst."],
-              ["Einwilligung", "Nicht erforderlich: Es ist eine von dir gewählte Voreinstellung und nach Art. 22.2 LSSI ausgenommen."]
-            ]
-          },
-          { "p": "Da es weder Cookies noch fremde Tracker gibt, braucht diese Website kein Cookie-Banner." }
+          { "p": "Diese Website verwendet keine Cookies und keine fremden Tracker, sie braucht also kein Banner. Sie speichert nur einen Eintrag, diagon:idioma, im lokalen Speicher des Browsers, und nur wenn du die Sprachauswahl drückst: Er enthält das Sprachkürzel (es, ca, en oder de), identifiziert niemanden, bleibt, bis du ihn löschst, und ist nach Art. 22.2 LSSI einwilligungsfrei." }
         ]
       },
       {
-        "titulo": "Übermittlungen in Drittländer",
+        "titulo": "Empfänger, Drittlandsübermittlungen und Links",
         "bloques": [
-          { "p": "Das Hosting auf GitHub Pages bedeutet, dass GitHub, Inc. (USA) die Verbindungsprotokolle verarbeitet. GitHub gehört zur Microsoft-Gruppe, die nach dem EU-US Data Privacy Framework zertifiziert ist, das durch den Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023 gedeckt ist, und wendet zusätzlich Standardvertragsklauseln an." },
-          { "p": "Wenn du an das Gmail-Postfach schreibst, kann Google Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit gleichwertigen Garantien." }
-        ]
-      },
-      {
-        "titulo": "Empfänger und Weitergabe",
-        "bloques": [
-          { "p": "Daten werden weder verkauft noch an Dritte weitergegeben. Sie werden nur an Behörden und Gerichte übermittelt, wenn eine gesetzliche Pflicht dies verlangt, sowie an die in dieser Erklärung genannten Anbieter." }
+          { "p": "Daten werden weder verkauft noch weitergegeben. Sie gehen nur an die hier genannten Anbieter und an Behörden und Gerichte, wenn eine gesetzliche Pflicht dies verlangt. Das Hosting auf GitHub Pages bedeutet, dass GitHub, Inc. (USA, Microsoft-Gruppe) die Verbindungsprotokolle verarbeitet: zertifiziert nach dem EU-US Data Privacy Framework, gedeckt durch den Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023, und zusätzlich mit Standardvertragsklauseln. Wenn du an das Gmail-Postfach schreibst, kann Google Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit gleichwertigen Garantien." },
+          { "p": "Die Links zu Instagram und zu Google Maps führen von dieser Website weg; solange du sie nicht anklickst, wird von ihnen nichts geladen, und ab da verarbeitet Meta oder Google nach der eigenen Richtlinie." }
         ]
       },
       {
         "titulo": "Deine Rechte",
         "bloques": [
-          { "p": "Du kannst die Rechte auf Auskunft, Berichtigung, Löschung, Widerspruch, Einschränkung der Verarbeitung und Datenübertragbarkeit ausüben und eine erteilte Einwilligung jederzeit widerrufen, per E-Mail an {email} oder per Post an die oben genannte Anschrift. Sag uns, welches Recht du ausübst, und lege etwas bei, womit wir dich identifizieren können." },
-          { "p": "Wenn du meinst, dein Anliegen sei nicht richtig behandelt worden, kannst du dich bei der spanischen Datenschutzbehörde beschweren: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
-        ]
-      },
-      {
-        "titulo": "Automatisierte Entscheidungen und Minderjährige",
-        "bloques": [
-          { "p": "Es findet kein Profiling und keine automatisierte Entscheidungsfindung statt. Die Website richtet sich nicht an Kinder unter 14 Jahren und erhebt deren Daten nicht wissentlich." }
-        ]
-      },
-      {
-        "titulo": "Änderungen dieser Erklärung",
-        "bloques": [
-          { "p": "Diese Erklärung wird aktualisiert, wenn sich die Verarbeitungen oder die Rechtslage ändern. Das Datum der letzten Überarbeitung steht oben auf der Seite." }
+          { "p": "Du kannst die Rechte auf Auskunft, Berichtigung, Löschung, Widerspruch, Einschränkung der Verarbeitung und Datenübertragbarkeit ausüben und eine erteilte Einwilligung widerrufen, per E-Mail an {email} oder per Post an die oben genannte Anschrift; sag uns, welches Recht du ausübst, und lege etwas bei, womit wir dich identifizieren können. Wenn du meinst, dein Anliegen sei nicht richtig behandelt worden, kannst du dich bei der spanischen Datenschutzbehörde beschweren: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." },
+          { "p": "Es findet kein Profiling und keine automatisierte Entscheidungsfindung statt, und die Website richtet sich nicht an Kinder unter 14 Jahren. Diese Erklärung wird aktualisiert, wenn sich die Verarbeitungen oder die Rechtslage ändern; das Datum der letzten Überarbeitung steht oben auf der Seite." }
         ]
       }
     ]

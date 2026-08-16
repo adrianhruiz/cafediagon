@@ -44,31 +44,25 @@
   },
   "privacidad": {
     "titulo": "Política de privacidad",
-    "entrada": "Qué datos personales se tratan a través de esta web, para qué, con qué base jurídica y qué puedes hacer al respecto. Conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).",
+    "entrada": "Qué datos personales se tratan a través de esta web, para qué y qué puedes hacer al respecto. Conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).",
     "secciones": [
       {
         "titulo": "Responsable del tratamiento",
         "bloques": [
           { "identidad": "responsable" },
-          { "p": "No hay delegado de protección de datos: la actividad no está entre las que obligan a designarlo (art. 37 RGPD)." }
+          { "p": "No hay delegado de protección de datos: la actividad no está entre las que obligan a designarlo (art. 37 RGPD). Esta web no tiene formularios, no crea cuentas de usuario, no usa cookies y no lleva analítica ni publicidad: los únicos tratamientos son los que siguen." }
         ]
       },
       {
-        "titulo": "En resumen",
-        "bloques": [
-          { "p": "Esta web no tiene formularios, no crea cuentas de usuario, no usa cookies y no lleva ninguna herramienta de analítica ni de publicidad. Los únicos tratamientos son los que se describen a continuación." }
-        ]
-      },
-      {
-        "titulo": "Consultas por correo electrónico o por teléfono",
+        "titulo": "Consultas por correo o por teléfono",
         "bloques": [
           {
             "datos": [
-              ["Datos tratados", "Los que incluyas en tu mensaje o en tu llamada: nombre, dirección de correo, teléfono y el contenido de la consulta."],
-              ["Finalidad", "Atender y responder lo que nos preguntas."],
-              ["Base jurídica", "Tu propia solicitud: medidas precontractuales e interés legítimo en atender a quien nos escribe (art. 6.1.b y 6.1.f RGPD)."],
-              ["Conservación", "Mientras dure la conversación y, después, el tiempo necesario para responder de las obligaciones que se deriven de ella."],
-              ["Destinatarios", "El correo se recibe en un buzón de Gmail, prestado por Google, que puede acceder a los mensajes conforme a sus propias condiciones."]
+              ["Datos tratados", "Nombre, correo, teléfono y el contenido de tu mensaje o llamada."],
+              ["Finalidad", "Atender y responder lo que preguntas."],
+              ["Base jurídica", "Tu propia solicitud: medidas precontractuales e interés legítimo en responder (art. 6.1.b y 6.1.f RGPD)."],
+              ["Conservación", "Mientras dure la conversación y el tiempo necesario para responder de lo que se derive."],
+              ["Destinatarios", "Google: el correo llega a un buzón de Gmail y puede acceder a los mensajes."]
             ]
           }
         ]
@@ -78,67 +72,33 @@
         "bloques": [
           {
             "datos": [
-              ["Datos tratados", "Dirección IP, fecha y hora, página solicitada, navegador y sistema operativo."],
-              ["Finalidad", "Servir las páginas, mantener la seguridad del sitio y detectar abusos."],
+              ["Datos tratados", "IP, fecha y hora, página pedida, navegador y sistema operativo."],
+              ["Finalidad", "Servir las páginas, mantener la seguridad y detectar abusos."],
               ["Base jurídica", "Interés legítimo en prestar y proteger el servicio (art. 6.1.f RGPD)."],
-              ["Conservación", "El plazo que aplique el proveedor de alojamiento. No se guarda ninguna copia propia de esos registros."],
+              ["Conservación", "El plazo que aplique el proveedor de alojamiento. No guardamos copia propia."],
               ["Destinatarios", "GitHub, Inc. (grupo Microsoft), que aloja la web en GitHub Pages."]
             ]
           }
         ]
       },
       {
-        "titulo": "Enlaces a otros sitios",
-        "bloques": [
-          { "p": "Los enlaces a Instagram y a Google Maps te llevan fuera de esta web; mientras no los pulses, no se carga nada de ellos. A partir de ahí el tratamiento lo hace Meta o Google conforme a su propia política, y nosotros no recibimos ningún dato de tu visita." }
-        ]
-      },
-      {
         "titulo": "Lo que se guarda en tu navegador",
         "bloques": [
-          { "p": "Esta web no usa cookies. Guarda un único dato en el almacenamiento local del navegador, y solo si eres tú quien lo provoca:" },
-          {
-            "datos": [
-              ["Nombre", "diagon:idioma"],
-              ["Para qué", "Recordar el idioma que has elegido, para no volver a preguntarlo en la siguiente visita. Solo se escribe si pulsas el selector de idioma: el que se detecta del navegador no se guarda."],
-              ["Contenido", "El código del idioma: es, ca, en o de. No identifica a nadie."],
-              ["Duración", "Hasta que lo borres desde tu navegador."],
-              ["Consentimiento", "No hace falta: es una preferencia elegida por ti y está exenta conforme al art. 22.2 LSSI."]
-            ]
-          },
-          { "p": "Como no hay ninguna cookie ni ningún rastreador de terceros, esta web no necesita banner de cookies." }
+          { "p": "Esta web no usa cookies ni rastreadores de terceros, así que no necesita banner. Solo guarda un dato, diagon:idioma, en el almacenamiento local del navegador, y solo si pulsas el selector de idioma: contiene el código del idioma (es, ca, en o de), no identifica a nadie, dura hasta que lo borres y está exento de consentimiento conforme al art. 22.2 LSSI." }
         ]
       },
       {
-        "titulo": "Transferencias internacionales",
+        "titulo": "Destinatarios, transferencias y enlaces",
         "bloques": [
-          { "p": "Alojar la web en GitHub Pages implica que GitHub, Inc. (Estados Unidos) trate los registros de conexión. GitHub pertenece al grupo Microsoft, adherido al Marco de Privacidad de Datos UE-EE. UU. amparado por la decisión de adecuación de la Comisión Europea de 10 de julio de 2023, y aplica además cláusulas contractuales tipo." },
-          { "p": "Si nos escribes al buzón de Gmail, Google puede tratar datos fuera del Espacio Económico Europeo con garantías equivalentes." }
-        ]
-      },
-      {
-        "titulo": "Destinatarios y cesiones",
-        "bloques": [
-          { "p": "No se venden ni se ceden datos a terceros. Solo se comunican a administraciones, jueces y tribunales cuando lo exige una obligación legal, y a los proveedores citados en esta política." }
+          { "p": "No se venden ni se ceden datos. Solo se comunican a los proveedores citados aquí y a administraciones, jueces y tribunales cuando lo exige una obligación legal. Alojar la web en GitHub Pages implica que GitHub, Inc. (Estados Unidos, grupo Microsoft) trate los registros de conexión: está adherido al Marco de Privacidad de Datos UE-EE. UU., amparado por la decisión de adecuación de la Comisión Europea de 10 de julio de 2023, y aplica además cláusulas contractuales tipo. Si escribes al buzón de Gmail, Google puede tratar datos fuera del Espacio Económico Europeo con garantías equivalentes." },
+          { "p": "Los enlaces a Instagram y a Google Maps te llevan fuera de esta web; mientras no los pulses no se carga nada de ellos, y a partir de ahí el tratamiento lo hace Meta o Google conforme a su propia política." }
         ]
       },
       {
         "titulo": "Tus derechos",
         "bloques": [
-          { "p": "Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, y retirar en cualquier momento el consentimiento que hayas dado, escribiendo a {email} o por correo postal al domicilio indicado arriba. Dinos qué derecho ejerces y acompaña algún dato que permita identificarte." },
-          { "p": "Si crees que no se han atendido como debían, puedes reclamar ante la Agencia Española de Protección de Datos: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
-        ]
-      },
-      {
-        "titulo": "Decisiones automatizadas y menores",
-        "bloques": [
-          { "p": "No se elaboran perfiles ni se toman decisiones automatizadas. La web no se dirige a menores de 14 años y no recoge datos suyos de forma consciente." }
-        ]
-      },
-      {
-        "titulo": "Cambios en esta política",
-        "bloques": [
-          { "p": "Esta política se actualizará si cambian los tratamientos o la normativa. La fecha de la última revisión figura al principio de la página." }
+          { "p": "Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, y retirar el consentimiento que hayas dado, escribiendo a {email} o por correo postal al domicilio indicado arriba; dinos qué derecho ejerces y acompaña algún dato que permita identificarte. Si crees que no se han atendido como debían, puedes reclamar ante la Agencia Española de Protección de Datos: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." },
+          { "p": "No se elaboran perfiles ni se toman decisiones automatizadas, y la web no se dirige a menores de 14 años. Esta política se actualizará si cambian los tratamientos o la normativa; la fecha de la última revisión figura al principio de la página." }
         ]
       }
     ]
