@@ -36,7 +36,7 @@ beforeEach(() => localStorage.clear());
 describe('estructura de la pagina', () => {
   it('pinta todas las secciones', async () => {
     const { container } = await montar();
-    for (const id of ['inicio', 'sobre', 'carta', 'juegos', 'galeria', 'donde']) {
+    for (const id of ['inicio', 'sobre', 'carta', 'juegos', 'galeria', 'horario']) {
       expect(container.querySelector(`#${id}`), `falta la seccion ${id}`).toBeTruthy();
     }
   });
@@ -68,12 +68,12 @@ describe('contacto', () => {
     }
   });
 
-  it('los tres contactos del pie son iconos con nombre accesible', async () => {
+  it('los cuatro contactos del pie son iconos con nombre accesible', async () => {
     // El dibujo no dice nada en voz alta: el nombre del enlace tiene que
     // seguir siendo el dato entero, y el svg quedarse fuera del arbol.
     const { container } = await montar();
     const iconos = container.querySelectorAll('.pie__contacto a');
-    expect(iconos).toHaveLength(3);
+    expect(iconos).toHaveLength(4);
 
     for (const enlace of iconos) {
       const svg = enlace.querySelector('svg');
@@ -202,14 +202,14 @@ describe('carta', () => {
 describe('horario', () => {
   it('pinta los siete dias con sus horas', async () => {
     const { container } = await montar();
-    const filas = container.querySelectorAll('.donde__horario li');
+    const filas = container.querySelectorAll('.horario__dias li');
     expect(filas).toHaveLength(negocio.horario.length);
 
     for (const [i, fila] of [...filas].entries()) {
       const dia = negocio.horario[i];
-      expect(fila).toHaveTextContent(es.donde.dias[dia.dia]);
+      expect(fila).toHaveTextContent(es.horario.dias[dia.dia]);
       if (dia.cerrado) {
-        expect(fila).toHaveTextContent(es.donde.cerrado);
+        expect(fila).toHaveTextContent(es.horario.cerrado);
       } else {
         expect(fila).toHaveTextContent(dia.abre);
         expect(fila).toHaveTextContent(dia.cierra);
@@ -217,48 +217,45 @@ describe('horario', () => {
     }
   });
 
-  it('la seccion lleva el horario, la direccion y el mapa, y nada mas', async () => {
-    // El telefono, el email y el Instagram estaban aqui y en el pie: se quedan
-    // solo en el pie. La direccion hizo el viaje contrario, porque es el dato
-    // que se copia para llegar y en el pie no la buscaba nadie.
+  it('la seccion solo lleva las horas', async () => {
+    // Era "Donde estamos" y llevaba tambien la direccion, el mapa y los tres
+    // contactos. Todo eso vive ahora en el pie, que ademas sale en todas las
+    // paginas y no solo en la portada.
     const { container } = await montar();
-    const donde = container.querySelector('#donde');
+    const seccion = container.querySelector('#horario');
 
-    expect(donde.querySelector('.donde__horario')).toBeTruthy();
-    expect(donde.querySelector('a.donde__mapa')).toBeTruthy();
-    expect(donde.querySelector('a[href^="tel:"]')).toBeNull();
-    expect(donde.querySelector('a[href^="mailto:"]')).toBeNull();
-
-    const senas = donde.querySelector('address');
-    expect(senas).toHaveTextContent(negocio.direccion.calle);
-    expect(senas).toHaveTextContent(negocio.direccion.cp);
-    expect(senas).toHaveTextContent(negocio.direccion.localidad);
-    // Encima del mapa, no debajo: es lo que se lee antes de mirar el plano.
-    expect(senas.compareDocumentPosition(donde.querySelector('a.donde__mapa'))
-      & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(seccion.querySelector('.horario__dias')).toBeTruthy();
+    expect(seccion.querySelectorAll('a')).toHaveLength(0);
+    expect(seccion.querySelector('img')).toBeNull();
+    expect(seccion.querySelector('address')).toBeNull();
   });
 
-  it('la direccion se dice una sola vez en la portada', async () => {
-    // Estaba en la seccion y en el pie: la misma calle dos veces en la misma
-    // pantalla. La identificacion del art. 10 LSSI la lleva el aviso legal.
+  it('la direccion se dice una sola vez, y en el pie', async () => {
+    // Art. 10 LSSI: los datos de quien responde del sitio, accesibles de forma
+    // permanente. El pie es lo unico que sale en todas las paginas.
     const { container } = await montar();
-    expect(container.querySelectorAll('address')).toHaveLength(1);
-    expect(container.querySelector('.pie address')).toBeNull();
+    const senas = container.querySelectorAll('address');
+
+    expect(senas).toHaveLength(1);
+    expect(senas[0].closest('.pie'), 'la direccion no esta en el pie').toBeTruthy();
+    expect(senas[0]).toHaveTextContent(negocio.direccion.calle);
+    expect(senas[0]).toHaveTextContent(negocio.direccion.cp);
+    expect(senas[0]).toHaveTextContent(negocio.direccion.localidad);
   });
 
   it('ya no sale el aviso de horario pendiente', async () => {
     await montar();
-    expect(screen.queryByText(es.donde.horarioPendiente)).not.toBeInTheDocument();
+    expect(screen.queryByText(es.horario.pendiente)).not.toBeInTheDocument();
   });
 
   it('los dias salen traducidos', async () => {
     // Sin esto un aleman leeria "Miércoles" en medio de su horario.
     const { container } = await montar('de');
 
-    const texto = container.querySelector('.donde__horario').textContent;
-    expect(texto).toContain(de.donde.dias.miercoles);
-    expect(texto).toContain(de.donde.cerrado);
-    expect(texto).not.toContain(es.donde.dias.miercoles);
+    const texto = container.querySelector('.horario__dias').textContent;
+    expect(texto).toContain(de.horario.dias.miercoles);
+    expect(texto).toContain(de.horario.cerrado);
+    expect(texto).not.toContain(es.horario.dias.miercoles);
   });
 });
 
@@ -284,49 +281,40 @@ describe('galeria', () => {
   });
 });
 
-describe('mapa', () => {
-  it('se ve al entrar y no pide nada a Google', async () => {
+describe('como llegar', () => {
+  it('el unico camino a Google Maps es un enlace del pie', async () => {
     // El iframe de Google mandaba la IP del visitante y escribia en su
-    // navegador antes de consentir nada (art. 22.2 LSSI). Ahora el mapa es una
-    // imagen de esta misma web: si alguien vuelve a incrustarlo, esto salta.
+    // navegador antes de consentir nada (art. 22.2 LSSI). Despues fue una
+    // imagen propia, y ahora ni eso: un enlace no pide nada hasta que se pulsa.
+    // Si alguien vuelve a incrustar el mapa, esto salta.
     const { container } = await montar();
 
-    expect(container.querySelector('#donde a.donde__mapa img')).toBeTruthy();
     expect(container.querySelector('iframe')).toBeNull();
     expect(container.innerHTML).not.toContain('google.com/maps');
+
+    const aMaps = [...container.querySelectorAll(`a[href="${negocio.maps}"]`)];
+    expect(aMaps.length).toBeGreaterThan(0);
+    for (const enlace of aMaps) {
+      expect(enlace).toHaveAttribute('target', '_blank');
+      expect(enlace.getAttribute('rel')).toContain('noreferrer');
+    }
+    expect(container.querySelector(`.pie a[href="${negocio.maps}"]`),
+      'el pie se quedo sin el enlace de como llegar').toBeTruthy();
   });
 
-  it('el mapa lleva a Google Maps y se abre fuera', async () => {
-    const { container } = await montar();
-    const enlace = container.querySelector('a.donde__mapa');
-
-    expect(enlace).toHaveAttribute('href', negocio.maps);
-    expect(enlace).toHaveAttribute('target', '_blank');
-    expect(enlace.querySelector('img')).toHaveAttribute('alt', es.donde.mapaTitulo);
-  });
-
-  it('atribuye las teselas a OpenStreetMap, como pide su licencia', async () => {
-    const { container } = await montar();
-    const credito = container.querySelector('.donde__mapa-credito');
-
-    expect(credito).toHaveTextContent('OpenStreetMap');
-    expect(credito.querySelector('a'))
-      .toHaveAttribute('href', 'https://www.openstreetmap.org/copyright');
-  });
-
-  it('el mapa no guarda nada en el navegador', async () => {
+  it('la web no guarda nada del mapa en el navegador', async () => {
     await montar();
     expect(localStorage.getItem('diagon:mapa')).toBeNull();
   });
 });
 
 describe('carta: alergenos', () => {
-  it('avisa de los alergenos siempre, haya precios o no', async () => {
+  it('avisa de la cocina compartida siempre, haya precios o no', async () => {
     await montar();
-    expect(screen.getByText(es.carta.avisoAlergenos, { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(es.carta.avisoCocina, { exact: false })).toBeInTheDocument();
   });
 
-  it('el aviso de alergenos va antes que el del IVA', async () => {
+  it('el aviso de la cocina compartida va antes que el del IVA', async () => {
     // El orden en pantalla es el orden en que importan: uno puede acabar en
     // urgencias y el otro en una discusion sobre el cambio.
     const { container } = await montar();
@@ -359,13 +347,6 @@ describe('carta: alergenos', () => {
 
     expect(platos.length).toBe(menu.categorias.flatMap((c) => c.productos).length);
     expect(conAlergenos.length).toBe(esperados.length);
-  });
-
-  it('el aviso explica que sin linea de alergenos no lleva ninguno de los 14', async () => {
-    // Si no se dice, la ausencia de linea se lee como falta de dato.
-    await montar();
-    expect(screen.getByText(es.carta.avisoAlergenos, { exact: false }).textContent)
-      .toContain('ninguno de los 14');
   });
 
   it('ningun plato arrastra el viejo "Ninguno de los 14"', async () => {
@@ -528,14 +509,14 @@ describe('accesibilidad', () => {
     expect(container.querySelector('.hero__fondo').getAttribute('alt')).toBe('');
   });
 
-  it('el mapa es un enlace con nombre, no una imagen suelta', async () => {
-    // Es lo unico que lleva a Google Maps desde la propia imagen: sin alt, el
-    // enlace se anuncia por su URL y no dice a donde va (2.4.4).
+  it('los iconos del pie dicen a donde llevan', async () => {
+    // Un enlace cuyo contenido es un dibujo no tiene texto que leer: sin
+    // aria-label se anuncia por su URL y no dice a donde va (2.4.4).
     const { container } = await montar();
-    const enlace = container.querySelector('a.donde__mapa');
+    const comoLlegar = container.querySelector(`.pie a[href="${negocio.maps}"]`);
 
-    expect(enlace.querySelector('img').getAttribute('alt')).toBe(es.donde.mapaTitulo);
-    expect(enlace.getAttribute('alt')).toBeNull();
+    expect(comoLlegar).toHaveAccessibleName(es.pie.comoLlegar);
+    expect(comoLlegar.textContent.trim()).toBe('');
   });
 
   it('la cuenta de productos no se cuela en el nombre de la categoria', async () => {

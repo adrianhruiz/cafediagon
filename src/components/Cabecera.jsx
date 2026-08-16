@@ -10,7 +10,7 @@ const ENLACES = [
   ['carta', 'nav.carta'],
   ['juegos', 'nav.juegos'],
   ['galeria', 'nav.galeria'],
-  ['donde', 'nav.donde'],
+  ['horario', 'nav.horario'],
 ];
 
 const ID_MENU = 'menu-principal';

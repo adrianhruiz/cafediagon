@@ -10,7 +10,7 @@
     "carta": "Menu",
     "juegos": "Board games",
     "galeria": "Gallery",
-    "donde": "Find us",
+    "horario": "Opening hours",
     "abrirMenu": "Open menu",
     "cerrarMenu": "Close menu",
     "cambiarIdioma": "Change language",
@@ -44,7 +44,6 @@
     "avisoPrecios": "Prices pending: they are shown at the café.",
     "avisoIva": "Prices in euros, VAT included.",
     "filtrarPor": "Filter the menu by category",
-    "avisoAlergenos": "Allergens under each dish; if none listed, it contains none of the 14.",
     "avisoCocina": "Shared kitchen, we cannot guarantee the absence of traces. If you have any allergy, tell us at the café.",
     "alergenosEtiqueta": "Allergens",
     "alergenosPendientes": "Ask us at the café",
@@ -76,11 +75,10 @@
     "etiqueta": "Gallery",
     "titulo": "Inside the café"
   },
-  "donde": {
-    "etiqueta": "Find us",
+  "horario": {
+    "etiqueta": "Opening hours",
     "titulo": "See you soon",
-    "horario": "Opening hours",
-    "horarioPendiente": "Ask us for our hours by phone or on Instagram",
+    "pendiente": "Ask us for our hours by phone or on Instagram",
     "cerrado": "Closed",
     "dias": {
       "lunes": "Monday",
@@ -90,11 +88,11 @@
       "viernes": "Friday",
       "sabado": "Saturday",
       "domingo": "Sunday"
-    },
-    "mapaTitulo": "Map showing the location of Diagon Cafe, on Carrer de Méndez Núñez, near the harbour of Cala Rajada"
+    }
   },
   "pie": {
     "contacto": "Contact",
+    "comoLlegar": "Get directions",
     "derechos": "All rights reserved",
     "legal": "Legal links",
     "avisoLegal": "Legal notice",

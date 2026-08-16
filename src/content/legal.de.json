@@ -39,13 +39,13 @@
         "titulo": "Urheber- und gewerbliche Schutzrechte",
         "bloques": [
           { "p": "Texte, Fotos, Logo und Gestaltung dieser Website gehören der Inhaberin oder werden mit Erlaubnis genutzt. Sie dürfen ohne schriftliche Zustimmung nicht vervielfältigt, verbreitet oder öffentlich zugänglich gemacht werden, abgesehen von den gesetzlich ausdrücklich erlaubten Nutzungen." },
-          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt. Die Karte ist aus OpenStreetMap-Daten gezeichnet, © deren Mitwirkende, verfügbar unter der ODbL-Lizenz." }
+          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt." }
         ]
       },
       {
         "titulo": "Links zu fremden Seiten",
         "bloques": [
-          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Die Karte auf der Website ist ein eigenes Bild: Von Google wird nichts geladen, solange du dem Link nicht folgst." }
+          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Solange du keinem Link folgst, lädt diese Website nichts von ihnen." }
         ]
       },
       {
@@ -122,16 +122,9 @@
         ]
       },
       {
-        "titulo": "Die Karte unter „So findest du uns“",
+        "titulo": "Links zu anderen Seiten",
         "bloques": [
-          { "p": "Die Karte auf dieser Website ist ein Bild, das diese Website selbst ausliefert und das aus OpenStreetMap-Daten gezeichnet ist. Es ist keine eingebettete Google-Karte: Beim Ansehen wird niemandem etwas übermittelt, es werden keine Daten abgefragt oder gespeichert, und du musst in nichts einwilligen." },
-          { "p": "Wenn du auf die Karte oder auf „In Google Maps öffnen“ drückst, verlässt du diese Website und gelangst zu Google Maps, einem Dienst von Google mit eigener Datenschutzerklärung. Ab da verarbeitet Google, und wir erhalten keine Daten über deinen Besuch." }
-        ]
-      },
-      {
-        "titulo": "Links zu sozialen Netzwerken",
-        "bloques": [
-          { "p": "Der Instagram-Link führt von dieser Website weg. Ab da verarbeitet Meta nach seiner eigenen Richtlinie, und wir erhalten keine Daten über deinen Besuch." }
+          { "p": "Die Links zu Instagram und zu Google Maps führen von dieser Website weg; solange du sie nicht anklickst, wird von beiden nichts geladen. Ab da verarbeitet Meta oder Google nach der eigenen Richtlinie, und wir erhalten keine Daten über deinen Besuch." }
         ]
       },
       {

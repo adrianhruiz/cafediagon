@@ -39,13 +39,13 @@
         "titulo": "Intellectual and industrial property",
         "bloques": [
           { "p": "The texts, photographs, logo and design of this website belong to the owner or are used with permission. They may not be reproduced, distributed or publicly communicated without written consent, other than uses expressly allowed by law." },
-          { "p": "Third-party names, trade marks and logos shown here —Instagram, Google, Restaurant Guru— belong to their respective owners and are cited only to identify them. The map is drawn from OpenStreetMap data, © its contributors, available under the ODbL licence." }
+          { "p": "Third-party names, trade marks and logos shown here —Instagram, Google, Restaurant Guru— belong to their respective owners and are cited only to identify them." }
         ]
       },
       {
         "titulo": "Links to third-party sites",
         "bloques": [
-          { "p": "This website links to outside services such as Instagram and Google Maps. The owner does not control those sites and is not responsible for their content or for the data processing they carry out: once you follow a link, their own terms and policies apply. The map shown on the website is an image of our own: nothing is loaded from Google unless you follow the link." }
+          { "p": "This website links to outside services such as Instagram and Google Maps. The owner does not control those sites and is not responsible for their content or for the data processing they carry out: once you follow a link, their own terms and policies apply. Until you follow one, this website loads nothing from them." }
         ]
       },
       {
@@ -122,16 +122,9 @@
         ]
       },
       {
-        "titulo": "The map in “Find us”",
+        "titulo": "Links to other sites",
         "bloques": [
-          { "p": "The map you see on this website is an image served by this website itself, drawn from OpenStreetMap data. It is not an embedded Google map: looking at it sends nothing to anyone, asks for no data, stores no data and needs no consent from you." },
-          { "p": "If you press the map or the “Open in Google Maps” link, you leave this website and enter Google Maps, a Google service with its own privacy policy. From that point on the processing is done by Google, and we receive no data about your visit." }
-        ]
-      },
-      {
-        "titulo": "Links to social networks",
-        "bloques": [
-          { "p": "The Instagram link takes you off this website. From that point on the processing is done by Meta under its own policy, and we receive no data about your visit." }
+          { "p": "The Instagram and Google Maps links take you off this website; until you press them, nothing is loaded from either. From that point on the processing is done by Meta or Google under its own policy, and we receive no data about your visit." }
         ]
       },
       {

@@ -141,9 +141,16 @@ describe('politica de privacidad (RGPD arts. 13-14)', () => {
     expect(texto).not.toContain('diagon:mapa');
   });
 
-  it('dice que el mapa es una imagen propia y no un mapa de Google', async () => {
+  it('ya no describe un mapa que la web no pinta', async () => {
+    // La web se quedo sin mapa: solo enlaza a Google Maps desde el pie. Una
+    // politica que describa un tratamiento inexistente es tan mala como una
+    // que se calle uno que existe.
     const { container } = await abrir(PRIVACIDAD);
-    expect(container.querySelector('.legal').textContent).toContain('OpenStreetMap');
+    const texto = container.querySelector('.legal').textContent;
+
+    expect(texto).not.toContain('OpenStreetMap');
+    // Lo que si sigue habiendo es el enlace de salida, y eso se declara.
+    expect(texto).toContain('Google Maps');
   });
 
   it('declara la transferencia internacional del alojamiento', async () => {

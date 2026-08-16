@@ -77,10 +77,10 @@ describe('carta', () => {
   });
 
   it('ningun producto se queda sin dato de alergenos', () => {
-    // La carta ya no escribe "Ninguno de los 14" bajo cada plato: lo dice una
-    // vez el aviso de la cabecera, asi que un plato sin linea afirma que no
-    // lleva ninguno. Si el TPV dejase de exportar la columna, ese silencio
-    // pasaria a ser mentira, y esto tiene que saltar antes de publicarlo.
+    // La carta no escribe "Ninguno de los 14" bajo cada plato: un plato sin
+    // linea es un plato al que el cafe no le declaro ninguno. Si el TPV dejase
+    // de exportar la columna, ese silencio pasaria a ser un hueco disfrazado de
+    // afirmacion, y esto tiene que saltar antes de publicarlo.
     const sinDato = productos.filter((p) => p.alergenos == null).map((p) => p.nombre.es);
     expect(sinDato, `sin alergenos declarados: ${sinDato.join(', ')}`).toEqual([]);
   });
@@ -367,8 +367,8 @@ describe('datos del negocio', () => {
   });
 
   describe('horario', () => {
-    // Los siete en orden: si falta uno, la seccion "Donde estamos" deja un
-    // hueco y quien lo lea no sabe si ese dia se abre o no.
+    // Los siete en orden: si falta uno, la seccion "Horario" deja un hueco y
+    // quien lo lea no sabe si ese dia se abre o no.
     const SEMANA = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
 
     it('trae los siete dias, en orden y sin repetir', () => {
@@ -392,9 +392,9 @@ describe('datos del negocio', () => {
 
     it('los cuatro idiomas nombran los siete dias y el cierre', () => {
       for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
-        expect(dic.donde.cerrado, `${codigo} no traduce "cerrado"`).toBeTruthy();
+        expect(dic.horario.cerrado, `${codigo} no traduce "cerrado"`).toBeTruthy();
         for (const dia of SEMANA) {
-          expect(dic.donde.dias?.[dia], `${codigo} no traduce "${dia}"`).toBeTruthy();
+          expect(dic.horario.dias?.[dia], `${codigo} no traduce "${dia}"`).toBeTruthy();
         }
       }
     });
@@ -806,21 +806,29 @@ describe('textos legales', () => {
     }
   });
 
-  it('la privacidad explica que el mapa es una imagen propia', () => {
-    // El mapa dejo de ser un iframe de Google: mientras lo sea una imagen, la
-    // privacidad tiene que decirlo y citar de donde salen las teselas.
+  it('ningun texto legal describe el mapa, que la web ya no pinta', () => {
+    // Fue un iframe de Google, luego una imagen propia con teselas de
+    // OpenStreetMap, y ahora nada: solo queda el enlace de salida del pie. Los
+    // textos tienen que decir lo que la web hace hoy, ni mas ni menos.
     for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
-      const texto = cadenasDe(dic.privacidad).join(' ');
-      expect(texto, `${idioma} no cita OpenStreetMap`).toContain('OpenStreetMap');
-      expect(texto, `${idioma} sigue declarando la clave del mapa`).not.toContain('diagon:mapa');
+      for (const doc of DOCUMENTOS) {
+        const texto = cadenasDe(dic[doc]).join(' ');
+        expect(texto, `${idioma} / ${doc} sigue atribuyendo unas teselas`)
+          .not.toContain('OpenStreetMap');
+        expect(texto, `${idioma} / ${doc} sigue nombrando la ODbL`).not.toContain('ODbL');
+      }
+      expect(cadenasDe(dic.privacidad).join(' '), `${idioma} declara una clave que no existe`)
+        .not.toContain('diagon:mapa');
     }
   });
 
-  it('el aviso legal atribuye el mapa a OpenStreetMap (ODbL)', () => {
+  it('la privacidad sigue declarando la salida a Google Maps', () => {
+    // Es lo unico que queda: un enlace que, al pulsarlo, lleva el navegador a
+    // Google. No se pide consentimiento porque no se carga nada hasta entonces,
+    // pero hay que decir a donde va.
     for (const [idioma, dic] of Object.entries(IDIOMAS_LEGAL)) {
-      const texto = cadenasDe(dic.aviso).join(' ');
-      expect(texto, `${idioma} no atribuye las teselas`).toContain('OpenStreetMap');
-      expect(texto, `${idioma} no nombra la licencia`).toContain('ODbL');
+      expect(cadenasDe(dic.privacidad).join(' '), `${idioma} no nombra Google Maps`)
+        .toContain('Google Maps');
     }
   });
 });

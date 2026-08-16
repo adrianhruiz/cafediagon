@@ -10,7 +10,7 @@
     "carta": "Carta",
     "juegos": "Jocs de taula",
     "galeria": "Galeria",
-    "donde": "On som",
+    "horario": "Horari",
     "abrirMenu": "Obrir menú",
     "cerrarMenu": "Tancar menú",
     "cambiarIdioma": "Canviar idioma",
@@ -44,7 +44,6 @@
     "avisoPrecios": "Preus pendents: es mostren al local.",
     "avisoIva": "Preus en euros, IVA inclòs.",
     "filtrarPor": "Filtrar la carta per categoria",
-    "avisoAlergenos": "Al·lèrgens sota cada plat; sense línia, no en porta cap dels 14.",
     "avisoCocina": "Cuina compartida, no podem garantir l'absència de traces. Si tens alguna al·lèrgia, digues-nos-ho al local.",
     "alergenosEtiqueta": "Al·lèrgens",
     "alergenosPendientes": "Consulta'ns al local",
@@ -76,11 +75,10 @@
     "etiqueta": "Galeria",
     "titulo": "El cafè per dins"
   },
-  "donde": {
-    "etiqueta": "On som",
+  "horario": {
+    "etiqueta": "Horari",
     "titulo": "T'hi esperem",
-    "horario": "Horari",
-    "horarioPendiente": "Consulta'ns l'horari per telèfon o a Instagram",
+    "pendiente": "Consulta'ns l'horari per telèfon o a Instagram",
     "cerrado": "Tancat",
     "dias": {
       "lunes": "Dilluns",
@@ -90,11 +88,11 @@
       "viernes": "Divendres",
       "sabado": "Dissabte",
       "domingo": "Diumenge"
-    },
-    "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe, al Carrer de Méndez Núñez, a prop del port de Cala Rajada"
+    }
   },
   "pie": {
     "contacto": "Contacte",
+    "comoLlegar": "Com arribar",
     "derechos": "Tots els drets reservats",
     "legal": "Enllaços legals",
     "avisoLegal": "Avís legal",

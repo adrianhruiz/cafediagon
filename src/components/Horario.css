@@ -1,0 +1,50 @@
+/*
+ * Dos columnas: los siete dias en fila unica dejaban media pantalla vacia a la
+ * derecha, y en una sola columna la seccion se estiraba de mas para lo poco
+ * que dice.
+ *
+ * El flujo va por columnas y no por filas: asi la primera columna es de lunes
+ * a jueves y la segunda de viernes a domingo, que es como se lee una semana.
+ * Por filas quedaba lunes-martes en la primera linea y el ojo tenia que ir en
+ * zigzag. El orden del DOM sigue siendo el de la semana, que es lo que lee un
+ * lector de pantalla.
+ */
+.horario__dias {
+  list-style: none;
+  padding: 0;
+  margin: var(--paso-3) 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  gap: 0.25rem clamp(2rem, 6vw, 5rem);
+  max-width: 52rem;
+}
+.horario__dias li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--paso-2);
+  font-size: 0.95rem;
+  padding-block: 0.15rem;
+  border-bottom: 1px solid var(--crema-3);
+}
+
+/* El dia de cierre se distingue por el tono, no solo por la palabra: --tinta-4
+   es un gris fijo y medido, no una opacidad que dependa del fondo. */
+.horario__dias--cerrado { color: var(--tinta-4); }
+
+.horario__pendiente {
+  margin: var(--paso-3) 0 0;
+  font-size: 0.92rem;
+  color: var(--tinta-3);
+}
+
+/* En movil las dos columnas dejan los dias en 4 caracteres y la hora pegada:
+   una sola, en el orden de la semana. */
+@media (max-width: 700px) {
+  .horario__dias {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}

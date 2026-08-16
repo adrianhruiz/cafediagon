@@ -94,13 +94,14 @@ function CartaPintada({ menu }) {
   };
 
   /**
-   * Rgto (UE) 1169/2011: hay que informar de los 14, pero repetir "Ninguno de
-   * los 14" bajo dos tercios de la carta (aguas, cafes solos, licores) es ruido
-   * que tapa los platos que si llevan algo. La lista vacia se declara una sola
-   * vez en el aviso de arriba y aqui no se escribe nada.
+   * Rgto (UE) 1169/2011: hay que informar de los 14, y aqui se informa plato a
+   * plato. Repetir "Ninguno de los 14" bajo dos tercios de la carta (aguas,
+   * cafes solos, licores) es ruido que tapa los platos que si llevan algo, asi
+   * que la lista vacia no escribe linea.
    *
    * Sin dato es otra cosa y no puede confundirse con ese silencio: se manda a
    * preguntar en el local, que es afirmar menos que decir que no lleva nada.
+   * tests/contenido.test.js vigila que ningun producto llegue sin el dato.
    */
   const alergenosDe = (p) => {
     if (p.alergenos == null) return t('carta.alergenosPendientes');
@@ -118,15 +119,13 @@ function CartaPintada({ menu }) {
             entradilla: son la letra pequena de todo lo que viene debajo, y
             debajo de los filtros quedaban ya empezada la lista de platos.
 
-            El de alergenos va primero: es el unico de los dos que puede acabar
-            en urgencias. Rgto (UE) 1169/2011: los 14 hay que informarlos en
-            cualquier soporte donde se presente la oferta, tambien en la carta
-            web. Debajo, TRLGDCU art. 20: el precio anunciado es el final, con
-            impuestos incluidos, y conviene decirlo expresamente. */}
+            El de la cocina compartida va primero: es el unico de los dos que
+            puede acabar en urgencias. Debajo, TRLGDCU art. 20: el precio
+            anunciado es el final, con impuestos incluidos, y conviene decirlo
+            expresamente. */}
         <div className="carta__avisos">
           <p className="carta__aviso">
-            <strong>{t('carta.avisoCocina')}</strong>{' '}
-            {t('carta.avisoAlergenos')}
+            <strong>{t('carta.avisoCocina')}</strong>
           </p>
           <p className="carta__aviso">
             <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
