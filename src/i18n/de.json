@@ -45,7 +45,7 @@
     "avisoIva": "Preise in Euro, inklusive MwSt.",
     "filtrarPor": "Karte nach Kategorie filtern",
     "avisoAlergenos": "Allergene unter jedem Gericht; steht dort nichts, enthält es keines der 14.",
-    "avisoCocina": "Gemeinsame Küche, Spuren möglich: Sag uns im Café Bescheid.",
+    "avisoCocina": "Gemeinsame Küche, wir können Spuren nicht ausschließen. Wenn du eine Allergie hast, sag uns im Café Bescheid.",
     "alergenosEtiqueta": "Allergene",
     "alergenosPendientes": "Frag uns im Café",
     "alergeno": {
@@ -74,8 +74,7 @@
   },
   "galeria": {
     "etiqueta": "Galerie",
-    "titulo": "Das Café von innen",
-    "verEnInstagram": "Mehr auf Instagram"
+    "titulo": "Das Café von innen"
   },
   "donde": {
     "etiqueta": "So findest du uns",

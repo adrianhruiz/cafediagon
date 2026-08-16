@@ -217,9 +217,10 @@ describe('horario', () => {
     }
   });
 
-  it('la seccion solo lleva el horario y el mapa', async () => {
-    // El telefono, el email, el Instagram y la direccion estaban aqui y en el
-    // pie: se quedan solo en el pie, que sale en todas las paginas.
+  it('la seccion lleva el horario, la direccion y el mapa, y nada mas', async () => {
+    // El telefono, el email y el Instagram estaban aqui y en el pie: se quedan
+    // solo en el pie. La direccion hizo el viaje contrario, porque es el dato
+    // que se copia para llegar y en el pie no la buscaba nadie.
     const { container } = await montar();
     const donde = container.querySelector('#donde');
 
@@ -227,7 +228,22 @@ describe('horario', () => {
     expect(donde.querySelector('a.donde__mapa')).toBeTruthy();
     expect(donde.querySelector('a[href^="tel:"]')).toBeNull();
     expect(donde.querySelector('a[href^="mailto:"]')).toBeNull();
-    expect(donde.querySelector('address')).toBeNull();
+
+    const senas = donde.querySelector('address');
+    expect(senas).toHaveTextContent(negocio.direccion.calle);
+    expect(senas).toHaveTextContent(negocio.direccion.cp);
+    expect(senas).toHaveTextContent(negocio.direccion.localidad);
+    // Encima del mapa, no debajo: es lo que se lee antes de mirar el plano.
+    expect(senas.compareDocumentPosition(donde.querySelector('a.donde__mapa'))
+      & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('la direccion se dice una sola vez en la portada', async () => {
+    // Estaba en la seccion y en el pie: la misma calle dos veces en la misma
+    // pantalla. La identificacion del art. 10 LSSI la lleva el aviso legal.
+    const { container } = await montar();
+    expect(container.querySelectorAll('address')).toHaveLength(1);
+    expect(container.querySelector('.pie address')).toBeNull();
   });
 
   it('ya no sale el aviso de horario pendiente', async () => {
@@ -258,6 +274,13 @@ describe('galeria', () => {
       expect(figura.querySelector('img').getAttribute('alt')).toBe('');
       expect(figura.querySelector('figcaption')).toHaveTextContent(galeria[i].alt.es);
     }
+  });
+
+  it('no cuelga un enlace suelto debajo de la rejilla', async () => {
+    // "Ver mas en Instagram" repetia el enlace que ya esta en el pie y metia
+    // una linea de alto entre la galeria y la seccion siguiente.
+    const { container } = await montar();
+    expect(container.querySelectorAll('#galeria a')).toHaveLength(0);
   });
 });
 
@@ -301,6 +324,17 @@ describe('carta: alergenos', () => {
   it('avisa de los alergenos siempre, haya precios o no', async () => {
     await montar();
     expect(screen.getByText(es.carta.avisoAlergenos, { exact: false })).toBeInTheDocument();
+  });
+
+  it('el aviso de alergenos va antes que el del IVA', async () => {
+    // El orden en pantalla es el orden en que importan: uno puede acabar en
+    // urgencias y el otro en una discusion sobre el cambio.
+    const { container } = await montar();
+    const avisos = [...container.querySelectorAll('#carta .carta__aviso')];
+
+    expect(avisos).toHaveLength(2);
+    expect(avisos[0]).toHaveTextContent(es.carta.avisoCocina);
+    expect(avisos[1]).toHaveTextContent(es.carta.avisoIva);
   });
 
   it('destaca en negrita lo de la cocina compartida y lo del IVA', async () => {

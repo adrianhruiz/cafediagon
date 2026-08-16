@@ -118,17 +118,18 @@ function CartaPintada({ menu }) {
             entradilla: son la letra pequena de todo lo que viene debajo, y
             debajo de los filtros quedaban ya empezada la lista de platos.
 
-            TRLGDCU art. 20: el precio anunciado es el final, con impuestos
-            incluidos, y conviene decirlo expresamente. Rgto (UE) 1169/2011:
-            los 14 alergenos hay que informarlos en cualquier soporte donde se
-            presente la oferta, tambien en la carta web. */}
+            El de alergenos va primero: es el unico de los dos que puede acabar
+            en urgencias. Rgto (UE) 1169/2011: los 14 hay que informarlos en
+            cualquier soporte donde se presente la oferta, tambien en la carta
+            web. Debajo, TRLGDCU art. 20: el precio anunciado es el final, con
+            impuestos incluidos, y conviene decirlo expresamente. */}
         <div className="carta__avisos">
           <p className="carta__aviso">
-            <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
+            <strong>{t('carta.avisoCocina')}</strong>{' '}
+            {t('carta.avisoAlergenos')}
           </p>
           <p className="carta__aviso">
-            {t('carta.avisoAlergenos')}{' '}
-            <strong>{t('carta.avisoCocina')}</strong>
+            <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
           </p>
         </div>
 

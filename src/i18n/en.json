@@ -45,7 +45,7 @@
     "avisoIva": "Prices in euros, VAT included.",
     "filtrarPor": "Filter the menu by category",
     "avisoAlergenos": "Allergens under each dish; if none listed, it contains none of the 14.",
-    "avisoCocina": "Shared kitchen, traces possible: tell us at the café.",
+    "avisoCocina": "Shared kitchen, we cannot guarantee the absence of traces. If you have any allergy, tell us at the café.",
     "alergenosEtiqueta": "Allergens",
     "alergenosPendientes": "Ask us at the café",
     "alergeno": {
@@ -74,8 +74,7 @@
   },
   "galeria": {
     "etiqueta": "Gallery",
-    "titulo": "Inside the café",
-    "verEnInstagram": "See more on Instagram"
+    "titulo": "Inside the café"
   },
   "donde": {
     "etiqueta": "Find us",

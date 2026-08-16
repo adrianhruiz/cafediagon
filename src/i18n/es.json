@@ -45,7 +45,7 @@
     "avisoIva": "Precios en euros, IVA incluido.",
     "filtrarPor": "Filtrar la carta por categoría",
     "avisoAlergenos": "Alérgenos bajo cada plato; sin línea, no lleva ninguno de los 14.",
-    "avisoCocina": "Cocina compartida, posibles trazas: dínoslo en el local.",
+    "avisoCocina": "Cocina compartida, no podemos garantizar la ausencia de trazas. Si tienes alguna alergia, dínoslo en el local.",
     "alergenosEtiqueta": "Alérgenos",
     "alergenosPendientes": "Consúltanos en el local",
     "alergeno": {
@@ -74,8 +74,7 @@
   },
   "galeria": {
     "etiqueta": "Galería",
-    "titulo": "El café por dentro",
-    "verEnInstagram": "Ver más en Instagram"
+    "titulo": "El café por dentro"
   },
   "donde": {
     "etiqueta": "Dónde estamos",

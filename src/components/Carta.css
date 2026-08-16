@@ -28,17 +28,15 @@
   border-color: var(--tinta);
 }
 
-/* Los dos avisos van uno al lado del otro mientras quepan: en columna gastaban
-   dos bandas de alto justo encima de la carta. */
+/* Uno debajo del otro y el de alergenos arriba: el orden en pantalla es el
+   orden en que importan. */
 .carta__avisos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  display: grid;
+  gap: 0.4rem;
   margin: 0;
 }
 
 .carta__aviso {
-  flex: 1 1 20rem;
   font-size: 0.82rem;
   line-height: 1.45;
   color: var(--cobre);

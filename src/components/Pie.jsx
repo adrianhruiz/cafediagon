@@ -28,18 +28,17 @@ function Icono({ children }) {
 
 export default function Pie() {
   const { idioma, t } = useIdioma();
-  const { direccion } = negocio;
 
   return (
     <footer className="pie">
       <div className="envoltorio">
         <div className="pie__columnas">
+          {/* La direccion se dice una sola vez, y donde sirve de algo: encima
+              del mapa de "Donde estamos". Aqui repetida solo alargaba el pie.
+              La identificacion que pide el art. 10 LSSI la lleva el aviso
+              legal, enlazado ahi abajo desde todas las paginas. */}
           <div>
             <h2>{negocio.nombre}</h2>
-            <address>
-              {direccion.calle}<br />
-              {direccion.cp} {direccion.localidad}, Mallorca
-            </address>
           </div>
 
           {/* Tres iconos en una fila en vez de tres lineas de texto y dos

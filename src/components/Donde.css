@@ -48,6 +48,12 @@
   gap: 0.4rem;
 }
 
+.donde__direccion {
+  font-style: normal;
+  margin-bottom: 0.2rem;
+  line-height: 1.5;
+}
+
 /* El mapa es una imagen, no un iframe: se redondea como el resto de fotos. */
 .donde__mapa {
   display: block;

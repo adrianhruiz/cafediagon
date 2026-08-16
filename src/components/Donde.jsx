@@ -8,6 +8,7 @@ const OSM = 'https://www.openstreetmap.org/copyright';
 
 export default function Donde() {
   const { t } = useIdioma();
+  const { direccion } = negocio;
 
   // El mapa es una imagen servida por esta misma web, dibujada en el build por
   // scripts/build-mapa.mjs con teselas de OpenStreetMap. El iframe de Google
@@ -48,6 +49,14 @@ export default function Donde() {
         </div>
 
         <div className="donde__mapa-zona">
+          {/* La direccion escrita, encima del mapa que la dibuja. Estaba en el
+              pie, donde no la buscaba nadie: aqui es lo que se copia para
+              llegar. */}
+          <address className="donde__direccion">
+            {direccion.calle}<br />
+            {direccion.cp} {direccion.localidad}, {direccion.municipio} · Mallorca
+          </address>
+
           {/* El mapa entero lleva a Google Maps, que es lo que se espera al
               pulsarlo, y ahi ya decide el visitante: es una salida de la web,
               no una carga de terceros dentro de ella. */}

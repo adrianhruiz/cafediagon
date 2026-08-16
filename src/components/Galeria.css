@@ -58,12 +58,6 @@
   line-height: 1.35;
 }
 
-.galeria__enlace {
-  margin: var(--paso-3) 0 0;
-  font-size: 0.9rem;
-}
-.galeria__enlace a { color: var(--cobre); }
-
 @media (max-width: 560px) {
   .galeria { grid-template-columns: 1fr 1fr; gap: 0.45rem; }
 }

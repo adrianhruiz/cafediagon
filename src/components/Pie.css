@@ -21,8 +21,6 @@
   margin-bottom: 0.7rem;
 }
 
-.pie address { font-style: normal; }
-
 .pie a {
   color: rgba(250, 247, 240, 0.7);
   transition: color var(--transicion);
