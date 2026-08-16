@@ -44,31 +44,25 @@
   },
   "privacidad": {
     "titulo": "Política de privacitat",
-    "entrada": "Quines dades personals es tracten a través d'aquesta web, per a què, amb quina base jurídica i què hi pots fer. D'acord amb el Reglament (UE) 2016/679 (RGPD) i la Llei Orgànica 3/2018 (LOPDGDD).",
+    "entrada": "Quines dades personals es tracten a través d’aquesta web, per a què i què hi pots fer. D’acord amb el Reglament (UE) 2016/679 (RGPD) i la Llei Orgànica 3/2018 (LOPDGDD).",
     "secciones": [
       {
         "titulo": "Responsable del tractament",
         "bloques": [
           { "identidad": "responsable" },
-          { "p": "No hi ha delegat de protecció de dades: l'activitat no és de les que obliguen a designar-ne un (art. 37 RGPD)." }
+          { "p": "No hi ha delegat de protecció de dades: l’activitat no és de les que obliguen a designar-ne un (art. 37 RGPD). Aquesta web no té formularis, no crea comptes d’usuari, no fa servir galetes i no porta analítica ni publicitat: els únics tractaments són els que segueixen." }
         ]
       },
       {
-        "titulo": "En resum",
-        "bloques": [
-          { "p": "Aquesta web no té formularis, no crea comptes d'usuari, no fa servir galetes i no porta cap eina d'analítica ni de publicitat. Els únics tractaments són els que es descriuen a continuació." }
-        ]
-      },
-      {
-        "titulo": "Consultes per correu electrònic o per telèfon",
+        "titulo": "Consultes per correu o per telèfon",
         "bloques": [
           {
             "datos": [
-              ["Dades tractades", "Les que incloguis al teu missatge o a la teva trucada: nom, adreça de correu, telèfon i el contingut de la consulta."],
-              ["Finalitat", "Atendre i respondre el que ens preguntes."],
-              ["Base jurídica", "La teva pròpia sol·licitud: mesures precontractuals i interès legítim a atendre qui ens escriu (art. 6.1.b i 6.1.f RGPD)."],
-              ["Conservació", "Mentre duri la conversa i, després, el temps necessari per respondre de les obligacions que se'n derivin."],
-              ["Destinataris", "El correu es rep en una bústia de Gmail, prestada per Google, que pot accedir als missatges d'acord amb les seves pròpies condicions."]
+              ["Dades tractades", "Nom, correu, telèfon i el contingut del teu missatge o de la teva trucada."],
+              ["Finalitat", "Atendre i respondre el que preguntes."],
+              ["Base jurídica", "La teva pròpia sol·licitud: mesures precontractuals i interès legítim a respondre (art. 6.1.b i 6.1.f RGPD)."],
+              ["Conservació", "Mentre duri la conversa i el temps necessari per respondre del que se’n derivi."],
+              ["Destinataris", "Google: el correu arriba a una bústia de Gmail i pot accedir als missatges."]
             ]
           }
         ]
@@ -79,66 +73,32 @@
           {
             "datos": [
               ["Dades tractades", "Adreça IP, data i hora, pàgina sol·licitada, navegador i sistema operatiu."],
-              ["Finalitat", "Servir les pàgines, mantenir la seguretat del lloc i detectar abusos."],
+              ["Finalitat", "Servir les pàgines, mantenir la seguretat i detectar abusos."],
               ["Base jurídica", "Interès legítim a prestar i protegir el servei (art. 6.1.f RGPD)."],
-              ["Conservació", "El termini que apliqui el proveïdor d'allotjament. No se'n guarda cap còpia pròpia."],
+              ["Conservació", "El termini que apliqui el proveïdor d’allotjament. No en guardem cap còpia pròpia."],
               ["Destinataris", "GitHub, Inc. (grup Microsoft), que allotja la web a GitHub Pages."]
             ]
           }
         ]
       },
       {
-        "titulo": "Enllaços a altres llocs",
-        "bloques": [
-          { "p": "Els enllaços a Instagram i a Google Maps et duen fora d'aquesta web; mentre no els premis, no es carrega res de cap dels dos. A partir d'aquí el tractament el fa Meta o Google d'acord amb la seva pròpia política, i nosaltres no rebem cap dada de la teva visita." }
-        ]
-      },
-      {
         "titulo": "El que es desa al teu navegador",
         "bloques": [
-          { "p": "Aquesta web no fa servir galetes. Desa una única dada a l'emmagatzematge local del navegador, i només si la provoques tu:" },
-          {
-            "datos": [
-              ["Nom", "diagon:idioma"],
-              ["Per a què", "Recordar l'idioma que has triat, per no tornar-lo a demanar en la propera visita. Només s'escriu si prems el selector d'idioma: el que es detecta del navegador no es desa."],
-              ["Contingut", "El codi de l'idioma: es, ca, en o de. No identifica ningú."],
-              ["Durada", "Fins que l'esborris des del teu navegador."],
-              ["Consentiment", "No cal: és una preferència triada per tu i està exempta d'acord amb l'art. 22.2 LSSI."]
-            ]
-          },
-          { "p": "Com que no hi ha cap galeta ni cap rastrejador de tercers, aquesta web no necessita bàner de galetes." }
+          { "p": "Aquesta web no fa servir galetes ni rastrejadors de tercers, així que no necessita bàner. Només desa una dada, diagon:idioma, a l’emmagatzematge local del navegador, i només si prems el selector d’idioma: conté el codi de l’idioma (es, ca, en o de), no identifica ningú, dura fins que l’esborris i està exempta de consentiment d’acord amb l’art. 22.2 LSSI." }
         ]
       },
       {
-        "titulo": "Transferències internacionals",
+        "titulo": "Destinataris, transferències i enllaços",
         "bloques": [
-          { "p": "Allotjar la web a GitHub Pages implica que GitHub, Inc. (Estats Units) tracti els registres de connexió. GitHub pertany al grup Microsoft, adherit al Marc de Privacitat de Dades UE-EUA emparat per la decisió d'adequació de la Comissió Europea de 10 de juliol de 2023, i aplica a més clàusules contractuals tipus." },
-          { "p": "Si ens escrius a la bústia de Gmail, Google pot tractar dades fora de l'Espai Econòmic Europeu amb garanties equivalents." }
-        ]
-      },
-      {
-        "titulo": "Destinataris i cessions",
-        "bloques": [
-          { "p": "No es venen ni es cedeixen dades a tercers. Només es comuniquen a administracions, jutges i tribunals quan ho exigeix una obligació legal, i als proveïdors citats en aquesta política." }
+          { "p": "No es venen ni es cedeixen dades. Només es comuniquen als proveïdors citats aquí i a administracions, jutges i tribunals quan ho exigeix una obligació legal. Allotjar la web a GitHub Pages implica que GitHub, Inc. (Estats Units, grup Microsoft) tracti els registres de connexió: està adherit al Marc de Privacitat de Dades UE-EUA, emparat per la decisió d’adequació de la Comissió Europea de 10 de juliol de 2023, i aplica a més clàusules contractuals tipus. Si escrius a la bústia de Gmail, Google pot tractar dades fora de l’Espai Econòmic Europeu amb garanties equivalents." },
+          { "p": "Els enllaços a Instagram i a Google Maps et duen fora d’aquesta web; mentre no els premis no es carrega res de cap dels dos, i a partir d’aquí el tractament el fa Meta o Google d’acord amb la seva pròpia política." }
         ]
       },
       {
         "titulo": "Els teus drets",
         "bloques": [
-          { "p": "Pots exercir els drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat, i retirar en qualsevol moment el consentiment que hagis donat, escrivint a {email} o per correu postal al domicili indicat a dalt. Digues quin dret exerceixes i acompanya alguna dada que permeti identificar-te." },
-          { "p": "Si creus que no s'han atès com calia, pots reclamar davant l'Agència Espanyola de Protecció de Dades: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
-        ]
-      },
-      {
-        "titulo": "Decisions automatitzades i menors",
-        "bloques": [
-          { "p": "No s'elaboren perfils ni es prenen decisions automatitzades. La web no s'adreça a menors de 14 anys i no recull dades seves de manera conscient." }
-        ]
-      },
-      {
-        "titulo": "Canvis en aquesta política",
-        "bloques": [
-          { "p": "Aquesta política s'actualitzarà si canvien els tractaments o la normativa. La data de la darrera revisió figura al començament de la pàgina." }
+          { "p": "Pots exercir els drets d’accés, rectificació, supressió, oposició, limitació del tractament i portabilitat, i retirar el consentiment que hagis donat, escrivint a {email} o per correu postal al domicili indicat a dalt; digues quin dret exerceixes i acompanya alguna dada que permeti identificar-te. Si creus que no s’han atès com calia, pots reclamar davant l’Agència Espanyola de Protecció de Dades: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." },
+          { "p": "No s’elaboren perfils ni es prenen decisions automatitzades, i la web no s’adreça a menors de 14 anys. Aquesta política s’actualitzarà si canvien els tractaments o la normativa; la data de la darrera revisió figura al començament de la pàgina." }
         ]
       }
     ]

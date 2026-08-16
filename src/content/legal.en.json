@@ -44,19 +44,13 @@
   },
   "privacidad": {
     "titulo": "Privacy policy",
-    "entrada": "What personal data is processed through this website, why, on what legal basis and what you can do about it. Written under Regulation (EU) 2016/679 (GDPR) and Spanish Organic Act 3/2018 (LOPDGDD).",
+    "entrada": "What personal data is processed through this website, why and what you can do about it. Written under Regulation (EU) 2016/679 (GDPR) and Spanish Organic Act 3/2018 (LOPDGDD).",
     "secciones": [
       {
         "titulo": "Data controller",
         "bloques": [
           { "identidad": "responsable" },
-          { "p": "There is no data protection officer: this activity is not among those that require one (art. 37 GDPR)." }
-        ]
-      },
-      {
-        "titulo": "In short",
-        "bloques": [
-          { "p": "This website has no forms, creates no user accounts, uses no cookies and carries no analytics or advertising tools. The only processing operations are the ones described below." }
+          { "p": "There is no data protection officer: this activity is not among those that require one (art. 37 GDPR). This website has no forms, creates no user accounts, uses no cookies and carries no analytics or advertising: the only processing operations are the ones below." }
         ]
       },
       {
@@ -64,11 +58,11 @@
         "bloques": [
           {
             "datos": [
-              ["Data processed", "Whatever you include in your message or call: name, email address, phone number and the content of the enquiry."],
-              ["Purpose", "To handle and answer what you ask us."],
-              ["Legal basis", "Your own request: pre-contractual steps and legitimate interest in replying to whoever writes to us (art. 6(1)(b) and 6(1)(f) GDPR)."],
-              ["Retention", "For as long as the exchange lasts and, afterwards, as long as needed to answer for any obligations arising from it."],
-              ["Recipients", "Email is received in a Gmail mailbox provided by Google, which may access the messages under its own terms."]
+              ["Data processed", "Name, email, phone and the content of your message or call."],
+              ["Purpose", "To handle and answer what you ask."],
+              ["Legal basis", "Your own request: pre-contractual steps and legitimate interest in replying (art. 6(1)(b) and 6(1)(f) GDPR)."],
+              ["Retention", "For as long as the exchange lasts and as long as needed to answer for anything arising from it."],
+              ["Recipients", "Google: email arrives in a Gmail mailbox and it may access the messages."]
             ]
           }
         ]
@@ -81,64 +75,30 @@
               ["Data processed", "IP address, date and time, page requested, browser and operating system."],
               ["Purpose", "To serve the pages, keep the site secure and detect abuse."],
               ["Legal basis", "Legitimate interest in providing and protecting the service (art. 6(1)(f) GDPR)."],
-              ["Retention", "Whatever period the hosting provider applies. No copy of those logs is kept by us."],
+              ["Retention", "Whatever period the hosting provider applies. We keep no copy of our own."],
               ["Recipients", "GitHub, Inc. (Microsoft group), which hosts the site on GitHub Pages."]
             ]
           }
         ]
       },
       {
-        "titulo": "Links to other sites",
-        "bloques": [
-          { "p": "The Instagram and Google Maps links take you off this website; until you press them, nothing is loaded from either. From that point on the processing is done by Meta or Google under its own policy, and we receive no data about your visit." }
-        ]
-      },
-      {
         "titulo": "What is stored in your browser",
         "bloques": [
-          { "p": "This website uses no cookies. It stores a single item in the browser's local storage, and only if you cause it:" },
-          {
-            "datos": [
-              ["Name", "diagon:idioma"],
-              ["What for", "To remember the language you chose, so it is not asked again on your next visit. It is only written if you press the language selector: the language detected from your browser is not stored."],
-              ["Content", "The language code: es, ca, en or de. It identifies nobody."],
-              ["Duration", "Until you clear it from your browser."],
-              ["Consent", "Not required: it is a preference you chose yourself and is exempt under art. 22.2 LSSI."]
-            ]
-          },
-          { "p": "Since there are no cookies and no third-party trackers, this website does not need a cookie banner." }
+          { "p": "This website uses no cookies and no third-party trackers, so it needs no banner. It stores a single item, diagon:idioma, in the browser’s local storage, and only if you press the language selector: it holds the language code (es, ca, en or de), identifies nobody, lasts until you clear it and is exempt from consent under art. 22.2 LSSI." }
         ]
       },
       {
-        "titulo": "International transfers",
+        "titulo": "Recipients, transfers and links",
         "bloques": [
-          { "p": "Hosting the site on GitHub Pages means GitHub, Inc. (United States) processes the connection logs. GitHub belongs to the Microsoft group, which is certified under the EU-US Data Privacy Framework covered by the European Commission adequacy decision of 10 July 2023, and additionally applies standard contractual clauses." },
-          { "p": "If you write to the Gmail mailbox, Google may process data outside the European Economic Area under equivalent safeguards." }
-        ]
-      },
-      {
-        "titulo": "Recipients and disclosures",
-        "bloques": [
-          { "p": "Data is neither sold nor transferred to third parties. It is disclosed only to public authorities and courts where a legal obligation requires it, and to the providers named in this policy." }
+          { "p": "Data is neither sold nor transferred. It is disclosed only to the providers named here and to public authorities and courts where a legal obligation requires it. Hosting the site on GitHub Pages means GitHub, Inc. (United States, Microsoft group) processes the connection logs: it is certified under the EU-US Data Privacy Framework covered by the European Commission adequacy decision of 10 July 2023, and additionally applies standard contractual clauses. If you write to the Gmail mailbox, Google may process data outside the European Economic Area under equivalent safeguards." },
+          { "p": "The Instagram and Google Maps links take you off this website; until you press them nothing is loaded from either, and from that point on the processing is done by Meta or Google under its own policy." }
         ]
       },
       {
         "titulo": "Your rights",
         "bloques": [
-          { "p": "You may exercise the rights of access, rectification, erasure, objection, restriction of processing and portability, and withdraw any consent you gave at any time, by writing to {email} or by post to the address given above. Tell us which right you are exercising and include something that lets us identify you." },
-          { "p": "If you believe your request was not handled properly, you may complain to the Spanish Data Protection Agency: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." }
-        ]
-      },
-      {
-        "titulo": "Automated decisions and minors",
-        "bloques": [
-          { "p": "No profiling or automated decision-making takes place. The site is not aimed at children under 14 and does not knowingly collect their data." }
-        ]
-      },
-      {
-        "titulo": "Changes to this policy",
-        "bloques": [
-          { "p": "This policy will be updated if the processing operations or the applicable rules change. The date of the last revision appears at the top of the page." }
+          { "p": "You may exercise the rights of access, rectification, erasure, objection, restriction of processing and portability, and withdraw any consent you gave, by writing to {email} or by post to the address given above; tell us which right you are exercising and include something that lets us identify you. If you believe your request was not handled properly, you may complain to the Spanish Data Protection Agency: C/ Jorge Juan 6, 28001 Madrid, www.aepd.es." },
+          { "p": "No profiling or automated decision-making takes place, and the site is not aimed at children under 14. This policy will be updated if the processing operations or the applicable rules change; the date of the last revision appears at the top of the page." }
         ]
       }
     ]
