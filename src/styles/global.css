@@ -112,7 +112,6 @@ a { color: inherit; }
   }
   .boton,
   .carta__filtros button,
-  .donde__mapa-boton,
   .cabecera__idiomas button {
     border: 1px solid CanvasText;
   }

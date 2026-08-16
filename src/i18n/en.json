@@ -10,7 +10,6 @@
     "carta": "Menu",
     "juegos": "Board games",
     "galeria": "Gallery",
-    "horario": "Opening hours",
     "abrirMenu": "Open menu",
     "cerrarMenu": "Close menu",
     "cambiarIdioma": "Change language",
@@ -77,7 +76,6 @@
   },
   "horario": {
     "etiqueta": "Opening hours",
-    "titulo": "See you soon",
     "pendiente": "Ask us for our hours by phone or on Instagram",
     "cerrado": "Closed",
     "dias": {

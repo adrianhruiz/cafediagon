@@ -7,7 +7,6 @@ import Hero from './components/Hero.jsx';
 import Sobre from './components/Sobre.jsx';
 import Juegos from './components/Juegos.jsx';
 import Galeria from './components/Galeria.jsx';
-import Horario from './components/Horario.jsx';
 import Pie from './components/Pie.jsx';
 import './App.css';
 
@@ -67,7 +66,6 @@ export default function App({ pagina = PORTADA }) {
             </Suspense>
             <Juegos />
             <Galeria />
-            <Horario />
           </>
         )}
       </main>

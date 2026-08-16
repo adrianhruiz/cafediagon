@@ -10,7 +10,6 @@
     "carta": "Carta",
     "juegos": "Jocs de taula",
     "galeria": "Galeria",
-    "horario": "Horari",
     "abrirMenu": "Obrir menú",
     "cerrarMenu": "Tancar menú",
     "cambiarIdioma": "Canviar idioma",
@@ -77,7 +76,6 @@
   },
   "horario": {
     "etiqueta": "Horari",
-    "titulo": "T'hi esperem",
     "pendiente": "Consulta'ns l'horari per telèfon o a Instagram",
     "cerrado": "Tancat",
     "dias": {

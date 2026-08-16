@@ -36,7 +36,7 @@ beforeEach(() => localStorage.clear());
 describe('estructura de la pagina', () => {
   it('pinta todas las secciones', async () => {
     const { container } = await montar();
-    for (const id of ['inicio', 'sobre', 'carta', 'juegos', 'galeria', 'horario']) {
+    for (const id of ['inicio', 'sobre', 'carta', 'juegos', 'galeria']) {
       expect(container.querySelector(`#${id}`), `falta la seccion ${id}`).toBeTruthy();
     }
   });
@@ -202,7 +202,7 @@ describe('carta', () => {
 describe('horario', () => {
   it('pinta los siete dias con sus horas', async () => {
     const { container } = await montar();
-    const filas = container.querySelectorAll('.horario__dias li');
+    const filas = container.querySelectorAll('.pie__horario li');
     expect(filas).toHaveLength(negocio.horario.length);
 
     for (const [i, fila] of [...filas].entries()) {
@@ -217,17 +217,14 @@ describe('horario', () => {
     }
   });
 
-  it('la seccion solo lleva las horas', async () => {
-    // Era "Donde estamos" y llevaba tambien la direccion, el mapa y los tres
-    // contactos. Todo eso vive ahora en el pie, que ademas sale en todas las
-    // paginas y no solo en la portada.
+  it('las horas viven en el pie y no en una seccion propia', async () => {
+    // Fue "Donde estamos" con direccion, mapa y contactos, luego una seccion
+    // solo de horas, y ahora una columna del pie: se lee igual, sale tambien
+    // en las paginas legales y no gasta una banda entera de portada.
     const { container } = await montar();
-    const seccion = container.querySelector('#horario');
 
-    expect(seccion.querySelector('.horario__dias')).toBeTruthy();
-    expect(seccion.querySelectorAll('a')).toHaveLength(0);
-    expect(seccion.querySelector('img')).toBeNull();
-    expect(seccion.querySelector('address')).toBeNull();
+    expect(container.querySelector('#horario'), 'la seccion sigue ahi').toBeNull();
+    expect(container.querySelector('.pie .pie__horario')).toBeTruthy();
   });
 
   it('la direccion se dice una sola vez, y en el pie', async () => {
@@ -252,7 +249,7 @@ describe('horario', () => {
     // Sin esto un aleman leeria "Miércoles" en medio de su horario.
     const { container } = await montar('de');
 
-    const texto = container.querySelector('.horario__dias').textContent;
+    const texto = container.querySelector('.pie__horario').textContent;
     expect(texto).toContain(de.horario.dias.miercoles);
     expect(texto).toContain(de.horario.cerrado);
     expect(texto).not.toContain(es.horario.dias.miercoles);

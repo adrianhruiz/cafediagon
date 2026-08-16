@@ -10,7 +10,6 @@
     "carta": "Carta",
     "juegos": "Juegos",
     "galeria": "Galería",
-    "horario": "Horario",
     "abrirMenu": "Abrir menú",
     "cerrarMenu": "Cerrar menú",
     "cambiarIdioma": "Cambiar idioma",
@@ -77,7 +76,6 @@
   },
   "horario": {
     "etiqueta": "Horario",
-    "titulo": "Te esperamos",
     "pendiente": "Consúltanos el horario por teléfono o en Instagram",
     "cerrado": "Cerrado",
     "dias": {

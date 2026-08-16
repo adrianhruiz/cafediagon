@@ -29,7 +29,25 @@
 }
 .pie a:hover { color: var(--cobre-claro); }
 
-/* Los tres iconos de contacto. 44px de area tactil sin engordar el pie: el
+/* Los siete dias, uno por linea. El mismo color que el resto del pie tambien
+   para el dia de cierre: apagarlo un poco mas lo dejaria por debajo de AA
+   sobre --tinta, y la palabra "Cerrado" ya lo distingue sola. */
+.pie__horario {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 15rem;
+}
+.pie__horario li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--paso-2);
+  font-size: 0.82rem;
+}
+
+/* Los cuatro iconos de contacto. 44px de area tactil sin engordar el pie: el
    dibujo mide 22 y el hueco alrededor pone el resto. */
 .pie__contacto {
   list-style: none;

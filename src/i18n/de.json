@@ -10,7 +10,6 @@
     "carta": "Karte",
     "juegos": "Brettspiele",
     "galeria": "Galerie",
-    "horario": "Öffnungszeiten",
     "abrirMenu": "Menü öffnen",
     "cerrarMenu": "Menü schließen",
     "cambiarIdioma": "Sprache wechseln",
@@ -77,7 +76,6 @@
   },
   "horario": {
     "etiqueta": "Öffnungszeiten",
-    "titulo": "Wir freuen uns auf dich",
     "pendiente": "Frag uns telefonisch oder auf Instagram nach unseren Öffnungszeiten",
     "cerrado": "Geschlossen",
     "dias": {

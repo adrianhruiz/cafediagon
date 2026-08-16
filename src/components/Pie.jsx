@@ -48,6 +48,28 @@ export default function Pie() {
             </address>
           </div>
 
+          {/* Las horas eran una seccion entera de la portada y ahora son esta
+              columna: se leen igual, salen tambien en las paginas legales y no
+              gastan una banda de pagina.
+
+              Se guardan por dia y en 24 h, no como frase hecha: asi el nombre
+              del dia sale del diccionario de idiomas y el aleman no lee
+              "lunes". El mismo dato alimenta el openingHoursSpecification del
+              JSON-LD. */}
+          <div>
+            <h2>{t('horario.etiqueta')}</h2>
+            {negocio.horario
+              ? <ul className="pie__horario">
+                  {negocio.horario.map((h) => (
+                    <li key={h.dia}>
+                      <span>{t(`horario.dias.${h.dia}`)}</span>
+                      <span>{h.cerrado ? t('horario.cerrado') : `${h.abre} – ${h.cierra}`}</span>
+                    </li>
+                  ))}
+                </ul>
+              : <p>{t('horario.pendiente')}</p>}
+          </div>
+
           {/* Cuatro iconos en una fila en vez de otras tantas lineas de texto.
               El nombre accesible de cada enlace sigue siendo el dato entero (el
               numero, el correo, la calle), que es lo que hay que leer en voz
