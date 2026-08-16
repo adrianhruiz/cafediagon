@@ -14,64 +14,30 @@
   },
   "aviso": {
     "titulo": "Aviso legal",
-    "entrada": "Aquí está la información que exige el artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE): quién responde de esta web y en qué condiciones se puede usar.",
+    "entrada": "Lo que exige el artículo 10 de la Ley 34/2002 (LSSI-CE): quién responde de esta web y en qué condiciones se puede usar.",
     "secciones": [
       {
         "titulo": "Titular del sitio web",
         "bloques": [{ "identidad": "completa" }]
       },
       {
-        "titulo": "Objeto del sitio",
+        "titulo": "La web y la carta",
         "bloques": [
-          { "p": "Esta web es informativa: presenta el café, su carta y su ubicación. No vende nada por internet, no permite reservar mesa y no tiene formularios ni área de usuario. El pedido y el pago se hacen siempre en el local." },
-          { "p": "Usar la web implica aceptar este aviso legal en la versión publicada en cada momento. La titular puede modificar cuando lo considere oportuno los contenidos, la presentación y la configuración del sitio." }
+          { "p": "Esta web es informativa: presenta el café, su carta y su ubicación. No se vende nada por internet ni se reservan mesas; el pedido y el pago se hacen en el local. Usarla implica aceptar este aviso en la versión publicada en cada momento." },
+          { "p": "Los precios y los alérgenos de la carta son los que declara el café y pueden cambiar; los precios están en euros e incluyen los impuestos aplicables. La información de alérgenos se publica conforme al Reglamento (UE) 1169/2011: elaboramos en una cocina compartida y no se puede garantizar la ausencia de trazas, así que dilo en el local antes de pedir. Si la carta de la web y la del local no coinciden, vale la del local." }
         ]
       },
       {
-        "titulo": "La carta publicada aquí",
+        "titulo": "Contenidos, enlaces y responsabilidad",
         "bloques": [
-          { "p": "Los precios y los alérgenos que aparecen en la carta son los que declara el café y pueden cambiar. Los precios se expresan en euros e incluyen los impuestos aplicables." },
-          { "p": "La información de alérgenos se publica conforme al Reglamento (UE) 1169/2011. Elaboramos en una cocina compartida y no se puede garantizar la ausencia de trazas: si tienes una alergia o una intolerancia, dilo en el local antes de pedir." },
-          { "p": "Si la carta de la web y la del local no coinciden, vale la del local." }
+          { "p": "Los textos, las fotografías, el logotipo y el diseño pertenecen a la titular o se usan con autorización, y no se pueden reproducir sin permiso escrito. Las marcas de terceros que aparecen —Instagram, Google, Restaurant Guru— son de sus titulares y se citan solo para identificarlas." },
+          { "p": "Se pone un cuidado razonable en que lo publicado sea correcto, pero no se garantiza que esté libre de errores ni que el sitio esté siempre disponible: se aloja en GitHub Pages. Esta web enlaza a servicios ajenos, como Instagram y Google Maps; la titular no responde de sus contenidos ni de lo que hagan con tus datos, y mientras no sigas un enlace no se carga nada de ellos." }
         ]
       },
       {
-        "titulo": "Propiedad intelectual e industrial",
+        "titulo": "Datos, ley aplicable y reclamaciones",
         "bloques": [
-          { "p": "Los textos, las fotografías, el logotipo y el diseño de esta web pertenecen a la titular o se usan con autorización. No se pueden reproducir, distribuir ni comunicar públicamente sin permiso escrito, salvo los usos que la ley permita expresamente." },
-          { "p": "Los nombres, marcas y logotipos de terceros que aparecen —Instagram, Google, Restaurant Guru— pertenecen a sus titulares y se citan solo para identificarlos." }
-        ]
-      },
-      {
-        "titulo": "Enlaces a sitios de terceros",
-        "bloques": [
-          { "p": "Esta web enlaza a servicios ajenos, como Instagram y Google Maps. La titular no controla esos sitios ni responde de sus contenidos ni del tratamiento de datos que hagan: al seguir un enlace se aplican sus propias condiciones y políticas. Mientras no sigas uno, esta web no carga nada de ellos." }
-        ]
-      },
-      {
-        "titulo": "Responsabilidad",
-        "bloques": [
-          { "p": "Se pone un cuidado razonable en que lo publicado sea correcto y esté al día, pero no se garantiza que esté libre de errores ni que el sitio esté siempre disponible." },
-          { "p": "La web se aloja en GitHub Pages (GitHub, Inc.), así que su disponibilidad depende de ese proveedor. No se responde de las interrupciones, fallos de red o incidencias ajenas que impidan acceder al sitio." }
-        ]
-      },
-      {
-        "titulo": "Protección de datos",
-        "bloques": [
-          { "p": "El tratamiento de datos personales asociado a esta web se explica en la política de privacidad, enlazada al final de esta página y en el pie del sitio." }
-        ]
-      },
-      {
-        "titulo": "Legislación aplicable y reclamaciones",
-        "bloques": [
-          { "p": "Este aviso legal se rige por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a derecho; cuando la otra parte sea consumidora, los de su domicilio." },
-          { "p": "El establecimiento dispone de hojas oficiales de reclamación a disposición de la clientela." }
-        ]
-      },
-      {
-        "titulo": "Contacto",
-        "bloques": [
-          { "p": "Para cualquier cuestión sobre este aviso legal: {email} o {telefono}." }
+          { "p": "El tratamiento de datos personales se explica en la política de privacidad, enlazada en el pie. Este aviso se rige por la legislación española; cuando la otra parte sea consumidora, los tribunales competentes son los de su domicilio. El establecimiento dispone de hojas oficiales de reclamación. Para cualquier cuestión: {email} o {telefono}." }
         ]
       }
     ]

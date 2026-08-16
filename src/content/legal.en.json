@@ -14,64 +14,30 @@
   },
   "aviso": {
     "titulo": "Legal notice",
-    "entrada": "This is the information required by article 10 of Spanish Act 34/2002 on information society services and electronic commerce (LSSI-CE): who is responsible for this website and on what terms it may be used.",
+    "entrada": "What article 10 of Spain’s Law 34/2002 (LSSI-CE) requires: who is responsible for this website and on what terms it may be used.",
     "secciones": [
       {
         "titulo": "Website owner",
         "bloques": [{ "identidad": "completa" }]
       },
       {
-        "titulo": "Purpose of the site",
+        "titulo": "The website and the menu",
         "bloques": [
-          { "p": "This website is informational: it presents the café, its menu and its location. It sells nothing online, takes no table bookings, and has no forms or user accounts. Ordering and payment always happen at the premises." },
-          { "p": "Using the site means accepting this legal notice as published at the time. The owner may change the content, presentation and configuration of the site whenever she sees fit." }
+          { "p": "This website is informative: it presents the café, its menu and its location. Nothing is sold online and tables cannot be booked; ordering and payment happen at the café. Using the site means accepting this notice as published at any given time." },
+          { "p": "The prices and allergens shown on the menu are those declared by the café and may change; prices are in euros and include any applicable taxes. Allergen information is published under Regulation (EU) 1169/2011: we cook in a shared kitchen and the absence of traces cannot be guaranteed, so tell us at the café before ordering. If the menu on the website and the one at the café differ, the one at the café prevails." }
         ]
       },
       {
-        "titulo": "The menu published here",
+        "titulo": "Content, links and liability",
         "bloques": [
-          { "p": "The prices and allergens shown on the menu are the ones declared by the café and may change. Prices are in euros and include applicable taxes." },
-          { "p": "Allergen information is published under Regulation (EU) 1169/2011. We cook in a shared kitchen and cannot rule out traces: if you have an allergy or an intolerance, tell us at the counter before ordering." },
-          { "p": "If the menu on this site and the one at the premises differ, the one at the premises prevails." }
+          { "p": "The texts, photographs, logo and design belong to the owner or are used with permission, and may not be reproduced without written consent. Third-party trade marks shown here —Instagram, Google, Restaurant Guru— belong to their owners and are cited only to identify them." },
+          { "p": "Reasonable care is taken to keep what is published correct, but it is not guaranteed to be free of errors nor that the site will always be available: it is hosted on GitHub Pages. This website links to outside services such as Instagram and Google Maps; the owner is not responsible for their content or for what they do with your data, and until you follow a link nothing is loaded from them." }
         ]
       },
       {
-        "titulo": "Intellectual and industrial property",
+        "titulo": "Data, applicable law and complaints",
         "bloques": [
-          { "p": "The texts, photographs, logo and design of this website belong to the owner or are used with permission. They may not be reproduced, distributed or publicly communicated without written consent, other than uses expressly allowed by law." },
-          { "p": "Third-party names, trade marks and logos shown here —Instagram, Google, Restaurant Guru— belong to their respective owners and are cited only to identify them." }
-        ]
-      },
-      {
-        "titulo": "Links to third-party sites",
-        "bloques": [
-          { "p": "This website links to outside services such as Instagram and Google Maps. The owner does not control those sites and is not responsible for their content or for the data processing they carry out: once you follow a link, their own terms and policies apply. Until you follow one, this website loads nothing from them." }
-        ]
-      },
-      {
-        "titulo": "Liability",
-        "bloques": [
-          { "p": "Reasonable care is taken to keep the published information correct and up to date, but it is not guaranteed to be free of errors, nor is the site guaranteed to be available at all times." },
-          { "p": "The site is hosted on GitHub Pages (GitHub, Inc.), so its availability depends on that provider. No liability is accepted for outages, network failures or third-party incidents that prevent access to the site." }
-        ]
-      },
-      {
-        "titulo": "Data protection",
-        "bloques": [
-          { "p": "The processing of personal data connected with this website is explained in the privacy policy, linked at the bottom of this page and in the site footer." }
-        ]
-      },
-      {
-        "titulo": "Applicable law and complaints",
-        "bloques": [
-          { "p": "This legal notice is governed by Spanish law. Any dispute will be heard by the courts that have jurisdiction under the applicable rules; where the other party is a consumer, the courts of their own domicile." },
-          { "p": "Official complaint forms are available to customers at the premises." }
-        ]
-      },
-      {
-        "titulo": "Contact",
-        "bloques": [
-          { "p": "For anything concerning this legal notice: {email} or {telefono}." }
+          { "p": "The processing of personal data is explained in the privacy policy, linked in the footer. This notice is governed by Spanish law; where the other party is a consumer, the competent courts are those of their domicile. The premises keep official complaint forms available. For any question: {email} or {telefono}." }
         ]
       }
     ]

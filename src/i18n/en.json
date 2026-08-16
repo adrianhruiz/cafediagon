@@ -74,20 +74,6 @@
     "etiqueta": "Gallery",
     "titulo": "Inside the café"
   },
-  "horario": {
-    "etiqueta": "Opening hours",
-    "pendiente": "Ask us for our hours by phone or on Instagram",
-    "cerrado": "Closed",
-    "dias": {
-      "lunes": "Monday",
-      "martes": "Tuesday",
-      "miercoles": "Wednesday",
-      "jueves": "Thursday",
-      "viernes": "Friday",
-      "sabado": "Saturday",
-      "domingo": "Sunday"
-    }
-  },
   "pie": {
     "contacto": "Contact",
     "comoLlegar": "Get directions",

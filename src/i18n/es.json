@@ -74,20 +74,6 @@
     "etiqueta": "Galería",
     "titulo": "El café por dentro"
   },
-  "horario": {
-    "etiqueta": "Horario",
-    "pendiente": "Consúltanos el horario por teléfono o en Instagram",
-    "cerrado": "Cerrado",
-    "dias": {
-      "lunes": "Lunes",
-      "martes": "Martes",
-      "miercoles": "Miércoles",
-      "jueves": "Jueves",
-      "viernes": "Viernes",
-      "sabado": "Sábado",
-      "domingo": "Domingo"
-    }
-  },
   "pie": {
     "contacto": "Contacto",
     "comoLlegar": "Cómo llegar",

@@ -74,20 +74,6 @@
     "etiqueta": "Galerie",
     "titulo": "Das Café von innen"
   },
-  "horario": {
-    "etiqueta": "Öffnungszeiten",
-    "pendiente": "Frag uns telefonisch oder auf Instagram nach unseren Öffnungszeiten",
-    "cerrado": "Geschlossen",
-    "dias": {
-      "lunes": "Montag",
-      "martes": "Dienstag",
-      "miercoles": "Mittwoch",
-      "jueves": "Donnerstag",
-      "viernes": "Freitag",
-      "sabado": "Samstag",
-      "domingo": "Sonntag"
-    }
-  },
   "pie": {
     "contacto": "Kontakt",
     "comoLlegar": "Anfahrt",
