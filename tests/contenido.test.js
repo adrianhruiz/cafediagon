@@ -390,12 +390,13 @@ describe('datos del negocio', () => {
       }
     });
 
-    it('los cuatro idiomas nombran los siete dias y el cierre', () => {
+    it('el horario ya no se traduce, porque no se pinta', () => {
+      // La web dejo de publicar las horas: business.json las conserva solo
+      // para el JSON-LD, que va en ingles de schema.org y no pasa por los
+      // diccionarios. Si algun dia vuelven a pantalla, hay que traducir otra
+      // vez los siete dias y el cierre.
       for (const [codigo, dic] of Object.entries({ es, en, de, ca })) {
-        expect(dic.horario.cerrado, `${codigo} no traduce "cerrado"`).toBeTruthy();
-        for (const dia of SEMANA) {
-          expect(dic.horario.dias?.[dia], `${codigo} no traduce "${dia}"`).toBeTruthy();
-        }
+        expect(dic.horario, `${codigo} arrastra un horario que no pinta nadie`).toBeUndefined();
       }
     });
 

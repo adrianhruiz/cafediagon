@@ -14,64 +14,30 @@
   },
   "aviso": {
     "titulo": "Avís legal",
-    "entrada": "Aquí hi ha la informació que exigeix l'article 10 de la Llei 34/2002, de serveis de la societat de la informació i de comerç electrònic (LSSI-CE): qui respon d'aquesta web i en quines condicions es pot fer servir.",
+    "entrada": "El que exigeix l’article 10 de la Llei 34/2002 (LSSI-CE): qui respon d’aquesta web i en quines condicions es pot fer servir.",
     "secciones": [
       {
         "titulo": "Titular del lloc web",
         "bloques": [{ "identidad": "completa" }]
       },
       {
-        "titulo": "Objecte del lloc",
+        "titulo": "La web i la carta",
         "bloques": [
-          { "p": "Aquesta web és informativa: presenta el cafè, la carta i la ubicació. No ven res per internet, no permet reservar taula i no té formularis ni àrea d'usuari. La comanda i el pagament es fan sempre al local." },
-          { "p": "Fer servir la web implica acceptar aquest avís legal en la versió publicada a cada moment. La titular pot modificar quan ho consideri oportú els continguts, la presentació i la configuració del lloc." }
+          { "p": "Aquesta web és informativa: presenta el cafè, la seva carta i la seva ubicació. No es ven res per internet ni es poden reservar taules; la comanda i el pagament es fan al local. Fer-la servir implica acceptar aquest avís en la versió publicada en cada moment." },
+          { "p": "Els preus i els al·lèrgens de la carta són els que declara el cafè i poden canviar; els preus són en euros i inclouen els impostos aplicables. La informació d’al·lèrgens es publica d’acord amb el Reglament (UE) 1169/2011: elaborem en una cuina compartida i no es pot garantir l’absència de traces, així que digues-ho al local abans de demanar. Si la carta de la web i la del local no coincideixen, val la del local." }
         ]
       },
       {
-        "titulo": "La carta publicada aquí",
+        "titulo": "Continguts, enllaços i responsabilitat",
         "bloques": [
-          { "p": "Els preus i els al·lèrgens que apareixen a la carta són els que declara el cafè i poden canviar. Els preus s'expressen en euros i inclouen els impostos aplicables." },
-          { "p": "La informació d'al·lèrgens es publica d'acord amb el Reglament (UE) 1169/2011. Elaborem en una cuina compartida i no es pot garantir l'absència de traces: si tens una al·lèrgia o una intolerància, digues-ho al local abans de demanar." },
-          { "p": "Si la carta de la web i la del local no coincideixen, val la del local." }
+          { "p": "Els textos, les fotografies, el logotip i el disseny pertanyen a la titular o es fan servir amb autorització, i no es poden reproduir sense permís escrit. Les marques de tercers que hi apareixen —Instagram, Google, Restaurant Guru— són dels seus titulars i se citen només per identificar-les." },
+          { "p": "Es posa una cura raonable perquè el que es publica sigui correcte, però no es garanteix que estigui lliure d’errors ni que el lloc estigui sempre disponible: s’allotja a GitHub Pages. Aquesta web enllaça a serveis aliens, com Instagram i Google Maps; la titular no respon dels seus continguts ni del que facin amb les teves dades, i mentre no segueixis un enllaç no es carrega res d’ells." }
         ]
       },
       {
-        "titulo": "Propietat intel·lectual i industrial",
+        "titulo": "Dades, llei aplicable i reclamacions",
         "bloques": [
-          { "p": "Els textos, les fotografies, el logotip i el disseny d'aquesta web pertanyen a la titular o es fan servir amb autorització. No es poden reproduir, distribuir ni comunicar públicament sense permís escrit, tret dels usos que la llei permeti expressament." },
-          { "p": "Els noms, marques i logotips de tercers que hi apareixen —Instagram, Google, Restaurant Guru— pertanyen als seus titulars i se citen només per identificar-los." }
-        ]
-      },
-      {
-        "titulo": "Enllaços a llocs de tercers",
-        "bloques": [
-          { "p": "Aquesta web enllaça a serveis aliens, com Instagram i Google Maps. La titular no controla aquests llocs ni respon dels seus continguts ni del tractament de dades que facin: en seguir un enllaç s'apliquen les seves pròpies condicions i polítiques. Mentre no en segueixis un, aquesta web no carrega res d'ells." }
-        ]
-      },
-      {
-        "titulo": "Responsabilitat",
-        "bloques": [
-          { "p": "Es posa una cura raonable perquè el que es publica sigui correcte i estigui al dia, però no es garanteix que estigui lliure d'errors ni que el lloc sigui sempre disponible." },
-          { "p": "La web s'allotja a GitHub Pages (GitHub, Inc.), de manera que la seva disponibilitat depèn d'aquest proveïdor. No es respon de les interrupcions, fallades de xarxa o incidències alienes que impedeixin accedir al lloc." }
-        ]
-      },
-      {
-        "titulo": "Protecció de dades",
-        "bloques": [
-          { "p": "El tractament de dades personals associat a aquesta web s'explica a la política de privacitat, enllaçada al final d'aquesta pàgina i al peu del lloc." }
-        ]
-      },
-      {
-        "titulo": "Legislació aplicable i reclamacions",
-        "bloques": [
-          { "p": "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia, les parts se sotmeten als jutjats i tribunals que corresponguin d'acord amb el dret; quan l'altra part sigui consumidora, els del seu domicili." },
-          { "p": "L'establiment disposa de fulls oficials de reclamació a disposició de la clientela." }
-        ]
-      },
-      {
-        "titulo": "Contacte",
-        "bloques": [
-          { "p": "Per a qualsevol qüestió sobre aquest avís legal: {email} o {telefono}." }
+          { "p": "El tractament de dades personals s’explica a la política de privacitat, enllaçada al peu. Aquest avís es regeix per la legislació espanyola; quan l’altra part sigui consumidora, els tribunals competents són els del seu domicili. L’establiment disposa de fulls oficials de reclamació. Per a qualsevol qüestió: {email} o {telefono}." }
         ]
       }
     ]

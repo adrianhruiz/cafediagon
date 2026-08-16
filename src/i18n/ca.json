@@ -74,20 +74,6 @@
     "etiqueta": "Galeria",
     "titulo": "El cafè per dins"
   },
-  "horario": {
-    "etiqueta": "Horari",
-    "pendiente": "Consulta'ns l'horari per telèfon o a Instagram",
-    "cerrado": "Tancat",
-    "dias": {
-      "lunes": "Dilluns",
-      "martes": "Dimarts",
-      "miercoles": "Dimecres",
-      "jueves": "Dijous",
-      "viernes": "Divendres",
-      "sabado": "Dissabte",
-      "domingo": "Diumenge"
-    }
-  },
   "pie": {
     "contacto": "Contacte",
     "comoLlegar": "Com arribar",

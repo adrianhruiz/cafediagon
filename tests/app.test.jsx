@@ -200,31 +200,21 @@ describe('carta', () => {
 });
 
 describe('horario', () => {
-  it('pinta los siete dias con sus horas', async () => {
+  it('la web ya no publica las horas de apertura en ninguna parte', async () => {
+    // Decision del cafe: fue una seccion, luego una columna del pie y ahora
+    // nada. El dato sigue en business.json porque de ahi sale el
+    // openingHoursSpecification del JSON-LD, que es lo que lee Google para
+    // decir "abierto ahora" en su ficha; en pantalla no se pinta.
     const { container } = await montar();
-    const filas = container.querySelectorAll('.pie__horario li');
-    expect(filas).toHaveLength(negocio.horario.length);
+    const texto = container.textContent;
 
-    for (const [i, fila] of [...filas].entries()) {
-      const dia = negocio.horario[i];
-      expect(fila).toHaveTextContent(es.horario.dias[dia.dia]);
-      if (dia.cerrado) {
-        expect(fila).toHaveTextContent(es.horario.cerrado);
-      } else {
-        expect(fila).toHaveTextContent(dia.abre);
-        expect(fila).toHaveTextContent(dia.cierra);
-      }
+    expect(container.querySelector('#horario')).toBeNull();
+    expect(container.querySelector('.pie__horario')).toBeNull();
+    for (const h of negocio.horario) {
+      if (h.cerrado) continue;
+      expect(texto, `sigue saliendo el horario de ${h.dia}`)
+        .not.toContain(`${h.abre} – ${h.cierra}`);
     }
-  });
-
-  it('las horas viven en el pie y no en una seccion propia', async () => {
-    // Fue "Donde estamos" con direccion, mapa y contactos, luego una seccion
-    // solo de horas, y ahora una columna del pie: se lee igual, sale tambien
-    // en las paginas legales y no gasta una banda entera de portada.
-    const { container } = await montar();
-
-    expect(container.querySelector('#horario'), 'la seccion sigue ahi').toBeNull();
-    expect(container.querySelector('.pie .pie__horario')).toBeTruthy();
   });
 
   it('la direccion se dice una sola vez, y en el pie', async () => {
@@ -238,21 +228,6 @@ describe('horario', () => {
     expect(senas[0]).toHaveTextContent(negocio.direccion.calle);
     expect(senas[0]).toHaveTextContent(negocio.direccion.cp);
     expect(senas[0]).toHaveTextContent(negocio.direccion.localidad);
-  });
-
-  it('ya no sale el aviso de horario pendiente', async () => {
-    await montar();
-    expect(screen.queryByText(es.horario.pendiente)).not.toBeInTheDocument();
-  });
-
-  it('los dias salen traducidos', async () => {
-    // Sin esto un aleman leeria "Miércoles" en medio de su horario.
-    const { container } = await montar('de');
-
-    const texto = container.querySelector('.pie__horario').textContent;
-    expect(texto).toContain(de.horario.dias.miercoles);
-    expect(texto).toContain(de.horario.cerrado);
-    expect(texto).not.toContain(es.horario.dias.miercoles);
   });
 });
 

@@ -14,64 +14,30 @@
   },
   "aviso": {
     "titulo": "Impressum",
-    "entrada": "Hier stehen die Angaben, die Artikel 10 des spanischen Gesetzes 34/2002 über Dienste der Informationsgesellschaft und elektronischen Geschäftsverkehr (LSSI-CE) verlangt: wer für diese Website verantwortlich ist und unter welchen Bedingungen sie genutzt werden darf.",
+    "entrada": "Was Artikel 10 des spanischen Gesetzes 34/2002 (LSSI-CE) verlangt: wer für diese Website verantwortlich ist und unter welchen Bedingungen sie genutzt werden darf.",
     "secciones": [
       {
         "titulo": "Inhaberin der Website",
         "bloques": [{ "identidad": "completa" }]
       },
       {
-        "titulo": "Zweck der Website",
+        "titulo": "Die Website und die Karte",
         "bloques": [
-          { "p": "Diese Website ist rein informativ: Sie stellt das Café, seine Karte und seinen Standort vor. Es wird nichts online verkauft, es können keine Tische reserviert werden, und es gibt weder Formulare noch Benutzerkonten. Bestellung und Bezahlung finden immer im Lokal statt." },
-          { "p": "Die Nutzung der Website bedeutet, dieses Impressum in der jeweils veröffentlichten Fassung anzunehmen. Die Inhaberin kann Inhalte, Darstellung und Konfiguration der Website jederzeit ändern." }
+          { "p": "Diese Website ist rein informativ: Sie stellt das Café, seine Karte und seinen Standort vor. Es wird nichts online verkauft und es können keine Tische reserviert werden; bestellt und bezahlt wird im Lokal. Die Nutzung bedeutet, dieses Impressum in der jeweils veröffentlichten Fassung zu akzeptieren." },
+          { "p": "Die Preise und Allergene auf der Karte sind die vom Café angegebenen und können sich ändern; die Preise sind in Euro und enthalten die anfallenden Steuern. Die Allergenangaben erfolgen nach der Verordnung (EU) 1169/2011: Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen, sag es also im Lokal, bevor du bestellst. Weichen die Karte auf dieser Website und die im Lokal voneinander ab, gilt die im Lokal." }
         ]
       },
       {
-        "titulo": "Die hier veröffentlichte Karte",
+        "titulo": "Inhalte, Links und Haftung",
         "bloques": [
-          { "p": "Die Preise und Allergene auf der Karte sind die vom Café angegebenen und können sich ändern. Die Preise sind in Euro und enthalten die anfallenden Steuern." },
-          { "p": "Die Allergenangaben werden gemäß Verordnung (EU) 1169/2011 veröffentlicht. Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns vor der Bestellung Bescheid, wenn du eine Allergie oder eine Unverträglichkeit hast." },
-          { "p": "Weichen die Karte auf dieser Website und die im Lokal voneinander ab, gilt die im Lokal." }
+          { "p": "Die Texte, Fotos, das Logo und das Design gehören der Inhaberin oder werden mit Erlaubnis verwendet und dürfen ohne schriftliche Zustimmung nicht vervielfältigt werden. Fremde Marken, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren Inhabern und werden nur zu deren Bezeichnung genannt." },
+          { "p": "Es wird angemessene Sorgfalt darauf verwendet, dass die Angaben stimmen, es wird aber weder Fehlerfreiheit noch ständige Verfügbarkeit zugesichert: Die Website liegt bei GitHub Pages. Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps; die Inhaberin haftet nicht für deren Inhalte oder deren Umgang mit deinen Daten, und solange du keinem Link folgst, wird von ihnen nichts geladen." }
         ]
       },
       {
-        "titulo": "Urheber- und gewerbliche Schutzrechte",
+        "titulo": "Daten, anwendbares Recht und Beschwerden",
         "bloques": [
-          { "p": "Texte, Fotos, Logo und Gestaltung dieser Website gehören der Inhaberin oder werden mit Erlaubnis genutzt. Sie dürfen ohne schriftliche Zustimmung nicht vervielfältigt, verbreitet oder öffentlich zugänglich gemacht werden, abgesehen von den gesetzlich ausdrücklich erlaubten Nutzungen." },
-          { "p": "Fremde Namen, Marken und Logos, die hier erscheinen —Instagram, Google, Restaurant Guru—, gehören ihren jeweiligen Inhabern und werden nur zu deren Bezeichnung genannt." }
-        ]
-      },
-      {
-        "titulo": "Links zu fremden Seiten",
-        "bloques": [
-          { "p": "Diese Website verlinkt auf fremde Dienste wie Instagram und Google Maps. Die Inhaberin kontrolliert diese Seiten nicht und haftet weder für deren Inhalte noch für deren Datenverarbeitung: Ab dem Klick auf einen Link gelten deren eigene Bedingungen und Richtlinien. Solange du keinem Link folgst, lädt diese Website nichts von ihnen." }
-        ]
-      },
-      {
-        "titulo": "Haftung",
-        "bloques": [
-          { "p": "Es wird angemessene Sorgfalt darauf verwendet, dass die veröffentlichten Angaben richtig und aktuell sind; es wird aber nicht garantiert, dass sie fehlerfrei sind oder dass die Website jederzeit erreichbar ist." },
-          { "p": "Die Website wird auf GitHub Pages (GitHub, Inc.) gehostet, ihre Verfügbarkeit hängt also von diesem Anbieter ab. Für Ausfälle, Netzstörungen oder fremde Vorfälle, die den Zugang verhindern, wird nicht gehaftet." }
-        ]
-      },
-      {
-        "titulo": "Datenschutz",
-        "bloques": [
-          { "p": "Die Verarbeitung personenbezogener Daten im Zusammenhang mit dieser Website wird in der Datenschutzerklärung erläutert, verlinkt am Ende dieser Seite und im Seitenfuß." }
-        ]
-      },
-      {
-        "titulo": "Anwendbares Recht und Beschwerden",
-        "bloques": [
-          { "p": "Für dieses Impressum gilt spanisches Recht. Für Streitigkeiten sind die nach den geltenden Regeln zuständigen Gerichte zuständig; ist die andere Partei Verbraucherin oder Verbraucher, die Gerichte ihres Wohnsitzes." },
-          { "p": "Im Lokal liegen amtliche Beschwerdeformulare für die Gäste bereit." }
-        ]
-      },
-      {
-        "titulo": "Kontakt",
-        "bloques": [
-          { "p": "Für alles rund um dieses Impressum: {email} oder {telefono}." }
+          { "p": "Die Verarbeitung personenbezogener Daten ist in der Datenschutzerklärung erklärt, die im Fußbereich verlinkt ist. Dieses Impressum unterliegt spanischem Recht; ist die andere Partei Verbraucherin oder Verbraucher, sind die Gerichte ihres Wohnsitzes zuständig. Im Lokal liegen amtliche Beschwerdeformulare bereit. Bei Fragen: {email} oder {telefono}." }
         ]
       }
     ]
