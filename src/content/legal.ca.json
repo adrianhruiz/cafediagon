@@ -39,13 +39,13 @@
         "titulo": "Propietat intel·lectual i industrial",
         "bloques": [
           { "p": "Els textos, les fotografies, el logotip i el disseny d'aquesta web pertanyen a la titular o es fan servir amb autorització. No es poden reproduir, distribuir ni comunicar públicament sense permís escrit, tret dels usos que la llei permeti expressament." },
-          { "p": "Els noms, marques i logotips de tercers que hi apareixen —Instagram, Google, Restaurant Guru— pertanyen als seus titulars i se citen només per identificar-los. El mapa està dibuixat amb dades d'OpenStreetMap, © els seus col·laboradors, disponibles sota la llicència ODbL." }
+          { "p": "Els noms, marques i logotips de tercers que hi apareixen —Instagram, Google, Restaurant Guru— pertanyen als seus titulars i se citen només per identificar-los." }
         ]
       },
       {
         "titulo": "Enllaços a llocs de tercers",
         "bloques": [
-          { "p": "Aquesta web enllaça a serveis aliens, com Instagram i Google Maps. La titular no controla aquests llocs ni respon dels seus continguts ni del tractament de dades que facin: en seguir un enllaç s'apliquen les seves pròpies condicions i polítiques. El mapa que es veu a la web és una imatge pròpia: de Google no es carrega res mentre no segueixis l'enllaç." }
+          { "p": "Aquesta web enllaça a serveis aliens, com Instagram i Google Maps. La titular no controla aquests llocs ni respon dels seus continguts ni del tractament de dades que facin: en seguir un enllaç s'apliquen les seves pròpies condicions i polítiques. Mentre no en segueixis un, aquesta web no carrega res d'ells." }
         ]
       },
       {
@@ -122,16 +122,9 @@
         ]
       },
       {
-        "titulo": "El mapa d'«On som»",
+        "titulo": "Enllaços a altres llocs",
         "bloques": [
-          { "p": "El mapa que es veu a la web és una imatge servida per aquesta mateixa web, dibuixada a partir de dades d'OpenStreetMap. No és un mapa incrustat de Google: en veure'l no es comunica res a ningú, no es demana ni es desa cap dada i no cal que hi consentis res." },
-          { "p": "Si prems el mapa o l'enllaç «Obrir a Google Maps», surts d'aquesta web i entres a Google Maps, que és un servei de Google amb la seva pròpia política de privacitat. A partir d'aquí el tractament el fa Google, i nosaltres no rebem cap dada de la teva visita." }
-        ]
-      },
-      {
-        "titulo": "Enllaços a xarxes socials",
-        "bloques": [
-          { "p": "L'enllaç a Instagram et duu fora d'aquesta web. A partir d'aquí el tractament el fa Meta d'acord amb la seva pròpia política, i nosaltres no rebem cap dada de la teva visita." }
+          { "p": "Els enllaços a Instagram i a Google Maps et duen fora d'aquesta web; mentre no els premis, no es carrega res de cap dels dos. A partir d'aquí el tractament el fa Meta o Google d'acord amb la seva pròpia política, i nosaltres no rebem cap dada de la teva visita." }
         ]
       },
       {

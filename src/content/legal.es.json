@@ -39,13 +39,13 @@
         "titulo": "Propiedad intelectual e industrial",
         "bloques": [
           { "p": "Los textos, las fotografías, el logotipo y el diseño de esta web pertenecen a la titular o se usan con autorización. No se pueden reproducir, distribuir ni comunicar públicamente sin permiso escrito, salvo los usos que la ley permita expresamente." },
-          { "p": "Los nombres, marcas y logotipos de terceros que aparecen —Instagram, Google, Restaurant Guru— pertenecen a sus titulares y se citan solo para identificarlos. El mapa está dibujado con datos de OpenStreetMap, © sus colaboradores, disponibles bajo la licencia ODbL." }
+          { "p": "Los nombres, marcas y logotipos de terceros que aparecen —Instagram, Google, Restaurant Guru— pertenecen a sus titulares y se citan solo para identificarlos." }
         ]
       },
       {
         "titulo": "Enlaces a sitios de terceros",
         "bloques": [
-          { "p": "Esta web enlaza a servicios ajenos, como Instagram y Google Maps. La titular no controla esos sitios ni responde de sus contenidos ni del tratamiento de datos que hagan: al seguir un enlace se aplican sus propias condiciones y políticas. El mapa que se ve en la web es una imagen propia: de Google no se carga nada mientras no sigas el enlace." }
+          { "p": "Esta web enlaza a servicios ajenos, como Instagram y Google Maps. La titular no controla esos sitios ni responde de sus contenidos ni del tratamiento de datos que hagan: al seguir un enlace se aplican sus propias condiciones y políticas. Mientras no sigas uno, esta web no carga nada de ellos." }
         ]
       },
       {
@@ -122,16 +122,9 @@
         ]
       },
       {
-        "titulo": "El mapa de «Dónde estamos»",
+        "titulo": "Enlaces a otros sitios",
         "bloques": [
-          { "p": "El mapa que se ve en la web es una imagen servida por esta misma web, dibujada a partir de datos de OpenStreetMap. No es un mapa incrustado de Google: al verlo no se comunica nada a nadie, no se pide ni se guarda ningún dato y no hace falta que consientas nada." },
-          { "p": "Si pulsas el mapa o el enlace «Abrir en Google Maps», sales de esta web y entras en Google Maps, que es un servicio de Google con su propia política de privacidad. A partir de ahí el tratamiento lo hace Google, y nosotros no recibimos ningún dato de tu visita." }
-        ]
-      },
-      {
-        "titulo": "Enlaces a redes sociales",
-        "bloques": [
-          { "p": "El enlace a Instagram te lleva fuera de esta web. A partir de ahí el tratamiento lo hace Meta conforme a su propia política, y nosotros no recibimos ningún dato de tu visita." }
+          { "p": "Los enlaces a Instagram y a Google Maps te llevan fuera de esta web; mientras no los pulses, no se carga nada de ellos. A partir de ahí el tratamiento lo hace Meta o Google conforme a su propia política, y nosotros no recibimos ningún dato de tu visita." }
         ]
       },
       {

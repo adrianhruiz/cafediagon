@@ -10,7 +10,6 @@
 :root {
   /* del logo */
   --tinta: #202227;
-  --tinta-2: #2b3439;
   --tinta-3: #3a3d45;
   /* Gris apagado para texto secundario. Existe para no bajar el contraste con
      opacity: un tono fijo se puede medir, una opacidad depende del fondo. */

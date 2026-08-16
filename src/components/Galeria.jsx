@@ -1,6 +1,5 @@
 import { Campo, useIdioma } from '../i18n/idioma.jsx';
 import galeria from '../content/gallery.json';
-import negocio from '../content/business.json';
 import Imagen from './Imagen.jsx';
 import './Galeria.css';
 
@@ -29,12 +28,6 @@ export default function Galeria() {
             </li>
           ))}
         </ul>
-
-        <p className="galeria__enlace">
-          <a href={negocio.instagram} target="_blank" rel="noreferrer">
-            {t('galeria.verEnInstagram')}
-          </a>
-        </p>
       </div>
     </section>
   );

@@ -28,15 +28,24 @@
   border-color: var(--tinta);
 }
 
+/* Uno debajo del otro y el de alergenos arriba: el orden en pantalla es el
+   orden en que importan. */
+.carta__avisos {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+}
+
 .carta__aviso {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
   color: var(--cobre);
   /* El lavado de cobre bajaba el aviso legal a 4.47:1. El mismo tono de fondo
      en gris neutro no le come contraste al texto. */
   background: rgba(95, 99, 107, 0.06);
   border-left: 2px solid var(--cobre);
-  padding: 0.6rem 0.9rem;
-  margin: 0 0 var(--paso-4);
+  padding: 0.5rem 0.8rem;
+  margin: 0;
   border-radius: 0 var(--radio) var(--radio) 0;
 }
 
