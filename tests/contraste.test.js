@@ -53,10 +53,8 @@ const TEXTO = [
   ['crema', 'cobre', 4.5, 'boton de cargar el mapa'],
   ['tinta', 'cobre-claro', 4.5, 'boton principal del hero'],
   ['crema', 'tinta', 4.5, 'texto sobre cabecera y juegos'],
-  ['pergamino', 'tinta', 4.5, 'titulos sobre fondo oscuro'],
-  ['pergamino', 'tinta-2', 4.5, 'franja del premio'],
-  ['cobre-claro', 'tinta-2', 4.5, 'entidad del premio'],
-  ['cobre-claro', 'tinta', 4.5, 'etiquetas de la seccion de juegos'],
+  ['pergamino', 'tinta', 4.5, 'titulos sobre fondo oscuro y premio del hero'],
+  ['cobre-claro', 'tinta', 4.5, 'etiquetas de juegos y entidad del premio'],
 ];
 
 /** Bordes y anillos de foco: 3:1 contra lo que tengan al lado (1.4.11). */

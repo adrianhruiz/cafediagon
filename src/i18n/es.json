@@ -31,23 +31,21 @@
     "texto": "Abrimos en enero de 2025 con una idea sencilla: crear un sitio donde todo el mundo se sienta bienvenido. Café de especialidad tratado con respeto, comida preparada cada día y cientos de juegos de mesa para que te quedes el rato que quieras.",
     "datoValoracion": "de valoración media en Google, sobre {n} reseñas (dato de {fecha})",
     "datoJuegos": "juegos de mesa disponibles sin coste",
-    "datoPremio": "Mejor Coffee House de Cala Rajada según Restaurant Guru",
     "fotoAlt": "Pared del café cubierta de láminas enmarcadas de inspiración mágica: libros antiguos, lechuzas y pergaminos de hechizos"
   },
   "carta": {
     "etiqueta": "La carta",
-    "titulo": "Qué vas a encontrar",
-    "entrada": "{platos} platos y bebidas repartidos en {categorias} categorías. Los desayunos, tostadas y bowls llevan nombre propio.",
+    "titulo": "Mira qué te apetece hoy",
     "todo": "Todo",
     "resultado": "Mostrando: {filtro}",
     "sinGluten": "sin ingredientes con gluten",
     "precioPendiente": "Consultar",
     "gratis": "Gratis",
-    "avisoPrecios": "Los precios se muestran en el local. Estamos actualizándolos aquí.",
-    "avisoIva": "Precios en euros con IVA incluido.",
+    "avisoPrecios": "Precios pendientes: se muestran en el local.",
+    "avisoIva": "Precios en euros, IVA incluido.",
     "filtrarPor": "Filtrar la carta por categoría",
-    "avisoAlergenos": "Bajo cada plato indicamos los alérgenos declarados por el café; si un plato no los lleva, es que no contiene ninguno de los 14.",
-    "avisoCocina": "Elaboramos en una cocina compartida y no podemos garantizar la ausencia de trazas: si tienes alguna alergia, dínoslo en el local.",
+    "avisoAlergenos": "Alérgenos bajo cada plato; sin línea, no lleva ninguno de los 14.",
+    "avisoCocina": "Cocina compartida, posibles trazas: dínoslo en el local.",
     "alergenosEtiqueta": "Alérgenos",
     "alergenosPendientes": "Consúltanos en el local",
     "alergeno": {
@@ -82,7 +80,6 @@
   "donde": {
     "etiqueta": "Dónde estamos",
     "titulo": "Te esperamos",
-    "direccion": "Dirección",
     "horario": "Horario",
     "horarioPendiente": "Consúltanos el horario por teléfono o en Instagram",
     "cerrado": "Cerrado",
@@ -95,15 +92,10 @@
       "sabado": "Sábado",
       "domingo": "Domingo"
     },
-    "telefono": "Teléfono",
-    "email": "Email",
-    "instagram": "Instagram",
-    "comoLlegar": "Abrir en Google Maps",
     "mapaTitulo": "Mapa con la ubicación de Diagon Cafe, en Carrer de Méndez Núñez, cerca del puerto de Cala Rajada"
   },
   "pie": {
     "contacto": "Contacto",
-    "siguenos": "Síguenos",
     "derechos": "Todos los derechos reservados",
     "legal": "Enlaces legales",
     "avisoLegal": "Aviso legal",

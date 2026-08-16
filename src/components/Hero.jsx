@@ -24,6 +24,20 @@ export default function Hero() {
           <a className="boton boton--secundario" href={negocio.maps}
              target="_blank" rel="noreferrer">{t('hero.comoLlegar')}</a>
         </div>
+
+        {/* Directiva Omnibus: una distincion anunciada tiene que poder
+            comprobarse. Se enlaza a la ficha que la acredita en vez de
+            incrustar el sello de Restaurant Guru, que trae una hoja de estilos
+            de su CDN y devolveria un rastreador a la web.
+
+            Va aqui, bajo los botones, y no en una franja propia: la franja
+            gastaba una banda entera de alto para una linea de texto. */}
+        <p className="hero__premio">
+          <a href={negocio.premio.url} target="_blank" rel="noreferrer">
+            <span aria-hidden="true">🏆</span>{' '}
+            <b>{negocio.premio.entidad} {negocio.premio.anyo}</b> — {t('premio')}
+          </a>
+        </p>
       </div>
     </section>
   );

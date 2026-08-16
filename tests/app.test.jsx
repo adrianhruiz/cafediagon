@@ -68,6 +68,21 @@ describe('contacto', () => {
     }
   });
 
+  it('los tres contactos del pie son iconos con nombre accesible', async () => {
+    // El dibujo no dice nada en voz alta: el nombre del enlace tiene que
+    // seguir siendo el dato entero, y el svg quedarse fuera del arbol.
+    const { container } = await montar();
+    const iconos = container.querySelectorAll('.pie__contacto a');
+    expect(iconos).toHaveLength(3);
+
+    for (const enlace of iconos) {
+      const svg = enlace.querySelector('svg');
+      expect(svg, 'el contacto ya no es un icono').toBeTruthy();
+      expect(svg.getAttribute('aria-hidden')).toBe('true');
+      expect(enlace.getAttribute('aria-label')?.trim()).toBeTruthy();
+    }
+  });
+
   it('la valoracion de Google sale fechada y con su fuente', async () => {
     // Sin fecha, una media vieja se lee como actual. Con ella es un dato
     // historico y no se convierte en falso por el paso del tiempo.
@@ -85,17 +100,16 @@ describe('contacto', () => {
   it('el premio se anuncia enlazando a lo que lo acredita', async () => {
     // Directiva Omnibus: una distincion que se anuncia y no se puede comprobar
     // es publicidad enganosa. Si algun dia se queda sin URL, esto salta antes
-    // de que la franja vuelva a afirmarlo a secas.
+    // de que la pagina vuelva a afirmarlo a secas.
     await montar();
     expect(negocio.premio.url).toMatch(/^https:\/\//);
 
-    // Los dos sitios donde se afirma: la franja y el dato de "El cafe". El
-    // nombre del premio es el mismo en ambos, asi que se piden a la vez.
+    // Se afirma en un solo sitio, bajo los botones del hero: la franja verde y
+    // el dato repetido en "El cafe" se quitaron para ganar alto.
     const enlaces = screen.getAllByRole('link', { name: new RegExp(es.premio, 'i') });
-    expect(enlaces).toHaveLength(2);
-    for (const enlace of enlaces) {
-      expect(enlace).toHaveAttribute('href', negocio.premio.url);
-    }
+    expect(enlaces).toHaveLength(1);
+    expect(enlaces[0]).toHaveAttribute('href', negocio.premio.url);
+    expect(enlaces[0].closest('.hero'), 'el premio ya no esta en el hero').toBeTruthy();
   });
 
   it('no trae de vuelta ningun recurso del sello de Restaurant Guru', async () => {
@@ -201,6 +215,19 @@ describe('horario', () => {
         expect(fila).toHaveTextContent(dia.cierra);
       }
     }
+  });
+
+  it('la seccion solo lleva el horario y el mapa', async () => {
+    // El telefono, el email, el Instagram y la direccion estaban aqui y en el
+    // pie: se quedan solo en el pie, que sale en todas las paginas.
+    const { container } = await montar();
+    const donde = container.querySelector('#donde');
+
+    expect(donde.querySelector('.donde__horario')).toBeTruthy();
+    expect(donde.querySelector('a.donde__mapa')).toBeTruthy();
+    expect(donde.querySelector('a[href^="tel:"]')).toBeNull();
+    expect(donde.querySelector('a[href^="mailto:"]')).toBeNull();
+    expect(donde.querySelector('address')).toBeNull();
   });
 
   it('ya no sale el aviso de horario pendiente', async () => {

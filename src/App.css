@@ -1,24 +1,3 @@
-.franja-premio {
-  background: var(--tinta-2);
-  color: var(--pergamino);
-  text-align: center;
-  padding: 1.15rem var(--paso-3);
-  margin: 0;
-  font-size: 0.88rem;
-  letter-spacing: 0.03em;
-}
-.franja-premio b {
-  color: var(--cobre-claro);
-  font-weight: 600;
-}
-
-/* El color no cambia —esta medido sobre el fondo de la franja—, asi que el
-   subrayado es lo que dice que se puede pulsar. */
-.franja-premio a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 /* Hueco de la carta mientras se baja su trozo. Del color de fondo de la propia
    seccion, para que no se vea una banda distinta al entrar. */
 .carta-hueco {

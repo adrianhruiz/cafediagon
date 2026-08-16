@@ -70,12 +70,7 @@ function CartaPintada({ menu }) {
   const { t, campo, idioma } = useIdioma();
   const [filtro, setFiltro] = useState(TODO);
 
-  const total = useMemo(
-    () => menu.categorias.reduce((n, c) => n + c.productos.length, 0),
-    [menu],
-  );
-
-  // Los tres recorren las 15 categorias o los 151 productos, y se rehacian en
+  // Los dos recorren las 15 categorias o los 151 productos, y se rehacian en
   // cada render: tambien al pulsar un filtro y al cambiar de idioma.
   const visibles = useMemo(
     () => (filtro === TODO ? menu.categorias : menu.categorias.filter((c) => c.id === filtro)),
@@ -118,9 +113,24 @@ function CartaPintada({ menu }) {
       <div className="envoltorio">
         <p className="seccion__etiqueta">{t('carta.etiqueta')}</p>
         <h2 className="seccion__titulo">{t('carta.titulo')}</h2>
-        <p className="seccion__entrada">
-          {t('carta.entrada', { platos: total, categorias: menu.categorias.length })}
-        </p>
+
+        {/* Los dos avisos obligatorios suben aqui, al hueco que dejo la
+            entradilla: son la letra pequena de todo lo que viene debajo, y
+            debajo de los filtros quedaban ya empezada la lista de platos.
+
+            TRLGDCU art. 20: el precio anunciado es el final, con impuestos
+            incluidos, y conviene decirlo expresamente. Rgto (UE) 1169/2011:
+            los 14 alergenos hay que informarlos en cualquier soporte donde se
+            presente la oferta, tambien en la carta web. */}
+        <div className="carta__avisos">
+          <p className="carta__aviso">
+            <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
+          </p>
+          <p className="carta__aviso">
+            {t('carta.avisoAlergenos')}{' '}
+            <strong>{t('carta.avisoCocina')}</strong>
+          </p>
+        </div>
 
         <div className="carta__filtros" role="group" aria-label={t('carta.filtrarPor')}>
           <button
@@ -146,19 +156,6 @@ function CartaPintada({ menu }) {
             pantalla no se entera de nada si no se le dice (4.1.3). */}
         <p className="oculto-visual" role="status">
           {t('carta.resultado', { filtro: nombreDelFiltro })}
-        </p>
-
-        {/* TRLGDCU art. 20: el precio anunciado es el final, con impuestos
-            incluidos, y conviene decirlo expresamente. */}
-        <p className="carta__aviso">
-          <strong>{hayPrecios ? t('carta.avisoIva') : t('carta.avisoPrecios')}</strong>
-        </p>
-
-        {/* Obligatorio: los 14 alergenos hay que informarlos en cualquier soporte
-            donde se presente la oferta, tambien en la carta web (Rgto 1169/2011). */}
-        <p className="carta__aviso">
-          {t('carta.avisoAlergenos')}{' '}
-          <strong>{t('carta.avisoCocina')}</strong>
         </p>
 
         {/* --platos alimenta la estimacion de alto de Carta.css: sin ella el

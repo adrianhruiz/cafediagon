@@ -4,31 +4,14 @@
   gap: clamp(2rem, 5vw, 4rem);
 }
 
-.donde__datos {
-  list-style: none;
-  padding: 0;
-  margin: var(--paso-3) 0 0;
-  display: grid;
-  gap: 1.4rem;
-}
-.donde__datos h3 {
+.donde__rotulo {
   font-family: var(--sans);
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cobre);
-  margin-bottom: 0.35rem;
+  margin: var(--paso-3) 0 0.6rem;
   font-weight: 600;
-}
-.donde__datos address { font-style: normal; }
-.donde__datos a { color: var(--tinta); }
-.donde__datos a:hover { color: var(--cobre); }
-
-.donde__mapa-enlace {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--cobre) !important;
 }
 
 .donde__horario {
@@ -57,7 +40,7 @@
 }
 
 /* El mapa se queda arriba en su columna: no se estira para igualar la altura de
-   la ficha de datos, que es mas larga, porque estirarlo lo recortaria. */
+   la columna de al lado, porque estirarlo lo recortaria. */
 .donde__mapa-zona {
   display: flex;
   flex-direction: column;

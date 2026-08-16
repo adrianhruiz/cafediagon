@@ -29,6 +29,24 @@
 }
 .pie a:hover { color: var(--cobre-claro); }
 
+/* Los tres iconos de contacto. 44px de area tactil sin engordar el pie: el
+   dibujo mide 22 y el hueco alrededor pone el resto. */
+.pie__contacto {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.35rem;
+}
+.pie__contacto a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radio);
+}
+
 .pie__cierre {
   display: flex;
   flex-wrap: wrap;

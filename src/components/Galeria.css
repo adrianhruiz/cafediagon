@@ -10,7 +10,7 @@
 /*
  * La relacion 1:1 sube aqui desde la figura: da alto definido a la celda sin
  * mirar lo que lleva dentro, que es lo que permite saltarse el contenido de
- * las 28 fotos que quedan fuera de pantalla sin que la rejilla se mueva.
+ * las fotos que quedan fuera de pantalla sin que la rejilla se mueva.
  */
 .galeria li {
   aspect-ratio: 1;

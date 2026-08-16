@@ -8,7 +8,6 @@ const OSM = 'https://www.openstreetmap.org/copyright';
 
 export default function Donde() {
   const { t } = useIdioma();
-  const { direccion } = negocio;
 
   // El mapa es una imagen servida por esta misma web, dibujada en el build por
   // scripts/build-mapa.mjs con teselas de OpenStreetMap. El iframe de Google
@@ -27,51 +26,25 @@ export default function Donde() {
           <p className="seccion__etiqueta">{t('donde.etiqueta')}</p>
           <h2 className="seccion__titulo">{t('donde.titulo')}</h2>
 
-          <ul className="donde__datos">
-            <li>
-              <h3>{t('donde.direccion')}</h3>
-              <address>
-                {direccion.calle}<br />
-                {direccion.cp} {direccion.localidad}, {direccion.municipio}<br />
-                Mallorca
-              </address>
-              <a className="donde__mapa-enlace" href={negocio.maps}
-                 target="_blank" rel="noreferrer">{t('donde.comoLlegar')}</a>
-            </li>
-
-            <li>
-              <h3>{t('donde.horario')}</h3>
-              {/* El horario se guarda por dia y en 24 h, no como frase hecha:
-                  asi el nombre del dia sale del diccionario de idiomas y el
-                  aleman no lee "lunes". El mismo dato alimenta el
-                  openingHoursSpecification del JSON-LD. */}
-              {negocio.horario
-                ? <ul className="donde__horario">
-                    {negocio.horario.map((h) => (
-                      <li key={h.dia} className={h.cerrado ? 'donde__horario--cerrado' : undefined}>
-                        <span>{t(`donde.dias.${h.dia}`)}</span>
-                        <span>{h.cerrado ? t('donde.cerrado') : `${h.abre} – ${h.cierra}`}</span>
-                      </li>
-                    ))}
-                  </ul>
-                : <p className="donde__pendiente">{t('donde.horarioPendiente')}</p>}
-            </li>
-
-            <li>
-              <h3>{t('donde.telefono')}</h3>
-              <a href={`tel:${negocio.telefono}`}>{negocio.telefonoVisible}</a>
-            </li>
-
-            <li>
-              <h3>{t('donde.email')}</h3>
-              <a href={`mailto:${negocio.email}`}>{negocio.email}</a>
-            </li>
-
-            <li>
-              <h3>{t('donde.instagram')}</h3>
-              <a href={negocio.instagram} target="_blank" rel="noreferrer">@cafediagon</a>
-            </li>
-          </ul>
+          {/* Solo el horario: la direccion la lleva el propio mapa, y el
+              telefono, el email y el Instagram estan en el pie de todas las
+              paginas. Repetirlos aqui alargaba la seccion sin decir nada
+              nuevo. */}
+          <h3 className="donde__rotulo">{t('donde.horario')}</h3>
+          {/* El horario se guarda por dia y en 24 h, no como frase hecha: asi
+              el nombre del dia sale del diccionario de idiomas y el aleman no
+              lee "lunes". El mismo dato alimenta el openingHoursSpecification
+              del JSON-LD. */}
+          {negocio.horario
+            ? <ul className="donde__horario">
+                {negocio.horario.map((h) => (
+                  <li key={h.dia} className={h.cerrado ? 'donde__horario--cerrado' : undefined}>
+                    <span>{t(`donde.dias.${h.dia}`)}</span>
+                    <span>{h.cerrado ? t('donde.cerrado') : `${h.abre} – ${h.cierra}`}</span>
+                  </li>
+                ))}
+              </ul>
+            : <p className="donde__pendiente">{t('donde.horarioPendiente')}</p>}
         </div>
 
         <div className="donde__mapa-zona">

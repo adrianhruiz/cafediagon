@@ -31,23 +31,21 @@
     "texto": "Wir haben im Januar 2025 mit einer einfachen Idee eröffnet: ein Ort, an dem sich alle willkommen fühlen. Spezialitätenkaffee mit Sorgfalt zubereitet, täglich frisches Essen und Hunderte von Brettspielen, damit du so lange bleiben kannst, wie du magst.",
     "datoValoracion": "Durchschnittsbewertung bei Google, aus {n} Rezensionen (Stand {fecha})",
     "datoJuegos": "Brettspiele, kostenlos für alle",
-    "datoPremio": "Bestes Coffee House in Cala Rajada laut Restaurant Guru",
     "fotoAlt": "Caféwand voller gerahmter Bilder mit Magie-Motiven: alte Bücher, Eulen und Zauberspruch-Pergamente"
   },
   "carta": {
     "etiqueta": "Die Karte",
-    "titulo": "Das erwartet dich",
-    "entrada": "{platos} Gerichte und Getränke in {categorias} Kategorien. Frühstück, Toasts und Bowls tragen eigene Namen.",
+    "titulo": "Schau, worauf du heute Lust hast",
     "todo": "Alles",
     "resultado": "Angezeigt: {filtro}",
     "sinGluten": "ohne glutenhaltige Zutaten",
     "precioPendiente": "Auf Anfrage",
     "gratis": "Gratis",
-    "avisoPrecios": "Die Preise hängen im Café aus. Wir aktualisieren sie hier gerade.",
+    "avisoPrecios": "Preise folgen: Sie hängen im Café aus.",
     "avisoIva": "Preise in Euro, inklusive MwSt.",
     "filtrarPor": "Karte nach Kategorie filtern",
-    "avisoAlergenos": "Unter jedem Gericht stehen die vom Café angegebenen Allergene; steht dort nichts, enthält das Gericht keines der 14.",
-    "avisoCocina": "Wir kochen in einer gemeinsam genutzten Küche und können Spuren nicht ausschließen: Sag uns im Café Bescheid, wenn du eine Allergie hast.",
+    "avisoAlergenos": "Allergene unter jedem Gericht; steht dort nichts, enthält es keines der 14.",
+    "avisoCocina": "Gemeinsame Küche, Spuren möglich: Sag uns im Café Bescheid.",
     "alergenosEtiqueta": "Allergene",
     "alergenosPendientes": "Frag uns im Café",
     "alergeno": {
@@ -82,7 +80,6 @@
   "donde": {
     "etiqueta": "So findest du uns",
     "titulo": "Wir freuen uns auf dich",
-    "direccion": "Adresse",
     "horario": "Öffnungszeiten",
     "horarioPendiente": "Frag uns telefonisch oder auf Instagram nach unseren Öffnungszeiten",
     "cerrado": "Geschlossen",
@@ -95,15 +92,10 @@
       "sabado": "Samstag",
       "domingo": "Sonntag"
     },
-    "telefono": "Telefon",
-    "email": "E-Mail",
-    "instagram": "Instagram",
-    "comoLlegar": "In Google Maps öffnen",
     "mapaTitulo": "Karte mit dem Standort des Diagon Cafe, in der Carrer de Méndez Núñez, nahe am Hafen von Cala Rajada"
   },
   "pie": {
     "contacto": "Kontakt",
-    "siguenos": "Folge uns",
     "derechos": "Alle Rechte vorbehalten",
     "legal": "Rechtliche Links",
     "avisoLegal": "Impressum",

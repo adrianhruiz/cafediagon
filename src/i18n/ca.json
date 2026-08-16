@@ -31,23 +31,21 @@
     "texto": "Vam obrir el gener de 2025 amb una idea senzilla: crear un lloc on tothom se senti benvingut. Cafè d'especialitat tractat amb respecte, menjar preparat cada dia i centenars de jocs de taula perquè t'hi quedis l'estona que vulguis.",
     "datoValoracion": "de valoració mitjana a Google, sobre {n} ressenyes (dada de {fecha})",
     "datoJuegos": "jocs de taula disponibles sense cost",
-    "datoPremio": "Millor Coffee House de Cala Rajada segons Restaurant Guru",
     "fotoAlt": "Paret del cafè coberta de làmines emmarcades d'inspiració màgica: llibres antics, mussols i pergamins d'encanteris"
   },
   "carta": {
     "etiqueta": "La carta",
-    "titulo": "Què hi trobaràs",
-    "entrada": "{platos} plats i begudes repartits en {categorias} categories. Els esmorzars, torrades i bols tenen nom propi.",
+    "titulo": "Mira què et ve de gust avui",
     "todo": "Tot",
     "resultado": "Mostrant: {filtro}",
     "sinGluten": "sense ingredients amb gluten",
     "precioPendiente": "Consultar",
     "gratis": "Gratis",
-    "avisoPrecios": "Els preus es mostren al local. Els estem actualitzant aquí.",
-    "avisoIva": "Preus en euros amb IVA inclòs.",
+    "avisoPrecios": "Preus pendents: es mostren al local.",
+    "avisoIva": "Preus en euros, IVA inclòs.",
     "filtrarPor": "Filtrar la carta per categoria",
-    "avisoAlergenos": "Sota cada plat indiquem els al·lèrgens declarats pel cafè; si un plat no en porta cap, és que no conté cap dels 14.",
-    "avisoCocina": "Elaborem en una cuina compartida i no podem garantir l'absència de traces: si tens alguna al·lèrgia, digues-nos-ho al local.",
+    "avisoAlergenos": "Al·lèrgens sota cada plat; sense línia, no en porta cap dels 14.",
+    "avisoCocina": "Cuina compartida, possibles traces: digues-nos-ho al local.",
     "alergenosEtiqueta": "Al·lèrgens",
     "alergenosPendientes": "Consulta'ns al local",
     "alergeno": {
@@ -82,7 +80,6 @@
   "donde": {
     "etiqueta": "On som",
     "titulo": "T'hi esperem",
-    "direccion": "Adreça",
     "horario": "Horari",
     "horarioPendiente": "Consulta'ns l'horari per telèfon o a Instagram",
     "cerrado": "Tancat",
@@ -95,15 +92,10 @@
       "sabado": "Dissabte",
       "domingo": "Diumenge"
     },
-    "telefono": "Telèfon",
-    "email": "Correu",
-    "instagram": "Instagram",
-    "comoLlegar": "Obrir a Google Maps",
     "mapaTitulo": "Mapa amb la ubicació del Diagon Cafe, al Carrer de Méndez Núñez, a prop del port de Cala Rajada"
   },
   "pie": {
     "contacto": "Contacte",
-    "siguenos": "Segueix-nos",
     "derechos": "Tots els drets reservats",
     "legal": "Enllaços legals",
     "avisoLegal": "Avís legal",

@@ -72,7 +72,32 @@
   flex-wrap: wrap;
 }
 
+/* La distincion, debajo de los botones. Los colores son los mismos que tenia la
+   franja, medidos ahora sobre --tinta, que es el velo del hero. */
+.hero__premio {
+  margin: var(--paso-3) auto 0;
+  font-size: 0.84rem;
+  letter-spacing: 0.03em;
+  color: var(--pergamino);
+  /* En movil no cabe en una linea: que parta por la mitad y no deje una
+     palabra suelta debajo. */
+  max-width: 44ch;
+  text-wrap: balance;
+}
+.hero__premio b {
+  color: var(--cobre-claro);
+  font-weight: 600;
+}
+
+/* El color no cambia —esta medido sobre el fondo del hero—, asi que el
+   subrayado es lo que dice que se puede pulsar. */
+.hero__premio a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 560px) {
   .hero__contenido { padding: 4rem 1.2rem; }
   .hero__botones .boton { padding: 0.8rem 1.4rem; font-size: 0.75rem; }
+  .hero__premio { font-size: 0.78rem; }
 }
