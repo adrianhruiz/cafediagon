@@ -2,9 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { IDIOMAS, IDIOMA_POR_DEFECTO } from '../src/i18n/idioma.jsx';
-import { PORTADA, RUTAS, ruta, urlAbsoluta } from '../src/rutas.js';
+import { AVISO, PORTADA, RUTAS, ruta, urlAbsoluta } from '../src/rutas.js';
 import { metaDe } from '../src/meta.js';
 import negocio from '../src/content/business.json';
+import legalEs from '../src/content/legal.es.json';
+import legalEn from '../src/content/legal.en.json';
+import legalDe from '../src/content/legal.de.json';
+import legalCa from '../src/content/legal.ca.json';
 
 /**
  * Lo que se publica no es index.html: son las doce paginas que escribe
@@ -66,6 +70,33 @@ describe.skipIf(!hayBuild)('paginas publicadas', () => {
       const titulo = html.match(/<title>([\s\S]*?)<\/title>/)?.[1];
       expect(titulo, `${idioma}/${pagina}`).toBe(metaDe(idioma, pagina).titulo);
     }
+  });
+
+  it('cada pagina lleva descripcion, tambien las legales', () => {
+    // Lighthouse baja el SEO de la pagina que no la tiene, y en la lista de
+    // resultados es la unica frase que se lee debajo del titulo.
+    for (const { idioma, pagina, html } of paginas) {
+      const descripcion = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+      expect(descripcion?.trim(), `${idioma}/${pagina} se queda sin descripcion`).toBeTruthy();
+    }
+  });
+
+  it('la descripcion de cada pagina legal es la entrada de su documento', () => {
+    // No es una frase nueva: es el resumen que el propio documento ya tiene
+    // escrito y traducido, asi que no puede decir algo distinto de la pagina.
+    const LEGALES = { es: legalEs, en: legalEn, de: legalDe, ca: legalCa };
+    for (const { idioma, pagina, html } of paginas) {
+      if (pagina === PORTADA) continue;
+      const doc = pagina === AVISO ? LEGALES[idioma].aviso : LEGALES[idioma].privacidad;
+      const descripcion = html.match(/<meta name="description" content="([^"]*)"/)[1];
+      expect(descripcion, `${idioma}/${pagina}`).toBe(doc.entrada);
+    }
+  });
+
+  it('ninguna repite la descripcion de otra', () => {
+    const textos = paginas.map(({ html }) =>
+      html.match(/<meta name="description" content="([^"]*)"/)[1]);
+    expect(new Set(textos).size).toBe(textos.length);
   });
 
   it('ninguna repite el titulo de otra', () => {

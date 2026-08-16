@@ -38,10 +38,15 @@
   padding-top: var(--paso-3);
 }
 
+/* Mas apagada que el resto del pie, pero con alfa propio y no con opacity.
+   opacity se multiplica por el del color heredado (0,7 x 0,65 = 0,455) y dejaba
+   esta linea en #838382 sobre --tinta, o sea 4,19:1, por debajo del 4,5 que
+   pide AA a 12,5 px. Es lo que avisa tokens.css: una opacidad depende de lo que
+   tenga debajo y no se puede medir sola; un alfa sobre un fondo conocido si. */
 .pie__legal {
   margin: 0;
   font-size: 0.78rem;
-  opacity: 0.65;
+  color: rgba(250, 247, 240, 0.55);
 }
 
 .pie__enlaces-legales {

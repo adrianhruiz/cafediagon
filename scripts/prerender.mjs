@@ -44,7 +44,7 @@ const vite = await createServer({
 });
 
 const {
-  pintar, metaDe, urlAbsoluta, ruta, RUTAS, IDIOMAS, IDIOMA_POR_DEFECTO, PORTADA, negocio,
+  pintar, metaDePagina, urlAbsoluta, ruta, RUTAS, IDIOMAS, IDIOMA_POR_DEFECTO, PORTADA, negocio,
 } = await vite.ssrLoadModule('/src/entrada-servidor.jsx');
 
 const plantilla = readFileSync(join(DIST, 'index.html'), 'utf8');
@@ -96,7 +96,7 @@ const meta = (html, clave, valor) => html.replace(
 let escritas = 0;
 
 for (const { idioma, pagina } of RUTAS) {
-  const { titulo, descripcion, imagenAlt } = metaDe(idioma, pagina);
+  const { titulo, descripcion, imagenAlt } = metaDePagina(idioma, pagina);
   const cuerpo = await pintar(idioma, pagina);
 
   let html = plantilla
@@ -105,14 +105,10 @@ for (const { idioma, pagina } of RUTAS) {
     .replace(/  <link rel="canonical"[\s\S]*?hreflang="x-default"[^>]*>/, enlacesDe(idioma, pagina))
     .replace('<div id="root"></div>', `<div id="root">${cuerpo}</div>`);
 
-  // Las paginas legales no llevan descripcion: ver el porque en src/meta.js.
-  html = descripcion
-    ? meta(html, 'description', descripcion)
-    : html.replace(/\n\s*<meta name="description"[^>]*>/, '');
-
+  html = meta(html, 'description', descripcion);
   html = meta(html, 'og:url', urlAbsoluta(idioma, pagina));
   html = meta(html, 'og:title', titulo);
-  html = meta(html, 'og:description', descripcion ?? titulo);
+  html = meta(html, 'og:description', descripcion);
   html = meta(html, 'og:locale', LOCALES[idioma]);
   html = meta(html, 'og:image:alt', imagenAlt);
 

@@ -89,3 +89,44 @@ describe('contraste de la paleta', () => {
     expect(contraste([255, 255, 255], fondo)).toBeGreaterThanOrEqual(4.5);
   });
 });
+
+/**
+ * El pie no usa tokens: pinta con rgba() literales sobre --tinta, asi que los
+ * pares de arriba no lo miran. Lo trajo aqui un fallo de verdad: .pie__legal
+ * llevaba opacity: 0.65 encima de un color que ya venia al 0,7, y la linea del
+ * copyright se quedaba en 4,19:1.
+ *
+ * Los valores se leen de Pie.css en vez de copiarlos. Copiarlos no serviria de
+ * nada: el test seguiria en verde con el CSS cambiado, que es exactamente como
+ * se colo esto.
+ */
+describe('contraste del pie', () => {
+  const PIE = readFileSync(join(RAIZ, 'src', 'components', 'Pie.css'), 'utf8');
+  const FONDO = color('tinta');
+
+  /** Lo que hay entre las llaves de un selector. */
+  const reglas = (selector) =>
+    PIE.match(new RegExp(`${selector.replace('.', '\\.')}\\s*\\{([^}]*)\\}`))?.[1] ?? '';
+
+  /**
+   * Color con el que acaba pintandose un texto del pie: su rgba() o el que
+   * hereda de .pie, mezclado con el fondo. La opacidad entra en la cuenta
+   * porque multiplica al alfa del color, que es por donde se colo el fallo.
+   */
+  function efectivo(selector) {
+    const propias = reglas(selector);
+    const rgba = (propias.match(/color:\s*rgba\(([^)]+)\)/)
+      ?? reglas('.pie').match(/color:\s*rgba\(([^)]+)\)/));
+    const [r, g, b, alfa = 1] = rgba[1].split(',').map(Number);
+    const opacidad = Number(propias.match(/opacity:\s*([\d.]+)/)?.[1] ?? 1);
+    return mezclar([r, g, b], FONDO, alfa * opacidad);
+  }
+
+  it.each([
+    ['.pie', 'texto general del pie'],
+    ['.pie a', 'enlaces de contacto y legales'],
+    ['.pie__legal', 'linea de copyright'],
+  ])('%s pasa AA sobre el fondo oscuro (%s)', (selector) => {
+    expect(contraste(efectivo(selector), FONDO)).toBeGreaterThanOrEqual(4.5);
+  });
+});
