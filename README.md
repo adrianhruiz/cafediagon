@@ -1,34 +1,35 @@
 # Diagon Cafe
 
-Web de [Diagon Cafe](https://www.instagram.com/cafediagon/), cafetería de
-especialidad con juegos de mesa en Cala Rajada (Capdepera, Mallorca).
+Website for [Diagon Cafe](https://www.instagram.com/cafediagon/), a specialty
+coffee shop with board games in Cala Rajada (Capdepera, Mallorca).
 
-Publicada en <https://adrianhruiz.github.io/cafediagon/>.
+Live at <https://adrianhruiz.github.io/cafediagon/>.
 
-## De qué va
+## What it is
 
-Es la carta de presentación del café en internet: una sola página donde
-cualquiera puede ver qué es el sitio, consultar la carta, conocer los juegos de
-mesa, ver fotos del local y encontrar la dirección y el contacto.
+The cafe's online business card: a single page where anyone can find out what
+the place is about, browse the menu, discover the board games, see photos of
+the venue and get the address and contact details.
 
-Está pensada para:
+It is built for:
 
-- **Turistas y vecinos** que buscan dónde tomar un café en Cala Rajada: está
-  en español, inglés, alemán y catalán, y se ve bien en el móvil.
-- **Aparecer en los buscadores**, sobre todo en Google, cuando alguien busca
-  una cafetería en la zona.
-- **Respetar la privacidad**: no usa cookies ni carga nada de terceros, así que
-  no necesita banner de consentimiento.
+- **Tourists and locals** looking for a coffee in Cala Rajada: it is available
+  in Spanish, English, German and Catalan, and works well on mobile.
+- **Showing up in search engines**, especially Google, when someone looks for
+  a cafe in the area.
+- **Respecting privacy**: no cookies and nothing loaded from third parties, so
+  there is no need for a consent banner.
 
-## Cómo arrancarla
+## How to run it
 
-Hace falta [Node.js](https://nodejs.org/) 22 o superior.
+You need [Node.js](https://nodejs.org/) 22 or later.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Y abre <http://localhost:5173/cafediagon/> en el navegador.
+Then open <http://localhost:5173/cafediagon/> in your browser.
 
-Cada cambio que llega a la rama `main` se publica solo en GitHub Pages.
+Every change that reaches the `main` branch is published automatically to
+GitHub Pages.
